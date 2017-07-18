@@ -27,7 +27,7 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 
 	@Override
 	public void delete(Comment comment) {
-		this.getHibernateTemplate().update(this.findCommentByCommentID(comment.getCommentid()));		
+		this.getHibernateTemplate().delete(this.findCommentByCommentID(comment.getCommentid()));		
 	}
 
 	@Override
@@ -38,7 +38,6 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 
 	@Override
 	public List<Comment> findCommentByUserID(final int userid) {
-		// TODO Auto-generated method stub
 		List list=this.getHibernateTemplate().executeFind(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException,SQLException{
 				String hql=("From Comment where userid = ?");
@@ -53,7 +52,6 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 
 	@Override
 	public List<Comment> findCommentByTeacherID(final int teacherid) {
-		// TODO Auto-generated method stub
 		List list=this.getHibernateTemplate().executeFind(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException,SQLException{
 				String hql=("From Comment where teacherid = ?");
