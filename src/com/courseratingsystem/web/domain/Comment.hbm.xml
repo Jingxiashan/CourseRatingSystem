@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-7-18 12:25:34 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.courseratingsystem.web.domain.Comment" table="comment" catalog="courseratingsystem">
+        <id name="commentid" type="java.lang.Integer">
+            <column name="commentid" />
+            <generator class="identity" />
+        </id>
+        <timestamp name="timestamp" column="timestamp" />
+        <many-to-one name="teacher" class="com.courseratingsystem.web.domain.Teacher" fetch="select">
+            <column name="teacherid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="course" class="com.courseratingsystem.web.domain.Course" fetch="select">
+            <column name="courseid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="com.courseratingsystem.web.domain.User" fetch="select">
+            <column name="userid" not-null="true" />
+        </many-to-one>
+        <property name="ratingUsefulness" type="java.lang.Integer">
+            <column name="rating_usefulness" />
+        </property>
+        <property name="ratingVividness" type="java.lang.Integer">
+            <column name="rating_vividness" />
+        </property>
+        <property name="ratingSpareTimeOccupation" type="java.lang.Integer">
+            <column name="rating_spareTimeOccupation" />
+        </property>
+        <property name="ratingScoring" type="java.lang.Integer">
+            <column name="rating_scoring" />
+        </property>
+        <property name="ratingRollCall" type="java.lang.Integer">
+            <column name="rating_rollCall" />
+        </property>
+        <property name="recommandScore" type="java.lang.Integer">
+            <column name="recommandScore" />
+        </property>
+        <property name="critics" type="string">
+            <column name="critics" length="1024" />
+        </property>
+        <property name="likeCount" type="java.lang.Integer">
+            <column name="likeCount" />
+        </property>
+    </class>
+</hibernate-mapping>
