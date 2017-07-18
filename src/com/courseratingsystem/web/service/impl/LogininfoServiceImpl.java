@@ -8,7 +8,7 @@ import com.courseratingsystem.web.domain.User;
 import com.courseratingsystem.web.service.LogininfoService;
 
 public class LogininfoServiceImpl implements LogininfoService{
-	private static final String SUCCESS = null;
+	private static final String SUCCESS = "success";
 	private LogininfoDao logininfoDao;
 	
 	public void setLogininfodao(LogininfoDao logininfoDao) {

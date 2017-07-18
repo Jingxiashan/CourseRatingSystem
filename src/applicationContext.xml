@@ -55,7 +55,7 @@
 	</bean>
 	
 	<!-- 配置Action -->
-	<bean id="loginAction" class="com.chinasoft.app.action.LoginAction" scope="prototype">
+	<bean id="loginAction" class="com.courseratingsystem.web.action.LoginAction" scope="prototype">
 		<property name="logininfoService" ref="logininfoService"/>
 	</bean>
 	<!-- 

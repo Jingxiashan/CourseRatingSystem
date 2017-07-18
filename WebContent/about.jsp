@@ -8,7 +8,7 @@
 		<link rel="stylesheet prefech" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
-		<title>关于我们</title>
+		<title>关于我们-大众点评课</title>
 	</head>
 	<body>
 		<div class="ui container" style="width:650px">
