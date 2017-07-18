@@ -20,6 +20,14 @@ public class LogininfoServiceImpl implements LogininfoService{
 		logininfoDao.add(logininfo);
 	}
 
+	public LogininfoDao getLogininfoDao() {
+		return logininfoDao;
+	}
+
+	public void setLogininfoDao(LogininfoDao logininfoDao) {
+		this.logininfoDao = logininfoDao;
+	}
+
 	@Override
 	public void update(Logininfo logininfo) {
 		logininfoDao.update(logininfo);

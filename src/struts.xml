@@ -17,8 +17,8 @@
     <result name="success" type="redirectAction">book_search</result>
     </action>
     -->
-    <action name="LoginAction" class="com.chinasoft.app.action.LoginAction">
-    <result name="success" type="redirectAction">book_search</result>
+    <action name="login" class="com.courseratingsystem.web.LoginAction">
+    	<result name="success" type="redirect">/index.jsp</result>
     </action>
     	
     <action name="Bookadd" class="com.chinasoft.app.hibernatejboss.Bookadd" method="addBook">    
