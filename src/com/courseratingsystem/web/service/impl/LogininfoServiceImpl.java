@@ -1,5 +1,7 @@
 package com.courseratingsystem.web.service.impl;
 
+import java.util.List;
+
 import com.courseratingsystem.web.dao.LogininfoDao;
 import com.courseratingsystem.web.domain.Logininfo;
 import com.courseratingsystem.web.domain.User;
@@ -29,8 +31,8 @@ public class LogininfoServiceImpl implements LogininfoService{
 	}
 
 	@Override
-	public Logininfo findLogininfoBycredentialsid(int credentialsid) {
-		return logininfoDao.findLogininfoBycredentialsid(credentialsid);
+	public List<Logininfo> findLogininfoByuser(User user) {
+		return logininfoDao.findLogininfoByuser(user);
 	}
 
 	@Override
@@ -62,7 +64,14 @@ public class LogininfoServiceImpl implements LogininfoService{
 	@Override
 	public String changepassword(User user,
 			String oldpassword, String newpassword) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Logininfo> logininfolist = logininfoDao.findLogininfoByuser(user);
+		if(logininfolist.get(0).getPassword()!=oldpassword){
+			return "error";
+		}
+		for(Logininfo logininfo:logininfolist){
+			logininfo.setPassword(newpassword);
+			logininfoDao.update(logininfo);
+		}
+		return SUCCESS;
 	}
 }

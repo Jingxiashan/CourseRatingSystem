@@ -11,6 +11,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.courseratingsystem.web.dao.LogininfoDao;
 import com.courseratingsystem.web.domain.Logininfo;
+import com.courseratingsystem.web.domain.User;
 
 public class LogininfoDaoImpl extends HibernateDaoSupport implements LogininfoDao{
 
@@ -30,8 +31,19 @@ public class LogininfoDaoImpl extends HibernateDaoSupport implements LogininfoDa
 	}
 
 	@Override
-	public Logininfo findLogininfoBycredentialsid(int credentialsid) {
-		return this.getHibernateTemplate().get(Logininfo.class, credentialsid);
+	public List<Logininfo> findLogininfoByuser(final User user) {
+		List logininfolist = this.getHibernateTemplate().
+				executeFind(new HibernateCallback() {
+			public Object doInHibernate(Session session)
+					throws HibernateException,SQLException{
+				Query query = session.createQuery
+						("from logininfo where userid = ?");
+				query.setInteger(0, user.getUserid());
+				List<Logininfo> logininfolist = query.list();
+				return logininfolist;
+			}
+		});
+		return (List<Logininfo>)logininfolist;
 	}
 
 	@Override
@@ -41,10 +53,10 @@ public class LogininfoDaoImpl extends HibernateDaoSupport implements LogininfoDa
 			public Object doInHibernate(Session session) 
 					throws HibernateException,SQLException {
 				Query query  = session.createQuery
-						("from Logininfo where username = ?");
+						("from logininfo where username = ?");
 				query.setString(0, username);
 				//List<Logininfo> list = query.list();
-				Logininfo logininfo = (Logininfo)query.uniqueResult();
+				Logininfo logininfo = (Logininfo) query.list().get(0);
 				return logininfo;
 			}
 		});
@@ -63,7 +75,7 @@ public class LogininfoDaoImpl extends HibernateDaoSupport implements LogininfoDa
 				query.setString(0, username);
 				query.setString(1, password);
 				//List<Logininfo> list = query.list();
-				Logininfo logininfo = (Logininfo)query.uniqueResult();
+				Logininfo logininfo = (Logininfo) query.list().get(0);
 				return logininfo;
 			}
 		});
