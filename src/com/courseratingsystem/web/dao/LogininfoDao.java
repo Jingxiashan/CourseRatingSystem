@@ -7,5 +7,6 @@ public interface LogininfoDao {
 	public void update(Logininfo logininfo);
 	public void delete(Logininfo logininfo);
 	public Logininfo findLogininfoBycredentialsid(int credentialsid);
-	public Logininfo findLogininfoByusername(String username,String password);
+	public Logininfo findLogininfoByusername(String username);
+	public Logininfo findLogininfoByusernameandpassword(String username,String password);
 }

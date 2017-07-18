@@ -2,11 +2,13 @@ package com.courseratingsystem.web.dao.impl;
 
 import java.sql.SQLException;
 import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
 import com.courseratingsystem.web.dao.LogininfoDao;
 import com.courseratingsystem.web.domain.Logininfo;
 
@@ -33,7 +35,24 @@ public class LogininfoDaoImpl extends HibernateDaoSupport implements LogininfoDa
 	}
 
 	@Override
-	public Logininfo findLogininfoByusername
+	public Logininfo findLogininfoByusername(final String username){
+		Logininfo logininfo = (Logininfo) this.getHibernateTemplate().
+				executeFind(new HibernateCallback() {
+			public Object doInHibernate(Session session) 
+					throws HibernateException,SQLException {
+				Query query  = session.createQuery
+						("from Logininfo where username = ?");
+				query.setString(0, username);
+				//List<Logininfo> list = query.list();
+				Logininfo logininfo = (Logininfo)query.uniqueResult();
+				return logininfo;
+			}
+		});
+		return logininfo;
+	}
+	
+	@Override
+	public Logininfo findLogininfoByusernameandpassword
 	(final String username,final String password) {
 		Logininfo logininfo = (Logininfo) this.getHibernateTemplate().
 				executeFind(new HibernateCallback() {
