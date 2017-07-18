@@ -37,7 +37,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao{
 	}
 
 	@Override
-	public List<User> findUserByNickname(final String nickname) { 
+	public List<User> findUsersByNickname(final String nickname) { 
 		List userList = getHibernateTemplate().executeFind(new HibernateCallback() {
 			@Override
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
@@ -51,7 +51,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao{
 	}
 
 	@Override
-	public List<User> findUserByGrade(final String grade) {
+	public List<User> findUsersByGrade(final String grade) {
 		List userList = getHibernateTemplate().executeFind(new HibernateCallback() {
 			@Override
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {

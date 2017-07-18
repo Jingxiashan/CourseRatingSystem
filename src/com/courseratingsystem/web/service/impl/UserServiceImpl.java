@@ -42,13 +42,13 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<User> findUserByNickname(String nickname) {
-		return userDao.findUserByNickname(nickname);
+	public List<User> findUsersByNickname(String nickname) {
+		return userDao.findUsersByNickname(nickname);
 	}
 
 	@Override
-	public List<User> findUserByGrade(String grade) {
-		return userDao.findUserByGrade(grade);
+	public List<User> findUsersByGrade(String grade) {
+		return userDao.findUsersByGrade(grade);
 	}
 
 }

@@ -9,6 +9,6 @@ public interface UserService {
 	public void setNickname(int userid, String nickname);
 	public void setGrade(int userid, String grade);
 	public User findUserById(int userid);
-	public List<User> findUserByNickname(String nickname);
-	public List<User> findUserByGrade(String grade);
+	public List<User> findUsersByNickname(String nickname);
+	public List<User> findUsersByGrade(String grade);
 }

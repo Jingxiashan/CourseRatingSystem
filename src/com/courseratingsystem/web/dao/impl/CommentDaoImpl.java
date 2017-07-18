@@ -40,7 +40,7 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 	public List<Comment> findCommentByUserID(final int userid) {
 		List list=this.getHibernateTemplate().executeFind(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException,SQLException{
-				String hql=("From Comment where userid = ?");
+				String hql="From Comment where userid = ?";
 				Query query  = session.createQuery(hql);
 				query.setInteger(0, userid);
 				List<Comment> list = query.list();
@@ -54,7 +54,7 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 	public List<Comment> findCommentByTeacherID(final int teacherid) {
 		List list=this.getHibernateTemplate().executeFind(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException,SQLException{
-				String hql=("From Comment where teacherid = ?");
+				String hql="From Comment where teacherid = ?";
 				Query query  = session.createQuery(hql);
 				query.setInteger(0, teacherid);
 				List<Comment> list = query.list();
@@ -68,6 +68,12 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 	public int getTotalCount() {
 		Long count=(Long)this.getHibernateTemplate().find("select count(*) from Comment").listIterator().next();
 		return count.intValue();
+	}
+
+	@Override
+	public void addLikeCount(Comment comment) {
+		comment.setLikeCount(comment.getLikeCount()+1);
+		
 	}
 
 }
