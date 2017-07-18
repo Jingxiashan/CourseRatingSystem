@@ -1,6 +1,6 @@
 package com.courseratingsystem.web.domain;
 
-// Generated 2017-7-18 12:25:34 by Hibernate Tools 3.4.0.CR1
+// Generated 2017-7-18 14:18:31 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,15 +14,18 @@ public class Course implements java.io.Serializable {
 	private String coursename;
 	private Set users = new HashSet(0);
 	private Set teachers = new HashSet(0);
+	private Coursemark coursemark;
 	private Set comments = new HashSet(0);
 
 	public Course() {
 	}
 
-	public Course(String coursename, Set users, Set teachers, Set comments) {
+	public Course(String coursename, Set users, Set teachers,
+			Coursemark coursemark, Set comments) {
 		this.coursename = coursename;
 		this.users = users;
 		this.teachers = teachers;
+		this.coursemark = coursemark;
 		this.comments = comments;
 	}
 
@@ -56,6 +59,14 @@ public class Course implements java.io.Serializable {
 
 	public void setTeachers(Set teachers) {
 		this.teachers = teachers;
+	}
+
+	public Coursemark getCoursemark() {
+		return this.coursemark;
+	}
+
+	public void setCoursemark(Coursemark coursemark) {
+		this.coursemark = coursemark;
 	}
 
 	public Set getComments() {

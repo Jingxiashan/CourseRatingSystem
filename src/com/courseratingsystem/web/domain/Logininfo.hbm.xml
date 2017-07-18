@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-7-18 12:25:34 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2017-7-18 14:18:31 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.courseratingsystem.web.domain.Logininfo" table="logininfo" catalog="courseratingsystem">
         <id name="credentialsid" type="java.lang.Integer">
@@ -12,10 +12,10 @@
             <column name="userid" not-null="true" />
         </many-to-one>
         <property name="username" type="string">
-            <column name="username" not-null="true" />
+            <column name="username" length="11" not-null="true" />
         </property>
         <property name="password" type="string">
-            <column name="password" not-null="true" />
+            <column name="password" length="11" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

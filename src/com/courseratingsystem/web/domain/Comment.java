@@ -1,6 +1,6 @@
 package com.courseratingsystem.web.domain;
 
-// Generated 2017-7-18 12:25:34 by Hibernate Tools 3.4.0.CR1
+// Generated 2017-7-18 14:18:31 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 

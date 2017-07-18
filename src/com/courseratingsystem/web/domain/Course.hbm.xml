@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-7-18 12:25:34 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2017-7-18 14:18:31 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.courseratingsystem.web.domain.Course" table="course" catalog="courseratingsystem">
         <id name="courseid" type="java.lang.Integer">
@@ -27,6 +27,7 @@
                 <column name="teacherid" not-null="true" />
             </many-to-many>
         </set>
+        <one-to-one name="coursemark" class="com.courseratingsystem.web.domain.Coursemark"></one-to-one>
         <set name="comments" table="comment" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="courseid" not-null="true" />
