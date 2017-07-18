@@ -3,12 +3,12 @@ package com.courseratingsystem.web.service.impl;
 import java.util.List;
 
 import com.courseratingsystem.web.dao.LogininfoDao;
+import com.courseratingsystem.web.dao.impl.LogininfoDaoImpl;
 import com.courseratingsystem.web.domain.Logininfo;
 import com.courseratingsystem.web.domain.User;
 import com.courseratingsystem.web.service.LogininfoService;
 
 public class LogininfoServiceImpl implements LogininfoService{
-	private static final String SUCCESS = null;
 	private LogininfoDao logininfoDao;
 	
 	public void setLogininfodao(LogininfoDao logininfoDao) {
@@ -36,7 +36,7 @@ public class LogininfoServiceImpl implements LogininfoService{
 	}
 
 	@Override
-	public Logininfo findLogininfoByusername(String username, String password) {
+	public Logininfo findLogininfoByusernameandpassword(String username, String password) {
 		return logininfoDao.findLogininfoByusernameandpassword(username, password);
 	}
 
@@ -44,7 +44,7 @@ public class LogininfoServiceImpl implements LogininfoService{
 	public String login(String username, String password) {
 		Logininfo logininfo = logininfoDao.findLogininfoByusernameandpassword(username, password);
 		if(logininfo!=null)
-			return SUCCESS;
+			return "success";
 		return "fail";
 	}
 
@@ -58,7 +58,7 @@ public class LogininfoServiceImpl implements LogininfoService{
 		logininfo.setUsername(username);
 		logininfo.setPassword(password);
 		logininfoDao.add(logininfo);
-		return SUCCESS;
+		return "success";
 	}
 
 	@Override
@@ -72,6 +72,6 @@ public class LogininfoServiceImpl implements LogininfoService{
 			logininfo.setPassword(newpassword);
 			logininfoDao.update(logininfo);
 		}
-		return SUCCESS;
+		return "success";
 	}
 }

@@ -8,7 +8,7 @@
             <column name="credentialsid" />
             <generator class="identity" />
         </id>
-        <many-to-one name="user" class="com.courseratingsystem.web.domain.User" fetch="select">
+        <many-to-one name="user" class="com.courseratingsystem.web.domain.User" fetch="select" lazy="false">
             <column name="userid" not-null="true" />
         </many-to-one>
         <property name="username" type="string">
