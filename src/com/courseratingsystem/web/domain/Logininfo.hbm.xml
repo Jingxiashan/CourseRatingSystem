@@ -11,10 +11,10 @@
         <many-to-one name="user" class="com.courseratingsystem.web.domain.User" fetch="select">
             <column name="userid" not-null="true" />
         </many-to-one>
-        <property name="username" type="int">
+        <property name="username" type="string">
             <column name="username" not-null="true" />
         </property>
-        <property name="password" type="int">
+        <property name="password" type="string">
             <column name="password" not-null="true" />
         </property>
     </class>

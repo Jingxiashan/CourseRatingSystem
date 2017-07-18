@@ -9,13 +9,13 @@ public class Logininfo implements java.io.Serializable {
 
 	private Integer credentialsid;
 	private User user;
-	private int username;
-	private int password;
+	private String username;
+	private String password;
 
 	public Logininfo() {
 	}
 
-	public Logininfo(User user, int username, int password) {
+	public Logininfo(User user, String username, String password) {
 		this.user = user;
 		this.username = username;
 		this.password = password;
@@ -37,19 +37,19 @@ public class Logininfo implements java.io.Serializable {
 		this.user = user;
 	}
 
-	public int getUsername() {
+	public String getUsername() {
 		return this.username;
 	}
 
-	public void setUsername(int username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	public int getPassword() {
+	public String getPassword() {
 		return this.password;
 	}
 
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
