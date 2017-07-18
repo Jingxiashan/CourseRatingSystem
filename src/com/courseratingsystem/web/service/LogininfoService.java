@@ -11,7 +11,7 @@ public interface LogininfoService {
 	public void delete(Logininfo logininfo);
 	public List<Logininfo> findLogininfoByuser(User user);
 	public Logininfo findLogininfoByusername(String username,String password);
-	public String login(String username,String password);
+	public String login(Logininfo logininfo);
 	public String register(User user,String username,String password);
 	public String changepassword(User user,String oldpassword,String newpassword);
 }

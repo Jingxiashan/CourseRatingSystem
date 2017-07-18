@@ -55,6 +55,9 @@
 	</bean>
 	
 	<!-- 配置Action -->
+	<bean id="loginAction" class="com.chinasoft.app.action.LoginAction" scope="prototype">
+		<property name="logininfoService" ref="logininfoService"/>
+	</bean>
 	<!-- 
 	<bean id="bookAction" class="com.chinasoft.app.action.BookAction" scope="prototype">
 		<property name="bookService" ref="bookService"/>

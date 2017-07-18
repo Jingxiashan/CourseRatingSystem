@@ -49,9 +49,9 @@ public class LogininfoServiceImpl implements LogininfoService{
 	}
 
 	@Override
-	public String login(String username, String password) {
-		Logininfo logininfo = logininfoDao.findLogininfoByusernameandpassword(username, password);
-		if(logininfo!=null)
+	public String login(Logininfo logininfo) {
+		Logininfo tmpinfo = logininfoDao.findLogininfoByusernameandpassword(logininfo.getUsername(), logininfo.getPassword());
+		if(tmpinfo!=null)
 			return SUCCESS;
 		return "fail";
 	}
