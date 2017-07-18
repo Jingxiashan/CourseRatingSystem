@@ -9,6 +9,7 @@ public interface TeacherDao {
 	public void update(Teacher teacher);
 	public void delete(Teacher teacher);
 	public Teacher findTeacherByTeacherid(int teacherid);
+	public List<Teacher> findTeacherByTeachername(final String teachername);
 	public List<Teacher> findTeachersByCourseID(int courseid);
 
 }

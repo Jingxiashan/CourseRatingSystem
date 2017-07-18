@@ -9,6 +9,6 @@ public interface UserDao {
 	public void update(User user);
 	public void delete(User user);
 	public User findUserById(int userid);
-	public List<User> findUserByNickname(final String nickname);
-	public List<User> findUserByGrade(final String grade);
+	public List<User> findUsersByNickname(final String nickname);
+	public List<User> findUsersByGrade(final String grade);
 }
