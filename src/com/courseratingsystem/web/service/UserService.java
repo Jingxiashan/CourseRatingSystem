@@ -1,10 +1,14 @@
 package com.courseratingsystem.web.service;
 
+import java.util.List;
+
 import com.courseratingsystem.web.domain.User;
 
 public interface UserService {
-	public void add(User user);
-	public void update(User user);
-	public void delete(User user);
+	public User signup(User user);
+	public void setNickname(int userid, String nickname);
+	public void setGrade(int userid, String grade);
 	public User findUserById(int userid);
+	public List<User> findUserByNickname(String nickname);
+	public List<User> findUserByGrade(String grade);
 }

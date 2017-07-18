@@ -55,18 +55,36 @@
 	</bean>
 	
 	<!-- 配置Action -->
+	<!-- 
 	<bean id="bookAction" class="com.chinasoft.app.action.BookAction" scope="prototype">
 		<property name="bookService" ref="bookService"/>
 	</bean>
 	<bean id="loginAction" class="com.chinasoft.app.action.LoginAction" scope="prototype"/>
+	 -->
+	
 	
 	<!-- Service的配置 -->
-	<bean id="bookService" class="com.chinasoft.app.service.Impl.BookServiceImpl">
-		<property name="bookDao" ref="bookDao"/>
+	<bean id="commentService" class="com.courseratingsystem.web.service.impl.CommentServiceImpl">
+		<property name="commentDao" ref="commentDao"/>
+	</bean>
+	<bean id="userService" class="com.courseratingsystem.web.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"/>
+	</bean>
+	<bean id="logininfoService" class="com.courseratingsystem.web.service.impl.LogininfoServiceImpl">
+		<property name="logininfoDao" ref="logininfoDao"/>
 	</bean>
 	
 	<!-- DAO的配置 -->
-	<bean id="bookDao" class="com.chinasoft.app.dao.impl.Bookdaoimpl">
+	<bean id="commentDao" class="com.courseratingsystem.web.dao.impl.CommentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="userDao" class="com.courseratingsystem.web.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="LogininfoDao" class="com.courseratingsystem.web.dao.impl.LogininfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="coursemarkDao" class="com.courseratingsystem.web.dao.impl.CoursemarkDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
