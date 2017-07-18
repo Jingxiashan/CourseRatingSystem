@@ -43,9 +43,13 @@
 		
 		<!-- 加载映射 -->
 		 <property name="mappingResources">
-			<list>
-				<value>com/chinasoft/app/hibernatejboss/Book.hbm.xml</value>
-				<value>com/chinasoft/app/hibernatejboss/User.hbm.xml</value>
+			<list>						
+				<value>com/courseratingsystem/web/domain/Comment.hbm.xml</value>
+				<value>com/courseratingsystem/web/domain/Course.hbm.xml</value>
+				<value>com/courseratingsystem/web/domain/Coursemark.hbm.xml</value>
+				<value>com/courseratingsystem/web/domain/Logininfo.hbm.xml</value>
+				<value>com/courseratingsystem/web/domain/Teacher.hbm.xml</value>
+				<value>com/courseratingsystem/web/domain/User.hbm.xml</value>
 			</list>
 		</property> 
 	</bean>

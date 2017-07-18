@@ -11,7 +11,7 @@
 		com.mysql.jdbc.Driver
 	</property>
 	<property name="hibernate.connection.url">
-		jdbc:mysql://127.0.0.1:3306/test
+		jdbc:mysql://127.0.0.1:3306/courseratingsystem
 	</property>
 	<property name="hibernate.connection.username">root</property>
 	<property name="hibernate.connection.password">1</property>
@@ -44,11 +44,13 @@
 	<property name="c3p0.timeout">120</property>
 	 <!--每3000秒检查所有连接池中的空闲连接 以秒为单位-->
 	<property name="c3p0.idle_test_period">3000</property>
-	<mapping resource="com/chinasoft/app/hibernatejboss/User.hbm.xml" />
-	<mapping resource="com/chinasoft/app/hibernatejboss/Book.hbm.xml" />
 	
-
-
-
+	<mapping resource="com/courseratingsystem/web/domain/Comment.hbm.xml" />
+	<mapping resource="com/courseratingsystem/web/domain/Course.hbm.xml" />
+	<mapping resource="com/courseratingsystem/web/domain/Coursemark.hbm.xml" />
+	<mapping resource="com/courseratingsystem/web/domain/Logininfo.hbm.xml" />
+	<mapping resource="com/courseratingsystem/web/domain/Teacher.hbm.xml" />
+	<mapping resource="com/courseratingsystem/web/domain/User.hbm.xml" />
+	
 </session-factory>
 </hibernate-configuration>
