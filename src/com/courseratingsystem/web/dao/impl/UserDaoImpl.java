@@ -1,7 +1,6 @@
 package com.courseratingsystem.web.dao.impl;
 
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
 import com.courseratingsystem.web.dao.UserDao;
 import com.courseratingsystem.web.domain.User;
 

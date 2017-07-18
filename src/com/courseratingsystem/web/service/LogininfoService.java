@@ -1,8 +1,8 @@
-package com.courseratingsystem.web.dao;
+package com.courseratingsystem.web.service;
 
 import com.courseratingsystem.web.domain.Logininfo;
 
-public interface LogininfoDao {
+public interface LogininfoService {
 	public void add(Logininfo logininfo);
 	public void update(Logininfo logininfo);
 	public void delete(Logininfo logininfo);
