@@ -56,4 +56,10 @@ public class CommentServiceImpl implements CommentService{
 		return commentDao.getTotalCount();
 	}
 
+	@Override
+	public void addLikeCount(Comment comment) {
+		commentDao.addLikeCount(comment);
+		
+	}
+
 }

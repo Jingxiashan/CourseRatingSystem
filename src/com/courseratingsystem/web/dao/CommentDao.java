@@ -12,6 +12,7 @@ public interface CommentDao {
 	public List<Comment> findCommentByUserID(final int userid);
 	public List<Comment> findCommentByTeacherID(final int teacherid);
 	public int getTotalCount();
+	public void addLikeCount(Comment comment);
 	
 	
 	
