@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+   
+    <package name="default" namespace="/" extends="struts-default">
+
+    
+    <global-results><result name="fail">fail.jsp</result></global-results>
+    
+    <!--  
+    <action name="LoginAction" class="com.chinasoft.app.action.LoginAction" method="login">    
+    <result name="success" type="redirectAction">book_search</result>
+    </action>
+    -->
+    <action name="LoginAction" class="com.chinasoft.app.action.LoginAction">
+    <result name="success" type="redirectAction">book_search</result>
+    </action>
+    	
+    <action name="Bookadd" class="com.chinasoft.app.hibernatejboss.Bookadd" method="addBook">    
+    <result name="success">success.jsp</result>
+    </action>
+    
+    <action name="book_*" class="com.chinasoft.app.action.BookAction" method ="{1}">
+    <result name="success">book.jsp</result>
+    <result name="book_search" type="redirectAction">book_search</result>
+    <result name="findById">update.jsp</result>
+    </action>
+
+    
+    </package>
+
+
+</struts>
