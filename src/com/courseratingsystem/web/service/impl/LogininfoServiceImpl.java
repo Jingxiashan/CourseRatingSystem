@@ -3,12 +3,16 @@ package com.courseratingsystem.web.service.impl;
 import java.util.List;
 
 import com.courseratingsystem.web.dao.LogininfoDao;
+import com.courseratingsystem.web.dao.impl.LogininfoDaoImpl;
 import com.courseratingsystem.web.domain.Logininfo;
 import com.courseratingsystem.web.domain.User;
 import com.courseratingsystem.web.service.LogininfoService;
 
 public class LogininfoServiceImpl implements LogininfoService{
+<<<<<<< HEAD
+=======
 	private static final String SUCCESS = "success";
+>>>>>>> branch 'master' of https://github.com/Jingxiashan/CourseRatingSystem.git
 	private LogininfoDao logininfoDao;
 	
 	public void setLogininfodao(LogininfoDao logininfoDao) {
@@ -44,11 +48,12 @@ public class LogininfoServiceImpl implements LogininfoService{
 	}
 
 	@Override
-	public Logininfo findLogininfoByusername(String username, String password) {
+	public Logininfo findLogininfoByusernameandpassword(String username, String password) {
 		return logininfoDao.findLogininfoByusernameandpassword(username, password);
 	}
 
 	@Override
+
 	public String login(Logininfo logininfo) {
 		Logininfo tmpinfo = logininfoDao.findLogininfoByusernameandpassword(logininfo.getUsername(), logininfo.getPassword());
 		if(tmpinfo!=null)
@@ -66,7 +71,7 @@ public class LogininfoServiceImpl implements LogininfoService{
 		logininfo.setUsername(username);
 		logininfo.setPassword(password);
 		logininfoDao.add(logininfo);
-		return SUCCESS;
+		return "success";
 	}
 
 	@Override
@@ -80,6 +85,6 @@ public class LogininfoServiceImpl implements LogininfoService{
 			logininfo.setPassword(newpassword);
 			logininfoDao.update(logininfo);
 		}
-		return SUCCESS;
+		return "success";
 	}
 }

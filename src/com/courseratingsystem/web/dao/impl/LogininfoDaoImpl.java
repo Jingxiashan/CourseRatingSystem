@@ -64,21 +64,21 @@ public class LogininfoDaoImpl extends HibernateDaoSupport implements LogininfoDa
 	}
 	
 	@Override
-	public Logininfo findLogininfoByusernameandpassword
-	(final String username,final String password) {
-		Logininfo logininfo = (Logininfo) this.getHibernateTemplate().
-				executeFind(new HibernateCallback() {
-			public Object doInHibernate(Session session) 
-					throws HibernateException,SQLException {
-				Query query  = session.createQuery
-						("from Logininfo where username = ? and password = ?");
+	public Logininfo findLogininfoByusernameandpassword(final String username,final String password)
+	 {
+		Logininfo logininfo = (Logininfo) this.getHibernateTemplate().executeFind(
+				new HibernateCallback() {
+				public Logininfo doInHibernate(Session session) 
+				throws HibernateException,SQLException {
+				Query query  = session.createQuery("from logininfo where username = ? and password = ?");
 				query.setString(0, username);
 				query.setString(1, password);
 				//List<Logininfo> list = query.list();
 				Logininfo logininfo = (Logininfo) query.list().get(0);
 				return logininfo;
 			}
-		});
+		}
+				);
 		return logininfo;
 	}
 
