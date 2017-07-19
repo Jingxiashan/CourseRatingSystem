@@ -55,18 +55,47 @@ class RegisterInfo{
 public class RegisterAction extends ActionSupport implements ModelDriven<RegisterInfo>{
 	RegisterInfo registerInfo = new RegisterInfo();
 	LogininfoService logininfoService;
+	public LogininfoService getLogininfoService() {
+		return logininfoService;
+	}
+
+	public void setLogininfoService(LogininfoService logininfoService) {
+		this.logininfoService = logininfoService;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
 	UserService userService;
 	private static final String MSG_REGISTER_FAILED_DUPLICATE = "用户名已存在，请重试";
 	private static final String MSG_REGISTER_FAILED_WRONGPASS = "两次密码输入不一致，请重试";
+	private static final String MSG_REGISTER_FAILED_EMPTY = "不能为空，请重试";
 	private static final String MSG_REGISTER_ERROR = "出现未知错误，请重试";
 	private static final String FAIL = "fail";
 	
 	public String execute() {
-		if(!registerInfo.getPassword1().equals(registerInfo.getPassword2())) {
+		if(registerInfo.getUsername().isEmpty()) {
+			ServletActionContext.getRequest().setAttribute("message", "用户名"+MSG_REGISTER_FAILED_EMPTY);
+			return FAIL;			
+		}else if(registerInfo.getPassword1().isEmpty() && registerInfo.getPassword2().isEmpty()) {
+			ServletActionContext.getRequest().setAttribute("message", "密码"+MSG_REGISTER_FAILED_EMPTY);
+			return FAIL;						
+		}else if(registerInfo.getNickname().isEmpty()) {
+			ServletActionContext.getRequest().setAttribute("message", "昵称"+MSG_REGISTER_FAILED_EMPTY);
+			return FAIL;						
+		}else if(registerInfo.getGrade().isEmpty()) {
+			ServletActionContext.getRequest().setAttribute("message", "年级"+MSG_REGISTER_FAILED_EMPTY);
+			return FAIL;						
+		}else if(!registerInfo.getPassword1().equals(registerInfo.getPassword2())) {
 			//两次密码输入不一致，注册失败
 			ServletActionContext.getRequest().setAttribute("message", MSG_REGISTER_FAILED_WRONGPASS);
 			return FAIL;
-		}else if(logininfoService.findLogininfoByusername(registerInfo.getUsername()) == null) {
+		}else if(logininfoService.findLogininfoByusername(registerInfo.getUsername()) != null) {
 			//已经存在相同的用户名，注册失败
 			ServletActionContext.getRequest().setAttribute("message", MSG_REGISTER_FAILED_DUPLICATE);
 			return FAIL; 
