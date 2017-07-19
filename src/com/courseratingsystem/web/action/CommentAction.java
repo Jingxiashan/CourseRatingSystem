@@ -31,7 +31,7 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 	private CommentService commentService;
 	private String sortmethod;
 	
-	public String findByBeacher(){
+	public String findByTeacher(){
 		CommentPage commentPage = commentService.findCommentByTeacherID(comment.getTeacher().getTeacherid(),currentPage,pageSize);
 		if(commentPage.getTotalCount()>0){
 			commentService.sorting(commentPage.getcommentList(), sortmethod);
