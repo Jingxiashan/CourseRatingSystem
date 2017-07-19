@@ -69,16 +69,19 @@ public class TeacherDaoImpl extends HibernateDaoSupport implements TeacherDao {
 
 	@Override
 	public List<Teacher> findTeacherByTeachername(final String teachername) {
-		List userList = getHibernateTemplate().executeFind(new HibernateCallback() {
-			@Override
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
-				String hql = "from Teacher where teachername like ?";
-				Query query = session.createQuery(hql);
-				query.setString(0, "%"+teachername+"%");
-				return query.list();
-			}		
-		});
-		return userList;
+		List<Teacher> teacherlist = getHibernateTemplate().find("from Teacher where teachername like ?", teachername);
+		return teacherlist;
+		
+//		List userList = getHibernateTemplate().executeFind(new HibernateCallback() {
+//			@Override
+//			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+//				String hql = "from Teacher where teachername like ?";
+//				Query query = session.createQuery(hql);
+//				query.setString(0, "%"+teachername+"%");
+//				return query.list();
+//			}		
+//		});
+//		return userList;
 	}
 	
 
