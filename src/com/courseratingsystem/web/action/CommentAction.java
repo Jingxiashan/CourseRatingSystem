@@ -10,8 +10,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 public class CommentAction extends ActionSupport implements ModelDriven<Comment>{
-	Comment comment = new Comment();
-	CommentService commentService;
+	private Comment comment = new Comment();
+	private CommentService commentService;
 	private String sortmethod;
 	
 	public String findByBeacher(){
