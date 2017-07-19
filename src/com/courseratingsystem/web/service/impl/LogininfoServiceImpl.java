@@ -9,10 +9,7 @@ import com.courseratingsystem.web.domain.User;
 import com.courseratingsystem.web.service.LogininfoService;
 
 public class LogininfoServiceImpl implements LogininfoService{
-<<<<<<< HEAD
-=======
 	private static final String SUCCESS = "success";
->>>>>>> branch 'master' of https://github.com/Jingxiashan/CourseRatingSystem.git
 	private LogininfoDao logininfoDao;
 	
 	public void setLogininfodao(LogininfoDao logininfoDao) {
