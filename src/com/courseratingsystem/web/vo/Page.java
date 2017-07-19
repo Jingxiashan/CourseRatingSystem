@@ -2,12 +2,14 @@ package com.courseratingsystem.web.vo;
 
 import java.util.List;
 
-public class BookPage {
+import com.courseratingsystem.web.domain.Comment;
+
+public class Page {
 	private int pageSize;
 	private int currentPage;
 	private int totalCount;
 	private int totalPage;
-	//private List<Book> dataList;
+	private List<Comment> commentList;
 	public int getPageSize() {
 		return pageSize;
 	}
@@ -32,13 +34,10 @@ public class BookPage {
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
-	/*
-	public List<Book> getDataList() {
-		return dataList;
+	public List<Comment> getcommentList() {
+		return commentList;
 	}
-	public void setDataList(List<Book> dataList) {
-		this.dataList = dataList;
+	public void setDataList(List<Comment> commentList) {
+		this.commentList = commentList;
 	}
-	*/
-
 }
