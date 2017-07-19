@@ -55,6 +55,9 @@
 	</bean>
 	
 	<!-- 配置Action -->
+	<bean id="loginAction" class="com.courseratingsystem.web.action.LoginAction" scope="prototype">
+		<property name="logininfoService" ref="logininfoService"/>
+	</bean>
 	<!-- 
 	<bean id="bookAction" class="com.chinasoft.app.action.BookAction" scope="prototype">
 		<property name="bookService" ref="bookService"/>
@@ -82,9 +85,6 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="logininfoDao" class="com.courseratingsystem.web.dao.impl.LogininfoDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean id="coursemarkDao" class="com.courseratingsystem.web.dao.impl.CoursemarkDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 

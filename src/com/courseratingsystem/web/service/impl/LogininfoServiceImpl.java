@@ -9,6 +9,10 @@ import com.courseratingsystem.web.domain.User;
 import com.courseratingsystem.web.service.LogininfoService;
 
 public class LogininfoServiceImpl implements LogininfoService{
+<<<<<<< HEAD
+=======
+	private static final String SUCCESS = "success";
+>>>>>>> branch 'master' of https://github.com/Jingxiashan/CourseRatingSystem.git
 	private LogininfoDao logininfoDao;
 	
 	public void setLogininfodao(LogininfoDao logininfoDao) {
@@ -18,6 +22,14 @@ public class LogininfoServiceImpl implements LogininfoService{
 	@Override
 	public void add(Logininfo logininfo) {
 		logininfoDao.add(logininfo);
+	}
+
+	public LogininfoDao getLogininfoDao() {
+		return logininfoDao;
+	}
+
+	public void setLogininfoDao(LogininfoDao logininfoDao) {
+		this.logininfoDao = logininfoDao;
 	}
 
 	@Override
@@ -41,10 +53,11 @@ public class LogininfoServiceImpl implements LogininfoService{
 	}
 
 	@Override
-	public String login(String username, String password) {
-		Logininfo logininfo = logininfoDao.findLogininfoByusernameandpassword(username, password);
-		if(logininfo!=null)
-			return "success";
+
+	public String login(Logininfo logininfo) {
+		Logininfo tmpinfo = logininfoDao.findLogininfoByusernameandpassword(logininfo.getUsername(), logininfo.getPassword());
+		if(tmpinfo!=null)
+			return SUCCESS;
 		return "fail";
 	}
 
