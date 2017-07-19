@@ -13,18 +13,20 @@ public class LoginAction extends ActionSupport implements ModelDriven<Logininfo>
 	LogininfoService logininfoService;
 	private static final String MSG_LOGIN_FAILED = "用户名或密码错误，请重试";
 	private static final String MSG_LOGIN_ERROR = "出现未知错误，请重试";
+	private static final String FAIL = "fail";
 	
 	
 	public String execute() {
 		String result = logininfoService.login(logininfo);
 		if(result.equals(SUCCESS)) {
-			//LOGIN SUCCESS
+			//登陆成功
 			return SUCCESS;
 		}else if(result.equals("fail")){
-			//LOGIN FAILED
+			//用户名或密码错误，登陆失败
 			ServletActionContext.getRequest().setAttribute("message", MSG_LOGIN_FAILED);
-			return "fail";
+			return FAIL;
 		}else {
+			//出现其它错误，登录失败
 			ServletActionContext.getRequest().setAttribute("message", MSG_LOGIN_ERROR);
 			return ERROR;
 		}

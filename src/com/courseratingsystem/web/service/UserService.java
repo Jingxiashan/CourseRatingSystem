@@ -5,7 +5,7 @@ import java.util.List;
 import com.courseratingsystem.web.domain.User;
 
 public interface UserService {
-	public User signup(User user);
+	public User register(User user);
 	public void setNickname(int userid, String nickname);
 	public void setGrade(int userid, String grade);
 	public User findUserById(int userid);

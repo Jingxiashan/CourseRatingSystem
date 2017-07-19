@@ -9,6 +9,7 @@ import com.courseratingsystem.web.service.LogininfoService;
 
 public class LogininfoServiceImpl implements LogininfoService{
 	private static final String SUCCESS = "success";
+	private static final String FAIL = "fail";
 	private LogininfoDao logininfoDao;
 	
 	public void setLogininfodao(LogininfoDao logininfoDao) {
@@ -58,16 +59,12 @@ public class LogininfoServiceImpl implements LogininfoService{
 	}
 
 	@Override
-	public String register(User user,String username, String password) {
-		Logininfo logininfo = logininfoDao.findLogininfoByusername(username);
-		if(logininfo!=null){
-			return "fail";
-		}
+	public void register(User user,String username, String password) {
+		Logininfo logininfo = new Logininfo();
 		logininfo.setUser(user);
 		logininfo.setUsername(username);
 		logininfo.setPassword(password);
 		logininfoDao.add(logininfo);
-		return "success";
 	}
 
 	@Override
@@ -82,5 +79,10 @@ public class LogininfoServiceImpl implements LogininfoService{
 			logininfoDao.update(logininfo);
 		}
 		return "success";
+	}
+
+	@Override
+	public Logininfo findLogininfoByusername(String username) {
+		return logininfoDao.findLogininfoByusername(username);
 	}
 }
