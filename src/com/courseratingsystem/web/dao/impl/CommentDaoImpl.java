@@ -1,14 +1,7 @@
 package com.courseratingsystem.web.dao.impl;
 
-import java.sql.SQLException;
 import java.util.List;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
 import com.courseratingsystem.web.dao.CommentDao;
 import com.courseratingsystem.web.domain.Comment;
 
@@ -33,17 +26,22 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 	@Override
 	public List<Comment> findCommentByCommentID(int commentid) {
 		return (List<Comment>) this.getHibernateTemplate().get(Comment.class,commentid);
-
 	}
 
 	@Override
-	public List<Comment> findCommentByUserID(final int userid) {
+	public List<Comment> findCommentByUserID(int userid) {
 		List<Comment> commentList = getHibernateTemplate().find("from Comment where userid = ?", userid);
 		return commentList;
 	}
 
 	@Override
-	public List<Comment> findCommentByTeacherID(final int teacherid) {
+	public List<Comment> findCommentByCourseID(int courseid) {
+		List<Comment> commentList = getHibernateTemplate().find("from Comment where courseid = ?,courseid");
+		return commentList;
+	}
+	
+	@Override
+	public List<Comment> findCommentByTeacherID(int teacherid) {
 		List<Comment> commentList = getHibernateTemplate().find("from Comment where teacherid = ?", teacherid);
 		return commentList;
 	}
@@ -57,7 +55,5 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 	@Override
 	public void addLikeCount(Comment comment) {
 		comment.setLikeCount(comment.getLikeCount()+1);
-		
 	}
-
 }

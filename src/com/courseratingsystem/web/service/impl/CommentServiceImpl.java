@@ -1,5 +1,6 @@
 package com.courseratingsystem.web.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -47,6 +48,11 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
+	public List<Comment> findCommentByCourseID(int courseid) {
+		return commentDao.findCommentByCourseID(courseid);
+	}
+	
+	@Override
 	public List<Comment> findCommentByTeacherID(int teacherid) {
 		return commentDao.findCommentByTeacherID(teacherid);
 	}
@@ -62,4 +68,8 @@ public class CommentServiceImpl implements CommentService{
 		
 	}
 
+	@Override
+	public void sorting(List<Comment> commentList) {
+		Collections.sort(commentList);
+	}
 }
