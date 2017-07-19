@@ -1,7 +1,12 @@
 package com.courseratingsystem.web.service.impl;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.ToDoubleFunction;
+import java.util.function.ToIntFunction;
+import java.util.function.ToLongFunction;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,7 +74,20 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public void sorting(List<Comment> commentList) {
-		Collections.sort(commentList);
+	public void sorting(List<Comment> commentList,final String sortmethod) {
+		Collections.sort(commentList,new Comparator<Comment>(){
+
+			@Override
+			public int compare(Comment c1, Comment c2) {
+				if(sortmethod=="bylikeCount"){
+					int i = c2.getLikeCount() - c1.getLikeCount();
+					if(i==0){
+						return c2.getTimestamp().compareTo(c1.getTimestamp());
+					}
+					return i;
+				}
+				return c2.getTimestamp().compareTo(c1.getTimestamp());
+			}
+		});
 	}
 }
