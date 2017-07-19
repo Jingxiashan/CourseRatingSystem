@@ -62,6 +62,9 @@
 		<property name="userService" ref="userService"/>
 		<property name="logininfoService" ref="logininfoService"/>
 	</bean>
+	<bean id="changePasswordAction" class="com.courseratingsystem.web.action.ChangePasswordAction" scope="prototype">
+		<property name="logininfoService" ref="logininfoService"/>
+	</bean>
 	<!-- 
 	<bean id="bookAction" class="com.chinasoft.app.action.BookAction" scope="prototype">
 		<property name="bookService" ref="bookService"/>

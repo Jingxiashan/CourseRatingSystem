@@ -41,13 +41,13 @@
 		        <div class="field">
 		          <div class="ui left icon input">
 		            <i class="user icon"></i>
-		            <input type="text" name="username" placeholder="Username">
+		            <input type="text" name="username" placeholder="请输入用户名">
 		          </div>
 		        </div>
 		        <div class="field">
 		          <div class="ui left icon input">
 		            <i class="lock icon"></i>
-		            <input type="password" name="password" placeholder="Password">
+		            <input type="password" name="password" placeholder="请输入密码">
 		          </div>
 		        </div>
 		
