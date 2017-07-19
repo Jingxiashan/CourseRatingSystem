@@ -38,30 +38,36 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao{
 
 	@Override
 	public List<User> findUsersByNickname(final String nickname) { 
-		List userList = getHibernateTemplate().executeFind(new HibernateCallback() {
-			@Override
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
-				String hql = "from User where nickname like ?";
-				Query query = session.createQuery(hql);
-				query.setString(0, "%"+nickname+"%");
-				return query.list();
-			}		
-		});
+		List<User> userList = getHibernateTemplate().find("from User where nickname like ?", nickname);
 		return userList;
+		
+//		List userList = getHibernateTemplate().executeFind(new HibernateCallback() {
+//			@Override
+//			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+//				String hql = "from User where nickname like ?";
+//				Query query = session.createQuery(hql);
+//				query.setString(0, "%"+nickname+"%");
+//				return query.list();
+//			}		
+//		});
+//		return userList;
 	}
 
 	@Override
 	public List<User> findUsersByGrade(final String grade) {
-		List userList = getHibernateTemplate().executeFind(new HibernateCallback() {
-			@Override
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
-				String hql = "from User where grade = ?";
-				Query query = session.createQuery(hql);
-				query.setString(0, grade);
-				return query.list();
-			}		
-		});
+		List<User> userList = getHibernateTemplate().find("from User where grade = ?", grade);
 		return userList;
+		
+//		List userList = getHibernateTemplate().executeFind(new HibernateCallback() {
+//			@Override
+//			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+//				String hql = "from User where grade = ?";
+//				Query query = session.createQuery(hql);
+//				query.setString(0, grade);
+//				return query.list();
+//			}		
+//		});
+//		return userList;
 	}
 	
 }
