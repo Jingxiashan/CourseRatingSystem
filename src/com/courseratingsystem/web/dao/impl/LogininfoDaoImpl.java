@@ -31,13 +31,13 @@ public class LogininfoDaoImpl extends HibernateDaoSupport implements LogininfoDa
 	}
 
 	@Override
-	public List<Logininfo> findLogininfoByuser(final User user) {
-		List<Logininfo> infoList = getHibernateTemplate().find("from Logininfo where userid = ?",user.getUserid());
+	public List<Logininfo> findLogininfoByuserid(int userid) {
+		List<Logininfo> infoList = getHibernateTemplate().find("from Logininfo where userid = ?",userid);
 		return infoList;
 	}
 
 	@Override
-	public Logininfo findLogininfoByusername(final String username){
+	public Logininfo findLogininfoByusername(String username){
 		List<Logininfo> infoList = getHibernateTemplate().find("from Logininfo where username = ?",username);
 		return infoList.isEmpty() ? null : infoList.get(0);
 	}

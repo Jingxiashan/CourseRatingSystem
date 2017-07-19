@@ -12,14 +12,12 @@ import com.opensymphony.xwork2.ModelDriven;
 public class CommentAction extends ActionSupport implements ModelDriven<Comment>{
 	Comment comment = new Comment();
 	CommentService commentService;
-	private String SORTING;
+	private String sortmethod;
 	
 	public String findByBeacher(){
 		List<Comment> commentList = commentService.findCommentByTeacherID(comment.getTeacher().getTeacherid());
 		if(!commentList.isEmpty()){
-			if(SORTING=="YES"){
-				commentService.sorting(commentList);
-			}
+			commentService.sorting(commentList, sortmethod);
 			ServletActionContext.getRequest().setAttribute("commentList", commentList);
 			return SUCCESS;
 		}
@@ -29,9 +27,7 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 	public String findByCourse(){
 		List<Comment> commentList = commentService.findCommentByCourseID(comment.getCourse().getCourseid());
 		if(!commentList.isEmpty()){
-			if(SORTING=="YES"){
-				commentService.sorting(commentList);
-			}
+			commentService.sorting(commentList, sortmethod);
 			ServletActionContext.getRequest().setAttribute("commentList", commentList);
 			return SUCCESS;
 		}
@@ -41,13 +37,16 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 	public String findByUser(){
 		List<Comment> commentList = commentService.findCommentByUserID(comment.getUser().getUserid());
 		if(!commentList.isEmpty()){
-			if(SORTING=="YES"){
-				commentService.sorting(commentList);
-			}
+			commentService.sorting(commentList, sortmethod);
 			ServletActionContext.getRequest().setAttribute("commentList", commentList);
 			return SUCCESS;
 		}
 		return "fail";
+	}
+	
+	public String addComment(){
+		commentService.add(comment);
+		return SUCCESS;
 	}
 	
 	public CommentService getCommentService(){

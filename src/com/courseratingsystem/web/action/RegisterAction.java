@@ -73,7 +73,7 @@ public class RegisterAction extends ActionSupport implements ModelDriven<Registe
 
 	UserService userService;
 	private static final String MSG_REGISTER_FAILED_DUPLICATE = "用户名已存在，请重试";
-	private static final String MSG_REGISTER_FAILED_WRONGPASS = "两次密码输入不一致，请重试";
+	private static final String MSG_REGISTER_FAILED_INCONSISTANT = "两次密码输入不一致，请重试";
 	private static final String MSG_REGISTER_FAILED_EMPTY = "不能为空，请重试";
 	private static final String MSG_REGISTER_ERROR = "出现未知错误，请重试";
 	private static final String FAIL = "fail";
@@ -82,9 +82,6 @@ public class RegisterAction extends ActionSupport implements ModelDriven<Registe
 		if(registerInfo.getUsername().isEmpty()) {
 			ServletActionContext.getRequest().setAttribute("message", "用户名"+MSG_REGISTER_FAILED_EMPTY);
 			return FAIL;			
-		}else if(registerInfo.getPassword1().isEmpty() && registerInfo.getPassword2().isEmpty()) {
-			ServletActionContext.getRequest().setAttribute("message", "密码"+MSG_REGISTER_FAILED_EMPTY);
-			return FAIL;						
 		}else if(registerInfo.getNickname().isEmpty()) {
 			ServletActionContext.getRequest().setAttribute("message", "昵称"+MSG_REGISTER_FAILED_EMPTY);
 			return FAIL;						
@@ -93,8 +90,11 @@ public class RegisterAction extends ActionSupport implements ModelDriven<Registe
 			return FAIL;						
 		}else if(!registerInfo.getPassword1().equals(registerInfo.getPassword2())) {
 			//两次密码输入不一致，注册失败
-			ServletActionContext.getRequest().setAttribute("message", MSG_REGISTER_FAILED_WRONGPASS);
+			ServletActionContext.getRequest().setAttribute("message", MSG_REGISTER_FAILED_INCONSISTANT);
 			return FAIL;
+		}else if(registerInfo.getPassword1().isEmpty() && registerInfo.getPassword2().isEmpty()) {
+			ServletActionContext.getRequest().setAttribute("message", "密码"+MSG_REGISTER_FAILED_EMPTY);
+			return FAIL;						
 		}else if(logininfoService.findLogininfoByusername(registerInfo.getUsername()) != null) {
 			//已经存在相同的用户名，注册失败
 			ServletActionContext.getRequest().setAttribute("message", MSG_REGISTER_FAILED_DUPLICATE);
@@ -102,9 +102,10 @@ public class RegisterAction extends ActionSupport implements ModelDriven<Registe
 		}else{
 			//进行注册工作
 			//先在UserService里面注册，获得user
-			User user = userService.register(registerInfo.getUser());
+			User tmpUser = userService.register(registerInfo.getUser());
 			//然后在LoginService里面注册
-			logininfoService.register(user, registerInfo.getUsername(), registerInfo.getPassword1());
+			logininfoService.register(tmpUser, registerInfo.getUsername(), registerInfo.getPassword1());
+			ServletActionContext.getRequest().getSession().setAttribute("user", tmpUser);
 			return SUCCESS;
 		}
 	}

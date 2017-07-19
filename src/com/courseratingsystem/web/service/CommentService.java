@@ -13,5 +13,5 @@ public interface CommentService {
 	public List<Comment> findCommentByTeacherID(int teacherid);
 	public int getTotalCount();
 	public void addLikeCount(Comment comment);
-	public void sorting(List<Comment> commentList);
+	public void sorting(List<Comment> commentList,String sortmethod);
 }
