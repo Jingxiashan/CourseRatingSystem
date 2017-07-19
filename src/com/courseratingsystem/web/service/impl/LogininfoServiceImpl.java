@@ -10,6 +10,7 @@ import com.courseratingsystem.web.service.LogininfoService;
 public class LogininfoServiceImpl implements LogininfoService{
 	private static final String SUCCESS = "success";
 	private static final String FAIL = "fail";
+	private static final String ERROR = "error";
 	private LogininfoDao logininfoDao;
 	
 	public void setLogininfodao(LogininfoDao logininfoDao) {
@@ -41,7 +42,7 @@ public class LogininfoServiceImpl implements LogininfoService{
 
 	@Override
 	public List<Logininfo> findLogininfoByuser(User user) {
-		return logininfoDao.findLogininfoByuser(user);
+		return logininfoDao.findLogininfoByuserid(user.getUserid());
 	}
 
 	@Override
@@ -51,11 +52,15 @@ public class LogininfoServiceImpl implements LogininfoService{
 
 	@Override
 
-	public String login(Logininfo logininfo) {
+	public User login(Logininfo logininfo) {
 		Logininfo tmpinfo = logininfoDao.findLogininfoByusernameandpassword(logininfo.getUsername(), logininfo.getPassword());
-		if(tmpinfo!=null)
-			return SUCCESS;
-		return "fail";
+		if(tmpinfo != null) {
+			//如果能查到相应的记录，则登陆成功
+			return tmpinfo.getUser();
+		}else {	
+			//返回空值，无相应记录，返回失败
+			return null;
+		}
 	}
 
 	@Override
@@ -68,17 +73,18 @@ public class LogininfoServiceImpl implements LogininfoService{
 	}
 
 	@Override
-	public String changepassword(User user,
+	public boolean changepassword(int userid,
 			String oldpassword, String newpassword) {
-		List<Logininfo> logininfolist = logininfoDao.findLogininfoByuser(user);
-		if(logininfolist.get(0).getPassword()!=oldpassword){
-			return "error";
+		List<Logininfo> logininfolist = logininfoDao.findLogininfoByuserid(userid);
+		String passwordInDB = logininfolist.get(0).getPassword();
+		if(!passwordInDB.equals(oldpassword)){
+			return false;
 		}
 		for(Logininfo logininfo:logininfolist){
 			logininfo.setPassword(newpassword);
 			logininfoDao.update(logininfo);
 		}
-		return "success";
+		return true;
 	}
 
 	@Override
