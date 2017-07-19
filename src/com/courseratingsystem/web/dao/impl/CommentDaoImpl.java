@@ -9,8 +9,7 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 
 	@Override
 	public void add(Comment comment) {
-		this.getHibernateTemplate().save(comment);			
-		
+		this.getHibernateTemplate().save(comment);
 	}
 
 	@Override
@@ -26,6 +25,7 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 	@Override
 	public List<Comment> findCommentByCommentID(int commentid) {
 		return (List<Comment>) this.getHibernateTemplate().get(Comment.class,commentid);
+		
 	}
 
 	@Override

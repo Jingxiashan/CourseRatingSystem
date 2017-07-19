@@ -11,47 +11,55 @@ import com.courseratingsystem.web.domain.CourseOverview;
 import com.courseratingsystem.web.service.CourseService;
 
 public class CourseServiceImpl implements CourseService {
-	private CourseDao coursedao;
+	private CourseDao courseDao;
+	public CourseDao getCourseDao() {
+		return courseDao;
+	}
+
+	public void setCourseDao(CourseDao coursedao) {
+		this.courseDao = coursedao;
+	}
+
 	@Override
 	public void add(Course course) {
-		coursedao.add(course);
+		courseDao.add(course);
 		
 	}
 
 	@Override
 	public void update(Course course) {
-		coursedao.update(course);
+		courseDao.update(course);
 		
 	}
 
 	@Override
 	public void delete(Course course) {
-		coursedao.delete(course);
+		courseDao.delete(course);
 		
 	}
 
 	@Override
 	public CourseOverview findCourseByID(int courseid) {
 		
-		return coursedao.findCourseByID(courseid);
+		return courseDao.findCourseByID(courseid);
 	}
 
 	@Override
 	public List<CourseOverview> findCourseByName(String coursename) {
 		
-		return coursedao.findCourseByName(coursename);
+		return courseDao.findCourseByName(coursename);
 	}
 
 	@Override
 	public List<CourseOverview> findAll() {
 		
-		return coursedao.findAll();
+		return courseDao.findAll();
 	}
 
 	@Override
 	public List<CourseOverview> findCourseByTeacher(String teachername) {
 		
-		return coursedao.findCourseByTeacher(teachername);
+		return courseDao.findCourseByTeacher(teachername);
 	}
 
 	@Override

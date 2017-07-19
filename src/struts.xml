@@ -29,6 +29,14 @@
 	    	<result name="success" type="redirect">/index.jsp</result>
 	    	<result name="fail">/changePass.jsp</result>
 	    </action>
+	    <action name="course_search" class="com.courseratingsystem.web.action.CourseAction" method="findByName">
+	    	<result name="SUCCESS">/test.jsp</result>
+	    	<result name="fail">error.jsp</result>
+	    </action>
+	    <action name="course_searchall" class="com.courseratingsystem.web.action.CourseAction" method="findAll">
+	    	<result name="SUCCESS">/test.jsp</result>
+	    	<result name="fail">error.jsp</result>
+	    </action>
 
 		<action name="comment_*" class="com.courseratingsystem.web.action.CommentAction" method="{1}">
 			<result name="success">right.jsp</result>
