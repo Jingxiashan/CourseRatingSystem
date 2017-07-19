@@ -19,11 +19,11 @@
 	    -->
 	    <action name="login" class="com.courseratingsystem.web.action.LoginAction">
 	    	<result name="success" type="redirect">/index.jsp</result>
-	    	<result name="fail" type="redirect">/login.jsp</result>
+	    	<result name="fail">/login.jsp</result>
 	    </action>
 	    <action name="register" class="com.courseratingsystem.web.action.RegisterAction">
 	    	<result name="success" type="redirect">/index.jsp</result>
-	    	<result name="fail" type="redirect">/register.jsp</result>
+	    	<result name="fail">/register.jsp</result>
 	    </action>
 	    	
 	    <action name="Bookadd" class="com.chinasoft.app.hibernatejboss.Bookadd" method="addBook">    

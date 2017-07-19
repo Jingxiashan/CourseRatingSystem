@@ -26,7 +26,8 @@
 	</style>
  
 	<body>
-	 <s:actionerror/>
+		<s:actionerror/>
+		${requestScope.message }
 		<div class="ui middle aligned center aligned grid">
 		  <div class="column">
 		    <h2 class="ui teal image header">
@@ -55,7 +56,7 @@
 		    </form>
 		
 		    <div class="ui message">
-		      	第一次访问本网站？ <a href="signup.jsp">注册</a>
+		      	第一次访问本网站？ <a href="register.jsp">注册</a>
 		    </div>
 		  </div>
 		</div>
