@@ -9,10 +9,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 public class LoginAction extends ActionSupport implements ModelDriven<Logininfo>{
-	Logininfo logininfo;
+	Logininfo logininfo = new Logininfo();
 	LogininfoService logininfoService;
-	private static final String LOGIN_FAILED = "用户名或密码错误，请重试";
-	private static final String LOGIN_ERROR = "出现未知错误，请重试";
+	private static final String MSG_LOGIN_FAILED = "用户名或密码错误，请重试";
+	private static final String MSG_LOGIN_ERROR = "出现未知错误，请重试";
 	
 	
 	public String execute() {
@@ -22,10 +22,10 @@ public class LoginAction extends ActionSupport implements ModelDriven<Logininfo>
 			return SUCCESS;
 		}else if(result.equals("fail")){
 			//LOGIN FAILED
-			ServletActionContext.getRequest().setAttribute("message", LOGIN_FAILED);
+			ServletActionContext.getRequest().setAttribute("message", MSG_LOGIN_FAILED);
 			return "fail";
 		}else {
-			ServletActionContext.getRequest().setAttribute("message", LOGIN_ERROR);
+			ServletActionContext.getRequest().setAttribute("message", MSG_LOGIN_ERROR);
 			return ERROR;
 		}
 	}

@@ -3,7 +3,6 @@ package com.courseratingsystem.web.service.impl;
 import java.util.List;
 
 import com.courseratingsystem.web.dao.LogininfoDao;
-import com.courseratingsystem.web.dao.impl.LogininfoDaoImpl;
 import com.courseratingsystem.web.domain.Logininfo;
 import com.courseratingsystem.web.domain.User;
 import com.courseratingsystem.web.service.LogininfoService;

@@ -10,7 +10,7 @@
     <package name="default" namespace="/" extends="struts-default">
 
     
-	    <global-results><result name="fail">fail.jsp</result></global-results>
+	    <!-- <global-results><result name="fail">fail.jsp</result></global-results> -->
 	    
 	    <!--  
 	    <action name="LoginAction" class="com.chinasoft.app.action.LoginAction" method="login">    
@@ -19,6 +19,7 @@
 	    -->
 	    <action name="login" class="com.courseratingsystem.web.action.LoginAction">
 	    	<result name="success" type="redirect">/index.jsp</result>
+	    	<result name="fail" type="redirect">/login.jsp</result>
 	    </action>
 	    	
 	    <action name="Bookadd" class="com.chinasoft.app.hibernatejboss.Bookadd" method="addBook">    
