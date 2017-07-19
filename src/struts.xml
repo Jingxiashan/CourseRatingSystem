@@ -21,6 +21,10 @@
 	    	<result name="success" type="redirect">/index.jsp</result>
 	    	<result name="fail" type="redirect">/login.jsp</result>
 	    </action>
+	    <action name="register" class="com.courseratingsystem.web.action.RegisterAction">
+	    	<result name="success" type="redirect">/index.jsp</result>
+	    	<result name="fail" type="redirect">/register.jsp</result>
+	    </action>
 	    	
 	    <action name="Bookadd" class="com.chinasoft.app.hibernatejboss.Bookadd" method="addBook">    
 	    	<result name="success">success.jsp</result>
