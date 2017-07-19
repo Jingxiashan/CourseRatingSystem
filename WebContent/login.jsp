@@ -26,13 +26,13 @@
 	</style>
  
 	<body>
-		<s:actionerror/>
+	 <s:actionerror/>
 		<div class="ui middle aligned center aligned grid">
 		  <div class="column">
 		    <h2 class="ui teal image header">
-		      <img src="images/index.png" class="image">
+		      <img src="images/testPic.jpg" class="image">
 		      <div class="content">
-		        Log-in to your account
+		                                     登录你的用戶名
 		      </div>
 		    </h2>
 		    <form class="ui large form" action="login" method="post" >
