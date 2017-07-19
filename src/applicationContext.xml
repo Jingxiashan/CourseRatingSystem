@@ -81,7 +81,7 @@
 	<bean id="userDao" class="com.courseratingsystem.web.dao.impl.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="LogininfoDao" class="com.courseratingsystem.web.dao.impl.LogininfoDaoImpl">
+	<bean id="logininfoDao" class="com.courseratingsystem.web.dao.impl.LogininfoDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="coursemarkDao" class="com.courseratingsystem.web.dao.impl.CoursemarkDao">

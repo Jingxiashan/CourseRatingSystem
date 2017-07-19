@@ -18,7 +18,7 @@
             <key>
                 <column name="userid" not-null="true" />
             </key>
-            <many-to-many entity-name="com.courseratingsystem.web.domain.Course">
+            <many-to-many entity-name="com.courseratingsystem.web.domain.Course" >
                 <column name="courseid" not-null="true" />
             </many-to-many>
         </set>
@@ -29,6 +29,7 @@
             <one-to-many class="com.courseratingsystem.web.domain.Logininfo" />
         </set>
         <set name="comments" table="comment" inverse="true" lazy="true" fetch="select">
+            
             <key>
                 <column name="userid" not-null="true" />
             </key>
