@@ -55,14 +55,17 @@
 	</bean>
 	
 	<!-- 配置Action -->
+	<bean id="changePasswordAction" class="com.courseratingsystem.web.action.ChangePasswordAction" scope="prototype">
+		<property name="logininfoService" ref="logininfoService"/>
+	</bean>
+	<bean id="commentAction" class="com.courseratingsystem.web.action.CommentAction" scope="prototype">
+		<property name="commentService" ref="commentService"/>
+	</bean>
 	<bean id="loginAction" class="com.courseratingsystem.web.action.LoginAction" scope="prototype">
 		<property name="logininfoService" ref="logininfoService"/>
 	</bean>
 	<bean id="registerAction" class="com.courseratingsystem.web.action.RegisterAction" scope="prototype">
 		<property name="userService" ref="userService"/>
-		<property name="logininfoService" ref="logininfoService"/>
-	</bean>
-	<bean id="changePasswordAction" class="com.courseratingsystem.web.action.ChangePasswordAction" scope="prototype">
 		<property name="logininfoService" ref="logininfoService"/>
 	</bean>
 	<!-- 
@@ -77,21 +80,21 @@
 	<bean id="commentService" class="com.courseratingsystem.web.service.impl.CommentServiceImpl">
 		<property name="commentDao" ref="commentDao"/>
 	</bean>
-	<bean id="userService" class="com.courseratingsystem.web.service.impl.UserServiceImpl">
-		<property name="userDao" ref="userDao"/>
-	</bean>
 	<bean id="logininfoService" class="com.courseratingsystem.web.service.impl.LogininfoServiceImpl">
 		<property name="logininfoDao" ref="logininfoDao"/>
+	</bean>
+	<bean id="userService" class="com.courseratingsystem.web.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"/>
 	</bean>
 	
 	<!-- DAO的配置 -->
 	<bean id="commentDao" class="com.courseratingsystem.web.dao.impl.CommentDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="userDao" class="com.courseratingsystem.web.dao.impl.UserDaoImpl">
+	<bean id="logininfoDao" class="com.courseratingsystem.web.dao.impl.LogininfoDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="logininfoDao" class="com.courseratingsystem.web.dao.impl.LogininfoDaoImpl">
+	<bean id="userDao" class="com.courseratingsystem.web.dao.impl.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
