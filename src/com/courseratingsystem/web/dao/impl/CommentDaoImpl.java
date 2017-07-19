@@ -38,30 +38,14 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 
 	@Override
 	public List<Comment> findCommentByUserID(final int userid) {
-		List list=this.getHibernateTemplate().executeFind(new HibernateCallback() {
-			public Object doInHibernate(Session session) throws HibernateException,SQLException{
-				String hql="From Comment where userid = ?";
-				Query query  = session.createQuery(hql);
-				query.setInteger(0, userid);
-				List<Comment> list = query.list();
-				return list;
-			}
-		});
-		return list;
+		List<Comment> commentList = getHibernateTemplate().find("from Comment where userid = ?", userid);
+		return commentList;
 	}
 
 	@Override
 	public List<Comment> findCommentByTeacherID(final int teacherid) {
-		List list=this.getHibernateTemplate().executeFind(new HibernateCallback() {
-			public Object doInHibernate(Session session) throws HibernateException,SQLException{
-				String hql="From Comment where teacherid = ?";
-				Query query  = session.createQuery(hql);
-				query.setInteger(0, teacherid);
-				List<Comment> list = query.list();
-				return list;
-			}
-		});
-		return list;
+		List<Comment> commentList = getHibernateTemplate().find("from Comment where teacherid = ?", teacherid);
+		return commentList;
 	}
 
 	@Override
