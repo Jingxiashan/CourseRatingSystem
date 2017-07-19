@@ -10,6 +10,7 @@ public class CourseOverview {
 	private Integer averageRatingsScoring;
 	private Integer averageRatingsRollCall;
 	private Integer peopleCount;
+	public CourseOverview(){};
 	public CourseOverview(Integer courseid, String coursename,
 			String teachername, Integer averageRatingsUsefulness,
 			Integer averageRatingsVividness,

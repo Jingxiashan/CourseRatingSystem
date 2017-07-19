@@ -30,7 +30,7 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 	private Comment comment = new Comment();
 	private CommentService commentService;
 	private String sortmethod;
-	
+
 	public String findByTeacher(){
 		CommentPage commentPage = commentService.findCommentByTeacherID(comment.getTeacher().getTeacherid(),currentPage,pageSize);
 		if(commentPage.getTotalCount()>0){
