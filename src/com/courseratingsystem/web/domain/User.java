@@ -13,6 +13,8 @@ public class User implements java.io.Serializable {
 	private Integer userid;
 	private String nickname;
 	private String grade;
+	private String introduction;
+	private String wechatAccount;
 	private Set courses = new HashSet(0);
 	private Set logininfos = new HashSet(0);
 	private Set comments = new HashSet(0);
@@ -75,6 +77,22 @@ public class User implements java.io.Serializable {
 
 	public void setComments(Set comments) {
 		this.comments = comments;
+	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+
+	public String getWechatAccount() {
+		return wechatAccount;
+	}
+
+	public void setWechatAccount(String wechatAccount) {
+		this.wechatAccount = wechatAccount;
 	}
 
 }

@@ -61,15 +61,19 @@
 	<bean id="commentAction" class="com.courseratingsystem.web.action.CommentAction" scope="prototype">
 		<property name="commentService" ref="commentService"/>
 	</bean>
+	<bean id="courseAction" class="com.courseratingsystem.web.action.CourseAction">
+		<property name="courseService" ref="courseService"/>
+	</bean>
 	<bean id="loginAction" class="com.courseratingsystem.web.action.LoginAction" scope="prototype">
 		<property name="logininfoService" ref="logininfoService"/>
+	</bean>
+	<bean id="profileAction" class="com.courseratingsystem.web.action.ProfileAction" scope="prototype">
+		<property name="userService" ref="userService"/>
+		<property name="commentService" ref="commentService"/>
 	</bean>
 	<bean id="registerAction" class="com.courseratingsystem.web.action.RegisterAction" scope="prototype">
 		<property name="userService" ref="userService"/>
 		<property name="logininfoService" ref="logininfoService"/>
-	</bean>
-	<bean id="courseAction" class="com.courseratingsystem.web.action.CourseAction">
-		<property name="courseService" ref="courseService"/>
 	</bean>
 	<!-- 
 	<bean id="bookAction" class="com.chinasoft.app.action.BookAction" scope="prototype">
