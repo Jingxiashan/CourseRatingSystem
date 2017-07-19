@@ -3,13 +3,7 @@ package com.courseratingsystem.web.service.impl;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.ToDoubleFunction;
-import java.util.function.ToIntFunction;
-import java.util.function.ToLongFunction;
-
 import org.springframework.transaction.annotation.Transactional;
-
 import com.courseratingsystem.web.dao.CommentDao;
 import com.courseratingsystem.web.domain.Comment;
 import com.courseratingsystem.web.service.CommentService;
@@ -79,7 +73,7 @@ public class CommentServiceImpl implements CommentService{
 
 			@Override
 			public int compare(Comment c1, Comment c2) {
-				if(sortmethod=="bylikeCount"){
+				if(sortmethod.equals("bylikeCount")){
 					int i = c2.getLikeCount() - c1.getLikeCount();
 					if(i==0){
 						return c2.getTimestamp().compareTo(c1.getTimestamp());

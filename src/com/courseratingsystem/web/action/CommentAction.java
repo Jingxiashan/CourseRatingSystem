@@ -44,6 +44,11 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 		return "fail";
 	}
 	
+	public String addComment(){
+		commentService.add(comment);
+		return SUCCESS;
+	}
+	
 	public CommentService getCommentService(){
 		return commentService;
 	}
