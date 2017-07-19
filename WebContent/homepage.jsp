@@ -186,7 +186,7 @@
 					<a href="login.jsp" class="ui button">登录</a>
 				</div>
 				<div class="item">
-					<a href="login.jsp" class="ui primary button">注册</a>
+					<a href="register.jsp" class="ui primary button">注册</a>
 				</div>
 			</div>
 		</div>
@@ -196,7 +196,7 @@
 	<div class="ui vertical inverted sidebar menu">
 		<a class="active item">主页</a> <a href="customerIndex.jsp" class="item">课程详情</a>
 		<a href="login.jsp" class="ui inverted button">登录</a> <a
-			href="signup.jsp" class="ui inverted button">注册</a>
+			href="register.jsp" class="ui inverted button">注册</a>
 	</div>
 
 
@@ -211,7 +211,7 @@
 						class="item">课程详情</a>
 					<div class="right item">
 						<a href="login.jsp" class="ui inverted button">登录</a> <a
-							href="signup.jsp" class="ui inverted button">注册</a>
+							href="register.jsp" class="ui inverted button">注册</a>
 					</div>
 				</div>
 			</div>

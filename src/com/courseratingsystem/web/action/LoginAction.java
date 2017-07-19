@@ -3,6 +3,7 @@ package com.courseratingsystem.web.action;
 import org.apache.struts2.ServletActionContext;
 
 import com.courseratingsystem.web.domain.Logininfo;
+import com.courseratingsystem.web.domain.User;
 import com.courseratingsystem.web.service.LogininfoService;
 import com.courseratingsystem.web.service.impl.LogininfoServiceImpl;
 import com.opensymphony.xwork2.ActionSupport;
@@ -17,18 +18,15 @@ public class LoginAction extends ActionSupport implements ModelDriven<Logininfo>
 	
 	
 	public String execute() {
-		String result = logininfoService.login(logininfo);
-		if(result.equals(SUCCESS)) {
+		User result = logininfoService.login(logininfo);
+		if(result != null) {
 			//登陆成功
+			ServletActionContext.getRequest().getSession().setAttribute("user", result);
 			return SUCCESS;
-		}else if(result.equals("fail")){
+		}else{
 			//用户名或密码错误，登陆失败
 			ServletActionContext.getRequest().setAttribute("message", MSG_LOGIN_FAILED);
 			return FAIL;
-		}else {
-			//出现其它错误，登录失败
-			ServletActionContext.getRequest().setAttribute("message", MSG_LOGIN_ERROR);
-			return ERROR;
 		}
 	}
 

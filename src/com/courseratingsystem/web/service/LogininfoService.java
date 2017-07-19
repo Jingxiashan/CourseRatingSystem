@@ -10,8 +10,8 @@ public interface LogininfoService {
 	public void update(Logininfo logininfo);
 	public void delete(Logininfo logininfo);
 	public void register(User user,String username,String password);
-	public String login(Logininfo logininfo);
-	public String changepassword(User user,String oldpassword,String newpassword);
+	public User login(Logininfo logininfo);
+	public boolean changepassword(int userid,String oldpassword,String newpassword);
 	public List<Logininfo> findLogininfoByuser(User user);
 	public Logininfo findLogininfoByusername(String username);
 	public Logininfo findLogininfoByusernameandpassword(String username,String password);
