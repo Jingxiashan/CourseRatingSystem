@@ -116,10 +116,10 @@ body {
 				<thead class="full-width">
 					<tr>
 						<th>课程名称</th>
-						<th></th>
-						<th>BookPrice</th>
-						<th>BookUpdate</th>
-						<th>BookDelete</th>
+						<th>授课教师</th>
+						<th>推荐指数</th>
+						<th>老司机评论</th>
+						<th>更多信息</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -135,24 +135,15 @@ body {
 										<i class="icon active"></i>
 									</div>
 
-
-
 								</td>
 								<td>
-									<div class="ui labeled button" tabindex="0">
-										<div class="ui red button">
-											<i class="heart icon"></i><a
-												href="book_findById?bookid=${book.bookid}"> Update</a>
-										</div>
-										<a class="ui basic red left pointing label">
-											${book.bookid} </a>
-									</div>
+								balabala
 								</td>
 								<td>
 									<div class="ui labeled button" tabindex="0">
 										<div class="ui basic blue button">
 											<i class="fork icon"><a
-												href="book_delete?bookid=${book.bookid}"></i> Delete
+												href="book_delete?bookid=${book.bookid}"></i> 戳
 										</div>
 										<a class="ui basic left pointing blue label">
 											${book.bookid} </a>
@@ -169,7 +160,7 @@ body {
 							<button
 								class="ui right floated small primary labeled icon button"
 								type="submit">
-								<i class="user icon"></i> Add Book
+								<i class="user icon"></i> 造福他人
 							</button>
 						</th>
 					</tr>

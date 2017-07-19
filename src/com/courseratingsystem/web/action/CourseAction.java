@@ -8,6 +8,7 @@ import com.courseratingsystem.web.domain.Course;
 import com.courseratingsystem.web.domain.CourseOverview;
 import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.service.impl.CourseServiceImpl;
+import com.courseratingsystem.web.vo.CoursePage;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -60,7 +61,7 @@ public class CourseAction extends ActionSupport{
 	public String findByName(){
 		List<CourseOverview> list = courseService.findCourseByName(searchtext);
 		if(!list.isEmpty()){
-			ServletActionContext.getRequest().setAttribute("courselist", list);
+			ServletActionContext.getRequest().getSession().setAttribute("courselist", list);
 			return "SUCCESS";
 		}
 		else{
@@ -70,7 +71,7 @@ public class CourseAction extends ActionSupport{
 	public String findByTeacher(){
 		List<CourseOverview> list = courseService.findCourseByTeacher(searchtext);
 		if(!list.isEmpty()){
-			ServletActionContext.getRequest().setAttribute("courselist", list);
+			ServletActionContext.getRequest().getSession().setAttribute("courselist", list);
 			return "SUCCESS";
 		}
 		else{
@@ -80,7 +81,7 @@ public class CourseAction extends ActionSupport{
 	public String findAll(){
 		List<CourseOverview> list = courseService.findAll();
 		if(!list.isEmpty()){
-			ServletActionContext.getRequest().setAttribute("courselist", list);
+			ServletActionContext.getRequest().getSession().setAttribute("courselist", list);
 			return "SUCCESS";
 		}
 		else{
@@ -93,5 +94,18 @@ public class CourseAction extends ActionSupport{
 	public void setCourseservice(CourseService courseservice) {
 		this.courseService = courseservice;
 	}
-	
+	public String toPage(int currentPage,int pageSize){
+		List<CourseOverview> list = (List<CourseOverview>) ServletActionContext.getRequest().getSession().getAttribute("courselist");
+		if(!list.isEmpty()){
+		List<CourseOverview> page = list.subList((currentPage - 1)*pageSize, currentPage*pageSize);
+		int totalCount = list.size();
+		int totalPage = totalCount % pageSize ==0?totalCount/pageSize:totalCount/pageSize+1;
+		CoursePage coursepage = new CoursePage(pageSize, currentPage, totalCount, totalPage, page);
+		ServletActionContext.getRequest().getSession().setAttribute("pagelist", page);
+		return "SUCCESS";
+		}
+		else{
+			return "fail";
+		}
+	}
 }

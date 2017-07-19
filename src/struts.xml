@@ -34,11 +34,11 @@
 	    	<result name="fail">/modifyProfile.jsp</result>
 	    </action>
 	    <action name="course_search" class="com.courseratingsystem.web.action.CourseAction" method="findByName">
-	    	<result name="SUCCESS">/test.jsp</result>
+	    	<result name="SUCCESS">/courseTest.jsp</result>
 	    	<result name="fail">error.jsp</result>
 	    </action>
 	    <action name="course_searchall" class="com.courseratingsystem.web.action.CourseAction" method="findAll">
-	    	<result name="SUCCESS">/test.jsp</result>
+	    	<result name="SUCCESS">/courseTest.jsp</result>
 	    	<result name="fail">error.jsp</result>
 	    </action>
 
