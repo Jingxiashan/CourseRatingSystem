@@ -14,7 +14,7 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 	CommentService commentService;
 	private String sortmethod;
 	
-	public String findByBeacher(){
+	public String findByTeacher(){
 		List<Comment> commentList = commentService.findCommentByTeacherID(comment.getTeacher().getTeacherid());
 		if(!commentList.isEmpty()){
 			commentService.sorting(commentList, sortmethod);

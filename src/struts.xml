@@ -35,6 +35,14 @@
 		    <result name="book_search" type="redirectAction">book_search</result>
 		    <result name="findById">update.jsp</result>
 	    </action>
+	    <action name="course_search" class="com.courseratingsystem.web.action.CourseAction" method="findByName">
+	    	<result name="SUCCESS">/test.jsp</result>
+	    	<result name="fail">error.jsp</result>
+	    </action>
+	    <action name="course_searchall" class="com.courseratingsystem.web.action.CourseAction" method="findAll">
+	    	<result name="SUCCESS">/test.jsp</result>
+	    	<result name="fail">error.jsp</result>
+	    </action>
 
     
     </package>

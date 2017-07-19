@@ -62,6 +62,9 @@
 		<property name="userService" ref="userService"/>
 		<property name="logininfoService" ref="logininfoService"/>
 	</bean>
+	<bean id="courseAction" class="com.courseratingsystem.web.action.CourseAction">
+		<property name="courseService" ref="courseService"/>
+	</bean>
 	<!-- 
 	<bean id="bookAction" class="com.chinasoft.app.action.BookAction" scope="prototype">
 		<property name="bookService" ref="bookService"/>
@@ -80,6 +83,9 @@
 	<bean id="logininfoService" class="com.courseratingsystem.web.service.impl.LogininfoServiceImpl">
 		<property name="logininfoDao" ref="logininfoDao"/>
 	</bean>
+	<bean id="courseService" class="com.courseratingsystem.web.service.impl.CourseServiceImpl">
+		<property name="courseDao" ref="courseDao"/>
+	</bean>
 	
 	<!-- DAO的配置 -->
 	<bean id="commentDao" class="com.courseratingsystem.web.dao.impl.CommentDaoImpl">
@@ -89,6 +95,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="logininfoDao" class="com.courseratingsystem.web.dao.impl.LogininfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="courseDao" class="com.courseratingsystem.web.dao.impl.CourseDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 

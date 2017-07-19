@@ -13,103 +13,120 @@ import com.courseratingsystem.web.dao.CourseDao;
 import com.courseratingsystem.web.domain.Course;
 import com.courseratingsystem.web.domain.CourseOverview;
 
-public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao{
+public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 
 	@Override
 	public void add(Course course) {
 		this.getHibernateTemplate().save(course);
-		
+
 	}
 
 	@Override
 	public void update(Course course) {
 		this.getHibernateTemplate().update(course);
-		
+
 	}
 
 	@Override
 	public void delete(Course course) {
 		this.getHibernateTemplate().delete(course);
-		
+
 	}
 
 	@Override
 	public CourseOverview findCourseByID(final int courseid) {
-		String hql=("select new com.courseratingsystem.web.domain.CourseOverview(c.courseid,c.coursename,t.teachername,"
-				+ "m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,"
-				+ "m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) from Course c left outer join fetch c.teachers t inner join Coursemark m where"
+		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
+				+ "(c.courseid,c.coursename,t.teachername,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
+				+ "from Course c left join c.teachers t,Coursemark m where c.courseid=m.courseid and "
 				+ "c.courseid=?");
 		List list = getHibernateTemplate().find(hql, courseid);
-		CourseOverview course = (CourseOverview) (list.isEmpty()?null:list.get(0));
+		CourseOverview course = (CourseOverview) (list.isEmpty() ? null : list
+				.get(0));
 		return course;
-		
-		
-//		CourseOverview course = (CourseOverview) this.getHibernateTemplate().executeFind(new HibernateCallback() {
-//			public Object doInHibernate(Session session) throws HibernateException,SQLException {
-//				String hql=("select new com.courseratingsystem.web.domain.CourseOverview(c.courseid,c.coursename,t.teachername,"
-//						+ "m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,"
-//						+ "m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) from Course c left outer join fetch c.teachers t inner join Coursemark m where"
-//						+ "c.courseid=?");
-//				Query query  = session.createQuery(hql);
-//				query.setInteger(0, courseid);
-//				CourseOverview course = (CourseOverview) query.uniqueResult();
-//				return course;
-//			}
-//		});
-//		return course;
+
+		// CourseOverview course = (CourseOverview)
+		// this.getHibernateTemplate().executeFind(new HibernateCallback() {
+		// public Object doInHibernate(Session session) throws
+		// HibernateException,SQLException {
+		// String
+		// hql=("select new com.courseratingsystem.web.domain.CourseOverview(c.courseid,c.coursename,t.teachername,"
+		// +
+		// "m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,"
+		// +
+		// "m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) from Course c left outer join fetch c.teachers t inner join Coursemark m where"
+		// + "c.courseid=?");
+		// Query query = session.createQuery(hql);
+		// query.setInteger(0, courseid);
+		// CourseOverview course = (CourseOverview) query.uniqueResult();
+		// return course;
+		// }
+		// });
+		// return course;
 	}
 
 	@Override
 	public List<CourseOverview> findCourseByName(final String coursename) {
-		String hql=("select new com.courseratingsystem.web.domain.CourseOverview(c.courseid,c.coursename,t.teachername,"
-				+ "m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,"
-				+ "m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) from Course c left outer join fetch c.teachers t inner join Coursemark m where"
-				+ "c.coursename=?");
-		List<CourseOverview> list = getHibernateTemplate().find(hql, coursename);
+		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
+				+ "(c.courseid,c.coursename,t.teachername,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
+				+ "from Course c left join c.teachers t,Coursemark m where c.courseid=m.courseid and "
+				+ "c.coursename like ?");
+		List<CourseOverview> list = getHibernateTemplate().find(hql,
+				"%" + coursename + "%");
 		return list;
-		
-//		List<CourseOverview> list = (List<CourseOverview>) this.getHibernateTemplate().executeFind(new HibernateCallback() {
-//			public Object doInHibernate(Session session) throws HibernateException,SQLException {
-//				String hql=("select new com.courseratingsystem.web.domain.CourseOverview(c.courseid,c.coursename,t.teachername,"
-//						+ "m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,"
-//						+ "m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) from Course c left outer join fetch c.teachers t inner join Coursemark m where"
-//						+ "c.coursename=?");
-//				Query query  = session.createQuery(hql);
-//				query.setString(0, coursename);
-//				List<CourseOverview> list =query.list();
-//				return list;
-//			}
-//		});
-//		return list;
+
+		// List<CourseOverview> list = (List<CourseOverview>)
+		// this.getHibernateTemplate().executeFind(new HibernateCallback() {
+		// public Object doInHibernate(Session session) throws
+		// HibernateException,SQLException {
+		// String
+		// hql=("select new com.courseratingsystem.web.domain.CourseOverview(c.courseid,c.coursename,t.teachername,"
+		// +
+		// "m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,"
+		// +
+		// "m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) from Course c left outer join fetch c.teachers t inner join Coursemark m where"
+		// + "c.coursename=?");
+		// Query query = session.createQuery(hql);
+		// query.setString(0, coursename);
+		// List<CourseOverview> list =query.list();
+		// return list;
+		// }
+		// });
+		// return list;
 	}
 
 	@Override
 	public List<CourseOverview> findAll() {
-		String hql =("select new com.courseratingsystem.web.domain.CourseOverview(c.courseid,c.coursename,t.teachername,"
-				+ "m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,"
-				+ "m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) from Course c left outer join fetch c.teachers t inner join Coursemark m");
+		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
+				+ "(c.courseid,c.coursename,t.teachername,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
+				+ "from Course c left join c.teachers t,Coursemark m where c.courseid=m.courseid");
 		List<CourseOverview> list = getHibernateTemplate().find(hql, null);
 		return list;
-//		List<CourseOverview> list = (List<CourseOverview>) this.getHibernateTemplate().executeFind(new HibernateCallback() {
-//			public Object doInHibernate(Session session) throws HibernateException,SQLException {
-//				String hql=("select new com.courseratingsystem.web.domain.CourseOverview(c.courseid,c.coursename,t.teachername,"
-//						+ "m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,"
-//						+ "m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) from Course c left outer join fetch c.teachers t inner join Coursemark m");
-//				Query query  = session.createQuery(hql);
-//				List<CourseOverview> list =query.list();
-//				return list;
-//			}
-//		});
-//		return list;
+		// List<CourseOverview> list = (List<CourseOverview>)
+		// this.getHibernateTemplate().executeFind(new HibernateCallback() {
+		// public Object doInHibernate(Session session) throws
+		// HibernateException,SQLException {
+		// String
+		// hql=("select new com.courseratingsystem.web.domain.CourseOverview(c.courseid,c.coursename,t.teachername,"
+		// +
+		// "m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,"
+		// +
+		// "m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) from Course c left outer join fetch c.teachers t inner join Coursemark m");
+		// Query query = session.createQuery(hql);
+		// List<CourseOverview> list =query.list();
+		// return list;
+		// }
+		// });
+		// return list;
 	}
 
 	@Override
 	public List<CourseOverview> findCourseByTeacher(String teachername) {
-		String hql=("select new com.courseratingsystem.web.domain.CourseOverview(c.courseid,c.coursename,t.teachername,"
-				+ "m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,"
-				+ "m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) from Course c left outer join fetch c.teachers t inner join Coursemark m where"
-				+ "t.teachername=?");
-		List<CourseOverview> list = getHibernateTemplate().find(hql, teachername);
+		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
+				+ "(c.courseid,c.coursename,t.teachername,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
+				+ "from Course c left join c.teachers t,Coursemark m where c.courseid=m.courseid and "
+				+ "t.teachername like ?");
+		List<CourseOverview> list = getHibernateTemplate().find(hql,
+				"%" + teachername + "%");
 		return list;
 	}
 
