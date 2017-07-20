@@ -166,12 +166,6 @@ body {
 					</div>
 				</div>
 			</div>
-
-
-
-
-
-
 		</form>
 	</div>
 
