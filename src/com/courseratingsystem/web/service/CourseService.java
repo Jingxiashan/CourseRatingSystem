@@ -18,4 +18,4 @@ public interface CourseService {
 	public List<CourseOverview> Sort(List<CourseOverview> list,String sort);
 	public CoursePage toPage(List<CourseOverview> list,int currentPage,int pageSize);
 	public List<CourseOverview> findCourseOverviewByTeacherid(int teacherid);
-	}
+}
