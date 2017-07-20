@@ -47,7 +47,7 @@
 						【${i}】
 					</c:if>
 					<c:if test="${i!=sessionScope.coursepage.currentPage}">
-						<a href="../topage?currentPage=${i}">${i}</a>
+						<a href="../course_topage?currentPage=${i}">${i}</a>
 					</c:if>
 				</c:forEach>
 				页
