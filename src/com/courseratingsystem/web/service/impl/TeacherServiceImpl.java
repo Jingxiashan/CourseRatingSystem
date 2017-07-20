@@ -23,9 +23,12 @@ public class TeacherServiceImpl implements TeacherService{
 	}
 
 	@Override
-	public List<Teacher> findTeacherByTeacherId(int teacherid) {
-		return teacherDao.findTeachersByCourseID(teacherid);
+	public Teacher findTeacherByTeacherId(int teacherid) {
+		return teacherDao.findTeacherByTeacherid(teacherid);
 	}
-	
+	@Override
+	public List<Teacher> findTeachersByCourseID(int courseid) {
+		return teacherDao.findTeachersByCourseID(courseid);		
+	}
 
 }

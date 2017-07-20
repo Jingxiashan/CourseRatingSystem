@@ -18,7 +18,7 @@
 	    </action>
 	    -->
 	    <action name="login" class="com.courseratingsystem.web.action.LoginAction">
-	    	<result name="success" type="redirect">/index.jsp</result>
+	    	<result name="success" type="redirectAction">course_findAll</result>
 	    	<result name="fail">/login.jsp</result>
 	    </action>
 	    <action name="register" class="com.courseratingsystem.web.action.RegisterAction">
@@ -42,8 +42,8 @@
 	    	<result name="SUCCESS">courseTest.jsp</result>
 	    	<result name="fail">error.jsp</result>
 	    </action>
-	    <action name="course_searchall" class="com.courseratingsystem.web.action.CourseAction" method="findAll">
-	    	<result name="SUCCESS">courseTest.jsp</result>
+	    <action name="course_*" class="com.courseratingsystem.web.action.CourseAction" method="{1}">
+	    	<result name="SUCCESS">index.jsp</result>
 	    	<result name="fail">error.jsp</result>
 	    </action>
 		<action name="comment_findByTeacher" class="com.courseratingsystem.web.action.CommentAction" method="findByTeacher">

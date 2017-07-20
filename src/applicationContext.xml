@@ -98,6 +98,9 @@
 	<bean id="courseService" class="com.courseratingsystem.web.service.impl.CourseServiceImpl">
 		<property name="courseDao" ref="courseDao"/>
 	</bean>
+	<bean id="teacherService" class="com.courseratingsystem.web.service.impl.TeacherServiceImpl">
+		<property name="teacherDao" ref="teacherDao"/>
+	</bean>
 	
 	<!-- DAO的配置 -->
 	<bean id="commentDao" class="com.courseratingsystem.web.dao.impl.CommentDaoImpl">
@@ -110,6 +113,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="courseDao" class="com.courseratingsystem.web.dao.impl.CourseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="teacherDao" class="com.courseratingsystem.web.dao.impl.TeacherDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 

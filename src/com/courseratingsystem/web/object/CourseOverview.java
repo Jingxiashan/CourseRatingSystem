@@ -1,4 +1,4 @@
-package com.courseratingsystem.web.domain;
+package com.courseratingsystem.web.object;
 
 public class CourseOverview {
 	private Integer courseid;
@@ -9,7 +9,22 @@ public class CourseOverview {
 	private Integer averageRatingsScoring;
 	private Integer averageRatingsRollCall;
 	private Integer peopleCount;
+	private Integer recommendationScore;
+	private Integer finalType;
 	public CourseOverview(){};
+	public CourseOverview(CourseOverview tmpCourse) {
+		super();
+		this.courseid = tmpCourse.courseid;
+		this.coursename = tmpCourse.coursename;
+		this.averageRatingsUsefulness = tmpCourse.averageRatingsUsefulness;
+		this.averageRatingsVividness = tmpCourse.averageRatingsVividness;
+		this.averageRatingsSpareTimeOccupation = tmpCourse.averageRatingsSpareTimeOccupation;
+		this.averageRatingsScoring = tmpCourse.averageRatingsScoring;
+		this.averageRatingsRollCall = tmpCourse.averageRatingsRollCall;
+		this.peopleCount = tmpCourse.peopleCount;
+		this.recommendationScore = tmpCourse.recommendationScore;
+		this.finalType = tmpCourse.finalType;
+		}
 	public CourseOverview(Integer courseid, String coursename,
 			Integer averageRatingsUsefulness,
 			Integer averageRatingsVividness,
@@ -28,8 +43,6 @@ public class CourseOverview {
 		this.recommendationScore = recommendationScore;
 		this.finalType = finalType;
 	}
-	private Integer recommendationScore;
-	private Integer finalType;
 	public Integer getCourseid() {
 		return courseid;
 	}

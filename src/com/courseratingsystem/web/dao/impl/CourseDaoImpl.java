@@ -11,7 +11,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.courseratingsystem.web.dao.CourseDao;
 import com.courseratingsystem.web.domain.Course;
-import com.courseratingsystem.web.domain.CourseOverview;
+import com.courseratingsystem.web.object.CourseOverview;
 
 public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 
@@ -40,7 +40,7 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 	
 	@Override
 	public CourseOverview findCourseOverviewByID(final int courseid) {
-		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
+		String hql = ("select new com.courseratingsystem.web.object.CourseOverview"
 				+ "(c.courseid,c.coursename,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
 				+ "from Course c,Coursemark m where c.courseid=m.courseid and "
 				+ "c.courseid=?");
@@ -70,7 +70,7 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 
 	@Override
 	public List<CourseOverview> findCourseByName(final String coursename) {
-		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
+		String hql = ("select new com.courseratingsystem.web.object.CourseOverview"
 				+ "(c.courseid,c.coursename,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
 				+ "from Course c,Coursemark m where c.courseid=m.courseid and "
 				+ "c.coursename like ?");
@@ -100,7 +100,7 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 
 	@Override
 	public List<CourseOverview> findAll() {
-		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
+		String hql = ("select new com.courseratingsystem.web.object.CourseOverview"
 				+ "(c.courseid,c.coursename,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
 				+ "from Course c,Coursemark m where c.courseid=m.courseid");
 		List<CourseOverview> list = getHibernateTemplate().find(hql, null);
@@ -125,7 +125,7 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 
 	@Override
 	public List<CourseOverview> findCourseByTeachername(String teachername) {
-		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
+		String hql = ("select new com.courseratingsystem.web.object.CourseOverview"
 				+ "(c.courseid,c.coursename,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
 				+ "from Course c left join c.teachers t,Coursemark m where c.courseid=m.courseid and "
 				+ "t.teachername like ?");
@@ -136,7 +136,7 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 
 	@Override
 	public List<CourseOverview> findCourseByTeacherid(int teacherid) {
-		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
+		String hql = ("select new com.courseratingsystem.web.object.CourseOverview"
 				+ "(c.courseid,c.coursename,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
 				+ "from Course c left join c.teachers t,Coursemark m where c.courseid=m.courseid and "
 				+ "t.teacherid = ?");

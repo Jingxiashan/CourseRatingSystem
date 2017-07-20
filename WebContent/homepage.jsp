@@ -182,7 +182,7 @@
 	<!-- Following Menu -->
 	<div class="ui large top fixed hidden menu">
 		<div class="ui container">
-			<a class="active item">主页</a> <a href="customerIndex.jsp"
+			<a class="active item">主页</a> <a href="course_findAll.action"
 				class="item">课程详情</a>
 			<div class="right menu">
 				<div class="item">

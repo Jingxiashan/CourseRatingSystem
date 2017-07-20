@@ -6,6 +6,6 @@ import com.courseratingsystem.web.domain.Teacher;
 
 public interface TeacherService {
 	public List<Teacher> findTeachersByTeachername(String teachername);
-	public List<Teacher> findTeacherByTeacherId(int teacherid);
-
+	public Teacher findTeacherByTeacherId(int teacherid);
+	public List<Teacher> findTeachersByCourseID(int courseid);
 }
