@@ -34,7 +34,12 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 	}
 
 	@Override
-	public CourseOverview findCourseByID(final int courseid) {
+	public Course findCourseById(final int courseid){
+		return this.getHibernateTemplate().get(Course.class, courseid);
+	}
+	
+	@Override
+	public CourseOverview findCourseOverviewByID(final int courseid) {
 		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
 				+ "(c.courseid,c.coursename,t.teachername,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
 				+ "from Course c left join c.teachers t,Coursemark m where c.courseid=m.courseid and "

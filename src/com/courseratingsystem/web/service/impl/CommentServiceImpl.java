@@ -3,9 +3,7 @@ package com.courseratingsystem.web.service.impl;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import org.springframework.transaction.annotation.Transactional;
-
 import com.courseratingsystem.web.dao.CommentDao;
 import com.courseratingsystem.web.domain.Comment;
 import com.courseratingsystem.web.service.CommentService;
@@ -18,7 +16,6 @@ public class CommentServiceImpl implements CommentService{
 	public CommentDao getCommentDao() {
 		return commentDao;
 	}
-
 	public void setCommentDao(CommentDao commentDao) {
 		this.commentDao = commentDao;
 	}
@@ -36,14 +33,13 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public void delete(Comment comment) {
 		commentDao.delete(comment);
-		
 	}
 
 	@Override
 	public CommentPage findCommentByCommentID(int commentid,int currentPage,int pageSize) {
 		CommentPage commentPage = new CommentPage();
 		List<Comment> commentList = commentDao.findCommentByCommentID(commentid);
-		commentPage.setDataList(commentList);
+		commentPage.setCommentList(commentList);
 		commentPage.setCurrentPage(currentPage);
 		commentPage.setPageSize(pageSize);
 		commentPage.setTotalCount(commentList.size());
@@ -55,7 +51,7 @@ public class CommentServiceImpl implements CommentService{
 	public CommentPage findCommentByUserID(int userid,int currentPage,int pageSize) {
 		CommentPage commentPage = new CommentPage();
 		List<Comment> commentList = commentDao.findCommentByUserID(userid);
-		commentPage.setDataList(commentList);
+		commentPage.setCommentList(commentList);
 		commentPage.setCurrentPage(currentPage);
 		commentPage.setPageSize(pageSize);
 		commentPage.setTotalCount(commentList.size());
@@ -67,7 +63,7 @@ public class CommentServiceImpl implements CommentService{
 	public CommentPage findCommentByCourseID(int courseid,int currentPage,int pageSize) {
 		CommentPage commentPage = new CommentPage();
 		List<Comment> commentList = commentDao.findCommentByCourseID(courseid);
-		commentPage.setDataList(commentList);
+		commentPage.setCommentList(commentList);
 		commentPage.setCurrentPage(currentPage);
 		commentPage.setPageSize(pageSize);
 		commentPage.setTotalCount(commentList.size());
@@ -78,12 +74,13 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public CommentPage findCommentByTeacherID(int teacherid,int currentPage,int pageSize) {
 		CommentPage commentPage = new CommentPage();
-		List<Comment> commentList = commentDao.findCommentByTeacherID(teacherid);
-		commentPage.setDataList(commentList);
+		List<Comment> commentList = commentDao.findCommentByTeacherID(teacherid,currentPage,pageSize);
+		commentPage.setCommentList(commentList);
 		commentPage.setCurrentPage(currentPage);
 		commentPage.setPageSize(pageSize);
-		commentPage.setTotalCount(commentList.size());
-		commentPage.setTotalPage(commentList.size() % pageSize ==0?commentList.size()/pageSize:commentList.size()/pageSize+1);
+		int totalCount = commentDao.findCommentTotalCountByTeacherID(teacherid);
+		commentPage.setTotalCount(totalCount);
+		commentPage.setTotalPage(totalCount % pageSize ==0?totalCount/pageSize:totalCount/pageSize+1);
 		return commentPage;
 	}
 
@@ -105,7 +102,7 @@ public class CommentServiceImpl implements CommentService{
 			@Override
 			public int compare(Comment c1, Comment c2) {
 				if(sortmethod.equals("bylikeCount")){
-					int i = c2.getLikeCount() - c1.getLikeCount();
+					int i = (int)c2.getLikeCount() - (int)c1.getLikeCount();
 					if(i==0){
 						return c2.getTimestamp().compareTo(c1.getTimestamp());
 					}

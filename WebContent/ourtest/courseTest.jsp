@@ -9,11 +9,15 @@
 </head>
 <body>
 <div>
-<form action="course_search" method="post">
+<form action="../course_search" method="post">
 <input type="text" name="searchtext"><br>
+<select name="sortby">
+<option value="recommendationScore">recomm</option>
+<option value="averageRatingsVividness">vivid</option>
+</select><br>
 <input type="submit" value="Search">
 </form>
-<button onclick="window.location.href='course_searchall.action'"></button>
+<button onclick="window.location.href='../course_searchall.action'"></button>
 </div>
 	<table>
 		<tr>
@@ -22,14 +26,33 @@
 			<td>vividness</td>
 			<td>teacher</td>
 		</tr>
-		<c:forEach items="${requestScope.courselist}" var="course">
+		<c:forEach items="${sessionScope.coursepage.list}" var="course">
 			<tr>
 			<td>${course.coursename}</td>
 			<td>${course.recommendationScore}</td>
 			<td>${course.averageRatingsVividness}</td>
 			<td>${course.teachername}</td>
-		</tr>
+			</tr>
 		</c:forEach>
+		 <tr>
+			<td>
+				每页${sessionScope.coursepage.pageSize}条记录 总共${sessionScope.coursepage.totalPage}页
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				当前：第${sessionScope.coursepage.currentPage} / ${sessionScope.coursepage.totalPage}页
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				请选择：第
+				<c:forEach begin="1" end="${sessionScope.coursepage.totalPage}" step="1" var="i">
+					<c:if test="${i==sessionScope.coursepage.currentPage}">
+						【${i}】
+					</c:if>
+					<c:if test="${i!=sessionScope.coursepage.currentPage}">
+						<a href="../topage?currentPage=${i}">${i}</a>
+					</c:if>
+				</c:forEach>
+				页
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

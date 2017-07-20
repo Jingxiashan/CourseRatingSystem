@@ -10,7 +10,8 @@ public interface CommentDao {
 	public List<Comment> findCommentByCommentID(int commentid);
 	public List<Comment> findCommentByUserID(int userid);
 	public List<Comment> findCommentByCourseID(int courseid);
-	public List<Comment> findCommentByTeacherID(int teacherid);
+	public List<Comment> findCommentByTeacherID(int teacherid,int currentPage,int pageSize);
+	public int findCommentTotalCountByTeacherID(int teacherid);
 	public int getTotalCount();
 	public void addLikeCount(Comment comment);
 	

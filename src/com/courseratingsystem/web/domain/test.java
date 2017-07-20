@@ -6,7 +6,7 @@ public class test {
 
 	public static void main(String[] args) {
 		CourseDaoImpl test = new CourseDaoImpl();
-		CourseOverview course = test.findCourseByID(1);
+		CourseOverview course = test.findCourseOverviewByID(1);
 		System.out.println(course.getCoursename()+course.getTeachername()+course.getAverageRatingsScoring());
 
 	}

@@ -11,6 +11,7 @@ public class CommentPage {
 	//×ÜÒ³Êý£ºtotalCount % pageSize == 0 ? 
 	//totalCount / pageSize : totalCount / pageSize + 1
 	private List<Comment> commentList;
+	
 	public int getPageSize() {
 		return pageSize;
 	}
@@ -35,10 +36,10 @@ public class CommentPage {
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
-	public List<Comment> getcommentList() {
+	public List<Comment> getCommentList() {
 		return commentList;
 	}
-	public void setDataList(List<Comment> commentList) {
+	public void setCommentList(List<Comment> commentList) {
 		this.commentList = commentList;
 	}
 }
