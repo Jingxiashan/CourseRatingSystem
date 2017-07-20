@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.courseratingsystem.web.domain.CourseOverview;
 import com.courseratingsystem.web.domain.Teacher;
 import com.courseratingsystem.web.service.CommentService;
 import com.courseratingsystem.web.service.CourseService;
@@ -52,7 +51,7 @@ public class TeacherAction extends ActionSupport implements ModelDriven<Teacher>
 		String temp = ServletActionContext.getRequest().getParameter("teacherid");
 		if(temp!=null){
 			int tempteacherid = Integer.parseInt(temp);
-			List<CourseOverview> courseList = courseService.findCourseOverviewByTeacherid(tempteacherid);
+			List<com.courseratingsystem.web.object.CourseOverview> courseList = courseService.findCourseOverviewByTeacherid(tempteacherid);
 			if(!courseList.isEmpty()){
 				ServletActionContext.getRequest().setAttribute("courseList", courseList);
 				ServletActionContext.getRequest().setAttribute("teacherid", tempteacherid);
