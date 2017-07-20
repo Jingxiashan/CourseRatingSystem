@@ -34,22 +34,17 @@
 	    	<result name="fail">/modifyProfile.jsp</result>
 	    </action>
 	    <action name="course_search" class="com.courseratingsystem.web.action.CourseAction" method="findByName">
-	    	<result name="SUCCESS" type="redirectAction">course_topage</result>
+	    	<result name="SUCCESS">courseTest.jsp</result>
 	    	<result name="fail">error.jsp</result>
 	    </action>
 	    <action name="course_searchall" class="com.courseratingsystem.web.action.CourseAction" method="findAll">
-	    	<result name="SUCCESS" type="redirectAction">course_topage</result>
+	    	<result name="SUCCESS">courseTest.jsp</result>
 	    	<result name="fail">error.jsp</result>
 	    </action>
-	    <action name="course_topage" class="com.courseratingsystem.web.action.CourseAction" method="toPage">
-	    	<result name="SUCCESS" type="redirect">ourtest/courseTest.jsp</result>
-	    </action>
-		
 		<action name="comment_findByTeacher" class="com.courseratingsystem.web.action.CommentAction" method="findByTeacher">
 			<result name="success">xingtest3.jsp</result>
 			<result name="fail">error.jsp</result>
-		</action>
-		
+		</action>	
 		<action name="addcomment" class="com.courseratingsystem.web.action.CommentAction" method="addComment">
 			<result name="success">add.jsp</result>
 		</action>

@@ -197,7 +197,7 @@
 
 	<!-- Sidebar Menu -->
 	<div class="ui vertical inverted sidebar menu">
-		<a class="active item">主页</a> <a href="customerIndex.jsp" class="item">课程详情</a>
+		<a class="active item">主页</a> <a href="index.jsp" class="item">课程详情</a>
 		<a href="login.jsp" class="ui inverted button">登录</a> <a
 			href="register.jsp" class="ui inverted button">注册</a>
 	</div>
@@ -210,7 +210,7 @@
 			<div class="ui container">
 				<div class="ui large secondary inverted pointing menu">
 					<a class="toc item"> <i class="sidebar icon"></i>
-					</a> <a class="active item">主页</a> <a href="customerIndex.jsp"
+					</a> <a class="active item">主页</a> <a href="index.jsp"
 						class="item">课程详情</a>
 					<div class="right item">
 						<a href="login.jsp" class="ui inverted button">登录</a> <a

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.courseratingsystem.web.domain.Course;
 import com.courseratingsystem.web.domain.CourseOverview;
+import com.courseratingsystem.web.vo.CoursePage;
 
 public interface CourseService {
 	public void add(Course course);
@@ -11,8 +12,9 @@ public interface CourseService {
 	public void delete(Course course);
 	public CourseOverview findCourseOverviewById(int courseid);
 	public Course findCourseById(final int courseid);
-	public List<CourseOverview> findCourseByName(String coursename);
-	public List<CourseOverview> findAll();
-	public List<CourseOverview> findCourseByTeacher(String teachername);
+	public CoursePage findCourseByName(String coursename,String sortby,int currentPage,int pageSize);
+	public CoursePage findAll(String sortby,int currentPage,int pageSize);
+	public CoursePage findCourseByTeacher(String teachername,String sortby,int currentPage,int pageSize);
 	public List<CourseOverview> Sort(List<CourseOverview> list,String sort);
+	public CoursePage toPage(List<CourseOverview> list,int currentPage,int pageSize);
 	}

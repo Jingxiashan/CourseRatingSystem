@@ -12,6 +12,18 @@ public class CommentPage {
 	//totalCount / pageSize : totalCount / pageSize + 1
 	private List<Comment> commentList;
 	
+	
+	public CommentPage(){}
+	public CommentPage(int pageSize, int currentPage, int totalCount,
+			int totalPage, List<Comment> commentList) {
+		super();
+		this.pageSize = pageSize;
+		this.currentPage = currentPage;
+		this.totalCount = totalCount;
+		this.totalPage = totalPage;
+		this.commentList = commentList;
+	}
+	
 	public int getPageSize() {
 		return pageSize;
 	}
