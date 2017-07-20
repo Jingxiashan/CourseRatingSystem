@@ -7,6 +7,7 @@ import org.apache.struts2.ServletActionContext;
 import com.courseratingsystem.web.domain.Course;
 import com.courseratingsystem.web.domain.CourseOverview;
 import com.courseratingsystem.web.service.CourseService;
+import com.courseratingsystem.web.service.TeacherService;
 import com.courseratingsystem.web.service.impl.CourseServiceImpl;
 import com.courseratingsystem.web.vo.CoursePage;
 import com.opensymphony.xwork2.ActionSupport;
@@ -30,15 +31,15 @@ import com.opensymphony.xwork2.ModelDriven;
 //}
 public class CourseAction extends ActionSupport{
 //	private SearchInfo searchinfo= new SearchInfo();
-	private int currentPage=1;
+	private int currentPage = 1;
+	private int pageSize = 1;
+	private String sortby="recommendationScore";
 	public String getSortby() {
 		return sortby;
 	}
 	public void setSortby(String sortby) {
 		this.sortby = sortby;
 	}
-	private int pageSize=1;
-	private String sortby="recommendationScore";
 	public int getCurrentPage() {
 		return currentPage;
 	}
@@ -59,20 +60,15 @@ public class CourseAction extends ActionSupport{
 		this.searchtext = searchtext;
 	}
 	private CourseService courseService;
+	private TeacherService teacherService;
+
 	
-//	public String findByID(){
-//		try{
-//			CourseOverview course1 = courseservice.findCourseByID(Integer.parseInt(searchinfo.getSearchtext()));
-//			List<CourseOverview> list = null;
-//			list.add(course1);
-//			ServletActionContext.getRequest().setAttribute("courselist",list);
-//			return "SUCCESS";
-//		}
-//		catch(Exception ex ){
-//			return "fail";
-//		}
-//	}
-	
+	public TeacherService getTeacherService() {
+		return teacherService;
+	}
+	public void setTeacherService(TeacherService teacherService) {
+		this.teacherService = teacherService;
+	}
 	public CourseService getCourseService() {
 		return courseService;
 	}
@@ -90,7 +86,7 @@ public class CourseAction extends ActionSupport{
 		}
 	}
 	public String findByTeacher(){
-		CoursePage coursepage = courseService.findCourseByTeacher(searchtext,sortby,currentPage,pageSize);
+		CoursePage coursepage = courseService.findCourseByTeachername(searchtext,sortby,currentPage,pageSize);
 		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
 			return "SUCCESS";

@@ -14,6 +14,12 @@ import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.vo.CoursePage;
 
 public class CourseServiceImpl implements CourseService {
+	public static final String COURSE_SORT_METHOD_BY_USEF = "averageRatingsUsefulness";
+	public static final String COURSE_SORT_METHOD_BY_VIVI = "averageRatingsVividness";
+	public static final String COURSE_SORT_METHOD_BY_SPAR = "averageRatingsSpareTimeOccupation";
+	public static final String COURSE_SORT_METHOD_BY_SCOR = "averageRatingsScoring";
+	public static final String COURSE_SORT_METHOD_BY_ROLL = "averageRatingsRollCall";
+	public static final String COURSE_SORT_METHOD_BY_RECO = "recommendationScore";
 	private CourseDao courseDao;
 	public CourseDao getCourseDao() {
 		return courseDao;
@@ -63,13 +69,12 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public CoursePage findCourseByTeacher(String teachername,String sortby,int currentPage,int pageSize) {
+	public CoursePage findCourseByTeachername(String teachername,String sortby,int currentPage,int pageSize) {
 		
-		List<CourseOverview> list = courseDao.findCourseByTeacher(teachername);
+		List<CourseOverview> list = courseDao.findCourseByTeachername(teachername);
 		Sort(list, sortby);
 		return toPage(list, currentPage, pageSize);
 	}
-
 	@Override
 	public List<CourseOverview> Sort(List<CourseOverview> list, String sortby) {
 		switch(sortby){
@@ -151,4 +156,9 @@ public class CourseServiceImpl implements CourseService {
 //		ServletActionContext.getRequest().getSession().setAttribute("coursepage", coursepage);
 		return coursepage;
 		}
+
+	@Override
+	public List<CourseOverview> findCourseOverviewByTeacherid(int teacherid) {
+		return courseDao.findCourseByTeacherid(teacherid);
+	}
 	}

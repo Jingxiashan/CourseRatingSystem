@@ -3,7 +3,6 @@ package com.courseratingsystem.web.domain;
 public class CourseOverview {
 	private Integer courseid;
 	private String coursename;
-	private String teachername;
 	private Integer averageRatingsUsefulness;
 	private Integer averageRatingsVividness;
 	private Integer averageRatingsSpareTimeOccupation;
@@ -12,7 +11,7 @@ public class CourseOverview {
 	private Integer peopleCount;
 	public CourseOverview(){};
 	public CourseOverview(Integer courseid, String coursename,
-			String teachername, Integer averageRatingsUsefulness,
+			Integer averageRatingsUsefulness,
 			Integer averageRatingsVividness,
 			Integer averageRatingsSpareTimeOccupation,
 			Integer averageRatingsScoring, Integer averageRatingsRollCall,
@@ -20,7 +19,6 @@ public class CourseOverview {
 		super();
 		this.courseid = courseid;
 		this.coursename = coursename;
-		this.teachername = teachername;
 		this.averageRatingsUsefulness = averageRatingsUsefulness;
 		this.averageRatingsVividness = averageRatingsVividness;
 		this.averageRatingsSpareTimeOccupation = averageRatingsSpareTimeOccupation;
@@ -43,12 +41,6 @@ public class CourseOverview {
 	}
 	public void setCoursename(String coursename) {
 		this.coursename = coursename;
-	}
-	public String getTeachername() {
-		return teachername;
-	}
-	public void setTeachername(String teachername) {
-		this.teachername = teachername;
 	}
 	public Integer getAverageRatingsUsefulness() {
 		return averageRatingsUsefulness;

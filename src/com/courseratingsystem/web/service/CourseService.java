@@ -14,7 +14,8 @@ public interface CourseService {
 	public Course findCourseById(final int courseid);
 	public CoursePage findCourseByName(String coursename,String sortby,int currentPage,int pageSize);
 	public CoursePage findAll(String sortby,int currentPage,int pageSize);
-	public CoursePage findCourseByTeacher(String teachername,String sortby,int currentPage,int pageSize);
+	public CoursePage findCourseByTeachername(String teachername,String sortby,int currentPage,int pageSize);
 	public List<CourseOverview> Sort(List<CourseOverview> list,String sort);
 	public CoursePage toPage(List<CourseOverview> list,int currentPage,int pageSize);
+	public List<CourseOverview> findCourseOverviewByTeacherid(int teacherid);
 	}

@@ -64,6 +64,7 @@ body {
 
 	<div class="ui center aligned grid">
 		<div class="ui special cards" style="size: 100px">
+		<!-- 
 			<div class="card">
 				<div class="blurring dimmable image">
 					<div class="ui inverted dimmer">
@@ -87,8 +88,8 @@ body {
 				<div class="extra content">
 					<i class="smile icon"></i><a href="addCoursemark.jsp">老司机想说几句，嗯？</a>	
 				</div>
-					
 			</div>
+			 -->
 			<div class="card">
 				<div class="blurring dimmable image">
 					<div class="ui inverted dimmer">
@@ -104,7 +105,9 @@ body {
 					<pre><h3>课程名称2          教师B</h3></pre>
 					<div class="meta">
 						<span class="date"><h4>推荐星级</h4>
-							<div class="ui star rating">
+							<div class="ui star rating" data-rating="3" data-max-rating="5">
+								<i class="icon active"></i>
+								<i class="icon active"></i>
 								<i class="icon active"></i>
 							</div> </span>
 					</div>
@@ -115,40 +118,9 @@ body {
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	
+	
 	<div class="ui inverted vertical footer segment">
 		<div class="ui left aligned container">
 			<div class="ui stackable inverted divided grid">
@@ -172,5 +144,8 @@ body {
 	$('.special.cards .image').dimmer({
 		on : 'hover'
 	});
+	$('.ui.star .rating')
+	  .rating('disable')
+	;
 </script>
 </html>

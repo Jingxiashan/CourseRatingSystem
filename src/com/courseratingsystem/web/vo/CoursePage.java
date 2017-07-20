@@ -3,7 +3,9 @@ package com.courseratingsystem.web.vo;
 import java.util.List;
 
 import com.courseratingsystem.web.domain.CourseOverview;
-
+class CoursePlusTeacher{
+	
+}
 public class CoursePage {
 	private int pageSize;//每页显示数量
 	private int currentPage;//当前页
