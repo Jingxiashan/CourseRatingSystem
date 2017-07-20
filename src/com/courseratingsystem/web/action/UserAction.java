@@ -1,10 +1,16 @@
 package com.courseratingsystem.web.action;
 
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts2.ServletActionContext;
 
+import com.courseratingsystem.web.domain.Course;
 import com.courseratingsystem.web.domain.User;
 import com.courseratingsystem.web.service.CommentService;
+import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.service.UserService;
 import com.courseratingsystem.web.vo.CommentPage;
 import com.opensymphony.xwork2.ActionSupport;
@@ -15,13 +21,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	private int currentPage = 1;
 	private final int pageSize = 10;
 	private int courseid;
-	private int userid;
-	public int getUserid() {
-		return userid;
+	private int commentid;
+	public int getCommentid() {
+		return commentid;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setCommentid(int commentid) {
+		this.commentid = commentid;
 	}
 
 	public int getCourseid() {
@@ -35,39 +41,63 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	User user = new User();
 	UserService userService;
 	CommentService commentService;
+	CourseService courseService;
+	private static final String FAIL = "fail";
 	
 	public String modifyProfile(){
-		
+		User currentUser =	(User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		currentUser.setGrade(user.getGrade());
+		currentUser.setNickname(user.getNickname());
+		currentUser.setWechatAccount(user.getWechatAccount());
+		currentUser.setIntroduction(user.getIntroduction());
+		userService.update(currentUser);
 		//最后 更新session里面的user
-		ServletActionContext.getRequest().getSession().setAttribute("user", user);
-		return null;
+		ServletActionContext.getRequest().getSession().setAttribute("user", currentUser);
+		return SUCCESS;
 	}
 	
 	public String getSelfProfile(){
 		User currentUser =	(User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		//personal page is saved in session.user
+		/*
 		//get comments
 		CommentPage commentPage = commentService.findCommentByUserID(currentUser.getUserid(), currentPage, pageSize);
 		ServletActionContext.getRequest().setAttribute("commentPage", commentPage);
+		*/
+		//get favorites
+		List<Course> favourateList = userService.findFavouratesById(currentUser.getUserid());
+		ServletActionContext.getRequest().setAttribute("favourateList", favourateList);
 		return SUCCESS;
 	}
 	
 	public String getOthersProfile(){
-		User currentUser =	(User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		//personal page is saved in session.user
-		//get comments
-		CommentPage commentPage = commentService.findCommentByUserID(currentUser.getUserid(), currentPage, pageSize);
-		ServletActionContext.getRequest().setAttribute("commentPage", commentPage);
-		return SUCCESS;
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String str_userid = ServletActionContext.getRequest().getParameter("userid");
+		if(str_userid != null) {
+			int userid = Integer.parseInt(ServletActionContext.getRequest().getParameter("userid"));
+			//save user in request
+			User userToShow =	userService.findUserById(userid);
+			ServletActionContext.getRequest().setAttribute("user", userToShow);
+			/*
+			//get comments
+			CommentPage commentPage = commentService.findCommentByUserID(userToShow.getUserid(), currentPage, pageSize);
+			ServletActionContext.getRequest().setAttribute("commentPage", commentPage);
+			*/
+			//get favorites
+			List<Course> favourateList = userService.findFavouratesById(userToShow.getUserid());
+			ServletActionContext.getRequest().setAttribute("favourateList", favourateList);
+			return SUCCESS;
+		}else return FAIL;		
 	}
 	
 	public String addFavourate(){
 		User currentUser =	(User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		//personal page is saved in session.user
-		//get comments
-		CommentPage commentPage = commentService.findCommentByUserID(currentUser.getUserid(), currentPage, pageSize);
-		ServletActionContext.getRequest().setAttribute("commentPage", commentPage);
+		userService.addFavourateCourse(currentUser.getUserid(), courseService.findCourseById(courseid));
 		return SUCCESS;
+	}
+	
+	public String deleteComment() {
+		return null;
 	}
 	
 	public UserService getUserService() {

@@ -41,13 +41,12 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 	@Override
 	public CourseOverview findCourseOverviewByID(final int courseid) {
 		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
-				+ "(c.courseid,c.coursename,t.teachername,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
-				+ "from Course c left join c.teachers t,Coursemark m where c.courseid=m.courseid and "
+				+ "(c.courseid,c.coursename,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
+				+ "from Course c,Coursemark m where c.courseid=m.courseid and "
 				+ "c.courseid=?");
-		List list = getHibernateTemplate().find(hql, courseid);
-		CourseOverview course = (CourseOverview) (list.isEmpty() ? null : list
-				.get(0));
-		return course;
+		List<CourseOverview> tmpList = getHibernateTemplate().find(hql, courseid);
+		return tmpList.isEmpty() ? null : tmpList.get(0);
+		
 
 		// CourseOverview course = (CourseOverview)
 		// this.getHibernateTemplate().executeFind(new HibernateCallback() {
@@ -72,8 +71,8 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 	@Override
 	public List<CourseOverview> findCourseByName(final String coursename) {
 		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
-				+ "(c.courseid,c.coursename,t.teachername,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
-				+ "from Course c left join c.teachers t,Coursemark m where c.courseid=m.courseid and "
+				+ "(c.courseid,c.coursename,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
+				+ "from Course c,Coursemark m where c.courseid=m.courseid and "
 				+ "c.coursename like ?");
 		List<CourseOverview> list = getHibernateTemplate().find(hql,
 				"%" + coursename + "%");
@@ -102,8 +101,8 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 	@Override
 	public List<CourseOverview> findAll() {
 		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
-				+ "(c.courseid,c.coursename,t.teachername,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
-				+ "from Course c left join c.teachers t,Coursemark m where c.courseid=m.courseid");
+				+ "(c.courseid,c.coursename,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
+				+ "from Course c,Coursemark m where c.courseid=m.courseid");
 		List<CourseOverview> list = getHibernateTemplate().find(hql, null);
 		return list;
 		// List<CourseOverview> list = (List<CourseOverview>)
@@ -125,13 +124,24 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 	}
 
 	@Override
-	public List<CourseOverview> findCourseByTeacher(String teachername) {
+	public List<CourseOverview> findCourseByTeachername(String teachername) {
 		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
-				+ "(c.courseid,c.coursename,t.teachername,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
+				+ "(c.courseid,c.coursename,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
 				+ "from Course c left join c.teachers t,Coursemark m where c.courseid=m.courseid and "
 				+ "t.teachername like ?");
 		List<CourseOverview> list = getHibernateTemplate().find(hql,
 				"%" + teachername + "%");
+		return list;
+	}
+
+	@Override
+	public List<CourseOverview> findCourseByTeacherid(int teacherid) {
+		String hql = ("select new com.courseratingsystem.web.domain.CourseOverview"
+				+ "(c.courseid,c.coursename,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
+				+ "from Course c left join c.teachers t,Coursemark m where c.courseid=m.courseid and "
+				+ "t.teacherid = ?");
+		List<CourseOverview> list = getHibernateTemplate().find(hql,
+				teacherid);
 		return list;
 	}
 

@@ -2,7 +2,10 @@ package com.courseratingsystem.web.dao.impl;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -10,6 +13,7 @@ import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.courseratingsystem.web.dao.UserDao;
+import com.courseratingsystem.web.domain.Course;
 import com.courseratingsystem.web.domain.User;
 
 public class UserDaoImpl extends HibernateDaoSupport implements UserDao{
@@ -69,5 +73,27 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao{
 //		});
 //		return userList;
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Course> findFavourateCourseSet(int userid) {
+		String hql = ("from Course c left outer join fetch c.users u where u.userid = ?");
+		return getHibernateTemplate().find(hql, userid);
+		
+		
+//		User tmpUser = getHibernateTemplate().get(User.class, userid);
+//		getHibernateTemplate().initialize(tmpUser.getCourses());
+//		Set<Course> favourateCourse = tmpUser.getCourses();
+//		if(favourateCourse.size() == 0) {
+//			return null;
+//		}else{
+//			List<Course> favourateList = new ArrayList<>();
+//			Iterator<Course> iter = favourateCourse.iterator();
+//			while(iter.hasNext()) {
+//				favourateList.add(iter.next());
+//			}
+//			return favourateList;
+//		}
+				
+	}
 }

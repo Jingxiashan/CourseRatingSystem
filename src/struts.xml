@@ -33,6 +33,11 @@
 	    	<result name="success">/profile.jsp</result>
 	    	<result name="fail">/modifyProfile.jsp</result>
 	    </action>
+	    
+	    <action name="course_*" class="com.courseratingsystem.web.action.CourseAction" method="findByName">
+	    	<result name="SUCCESS">courseTest.jsp</result>
+	    	<result name="fail">error.jsp</result>
+	    </action>
 	    <action name="course_search" class="com.courseratingsystem.web.action.CourseAction" method="findByName">
 	    	<result name="SUCCESS">courseTest.jsp</result>
 	    	<result name="fail">error.jsp</result>
