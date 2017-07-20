@@ -30,6 +30,27 @@ import com.opensymphony.xwork2.ModelDriven;
 //}
 public class CourseAction extends ActionSupport{
 //	private SearchInfo searchinfo= new SearchInfo();
+	private int currentPage=1;
+	public String getSortby() {
+		return sortby;
+	}
+	public void setSortby(String sortby) {
+		this.sortby = sortby;
+	}
+	private int pageSize=1;
+	private String sortby="recommendationScore";
+	public int getCurrentPage() {
+		return currentPage;
+	}
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+	public int getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
 	private String searchtext = new String();
 	public String getSearchtext() {
 		return searchtext;
@@ -61,6 +82,7 @@ public class CourseAction extends ActionSupport{
 	public String findByName(){
 		List<CourseOverview> list = courseService.findCourseByName(searchtext);
 		if(!list.isEmpty()){
+			courseService.Sort(list, sortby);
 			ServletActionContext.getRequest().getSession().setAttribute("courselist", list);
 			return "SUCCESS";
 		}
@@ -71,6 +93,7 @@ public class CourseAction extends ActionSupport{
 	public String findByTeacher(){
 		List<CourseOverview> list = courseService.findCourseByTeacher(searchtext);
 		if(!list.isEmpty()){
+			courseService.Sort(list, sortby);
 			ServletActionContext.getRequest().getSession().setAttribute("courselist", list);
 			return "SUCCESS";
 		}
@@ -81,6 +104,7 @@ public class CourseAction extends ActionSupport{
 	public String findAll(){
 		List<CourseOverview> list = courseService.findAll();
 		if(!list.isEmpty()){
+			courseService.Sort(list, sortby);
 			ServletActionContext.getRequest().getSession().setAttribute("courselist", list);
 			return "SUCCESS";
 		}
@@ -94,14 +118,14 @@ public class CourseAction extends ActionSupport{
 	public void setCourseservice(CourseService courseservice) {
 		this.courseService = courseservice;
 	}
-	public String toPage(int currentPage,int pageSize){
+	public String toPage(){
 		List<CourseOverview> list = (List<CourseOverview>) ServletActionContext.getRequest().getSession().getAttribute("courselist");
 		if(!list.isEmpty()){
 		List<CourseOverview> page = list.subList((currentPage - 1)*pageSize, currentPage*pageSize);
 		int totalCount = list.size();
 		int totalPage = totalCount % pageSize ==0?totalCount/pageSize:totalCount/pageSize+1;
 		CoursePage coursepage = new CoursePage(pageSize, currentPage, totalCount, totalPage, page);
-		ServletActionContext.getRequest().getSession().setAttribute("pagelist", page);
+		ServletActionContext.getRequest().getSession().setAttribute("coursepage", coursepage);
 		return "SUCCESS";
 		}
 		else{

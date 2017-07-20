@@ -69,7 +69,7 @@ public class CourseServiceImpl implements CourseService {
 				  
 	            @Override  
 	            public int compare(CourseOverview o1, CourseOverview o2) {  
-	                int i = o1.getAverageRatingsUsefulness() - o2.getAverageRatingsUsefulness();   
+	                int i = o2.getAverageRatingsUsefulness() - o1.getAverageRatingsUsefulness();   
 	                return i;  
 	            }  
 	        });
@@ -79,7 +79,7 @@ public class CourseServiceImpl implements CourseService {
 				  
 	            @Override  
 	            public int compare(CourseOverview o1, CourseOverview o2) {  
-	                int i = o1.getAverageRatingsVividness() - o2.getAverageRatingsVividness();   
+	                int i = o2.getAverageRatingsVividness() - o1.getAverageRatingsVividness();   
 	                return i;  
 	            }  
 	        });
@@ -89,7 +89,7 @@ public class CourseServiceImpl implements CourseService {
 				  
 	            @Override  
 	            public int compare(CourseOverview o1, CourseOverview o2) {  
-	                int i = o1.getAverageRatingsSpareTimeOccupation() - o2.getAverageRatingsSpareTimeOccupation();   
+	                int i = o2.getAverageRatingsSpareTimeOccupation() - o1.getAverageRatingsSpareTimeOccupation();   
 	                return i;  
 	            }  
 	        });
@@ -99,7 +99,7 @@ public class CourseServiceImpl implements CourseService {
 				  
 	            @Override  
 	            public int compare(CourseOverview o1, CourseOverview o2) {  
-	                int i = o1.getAverageRatingsScoring() - o2.getAverageRatingsScoring();   
+	                int i = o2.getAverageRatingsScoring() - o1.getAverageRatingsScoring();   
 	                return i;  
 	            }  
 	        });
@@ -109,7 +109,7 @@ public class CourseServiceImpl implements CourseService {
 				  
 	            @Override  
 	            public int compare(CourseOverview o1, CourseOverview o2) {  
-	                int i = o1.getAverageRatingsRollCall() - o2.getAverageRatingsRollCall();   
+	                int i = o2.getAverageRatingsRollCall() - o1.getAverageRatingsRollCall();   
 	                return i;  
 	            }  
 	        });
@@ -119,7 +119,7 @@ public class CourseServiceImpl implements CourseService {
 				  
 	            @Override  
 	            public int compare(CourseOverview o1, CourseOverview o2) {  
-	                int i = o1.getRecommendationScore() - o2.getRecommendationScore();   
+	                int i = o2.getRecommendationScore() - o1.getRecommendationScore();   
 	                return i;  
 	            }  
 	        });
