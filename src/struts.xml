@@ -55,7 +55,7 @@
 			<result name="fail">error.jsp</result>
 		</action>
 		
-		<action name="findteacherbyid" class="com.courseratingsystem.web.action.TeacherAction" method="findTeacherByID">
+		<action name="findTeacherCourseByID" class="com.courseratingsystem.web.action.TeacherAction" method="findTeacherCourseByID">
 			<result name="success">teacher.jsp</result>
 			<result name="fail">error.jsp</result>
 		</action>

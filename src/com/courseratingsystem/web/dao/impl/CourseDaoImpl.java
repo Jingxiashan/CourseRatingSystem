@@ -140,8 +140,7 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 				+ "(c.courseid,c.coursename,m.averageRatingsUsefulness,m.averageRatingsVividness,m.averageRatingsSpareTimeOccupation,m.averageRatingsScoring,m.averageRatingsRollCall,m.peopleCount,m.recommendationScore,m.finalType) "
 				+ "from Course c left join c.teachers t,Coursemark m where c.courseid=m.courseid and "
 				+ "t.teacherid = ?");
-		List<CourseOverview> list = getHibernateTemplate().find(hql,
-				teacherid);
+		List<CourseOverview> list = getHibernateTemplate().find(hql,teacherid);
 		return list;
 	}
 

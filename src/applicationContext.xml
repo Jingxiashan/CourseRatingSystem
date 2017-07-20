@@ -72,18 +72,16 @@
 		<property name="userService" ref="userService"/>
 		<property name="logininfoService" ref="logininfoService"/>
 	</bean>
-	<bean id="userAction" class="com.courseratingsystem.web.action.ProfileAction" scope="prototype">
+	<bean id="userAction" class="com.courseratingsystem.web.action.UserAction" scope="prototype">
 		<property name="userService" ref="userService"/>
 		<property name="commentService" ref="commentService"/>
 		<property name="courseService" ref="courseService"/>
 	</bean>
-	<!-- 
-	<bean id="bookAction" class="com.chinasoft.app.action.BookAction" scope="prototype">
-		<property name="bookService" ref="bookService"/>
+	<bean id="teacherAction" class="com.courseratingsystem.web.action.TeacherAction" scope="prototype">
+		<property name="teacherService" ref="teacherService"/>
+		<property name="courseService" ref="courseService"/>
+		<property name="commentService" ref="commentService"/>
 	</bean>
-	<bean id="loginAction" class="com.chinasoft.app.action.LoginAction" scope="prototype"/>
-	 -->
-	
 	
 	<!-- Service的配置 -->
 	<bean id="commentService" class="com.courseratingsystem.web.service.impl.CommentServiceImpl">
@@ -98,6 +96,9 @@
 	<bean id="courseService" class="com.courseratingsystem.web.service.impl.CourseServiceImpl">
 		<property name="courseDao" ref="courseDao"/>
 	</bean>
+	<bean id="teacherService" class="com.courseratingsystem.web.service.impl.TeacherServiceImpl">
+		<property name="teacherDao" ref="teacherDao"/>
+	</bean>
 	
 	<!-- DAO的配置 -->
 	<bean id="commentDao" class="com.courseratingsystem.web.dao.impl.CommentDaoImpl">
@@ -110,6 +111,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="courseDao" class="com.courseratingsystem.web.dao.impl.CourseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="teacherDao" class="com.courseratingsystem.web.dao.impl.TeacherDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
