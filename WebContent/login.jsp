@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<<<<<<< HEAD
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="Shortcut Icon"
@@ -16,7 +15,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
 <title>登录-大众点评课</title>
 <!-- Site Properties -->
-<title>Homepage - CourseRatingSystem</title>
 <link rel="stylesheet" type="text/css"
 	href="../dist/components/reset.css">
 <link rel="stylesheet" type="text/css"
@@ -150,30 +148,24 @@
 <script src="../dist/components/sidebar.js"></script>
 <script src="../dist/components/transition.js"></script>
 <script>
-  $(document)
-    .ready(function() {
+	$(document).ready(function() {
 
-      // fix menu when passed
-      $('.masthead')
-        .visibility({
-          once: false,
-          onBottomPassed: function() {
-            $('.fixed.menu').transition('fade in');
-          },
-          onBottomPassedReverse: function() {
-            $('.fixed.menu').transition('fade out');
-          }
-        })
-      ;
+		// fix menu when passed
+		$('.masthead').visibility({
+			once : false,
+			onBottomPassed : function() {
+				$('.fixed.menu').transition('fade in');
+			},
+			onBottomPassedReverse : function() {
+				$('.fixed.menu').transition('fade out');
+			}
+		});
 
-      // create sidebar and attach to menu open
-      $('.ui.sidebar')
-        .sidebar('attach events', '.toc.item')
-      ;
+		// create sidebar and attach to menu open
+		$('.ui.sidebar').sidebar('attach events', '.toc.item');
 
-    })
-  ;
-  </script>
+	});
+</script>
 </head>
 <style type="text/css">
 body {
@@ -198,44 +190,61 @@ body>.grid {
 		<div class="ui container">
 			<div class="ui large secondary inverted pointing menu">
 				<a class="toc item"> <i class="sidebar icon"></i>
-				</a> <a class="active item">主页</a> <a href="customerIndex.jsp"
-					class="item">课程详情</a>
-				<div class="right item">
-					<a href="login.jsp" class="ui inverted button">登录</a> <a
-						href="register.jsp" class="ui inverted button">注册</a>
+				</a> <a class="active item">登录</a> <a href="homepage.jsp" class="item">主页</a>
+			</div>
+		</div>
+
+
+
+		<div class="ui basic modal">
+			<div class="ui icon header">
+				<i class="archive icon"></i> Archive Old Messages
+			</div>
+			<div class="content">
+				<p>Y${requestScope.message}</p>
+			</div>
+			<div class="actions">
+				<div class="ui red basic cancel inverted button">
+					<i class="remove icon"></i> No
+				</div>
+				<div class="ui green ok inverted button">
+					<i class="checkmark icon"></i> Yes
 				</div>
 			</div>
-
 		</div>
-	</div>
-		<s:actionerror />
-		${requestScope.message }
-		<div class="ui center aligned segment">
-			<div class="ui inverted center aligned segment">
-				<div class="column">
-					<form class="ui large form" action="login" method="post">
-						<div class="ui stacked segment">
-							<div class="field">
-								<div class="ui left icon input">
-									<i class="user icon"></i> <input type="text" name="username"
-										placeholder="Username">
-								</div>
-							</div>
-							<div class="ui inverted divider"></div>
-							<div class="field">
-								<div class="ui left icon input">
-									<i class="lock icon"></i> <input type="password" name="password"
-										placeholder="Password">
-								</div>
+
+
+
+		<div class="ui container" style="margin-top: 10rem; width: 450px">
+			<div class="column">
+				<form class="ui large form" id="loginForm" align="right"
+					action="login" method="post">
+					<div class="ui stacked inverted aligned right segment">
+						<div class="field">
+							<div class="ui left icon inverted transparent input">
+								<i class="user icon"></i> <input type="text" name="username"
+									placeholder="用户名">
 							</div>
 						</div>
-							<h4 class="ui horizontal inverted divider">登录大众点评课</h4>
-					</form>
-					<div class="ui message">
-						第一次访问本网站？ <a href="register.jsp">注册</a>
+						<div class="ui inverted divider"></div>
+						<div class="field">
+							<div class="ui left icon inverted transparent input">
+								<i class="lock icon"></i> <input type="password" name="password"
+									placeholder="密码">
+							</div>
+						</div>
 					</div>
+					<h4 class="ui horizontal inverted divider">好久不见？</h4>
+					<button class="ui inverted basic aligned right button"
+						type="submit">登录</button>
+				</form>
+				<div class="ui inverted message">
+					不如交个朋友，嗯？ <a href="register.jsp">注册</a>
 				</div>
+
 			</div>
 		</div>
+	</div>
 </body>
+
 </html>

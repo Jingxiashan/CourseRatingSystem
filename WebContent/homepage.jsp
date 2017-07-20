@@ -8,6 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="Shortcut Icon"
+	href="//www.dpfile.com/s/res/favicon.5ff777c11d7833e57e01c9d192b7e427.ico"
+	type="image/x-icon">
 <link rel="stylesheet prefech"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
 <script
@@ -15,7 +18,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
 <!-- Site Properties -->
-<title>Homepage - CourseRatingSystem</title>
+<title>主页 - 大众点评课</title>
 <link rel="stylesheet" type="text/css"
 	href="../dist/components/reset.css">
 <link rel="stylesheet" type="text/css"
@@ -249,7 +252,7 @@
 					<div class="three wide column">
 						<h4 class="ui inverted header">关于</h4>
 						<div class="ui inverted link list">
-							<a href="#" class="item">网站介绍</a> <a href="#" class="item">联系我们</a>
+							<a href="#" class="item">网站介绍</a> <a href="about.jsp" class="item">联系我们</a>
 						</div>
 					</div>
 					<div class="seven wide column">
