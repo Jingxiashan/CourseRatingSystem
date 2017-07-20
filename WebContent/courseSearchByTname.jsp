@@ -158,7 +158,7 @@ body>.grid {
 			<div class="ui large secondary inverted pointing menu">
 				<a class="toc item"> <i class="sidebar icon"></i>
 				</a> <a class="active item">搜索</a> 
-				<a href="customerIndex.jsp" class="item">返回</a>
+				<a href="index.jsp" class="item">返回</a>
 			</div>
 		</div>
 
