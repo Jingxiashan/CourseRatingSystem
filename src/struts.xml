@@ -38,9 +38,9 @@
 	    	<result name="fail">error.jsp</result>
 	    </action>
 
-		<action name="comment_*" class="com.courseratingsystem.web.action.CommentAction" method="{1}">
-			<result name="success">right.jsp</result>
-			<result name="fail">wrong.jsp</result>
+		<action name="comment_findByTeacher" class="com.courseratingsystem.web.action.CommentAction" method="findByTeacher">
+			<result name="success">result.jsp</result>
+			<result name="fail">error.jsp</result>
 		</action>
 		
 		<action name="addcomment" class="com.courseratingsystem.web.action.CommentAction" method="addComment">
