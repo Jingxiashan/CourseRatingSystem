@@ -29,7 +29,7 @@
 	    	<result name="success" type="redirect">/index.jsp</result>
 	    	<result name="fail">/changePass.jsp</result>
 	    </action>
-	    <action name="profile_*" class="com.courseratingsystem.web.action.ProfileAction" method="{1}">
+	    <action name="user_*" class="com.courseratingsystem.web.action.UserAction" method="{1}">
 	    	<result name="success">/profile.jsp</result>
 	    	<result name="fail">/modifyProfile.jsp</result>
 	    </action>
