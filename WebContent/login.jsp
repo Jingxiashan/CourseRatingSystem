@@ -14,39 +14,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
 <title>登录-大众点评课</title>
-<!-- Site Properties -->
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/reset.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/site.css">
 
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/container.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/grid.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/header.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/image.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/menu.css">
-
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/divider.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/dropdown.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/segment.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/button.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/list.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/icon.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/sidebar.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/transition.css">
 
 <style type="text/css">
 .hidden.menu {
@@ -217,31 +185,29 @@ body>.grid {
 
 		<div class="ui container" style="margin-top: 10rem; width: 450px">
 			<div class="column">
-				<form class="ui large form" id="loginForm" align="right"
+				<form class="ui large form" id="loginForm"
 					action="login" method="post">
-					<div class="ui stacked inverted aligned right segment">
+					<div class="ui stacked inverted segment">
 						<div class="field">
 							<div class="ui left icon inverted transparent input">
 								<i class="user icon"></i> <input type="text" name="username"
-									placeholder="用户名">
+									placeholder="用户名" style="color:#FFFFFF">
 							</div>
 						</div>
 						<div class="ui inverted divider"></div>
 						<div class="field">
 							<div class="ui left icon inverted transparent input">
 								<i class="lock icon"></i> <input type="password" name="password"
-									placeholder="密码">
+									placeholder="密码" style="color:#FFFFFF">
 							</div>
 						</div>
 					</div>
 					<h4 class="ui horizontal inverted divider">好久不见？</h4>
-					<button class="ui inverted basic aligned right button"
-						type="submit">登录</button>
+					<button class="ui inverted basic button" type="submit">登录</button>
 				</form>
-				<div class="ui inverted message">
-					不如交个朋友，嗯？ <a href="register.jsp">注册</a>
-				</div>
-
+					<div class="ui inverted message">
+						不如交个朋友，嗯？ <a href="register.jsp">注册</a>
+					</div>
 			</div>
 		</div>
 	</div>

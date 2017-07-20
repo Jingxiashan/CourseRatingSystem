@@ -13,40 +13,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
-<title>注册-大众点评课</title>
-<!-- Site Properties -->
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/reset.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/site.css">
-
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/container.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/grid.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/header.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/image.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/menu.css">
-
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/divider.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/dropdown.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/segment.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/button.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/list.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/icon.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/sidebar.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/transition.css">
+<title>课程搜索-大众点评课</title>
 
 <style type="text/css">
 .hidden.menu {
@@ -167,71 +134,75 @@
 	});
 </script>
 </head>
+<style type="text/css">
+body {
+	background-color: #DADADA;
+}
+
+body>.grid {
+	height: 100%;
+}
+
+.image {
+	margin-top: -100px;
+}
+
+.column {
+	max-width: 450px;
+}
+</style>
 
 <body>
-
 	<div class="ui inverted vertical masthead center aligned segment">
 		<div class="ui container">
 			<div class="ui large secondary inverted pointing menu">
 				<a class="toc item"> <i class="sidebar icon"></i>
-				</a> <a class="active item">注册</a> <a href="homepage.jsp" class="item">主页</a>
+				</a> <a class="active item">搜索</a> 
+				<a href="customerIndex.jsp" class="item">返回</a>
 			</div>
 		</div>
 
-		${requestScope.message }
+
+
+		<div class="ui basic modal">
+			<div class="ui icon header">
+				<i class="archive icon"></i> Archive Old Messages
+			</div>
+			<div class="content">
+				<p>Y${requestScope.message}</p>
+			</div>
+			<div class="actions">
+				<div class="ui red basic cancel inverted button">
+					<i class="remove icon"></i> No
+				</div>
+				<div class="ui green ok inverted button">
+					<i class="checkmark icon"></i> Yes
+				</div>
+			</div>
+		</div>
+
+
+
 		<div class="ui container" style="margin-top: 10rem; width: 450px">
 			<div class="column">
-				<form class="ui large form" action="register" method="post">
-					<div class="ui stacked inverted aligned right segment">
+				<form class="ui large form" method="post">
+					<div class="ui stacked inverted segment">
 						<div class="field">
 							<div class="ui left icon inverted transparent input">
-								<i class="user icon"></i> <input type="text" name="username"
-									placeholder="请输入用户名" style="color:#FFFFFF">
+								<i class="student icon"></i> <input type="text" name="username"
+									placeholder="教师姓名">
 							</div>
-						</div>
-						<div class="field">
-							<div class="ui left icon inverted transparent input">
-								<i class="lock icon"></i> <input type="password"
-									name="password1" placeholder="请输入密码" style="color:#FFFFFF">
-							</div>
-						</div>
-						<div class="field">
-							<div class="ui left icon inverted transparent input">
-								<i class="lock icon"></i> <input type="password"
-									name="password2" placeholder="请再次输入密码" style="color:#FFFFFF">
-							</div>
-						</div>
-
-						<div class="ui inverted divider"></div>
-						<div class="field">
-							<div class="ui left icon inverted transparent input">
-								<i class="child icon"></i> <input type="text" name="nickname"
-									placeholder="请输入昵称" style="color:#FFFFFF">
-							</div>
-						</div>
-						<div class="field">
-							<select class="ui inverted dropdown" name="grade">
-								<option value="">请选择年级</option>
-								<option value="2010">2010级</option>
-								<option value="2011">2011级</option>
-								<option value="2012">2012级</option>
-								<option value="2013">2013级</option>
-								<option value="2014">2014级</option>
-								<option value="2015">2015级</option>
-								<option value="2016">2016级</option>
-								<option value="2017">2017级</option>
-								<option value="2018">2018级</option>
-							</select>
 						</div>
 					</div>
-					<h4 class="ui horizontal inverted divider">欢迎你，我的朋友</h4>
-					<button class="ui inverted basic button" type="submit">注册</button>
-					<div class="ui inverted message">
-						已经是老朋友啦？ <a href="login.jsp">登录</a>
-					</div>
+					<h4 class="ui horizontal inverted divider">老司机准备发车，请坐稳扶好。</h4>
+					<button class="ui inverted basic button" type="submit">搜索</button>
 				</form>
+					<div class="ui inverted message">
+						按课程名称搜索咯，嗯？ <a href="courseSearchByCname.jsp">Go</a>
+					</div>
 			</div>
 		</div>
 	</div>
 </body>
+
 </html>
