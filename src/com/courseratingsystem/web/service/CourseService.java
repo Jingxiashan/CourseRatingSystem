@@ -9,7 +9,8 @@ public interface CourseService {
 	public void add(Course course);
 	public void update(Course course);
 	public void delete(Course course);
-	public CourseOverview findCourseByID(int courseid);
+	public CourseOverview findCourseOverviewById(int courseid);
+	public Course findCourseById(final int courseid);
 	public List<CourseOverview> findCourseByName(String coursename);
 	public List<CourseOverview> findAll();
 	public List<CourseOverview> findCourseByTeacher(String teachername);

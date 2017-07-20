@@ -39,9 +39,8 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public CourseOverview findCourseByID(int courseid) {
-		
-		return courseDao.findCourseByID(courseid);
+	public CourseOverview findCourseOverviewById(int courseid) {
+		return courseDao.findCourseOverviewByID(courseid);
 	}
 
 	@Override
@@ -127,6 +126,12 @@ public class CourseServiceImpl implements CourseService {
 			break;
 		}
 		return list;
+	}
+
+
+	@Override
+	public Course findCourseById(int courseid) {
+		return courseDao.findCourseById(courseid);
 	}
 
 }
