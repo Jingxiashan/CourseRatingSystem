@@ -5,13 +5,16 @@ import java.util.List;
 import org.apache.struts2.ServletActionContext;
 
 import com.courseratingsystem.web.domain.Comment;
+import com.courseratingsystem.web.domain.CourseOverview;
 import com.courseratingsystem.web.service.CommentService;
+import com.courseratingsystem.web.service.impl.CommentServiceImpl;
 import com.courseratingsystem.web.vo.CommentPage;
+import com.courseratingsystem.web.vo.CoursePage;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 public class CommentAction extends ActionSupport implements ModelDriven<Comment>{
-	private int currentPage=2;
+	private int currentPage=1;
 	private int pageSize=5;
 	
 	public int getCurrentPage() {
@@ -29,36 +32,61 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 
 	private Comment comment = new Comment();
 	private CommentService commentService;
-	private String sortmethod="bylikeCount";
+	
+	private String sortmethod=CommentServiceImpl.COMMENT_SORT_METHOD_BYLIKECOUNT;
 
+	public Comment getComment() {
+		return comment;
+	}
+	public void setComment(Comment comment) {
+		this.comment = comment;
+	}	
+	public String getSortmethod() {
+		return sortmethod;
+	}
+	public void setSortmethod(String sortmethod) {
+		this.sortmethod = sortmethod;
+	}
+	
 	public String findByTeacher(){
-		CommentPage commentPage = commentService.findCommentByTeacherID(comment.getTeacher().getTeacherid(),currentPage,pageSize);
-		System.out.println("测试点。。。"+commentPage.getTotalCount()+"..."+commentPage.getCommentList().get(0).getCommentid());
-		if(commentPage.getTotalCount()>0){
-			commentService.sorting(commentPage.getCommentList(), sortmethod);
-			ServletActionContext.getRequest().setAttribute("commentPage", commentPage);
-			System.out.println("第二个测试点。。。");
-			return SUCCESS;
+		String temp = ServletActionContext.getRequest().getParameter("teacherid");
+		if(temp!=null){
+			int teacherid = Integer.parseInt(temp);
+			CommentPage commentPage = commentService.findCommentByTeacherID(teacherid,currentPage,pageSize,sortmethod);
+			if(commentPage!=null){
+				ServletActionContext.getRequest().setAttribute("commentPage", commentPage);
+				ServletActionContext.getRequest().setAttribute("teacherid",teacherid);
+				return SUCCESS;
+				}
+			return "fail";
 		}
 		return "fail";
 	}
-	
 	public String findByCourse(){
-		CommentPage commentPage = commentService.findCommentByCourseID(comment.getCourse().getCourseid(),currentPage,pageSize);
-		if(commentPage.getTotalCount()>0){
-			commentService.sorting(commentPage.getCommentList(), sortmethod);
-			ServletActionContext.getRequest().setAttribute("commentPage", commentPage);
-			return SUCCESS;
+		String temp = ServletActionContext.getRequest().getParameter("courseid");
+		if(temp!=null){
+			int courseid = Integer.parseInt(temp);
+			CommentPage commentPage = commentService.findCommentByCourseID(courseid,currentPage,pageSize,sortmethod);
+			if(commentPage!=null){
+				ServletActionContext.getRequest().setAttribute("commentPage", commentPage);
+				ServletActionContext.getRequest().setAttribute("courseid",courseid);
+				return SUCCESS;
+				}
+			return "fail";
 		}
 		return "fail";
 	}
-	
 	public String findByUser(){
-		CommentPage commentPage = commentService.findCommentByUserID(comment.getUser().getUserid(),currentPage,pageSize);
-		if(commentPage.getTotalCount()>0){
-			commentService.sorting(commentPage.getCommentList(), sortmethod);
-			ServletActionContext.getRequest().setAttribute("commentPage", commentPage);
-			return SUCCESS;
+		String temp = ServletActionContext.getRequest().getParameter("userid");
+		if(temp!=null){
+			int userid = Integer.parseInt(temp);
+			CommentPage commentPage = commentService.findCommentByTeacherID(userid,currentPage,pageSize,sortmethod);
+			if(commentPage!=null){
+				ServletActionContext.getRequest().setAttribute("commentPage", commentPage);
+				ServletActionContext.getRequest().setAttribute("userid",userid);
+				return SUCCESS;
+				}
+			return "fail";
 		}
 		return "fail";
 	}
@@ -66,8 +94,7 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 	public String addComment(){
 		commentService.add(comment);
 		return SUCCESS;
-	}
-	
+	}	
 	
 	public CommentService getCommentService(){
 		return commentService;

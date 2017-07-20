@@ -46,13 +46,10 @@
 	    	<result name="SUCCESS">courseTest.jsp</result>
 	    	<result name="fail">error.jsp</result>
 	    </action>
-
-
 		<action name="comment_findByTeacher" class="com.courseratingsystem.web.action.CommentAction" method="findByTeacher">
-			<result name="success">result.jsp</result>
+			<result name="success">xingtest3.jsp</result>
 			<result name="fail">error.jsp</result>
-		</action>
-		
+		</action>	
 		<action name="addcomment" class="com.courseratingsystem.web.action.CommentAction" method="addComment">
 			<result name="success">add.jsp</result>
 		</action>

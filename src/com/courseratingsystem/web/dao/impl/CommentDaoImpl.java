@@ -16,12 +16,10 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 	public void add(Comment comment) {
 		this.getHibernateTemplate().save(comment);
 	}
-
 	@Override
 	public void update(Comment comment) {
 		this.getHibernateTemplate().update(comment);		
 	}
-
 	@Override
 	public void delete(Comment comment) {
 		this.getHibernateTemplate().delete(this.findCommentByCommentID(comment.getCommentid()));		
@@ -29,40 +27,35 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 
 	@Override
 	public List<Comment> findCommentByCommentID(int commentid) {
-		return (List<Comment>) this.getHibernateTemplate().get(Comment.class,commentid);
-		
+		List<Comment> commentList= (List<Comment>) this.getHibernateTemplate().get(Comment.class,commentid);
+		return commentList;
 	}
-
 	@Override
 	public List<Comment> findCommentByUserID(int userid) {
 		List<Comment> commentList = getHibernateTemplate().find("from Comment where userid = ?", userid);
 		return commentList;
 	}
-
 	@Override
 	public List<Comment> findCommentByCourseID(int courseid) {
 		List<Comment> commentList = getHibernateTemplate().find("from Comment where courseid = ?",courseid);
 		return commentList;
 	}
-	
 	@Override
-	public List<Comment> findCommentByTeacherID(final int teacherid,final int currentPage,final int pageSize) {
-//		List<Comment> commentList = getHibernateTemplate().find("from Comment where teacherid = ?", teacherid);
-//		return commentList;
-		
-		List list = this.getHibernateTemplate().executeFind(new HibernateCallback() {
-			public Object doInHibernate(Session session) throws HibernateException,SQLException {
-				Query query  = session.createQuery("from Comment where teacherid = ?");
-				query.setLong(0, teacherid);
-				query.setFirstResult((currentPage-1)*pageSize);
-				query.setMaxResults(pageSize);
-				List<Comment> list = query.list();
-				return list;
-			}
-		});
-		return list;
+	public List<Comment> findCommentByTeacherID(final int teacherid) {
+		List<Comment> commentList = getHibernateTemplate().find("from Comment where teacherid = ?", teacherid);
+		return commentList;
 	}
 
+	@Override
+	public int findCommentTotalCountByUserID(int userid) {
+		Long count=(Long)this.getHibernateTemplate().find("select count(*) from Comment where userid = ?", userid).listIterator().next();
+		return count.intValue();
+	}
+	@Override
+	public int findCommentTotalCountByCourseID(int courseid) {
+		Long count=(Long)this.getHibernateTemplate().find("select count(*) from Comment where courseid = ?", courseid).listIterator().next();
+		return count.intValue();
+	}
 	@Override
 	public int findCommentTotalCountByTeacherID(int teacherid) {
 		Long count=(Long)this.getHibernateTemplate().find("select count(*) from Comment where teacherid = ?", teacherid).listIterator().next();
