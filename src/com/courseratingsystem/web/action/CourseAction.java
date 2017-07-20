@@ -80,10 +80,9 @@ public class CourseAction extends ActionSupport{
 		this.courseService = courseService;
 	}
 	public String findByName(){
-		List<CourseOverview> list = courseService.findCourseByName(searchtext);
-		if(!list.isEmpty()){
-			courseService.Sort(list, sortby);
-			ServletActionContext.getRequest().getSession().setAttribute("courselist", list);
+		CoursePage coursepage = courseService.findCourseByName(searchtext,sortby,currentPage,pageSize);
+		if(!coursepage.getList().isEmpty()){
+			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
 			return "SUCCESS";
 		}
 		else{
@@ -91,10 +90,9 @@ public class CourseAction extends ActionSupport{
 		}
 	}
 	public String findByTeacher(){
-		List<CourseOverview> list = courseService.findCourseByTeacher(searchtext);
-		if(!list.isEmpty()){
-			courseService.Sort(list, sortby);
-			ServletActionContext.getRequest().getSession().setAttribute("courselist", list);
+		CoursePage coursepage = courseService.findCourseByTeacher(searchtext,sortby,currentPage,pageSize);
+		if(!coursepage.getList().isEmpty()){
+			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
 			return "SUCCESS";
 		}
 		else{
@@ -102,10 +100,9 @@ public class CourseAction extends ActionSupport{
 		}
 	}
 	public String findAll(){
-		List<CourseOverview> list = courseService.findAll();
-		if(!list.isEmpty()){
-			courseService.Sort(list, sortby);
-			ServletActionContext.getRequest().getSession().setAttribute("courselist", list);
+		CoursePage coursepage = courseService.findAll(sortby,currentPage,pageSize);
+		if(!coursepage.getList().isEmpty()){
+			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
 			return "SUCCESS";
 		}
 		else{
@@ -118,18 +115,18 @@ public class CourseAction extends ActionSupport{
 	public void setCourseservice(CourseService courseservice) {
 		this.courseService = courseservice;
 	}
-	public String toPage(){
-		List<CourseOverview> list = (List<CourseOverview>) ServletActionContext.getRequest().getSession().getAttribute("courselist");
-		if(!list.isEmpty()){
-		List<CourseOverview> page = list.subList((currentPage - 1)*pageSize, currentPage*pageSize);
-		int totalCount = list.size();
-		int totalPage = totalCount % pageSize ==0?totalCount/pageSize:totalCount/pageSize+1;
-		CoursePage coursepage = new CoursePage(pageSize, currentPage, totalCount, totalPage, page);
-		ServletActionContext.getRequest().getSession().setAttribute("coursepage", coursepage);
-		return "SUCCESS";
-		}
-		else{
-			return "fail";
-		}
-	}
+//	public String toPage(){
+//		List<CourseOverview> list = (List<CourseOverview>) ServletActionContext.getRequest().getSession().getAttribute("courselist");
+//		if(!list.isEmpty()){
+//		List<CourseOverview> page = list.subList((currentPage - 1)*pageSize, currentPage*pageSize);
+//		int totalCount = list.size();
+//		int totalPage = totalCount % pageSize ==0?totalCount/pageSize:totalCount/pageSize+1;
+//		CoursePage coursepage = new CoursePage(pageSize, currentPage, totalCount, totalPage, page);
+//		ServletActionContext.getRequest().getSession().setAttribute("coursepage", coursepage);
+//		return "SUCCESS";
+//		}
+//		else{
+//			return "fail";
+//		}
+//	}
 }

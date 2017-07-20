@@ -5,10 +5,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.courseratingsystem.web.dao.CourseDao;
 import com.courseratingsystem.web.domain.Course;
 import com.courseratingsystem.web.domain.CourseOverview;
 import com.courseratingsystem.web.service.CourseService;
+import com.courseratingsystem.web.vo.CoursePage;
 
 public class CourseServiceImpl implements CourseService {
 	private CourseDao courseDao;
@@ -44,21 +47,27 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public List<CourseOverview> findCourseByName(String coursename) {
+	public CoursePage findCourseByName(String coursename,String sortby,int currentPage,int pageSize) {
 		
-		return courseDao.findCourseByName(coursename);
+		List<CourseOverview> list = courseDao.findCourseByName(coursename);
+		Sort(list, sortby);
+		return toPage(list, currentPage, pageSize);
 	}
 
 	@Override
-	public List<CourseOverview> findAll() {
+	public CoursePage findAll(String sortby,int currentPage,int pageSize) {
 		
-		return courseDao.findAll();
+		List<CourseOverview> list = courseDao.findAll();
+		Sort(list, sortby);
+		return toPage(list, currentPage, pageSize);
 	}
 
 	@Override
-	public List<CourseOverview> findCourseByTeacher(String teachername) {
+	public CoursePage findCourseByTeacher(String teachername,String sortby,int currentPage,int pageSize) {
 		
-		return courseDao.findCourseByTeacher(teachername);
+		List<CourseOverview> list = courseDao.findCourseByTeacher(teachername);
+		Sort(list, sortby);
+		return toPage(list, currentPage, pageSize);
 	}
 
 	@Override
@@ -133,5 +142,13 @@ public class CourseServiceImpl implements CourseService {
 	public Course findCourseById(int courseid) {
 		return courseDao.findCourseById(courseid);
 	}
-
-}
+	public CoursePage toPage(List<CourseOverview> list,int currentPage,int pageSize){
+//		List<CourseOverview> list = (List<CourseOverview>) ServletActionContext.getRequest().getSession().getAttribute("courselist");
+		List<CourseOverview> page = list.subList((currentPage - 1)*pageSize, currentPage*pageSize);
+		int totalCount = list.size();
+		int totalPage = totalCount % pageSize ==0?totalCount/pageSize:totalCount/pageSize+1;
+		CoursePage coursepage = new CoursePage(pageSize, currentPage, totalCount, totalPage, page);
+//		ServletActionContext.getRequest().getSession().setAttribute("coursepage", coursepage);
+		return coursepage;
+		}
+	}
