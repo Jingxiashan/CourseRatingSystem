@@ -26,8 +26,8 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 	}
 
 	@Override
-	public List<Comment> findCommentByCommentID(int commentid) {
-		List<Comment> commentList= (List<Comment>) this.getHibernateTemplate().get(Comment.class,commentid);
+	public List<Comment> findCommentByCourseID(int courseid) {
+		List<Comment> commentList = getHibernateTemplate().find("from Comment where courseid = ?",courseid);
 		return commentList;
 	}
 	@Override
@@ -36,9 +36,9 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 		return commentList;
 	}
 	@Override
-	public List<Comment> findCommentByCourseID(int courseid) {
-		List<Comment> commentList = getHibernateTemplate().find("from Comment where courseid = ?",courseid);
-		return commentList;
+	public Comment findCommentByCommentID(int commentid) {
+		List<Comment> commentList= (List<Comment>) this.getHibernateTemplate().get(Comment.class,commentid);
+		return commentList.isEmpty() ? null : commentList.get(0);
 	}
 	@Override
 	public List<Comment> findCommentByTeacherID(final int teacherid) {
@@ -68,8 +68,5 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 		return count.intValue();
 	}
 
-	@Override
-	public void addLikeCount(Comment comment) {
-		comment.setLikeCount(comment.getLikeCount()+1);
-	}
+
 }

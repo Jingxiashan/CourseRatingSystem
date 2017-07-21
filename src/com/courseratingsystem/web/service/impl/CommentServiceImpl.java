@@ -41,17 +41,8 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public CommentPage findCommentByCommentID(int commentid,int currentPage,int pageSize,String sortmethod) {
-		List<Comment> commentList = commentDao.findCommentByCommentID(commentid);
-		if(!commentList.isEmpty()){
-			Sort(commentList, sortmethod);		
-			List<Comment> page = commentList.subList((currentPage - 1)*pageSize, commentList.size() < currentPage*pageSize ? commentList.size() : currentPage*pageSize);
-			int totalCount = commentList.size();
-			int totalPage = totalCount % pageSize ==0?totalCount/pageSize:totalCount/pageSize+1;
-			CommentPage commentPage = new CommentPage(pageSize, currentPage, totalCount, totalPage, page);
-			return commentPage;
-			}
-		return null;
+	public Comment findCommentByCommentID(int commentid,int currentPage,int pageSize,String sortmethod) {
+		return commentDao.findCommentByCommentID(commentid);
 	}
 	@Override
 	public CommentPage findCommentByUserID(int userid,int currentPage,int pageSize,String sortmethod) {
@@ -99,9 +90,12 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public void addLikeCount(Comment comment) {
-		commentDao.addLikeCount(comment);
-		
+	public int addLikeCount(int commentid) {
+		Comment comment = commentDao.findCommentByCommentID(commentid);
+		int likeCountNow = comment.getLikeCount();
+		comment.setLikeCount(likeCountNow+1);
+		commentDao.update(comment);
+		return likeCountNow + 1;		
 	}
 
 	@Override

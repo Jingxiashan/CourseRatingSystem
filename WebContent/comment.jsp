@@ -45,9 +45,11 @@ body {
 <body>
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
-			<a href="#" class="header item"> <img class="logo"
+			<a href="homepage.jsp" class="header item"> <img class="logo"
 				src="images/testPic.jpg"> 大众点评课
-			</a> <a href="course_findAll.action" class="item">课程详情</a>
+			</a> 
+			<a onClick="javascript :history.back(-1);" class="item">返回</a>
+			<a href="course_findAll.action" class="item">课程列表</a>
 			<div class="ui simple dropdown item">
 				课程搜索 <i class="dropdown icon"></i>
 				<div class="menu">

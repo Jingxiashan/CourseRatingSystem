@@ -88,7 +88,9 @@ body {
 		<div class="ui container">
 			<a href="homepage.jsp" class="header item"> <img class="logo"
 				src="images/testPic.jpg"> 大众点评课
-			</a> <a href="course_findAll.action" class="item">返回</a>
+			</a> 
+			<a onClick="javascript :history.back(-1);" class="item">返回</a>
+			<a href="course_findAll.action" class="item">课程列表</a>
 			<div class="ui simple dropdown item">
 				课程搜索 <i class="dropdown icon"></i>
 				<div class="menu">
@@ -131,7 +133,7 @@ body {
 								<c:forEach items="${requestScope.course.teacherList }"
 									var="teacher">
 									<a class="ui label"
-										href="teacher.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a>
+										href="teacher_getPage.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a>
 								</c:forEach>
 							</h4> </span><br>
 						<button class="ui primary button"
@@ -272,7 +274,7 @@ body {
 						<!-- 这里是 点赞评论的action-->
 						<form class="actions">
 							<div class="ui labeled button" tabindex="0">
-								<div class="ui red button">
+								<div class="ui red button" onclick="likeComment(${comment.commentid });window.event.returnValue = false;">
 									<i class="heart icon"></i> 戳
 								</div>
 								<div class="ui basic red left pointing label">${comment.likeCount }</div>
@@ -364,15 +366,26 @@ $(function(){
 	}); 
   };
   
-	  function deleteFavourate(){
-			$.ajax({
-				type:'get',
-				url:'${pageContext.request.contextPath}/deleteFavourate.action',
-				data:{courseid:"${requestScope.course.courseid }" },
-				success:function(data){
-					$("#favourate").html("嗯。收藏。");	
-				}
-			}); 
+  function deleteFavourate(){
+		$.ajax({
+			type:'get',
+			url:'${pageContext.request.contextPath}/deleteFavourate.action',
+			data:{courseid:"${requestScope.course.courseid }" },
+			success:function(data){
+				$("#favourate").html("嗯。收藏。");	
+			}
+		});
+  };
+  
+  function likeComment(id){
+	  $.ajax({
+	 	type:'get',
+	 	url:"${pageContext.request.contextPath}/likeComment.action",
+	 	data:{commentid:id},
+		success:function(data){
+		}		  
+	  });
+
 } 
 </script>
 </html>

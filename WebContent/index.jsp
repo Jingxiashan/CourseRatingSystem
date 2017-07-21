@@ -85,7 +85,7 @@ body {
 					<div class="content">
 						<pre>
 							<h3><a style="color:black" href="course_getPage.action?courseid=${course.courseid}">${course.coursename}</a>
-							<br><c:forEach items="${course.teacherList }" var="teacher"><a class="ui label" href="teacher.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a></c:forEach></h3>
+							<br><c:forEach items="${course.teacherList }" var="teacher"><a class="ui label" href="teacher_getPage.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a></c:forEach></h3>
 						</pre>
 						<div class="meta">
 							<span class="date"><h4>推荐星级</h4>

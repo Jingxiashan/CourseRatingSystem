@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<title>教师A-大众点评课</title>
+<title>${requestScope.teacher.teachername }-大众点评课</title>
 <head>
 <!-- Standard Meta -->
 <meta charset="utf-8" />
@@ -47,143 +47,88 @@ body {
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
 			<a href="homepage.jsp" class="header item"> <img class="logo"
-				src="images/testPic.jpg"> 大众点评课 </a>
+				src="images/testPic.jpg"> 大众点评课
+			</a> 
+			<a onClick="javascript :history.back(-1);" class="item">返回</a>
+			<a href="course_findAll.action" class="item">课程列表</a>
+			<div class="ui simple dropdown item">
+				课程搜索 <i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item" href="courseSearchByCname.jsp">按课程名称</a> <a
+						class="item" href="courseSearchByTname.jsp">按授课教师</a>
+				</div>
+			</div>
 		</div>
 	</div>
-
 	<div class="ui left aligned main text container">
 		<img src="images/jenny.jpg" style="width: 100px">
-		<h1 class="ui header">教师A</h1>
+		<h1 class="ui header">${requestScope.teacher.teachername }</h1>
 		<br>
 	</div>
 	<div class="ui container" style="width: 50%">
 		<div class="ui segment">
 			<h3 class="ui header">该老师所教授课程</h3>
-			<div class="ui center aligned segment">
+			<div class="ui center aligned basic segment">
 
 				<!-- 在此处添加点出课程详情和收藏课程的action -->
 				<form class="ui form">
 					<div class="ui cards">
 						<!-- 此处循环画 <div card>得到该老师全部课程 -->
-						<div class="card">
-							<div class="content">
-								<div class="header">课程A</div>
-								<br>
-								<div class="meta">推荐指数</div>
-								<div class="ui star rating" data-rating="3" data-max-rating="5">
-									<i class="icon active"></i>
+						<c:forEach items="${requestScope.courseList }" var="course">
+							<div class="card">
+								<div class="content">
+									<div class="header">${course.coursename }</div>
+									<br>
+									<div class="meta">推荐指数</div>
+								<div class="ui star rating">
+									<c:forEach begin="0" end="${course.recommendationScore-1 }">
+										<i class="icon active"></i>
+									</c:forEach>
+									</div>
 								</div>
-							</div>
 
 
-							<div class="center aligned container">
-								<div class="ui blue basic button">详情。</div>
-								<div class="ui red basic button">要了。</div>
-							</div>
-
-							<br>
-						</div>
-						<div class="card">
-							<div class="content">
-								<div class="header">课程A</div>
-								<br>
-								<div class="meta">推荐指数</div>
-								<div class="ui star rating" data-rating="3" data-max-rating="5">
-									<i class="icon active"></i>
+								<div class="center aligned container">
+									<button class="ui red basic button"
+										onclick="window.location.href='course_getPage.action?courseid=${course.courseid }'; window.event.returnValue = false;">详情。</button>
+									<!-- 	<button class="ui red basic button">要了。</button> -->
 								</div>
-							</div>
 
-
-							<div class="center aligned container">
-								<div class="ui blue basic button">详情。</div>
-								<div class="ui red basic button">要了。</div>
-							</div>
-
-							<br>
-						</div>
-						<div class="card">
-							<div class="content">
-								<div class="header">课程A</div>
 								<br>
-								<div class="meta">推荐指数</div>
-								<div class="ui star rating" data-rating="3" data-max-rating="5">
-									<i class="icon active"></i>
-								</div>
 							</div>
-
-
-							<div class="center aligned container">
-								<div class="ui blue basic button">详情。</div>
-								<div class="ui red basic button">要了。</div>
-							</div>
-
-							<br>
-						</div>
-						<div class="card">
-							<div class="content">
-								<div class="header">课程A</div>
-								<br>
-								<div class="meta">推荐指数</div>
-								<div class="ui star rating" data-rating="3" data-max-rating="5">
-									<i class="icon active"></i>
-								</div>
-							</div>
-
-
-							<div class="center aligned container">
-								<div class="ui blue basic button">详情。</div>
-								<div class="ui red basic button">要了。</div>
-							</div>
-
-							<br>
-						</div>
+						</c:forEach>
 					</div>
 				</form>
+				</div>
 			</div>
 			<h3 class="ui header">该老师所教授课程的评论</h3>
 			<div class="ui left aligned segment">
 				<div class="ui comments">
-				<form class="actions">
-				<!-- 在这里循环画对应课程的评论 循环<div comment>+<div hidden divider> -->
-					<div class="comment">
-						<a class="avatar"> <img src="images/elliot.jpg"></a>
-							<div class="content">
-								<a class="author">鲁迪</a> <a class="author">课程A</a>
-								<div class="text">喜欢圣经与西方文化的孩子上辈子一定是拯救了世界的天使，比如我，鲁迪。</div>
+					<form class="actions">
+						<!-- 在这里循环画对应课程的评论 循环<div comment>+<div hidden divider> -->
+						<c:forEach items="${requestScope.commentPage.commentList }"
+							var="comment">
+							<div class="comment">
+								<a class="avatar"> <img src="images/elliot.jpg">
+								</a>
+								<div class="content">
+									<a class="author"
+										href="profile.jsp?userid=${comment.user.userid }">${comment.user.nickname }</a>
+									<div class="text">${comment.critics }</div>
 
-								<!-- 这里是 点赞评论和删除评论的action-->
+									<!-- 这里是 点赞评论的action-->
+									<form class="actions">
+										<div class="ui labeled button" tabindex="0">
+											<div class="ui red button">
+												<i class="heart icon"></i> 戳
+											</div>
+											<div class="ui basic red left pointing label">${comment.likeCount }</div>
 
-								<div class="ui labeled button" tabindex="0">
-									<div class="ui red button">
-										<i class="heart icon"></i> 戳
-									</div>
-									<!-- 1048显示当前该评论对应的点赞数 -->
-									<div class="ui basic red left pointing label">1,048</div>
-
+										</div>
+									</form>
 								</div>
-
 							</div>
-						</div>
-					<div class="ui hidden divider"></div>
-					<div class="comment">
-						<a class="avatar"> <img src="images/elliot.jpg"></a>
-							<div class="content">
-								<a class="author">鲁迪</a> <a class="author">课程A</a>
-								<div class="text">喜欢圣经与西方文化的孩子上辈子一定是拯救了世界的天使，比如我，鲁迪。</div>
-
-								<!-- 这里是 点赞评论和删除评论的action-->
-
-								<div class="ui labeled button" tabindex="0">
-									<div class="ui red button">
-										<i class="heart icon"></i> 戳
-									</div>
-									<!-- 1048显示当前该评论对应的点赞数 -->
-									<div class="ui basic red left pointing label">1,048</div>
-
-								</div>
-
-							</div>
-						</div>
+						</c:forEach>
 					</form>
 				</div>
 			</div>

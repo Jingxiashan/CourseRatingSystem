@@ -20,6 +20,7 @@ import com.opensymphony.xwork2.ModelDriven;
 public class CommentAction extends ActionSupport implements ModelDriven<Comment>{
 	private int currentPage=1;
 	private int pageSize=5;
+	String result;
 	private static final String GET_TO_COMMENT_PAGE = "get_to_comment_page";;
 	private static final String COMMENT_SUCCESS = "comment_success";
 	private static final String FAIL = "fail";
@@ -128,6 +129,16 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 			return GET_TO_COMMENT_PAGE;			
 		}else return FAIL;
 	}	
+	
+	public String like() {
+		String str_commentid = ServletActionContext.getRequest().getParameter("commentid");
+		if(str_commentid != null) {
+			int commentid = Integer.parseInt(str_commentid);
+			commentService.addLikeCount(commentid);
+			return SUCCESS;
+		}
+		return FAIL;
+	}
 	
 	public String addComment(){
 		commentService.add(comment);

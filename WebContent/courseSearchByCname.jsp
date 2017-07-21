@@ -153,7 +153,7 @@ body>.grid {
 			<div class="ui large secondary inverted pointing menu">
 				<a class="toc item"> <i class="sidebar icon"></i>
 				</a> <a class="active item">搜索</a> 
-				<a href="course_findAll.action" class="item">返回</a>
+				<a onClick="javascript :history.back(-1);" class="item">返回</a>
 			</div>
 		</div>
 
