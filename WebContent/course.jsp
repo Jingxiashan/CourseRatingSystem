@@ -263,27 +263,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<div class="ui inverted vertical footer segment">
 		<div class="ui left aligned container">
 			<div class="ui stackable inverted divided grid">
