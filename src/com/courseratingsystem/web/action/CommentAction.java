@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.struts2.ServletActionContext;
 
 import com.courseratingsystem.web.domain.Comment;
-import com.courseratingsystem.web.domain.CourseOverview;
+import com.courseratingsystem.web.object.CourseOverview;
 import com.courseratingsystem.web.service.CommentService;
 import com.courseratingsystem.web.service.impl.CommentServiceImpl;
 import com.courseratingsystem.web.vo.CommentPage;

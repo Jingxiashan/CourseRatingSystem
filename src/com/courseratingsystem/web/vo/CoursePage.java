@@ -1,11 +1,12 @@
 package com.courseratingsystem.web.vo;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.courseratingsystem.web.domain.CourseOverview;
-class CoursePlusTeacher{
-	
-}
+import com.courseratingsystem.web.domain.Teacher;
+import com.courseratingsystem.web.object.CourseOverview;
+import com.courseratingsystem.web.object.CourseOverviewPlusTeacher;
+
 public class CoursePage {
 	private int pageSize;//每页显示数量
 	private int currentPage;//当前页
@@ -18,13 +19,16 @@ public class CoursePage {
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;
 		this.totalPage = totalPage;
-		this.list = list;
+		this.list = new ArrayList<>();
+		for(CourseOverview tmpCourse : list) {
+			this.list.add(new CourseOverviewPlusTeacher(tmpCourse));
+		}
 	}
-	private List<CourseOverview> list;
-	public List<CourseOverview> getList() {
+	private List<CourseOverviewPlusTeacher> list;
+	public List<CourseOverviewPlusTeacher> getList() {
 		return list;
 	}
-	public void setList(List<CourseOverview> list) {
+	public void setList(List<CourseOverviewPlusTeacher> list) {
 		this.list = list;
 	}
 	public int getPageSize() {

@@ -99,6 +99,9 @@
 	<bean id="teacherService" class="com.courseratingsystem.web.service.impl.TeacherServiceImpl">
 		<property name="teacherDao" ref="teacherDao"/>
 	</bean>
+	<bean id="teacherService" class="com.courseratingsystem.web.service.impl.TeacherServiceImpl">
+		<property name="teacherDao" ref="teacherDao"/>
+	</bean>
 	
 	<!-- DAO的配置 -->
 	<bean id="commentDao" class="com.courseratingsystem.web.dao.impl.CommentDaoImpl">

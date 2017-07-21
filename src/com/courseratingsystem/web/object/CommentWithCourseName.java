@@ -1,4 +1,4 @@
-package com.courseratingsystem.web.domain;
+package com.courseratingsystem.web.object;
 
 import java.util.Date;
 import java.util.List;

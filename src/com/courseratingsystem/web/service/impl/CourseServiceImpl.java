@@ -8,9 +8,9 @@ import java.util.List;
 import org.apache.struts2.ServletActionContext;
 
 import com.courseratingsystem.web.dao.CourseDao;
-import com.courseratingsystem.web.domain.CommentWithCourseName;
 import com.courseratingsystem.web.domain.Course;
-import com.courseratingsystem.web.domain.CourseOverview;
+import com.courseratingsystem.web.object.CommentWithCourseName;
+import com.courseratingsystem.web.object.CourseOverview;
 import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.vo.CoursePage;
 
@@ -150,7 +150,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 	public CoursePage toPage(List<CourseOverview> list,int currentPage,int pageSize){
 //		List<CourseOverview> list = (List<CourseOverview>) ServletActionContext.getRequest().getSession().getAttribute("courselist");
-		List<CourseOverview> page = list.subList((currentPage - 1)*pageSize, currentPage*pageSize);
+		List<CourseOverview> page = list.subList((currentPage - 1) * pageSize, currentPage * pageSize < list.size() ? currentPage * pageSize : list.size());
 		int totalCount = list.size();
 		int totalPage = totalCount % pageSize ==0?totalCount/pageSize:totalCount/pageSize+1;
 		CoursePage coursepage = new CoursePage(pageSize, currentPage, totalCount, totalPage, page);

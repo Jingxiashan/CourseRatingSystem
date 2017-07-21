@@ -2,9 +2,9 @@ package com.courseratingsystem.web.service;
 
 import java.util.List;
 
-import com.courseratingsystem.web.domain.CommentWithCourseName;
 import com.courseratingsystem.web.domain.Course;
-import com.courseratingsystem.web.domain.CourseOverview;
+import com.courseratingsystem.web.object.CommentWithCourseName;
+import com.courseratingsystem.web.object.CourseOverview;
 import com.courseratingsystem.web.vo.CoursePage;
 
 public interface CourseService {

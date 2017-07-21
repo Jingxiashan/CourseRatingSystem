@@ -5,7 +5,8 @@ import java.util.List;
 import org.apache.struts2.ServletActionContext;
 
 import com.courseratingsystem.web.domain.Course;
-import com.courseratingsystem.web.domain.CourseOverview;
+import com.courseratingsystem.web.object.CourseOverview;
+import com.courseratingsystem.web.object.CourseOverviewPlusTeacher;
 import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.service.TeacherService;
 import com.courseratingsystem.web.service.impl.CourseServiceImpl;
@@ -32,7 +33,7 @@ import com.opensymphony.xwork2.ModelDriven;
 public class CourseAction extends ActionSupport{
 //	private SearchInfo searchinfo= new SearchInfo();
 	private int currentPage = 1;
-	private int pageSize = 1;
+	private int pageSize = 5;
 	private String sortby="recommendationScore";
 	public String getSortby() {
 		return sortby;
@@ -97,6 +98,9 @@ public class CourseAction extends ActionSupport{
 	}
 	public String findAll(){
 		CoursePage coursepage = courseService.findAll(sortby,currentPage,pageSize);
+		for(CourseOverviewPlusTeacher tmpCourse : coursepage.getList()) {
+			tmpCourse.setTeacherList(teacherService.findTeachersByCourseID(tmpCourse.getCourseid()));
+		}
 		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
 			return "SUCCESS";

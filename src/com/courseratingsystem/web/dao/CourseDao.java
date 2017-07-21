@@ -1,9 +1,10 @@
 package com.courseratingsystem.web.dao;
 
 import java.util.List;
-import com.courseratingsystem.web.domain.CommentWithCourseName;
+
 import com.courseratingsystem.web.domain.Course;
-import com.courseratingsystem.web.domain.CourseOverview;
+import com.courseratingsystem.web.object.CommentWithCourseName;
+import com.courseratingsystem.web.object.CourseOverview;
 
 public interface CourseDao {
 	public void add(Course course);

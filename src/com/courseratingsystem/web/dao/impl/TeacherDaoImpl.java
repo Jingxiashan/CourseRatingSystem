@@ -36,9 +36,8 @@ public class TeacherDaoImpl extends HibernateDaoSupport implements TeacherDao {
 
 	@Override
 	public List<Teacher> findTeachersByCourseID(int courseid) {
-		Course course1=this.getHibernateTemplate().get(Course.class, courseid);
-		List<Teacher> list=new ArrayList<Teacher>(course1.getTeachers());
-		return list;
+		String hql = ("from Teacher t left outer join fetch t.courses c where c.courseid = ?");
+		return getHibernateTemplate().find(hql, courseid);
 //		List list=this.getHibernateTemplate().executeFind(new HibernateCallback() {
 //
 //			@Override
