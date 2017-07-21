@@ -283,7 +283,7 @@ body {
 								<div class="ui red mini button" onclick="likeComment(${comment.commentid });window.event.returnValue = false;">
 									<i class="heart icon"></i> 戳
 								</div>
-								<div class="ui basic red left mini basic label">${comment.likeCount }</div>
+								<div id="comment${comment.commentid }Count" class="ui basic red left mini basic label">${comment.likeCount }</div>
 
 							</div>
 							</div>
@@ -391,6 +391,7 @@ $(function(){
 	 	url:"${pageContext.request.contextPath}/likeComment.action",
 	 	data:{commentid:id},
 		success:function(data){
+			 $("#comment"+id+"Count").html(data.likeCount); 	
 		}		  
 	  });
 
