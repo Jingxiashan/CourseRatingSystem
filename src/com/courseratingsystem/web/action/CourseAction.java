@@ -96,6 +96,7 @@ public class CourseAction extends ActionSupport{
 		}
 		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
+			ServletActionContext.getRequest().setAttribute("seachtext", "搜索课程名："+searchtext);
 			return SUCCESS;
 		}
 		else{
@@ -109,6 +110,7 @@ public class CourseAction extends ActionSupport{
 		}
 		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
+			ServletActionContext.getRequest().setAttribute("seachtext", "搜索教师："+searchtext);
 			return SUCCESS;
 		}
 		else{
@@ -122,6 +124,7 @@ public class CourseAction extends ActionSupport{
 		}
 		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
+			ServletActionContext.getRequest().setAttribute("seachtext", "全部课程");
 			return SUCCESS;
 		}
 		else{

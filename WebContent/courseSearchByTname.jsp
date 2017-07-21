@@ -158,7 +158,7 @@ body>.grid {
 			<div class="ui large secondary inverted pointing menu">
 				<a class="toc item"> <i class="sidebar icon"></i>
 				</a> <a class="active item">搜索</a> 
-				<a href="index.jsp" class="item">返回</a>
+				<a href="course_findAll.action" class="item">返回</a>
 			</div>
 		</div>
 
@@ -185,11 +185,11 @@ body>.grid {
 
 		<div class="ui container" style="margin-top: 10rem; width: 450px">
 			<div class="column">
-				<form class="ui large form" method="post">
+				<form class="ui large form" action="course_findByTeacher" method="post">
 					<div class="ui stacked inverted segment">
 						<div class="field">
 							<div class="ui left icon inverted transparent input">
-								<i class="student icon"></i> <input type="text" name="username"
+								<i class="student icon"></i> <input type="text"  name="searchtext" style="color:#FFFFFF"
 									placeholder="教师姓名">
 							</div>
 						</div>

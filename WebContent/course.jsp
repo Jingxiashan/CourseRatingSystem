@@ -134,7 +134,7 @@ body {
 				</div>
 			</form>
 		</div>
-		<h4 class="ui dividing header">课程其他属性评价</h4>
+		<h4 class="ui dividing header">课程属性评价</h4>
 		<div class="ui text container">
 			<div class="ui form">
 				<div class="five fields">
