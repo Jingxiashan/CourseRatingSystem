@@ -1,9 +1,7 @@
 package com.courseratingsystem.web.action;
 
 import java.util.List;
-
 import org.apache.struts2.ServletActionContext;
-
 import com.courseratingsystem.web.object.CommentWithCourseName;
 import com.courseratingsystem.web.object.CourseOverview;
 import com.courseratingsystem.web.domain.Teacher;

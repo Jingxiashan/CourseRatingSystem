@@ -1,13 +1,13 @@
 package com.courseratingsystem.web.object;
 
 import java.util.Date;
-import java.util.List;
 
 public class CommentWithCourseName {
 	private Integer courseid;
 	private String coursename;
 	private Integer commentid;
 	private Date timestamp;
+	
 	public CommentWithCourseName() {
 		super();
 	}
@@ -19,6 +19,7 @@ public class CommentWithCourseName {
 		this.commentid = commentid;
 		this.timestamp = timestamp;
 	}
+	
 	public Integer getCourseid() {
 		return courseid;
 	}
@@ -43,6 +44,4 @@ public class CommentWithCourseName {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
-	
-
 }
