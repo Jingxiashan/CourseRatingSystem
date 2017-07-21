@@ -1,7 +1,7 @@
 package com.courseratingsystem.web.dao;
 
 import java.util.List;
-
+import com.courseratingsystem.web.domain.CommentWithCourseName;
 import com.courseratingsystem.web.domain.Course;
 import com.courseratingsystem.web.domain.CourseOverview;
 
@@ -15,4 +15,5 @@ public interface CourseDao {
 	public List<CourseOverview> findAll();
 	public List<CourseOverview> findCourseByTeachername(String teachername);
 	public List<CourseOverview> findCourseByTeacherid(int teacherid);
+	public List<CommentWithCourseName> findCommentWithCourseNameByTeacherid(int teacherid);
 }

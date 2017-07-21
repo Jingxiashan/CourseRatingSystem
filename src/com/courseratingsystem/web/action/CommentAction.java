@@ -41,6 +41,12 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 	public void setComment(Comment comment) {
 		this.comment = comment;
 	}	
+	public CommentService getCommentService(){
+		return commentService;
+	}
+	public void setCommentService(CommentService commentService) {
+		this.commentService = commentService;
+	}
 	public String getSortmethod() {
 		return sortmethod;
 	}
@@ -95,13 +101,7 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 		commentService.add(comment);
 		return SUCCESS;
 	}	
-	
-	public CommentService getCommentService(){
-		return commentService;
-	}
-	public void setCommentService(CommentService commentService) {
-		this.commentService = commentService;
-	}
+
 	@Override
 	public Comment getModel() {
 		return comment;

@@ -9,6 +9,9 @@ public class CourseOverview {
 	private Integer averageRatingsScoring;
 	private Integer averageRatingsRollCall;
 	private Integer peopleCount;
+	private Integer recommendationScore;
+	private Integer finalType;
+	
 	public CourseOverview(){};
 	public CourseOverview(Integer courseid, String coursename,
 			Integer averageRatingsUsefulness,
@@ -28,8 +31,6 @@ public class CourseOverview {
 		this.recommendationScore = recommendationScore;
 		this.finalType = finalType;
 	}
-	private Integer recommendationScore;
-	private Integer finalType;
 	public Integer getCourseid() {
 		return courseid;
 	}

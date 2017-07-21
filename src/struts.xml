@@ -59,6 +59,11 @@
 			<result name="success">teacher.jsp</result>
 			<result name="fail">error.jsp</result>
 		</action>
+		
+		<action name="findCommentAndCourseByID" class="com.courseratingsystem.web.action.TeacherAction" method="findCommentAndCourseByID">
+			<result name="success">teacher2.jsp</result>
+			<result name="fail">error.jsp</result>		
+		</action>
     </package>
 
 
