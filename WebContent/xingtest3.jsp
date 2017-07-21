@@ -61,35 +61,35 @@
 	</table>	
 
 <div>
-	<form action="findTeacherCourseByID" method="post">
+	<form action="Teacher_findTeacherCourseByID" method="post">
 		<input type="text" name="teacherid"><br>
 		<input type="submit" value="findTeacherCourseByID">
 	</form>
 </div>
 
 <div>
-	<form action="findCommentAndCourseByID" method="post">
+	<form action="Teacher_findCommentAndCourseByID" method="post">
 		<input type="text" name="teacherid"><br>
 		<input type="submit" value="findCommentAndCourseByID">
 	</form>
 </div>
 
 <div>
-	<form action="findTeacherByTeacherId" method="post">
+	<form action="Teacher_findTeacherByTeacherId" method="post">
 		<input type="text" name="teacherid"><br>
 		<input type="submit" value="findTeacherByTeacherId">
 	</form>
 </div>
 
 <div>
-	<form action="findTeachersByTeachername" method="post">
+	<form action="Teacher_findTeachersByTeachername" method="post">
 		<input type="text" name="teachername"><br>
 		<input type="submit" value="findTeachersByTeachername">
 	</form>
 </div>
 
 <div>
-	<form action="findTeachersByCourseID" method="post">
+	<form action="Teacher_findTeachersByCourseID" method="post">
 		<input type="text" name="courseid"><br>
 		<input type="submit" value="findTeachersByCourseID">
 	</form>
