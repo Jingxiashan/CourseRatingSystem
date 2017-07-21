@@ -8,7 +8,8 @@
             <column name="commentid" />
             <generator class="identity" />
         </id>
-        <timestamp name="timestamp" column="timestamp" />
+         <property name="timestamp" update="false" insert="false" generated="always" type="timestamp" />
+<!--         <timestamp name="timestamp" column="timestamp"/> -->
         <many-to-one name="teacher" class="com.courseratingsystem.web.domain.Teacher" fetch="select">
             <column name="teacherid" not-null="true" />
         </many-to-one>

@@ -13,7 +13,6 @@ public class CommentInterceptor extends MethodFilterInterceptor{
 	protected String doIntercept(ActionInvocation invocation) throws Exception {
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		if(user==null){
-			CommentAction action =(CommentAction) invocation.getAction();
 			ServletActionContext.getRequest().setAttribute("message", "请老司机您先上车哦");
 			return "fail";
 		}

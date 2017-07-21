@@ -37,8 +37,8 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 	}
 	@Override
 	public Comment findCommentByCommentID(int commentid) {
-		List<Comment> commentList= (List<Comment>) this.getHibernateTemplate().get(Comment.class,commentid);
-		return commentList.isEmpty() ? null : commentList.get(0);
+		Comment comment =  this.getHibernateTemplate().get(Comment.class,commentid);
+		return comment;
 	}
 	@Override
 	public List<Comment> findCommentByTeacherID(final int teacherid) {

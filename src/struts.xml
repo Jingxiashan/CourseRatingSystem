@@ -14,18 +14,17 @@
     	</interceptors>
 		<action name="addFavourate" class="com.courseratingsystem.web.action.UserAction" method="addFavourate">
 			<result type="json" name="success"></result>
-	 	   <interceptor-ref name="loginInterceptor"></interceptor-ref>
-	    	<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		<action name="deleteFavourate" class="com.courseratingsystem.web.action.UserAction" method="deleteFavourate">
 			<result type="json" name="success"></result>
-	 	   <interceptor-ref name="loginInterceptor"></interceptor-ref>
-	    	<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result type="json" name="fail"></result>
 		</action>
 		<action name="likeComment" class="com.courseratingsystem.web.action.CommentAction" method="like">
 			<result type="json" name="success"></result>
-	 	   <interceptor-ref name="loginInterceptor"></interceptor-ref>
-	    	<interceptor-ref name="defaultStack"></interceptor-ref>
+			<param name="excludeProperties">comment</param>
+			<param name="excludeProperties">commentService</param>
+			<param name="excludeProperties">courseService</param>
+			<param name="excludeProperties">teacherService</param>
 		</action>
 	</package>
    
