@@ -21,17 +21,13 @@ public class TeacherDaoImpl extends HibernateDaoSupport implements TeacherDao {
 	public void add(Teacher teacher) {
 		this.getHibernateTemplate().save(teacher);
 	}
-
 	@Override
 	public void update(Teacher teacher) {
 		this.getHibernateTemplate().update(teacher);
-		
 	}
-
 	@Override
 	public void delete(Teacher teacher) {
 		this.getHibernateTemplate().delete(this.findTeacherByTeacherid(teacher.getTeacherid()));
-		
 	}
 
 	@Override
@@ -83,5 +79,4 @@ public class TeacherDaoImpl extends HibernateDaoSupport implements TeacherDao {
 //		return userList;
 	}
 	
-
 }

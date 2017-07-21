@@ -14,7 +14,47 @@
 		<tr>
 			<td>courseId</td>
 			<td>courseName</td>
+			<td>averageRatingsUsefulness</td>
+			<td>averageRatingsVividness</td>
+			<td>averageRatingsSpareTimeOccupation</td>
+			<td>averageRatingsScoring</td>
+			<td>averageRatingsRollCall</td>
+			<td>peopleCount</td>
+			<td>recommendationScore</td>
+			<td>finalType</td>			
+		</tr>
+		
+		<c:forEach items="${requestScope.courseList}" var="course">
+			<tr>
+				<td>${course.courseid}</td>
+				<td>${course.coursename}</td>
+				<td>${course.averageRatingsUsefulness}</td>
+				<td>${course.averageRatingsVividness}</td>
+				<td>${course.averageRatingsSpareTimeOccupation}</td>
+				<td>${course.averageRatingsScoring }</td>
+				<td>${course.averageRatingsRollCall }</td>
+				<td>${course.peopleCount }</td>
+				<td>${course.recommendationScore }</td>
+				<td>${course.finalType }</td>
+			</tr>
+		</c:forEach>
+	</table>	
+
+	<table>
+		<tr>
+			<td>courseId</td>
+			<td>courseName</td>
 			<td>commentId</td>
+			<td>userId</td>
+			<td>ratingUsefulness</td>
+			<td>ratingVividness</td>
+			<td>ratingSpareTimeOccupation</td>
+			<td>ratingScoring</td>
+			<td>ratingRollCall</td>
+			<td>recommandScore</td>
+			<td>critics</td>
+			<td>likeCount</td>
+			<td>timeStamp</td>
 		</tr>
 		
 		<c:forEach items="${requestScope.commentWithCourseNameList}" var="comment">
@@ -22,9 +62,37 @@
 				<td>${comment.courseid}</td>
 				<td>${comment.coursename}</td>
 				<td>${comment.commentid}</td>
+				<td>${comment.userid }</td>
+				<td>${comment.ratingUsefulness }</td>
+				<td>${comment.ratingVividness }</td>
+				<td>${comment.ratingSpareTimeOccupation }</td>
+				<td>${comment.ratingScoring }</td>
+				<td>${comment.ratingRollCall }</td>
+				<td>${comment.recommandScore }</td>
+				<td>${comment.critics }</td>
+				<td>${comment.likeCount }</td>
+				<td>${comment.timestamp }</td>
 			</tr>
 		</c:forEach>
 	</table>	
+	
+teacherid:  ${teacher.teacherid }
+teachername:${teacher.teachername }
+
+<table>
+	<tr>
+		<td>teacherId</td>
+		<td>teacherName</td>
+	</tr>
+	
+	<c:forEach items="${requestScope.teacherList }" var="teacher">
+		<tr>
+			<td>${teacher.teacherid}</td>
+			<td>${teacher.teachername}</td>
+		</tr>
+	</c:forEach>
+</table>
+
 
 </body>
 </html>

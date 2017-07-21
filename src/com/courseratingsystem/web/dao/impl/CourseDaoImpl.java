@@ -147,9 +147,9 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 
 	@Override
 	public List<CommentWithCourseName> findCommentWithCourseNameByTeacherid(int teacherid) {
-		String hql = ("select new com.courseratingsystem.web.domain.CommentWithCourseName"
-				+ "(c.courseid,c.coursename,m.commentid,m.timestamp) "
-				+ "from Comment m left join m.course c left join m.teacher t where "
+		String hql = ("select new com.courseratingsystem.web.object.CommentWithCourseName"
+				+ "(c.courseid,c.coursename,m.commentid,u.userid,m.ratingUsefulness,m.ratingVividness,m.ratingSpareTimeOccupation,m.ratingScoring,m.ratingRollCall,m.recommandScore,m.critics,m.likeCount,m.timestamp) "
+				+ "from Comment m left join m.course c left join m.teacher t left join m.user u where "
 				+ "t.teacherid = ?");
 		List<CommentWithCourseName> list = getHibernateTemplate().find(hql,teacherid);
 		return list;

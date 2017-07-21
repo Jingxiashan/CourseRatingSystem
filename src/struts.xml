@@ -8,7 +8,16 @@
 
    
     <package name="default" namespace="/" extends="struts-default">
-
+		
+		<!-- 声明拦截器 -->
+    	<interceptors>
+    		<interceptor name="commentInterceptor" class="com.courseratingsystem.web.interceptor.CommentInterceptor">
+    		</interceptor>
+    		<interceptor-stack name="realCommentInterceptor">
+    			<interceptor-ref name="commentInterceptor"></interceptor-ref>
+    			<interceptor-ref name="defaultStack"></interceptor-ref>
+    		</interceptor-stack>
+    	</interceptors>
     
 	    <!-- <global-results><result name="fail">fail.jsp</result></global-results> -->
 	    
@@ -48,6 +57,8 @@
 	    <action name="comment_*" class="com.courseratingsystem.web.action.CommentAction" method="{1}">
 	    	<result name="get_to_comment_page">/comment.jsp</result>
 	    	<result name="comment_success">/course.jsp</result>
+	    	<result name="fail">login.jsp</result>
+	    	<interceptor-ref name="realCommentInterceptor"></interceptor-ref>
 	    </action>
 		<action name="comment_findByTeacher" class="com.courseratingsystem.web.action.CommentAction" method="findByTeacher">
 			<result name="success">xingtest3.jsp</result>
@@ -58,14 +69,9 @@
 			<result name="fail">error.jsp</result>
 		</action>
 		
-		<action name="findTeacherCourseByID" class="com.courseratingsystem.web.action.TeacherAction" method="findTeacherCourseByID">
-			<result name="success">teacher.jsp</result>
+		<action name="Teacher_*" class="com.courseratingsystem.web.action.TeacherAction" method="{1}">
+			<result name="success">xingtest2.jsp</result>
 			<result name="fail">error.jsp</result>
-		</action>
-		
-		<action name="findCommentAndCourseByID" class="com.courseratingsystem.web.action.TeacherAction" method="findCommentAndCourseByID">
-			<result name="success">teacher2.jsp</result>
-			<result name="fail">error.jsp</result>		
 		</action>
     </package>
 

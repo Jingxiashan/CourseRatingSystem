@@ -47,6 +47,50 @@ public class TeacherAction extends ActionSupport implements ModelDriven<Teacher>
 		return teacher;
 	}
 	
+	public String findTeacherByTeacherId(){
+		String temp = ServletActionContext.getRequest().getParameter("teacherid");
+		if(temp!=null){
+			int teacherid = Integer.parseInt(temp);
+			Teacher teacher = teacherService.findTeacherByTeacherId(teacherid);
+			if(teacher!=null){
+				ServletActionContext.getRequest().setAttribute("teacher", teacher);
+				ServletActionContext.getRequest().setAttribute("teacherid", teacherid);
+				return SUCCESS;
+			}
+			return "fail";
+		}
+		return "fail";
+	}
+	
+	public String findTeachersByTeachername(){
+		String teachername = ServletActionContext.getRequest().getParameter("teachername");
+		if(teachername!=null){
+			List<Teacher> teacherList = teacherService.findTeachersByTeachername(teachername);
+			if(!teacherList.isEmpty()){
+				ServletActionContext.getRequest().setAttribute("teacherList", teacherList);
+				ServletActionContext.getRequest().setAttribute("teachername", teachername);
+				return SUCCESS;
+			}
+			return "fail";
+		}
+		return "fail";
+	}
+	
+	public String findTeachersByCourseID(){
+		String temp = ServletActionContext.getRequest().getParameter("courseid");
+		if(temp!=null){
+			int courseid = Integer.parseInt(temp);
+			List<Teacher> teacherList = teacherService.findTeachersByCourseID(courseid);
+			if(!teacherList.isEmpty()){
+				ServletActionContext.getRequest().setAttribute("teacherList", teacherList);
+				ServletActionContext.getRequest().setAttribute("courseid", courseid);
+				return SUCCESS;
+			}
+			return "fail";
+		}
+		return "fail";
+	}
+	
 	public String findTeacherCourseByID(){
 		String temp = ServletActionContext.getRequest().getParameter("teacherid");
 		if(temp!=null){
