@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.courseratingsystem.web.dao.CourseDao;
 import com.courseratingsystem.web.domain.Course;
+import com.courseratingsystem.web.object.CommentWithCourseName;
 import com.courseratingsystem.web.object.CourseOverview;
 import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.vo.CoursePage;
@@ -161,4 +162,10 @@ public class CourseServiceImpl implements CourseService {
 	public List<CourseOverview> findCourseOverviewByTeacherid(int teacherid) {
 		return courseDao.findCourseByTeacherid(teacherid);
 	}
+
+	@Override
+	public List<CommentWithCourseName> findCommentWithCourseNameByTeacherid(int teacherid) {
+		return courseDao.findCommentWithCourseNameByTeacherid(teacherid);
 	}
+	
+}

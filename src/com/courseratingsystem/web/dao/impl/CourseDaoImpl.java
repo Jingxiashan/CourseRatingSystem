@@ -11,6 +11,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.courseratingsystem.web.dao.CourseDao;
 import com.courseratingsystem.web.domain.Course;
+import com.courseratingsystem.web.object.CommentWithCourseName;
 import com.courseratingsystem.web.object.CourseOverview;
 
 public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
@@ -144,4 +145,13 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 		return list;
 	}
 
+	@Override
+	public List<CommentWithCourseName> findCommentWithCourseNameByTeacherid(int teacherid) {
+		String hql = ("select new com.courseratingsystem.web.domain.CommentWithCourseName"
+				+ "(c.courseid,c.coursename,m.commentid,m.timestamp) "
+				+ "from Comment m left join m.course c left join m.teacher t where "
+				+ "t.teacherid = ?");
+		List<CommentWithCourseName> list = getHibernateTemplate().find(hql,teacherid);
+		return list;
+	}
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.courseratingsystem.web.object.CommentWithCourseName;
+import com.courseratingsystem.web.object.CourseOverview;
 import com.courseratingsystem.web.domain.Teacher;
 import com.courseratingsystem.web.service.CommentService;
 import com.courseratingsystem.web.service.CourseService;
@@ -50,11 +52,11 @@ public class TeacherAction extends ActionSupport implements ModelDriven<Teacher>
 	public String findTeacherCourseByID(){
 		String temp = ServletActionContext.getRequest().getParameter("teacherid");
 		if(temp!=null){
-			int tempteacherid = Integer.parseInt(temp);
-			List<com.courseratingsystem.web.object.CourseOverview> courseList = courseService.findCourseOverviewByTeacherid(tempteacherid);
+			int teacherid = Integer.parseInt(temp);
+			List<CourseOverview> courseList = courseService.findCourseOverviewByTeacherid(teacherid);
 			if(!courseList.isEmpty()){
 				ServletActionContext.getRequest().setAttribute("courseList", courseList);
-				ServletActionContext.getRequest().setAttribute("teacherid", tempteacherid);
+				ServletActionContext.getRequest().setAttribute("teacherid", teacherid);
 				return SUCCESS;
 			}
 			return "fail";
@@ -63,7 +65,17 @@ public class TeacherAction extends ActionSupport implements ModelDriven<Teacher>
 	}
 	
 	public String findCommentAndCourseByID(){
-		return null;
+		String temp = ServletActionContext.getRequest().getParameter("teacherid");
+		if(temp!=null){
+			int teacherid = Integer.parseInt(temp);
+			List<CommentWithCourseName> commentWithCourseNameList = courseService.findCommentWithCourseNameByTeacherid(teacherid);
+			if(!commentWithCourseNameList.isEmpty()){
+				ServletActionContext.getRequest().setAttribute("commentWithCourseNameList", commentWithCourseNameList);
+				ServletActionContext.getRequest().setAttribute("teacherid", teacherid);
+				return SUCCESS;
+			}
+			return "fail";
+		}
+		return "fail";
 	}
 }
-

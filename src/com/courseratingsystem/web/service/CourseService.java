@@ -3,6 +3,7 @@ package com.courseratingsystem.web.service;
 import java.util.List;
 
 import com.courseratingsystem.web.domain.Course;
+import com.courseratingsystem.web.object.CommentWithCourseName;
 import com.courseratingsystem.web.object.CourseOverview;
 import com.courseratingsystem.web.vo.CoursePage;
 
@@ -18,4 +19,5 @@ public interface CourseService {
 	public List<CourseOverview> Sort(List<CourseOverview> list,String sort);
 	public CoursePage toPage(List<CourseOverview> list,int currentPage,int pageSize);
 	public List<CourseOverview> findCourseOverviewByTeacherid(int teacherid);
+	public List<CommentWithCourseName> findCommentWithCourseNameByTeacherid(int teacherid);
 }
