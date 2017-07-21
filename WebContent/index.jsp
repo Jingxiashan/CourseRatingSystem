@@ -75,7 +75,7 @@ body {
 							<div class="content">
 								<div class="center">
 									<div class="ui inverted button">
-										<a href="course.action?courseid=${course.courseid}">“戳”</a>
+										<a href="course_getPage.action?courseid=${course.courseid}">“戳”</a>
 									</div>
 								</div>
 							</div>
@@ -84,7 +84,7 @@ body {
 					</div>
 					<div class="content">
 						<pre>
-							<h3><a style="color:black" href="course.action?courseid=${course.courseid}">${course.coursename}</a>   <c:forEach items="${course.teacherList }" var="teacher"><a class="ui label" href="teacher.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a></c:forEach></h3>
+							<h3><a style="color:black" href="course_getPage.action?courseid=${course.courseid}">${course.coursename}</a>   <c:forEach items="${course.teacherList }" var="teacher"><a class="ui label" href="teacher.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a></c:forEach></h3>
 						</pre>
 						<div class="meta">
 							<span class="date"><h4>推荐星级</h4>

@@ -2,11 +2,14 @@ package com.courseratingsystem.web.action;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.courseratingsystem.web.domain.Course;
 import com.courseratingsystem.web.object.CourseOverview;
 import com.courseratingsystem.web.object.CourseOverviewPlusTeacher;
+import com.courseratingsystem.web.service.CommentService;
 import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.service.TeacherService;
 import com.courseratingsystem.web.service.impl.CourseServiceImpl;
@@ -32,6 +35,9 @@ import com.opensymphony.xwork2.ModelDriven;
 //}
 public class CourseAction extends ActionSupport{
 //	private SearchInfo searchinfo= new SearchInfo();
+	private static final String SUCCESS = "success";
+	private static final String FAIL = "fail";
+	private static final String GET_TO_COURSE_PAGE = "get_to_course_page";
 	private int currentPage = 1;
 	private int pageSize = 5;
 	private String sortby="recommendationScore";
@@ -62,8 +68,15 @@ public class CourseAction extends ActionSupport{
 	}
 	private CourseService courseService;
 	private TeacherService teacherService;
+	private CommentService commentService;
 
 	
+	public CommentService getCommentService() {
+		return commentService;
+	}
+	public void setCommentService(CommentService commentService) {
+		this.commentService = commentService;
+	}
 	public TeacherService getTeacherService() {
 		return teacherService;
 	}
@@ -80,20 +93,20 @@ public class CourseAction extends ActionSupport{
 		CoursePage coursepage = courseService.findCourseByName(searchtext,sortby,currentPage,pageSize);
 		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
-			return "SUCCESS";
+			return SUCCESS;
 		}
 		else{
-			return "fail";
+			return FAIL;
 		}
 	}
 	public String findByTeacher(){
 		CoursePage coursepage = courseService.findCourseByTeachername(searchtext,sortby,currentPage,pageSize);
 		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
-			return "SUCCESS";
+			return SUCCESS;
 		}
 		else{
-			return "fail";
+			return FAIL;
 		}
 	}
 	public String findAll(){
@@ -103,10 +116,26 @@ public class CourseAction extends ActionSupport{
 		}
 		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
-			return "SUCCESS";
+			return SUCCESS;
 		}
 		else{
-			return "fail";
+			return FAIL;
+		}
+	}
+	public String getPage() {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String str_courseid = request.getParameter("courseid");
+		if(str_courseid != null){
+			//get CourseOverviewPlusTeacher
+			int courseid = Integer.parseInt(str_courseid);
+			CourseOverviewPlusTeacher tmpCourse = new CourseOverviewPlusTeacher(courseService.findCourseOverviewById(courseid)); 
+			tmpCourse.setTeacherList(teacherService.findTeachersByCourseID(tmpCourse.getCourseid()));
+			request.setAttribute("course", tmpCourse);
+			//get Comments
+			//TODO
+			return null;	
+		}else {
+			return FAIL;
 		}
 	}
 	public CourseService getCourseservice() {
@@ -123,10 +152,10 @@ public class CourseAction extends ActionSupport{
 //		int totalPage = totalCount % pageSize ==0?totalCount/pageSize:totalCount/pageSize+1;
 //		CoursePage coursepage = new CoursePage(pageSize, currentPage, totalCount, totalPage, page);
 //		ServletActionContext.getRequest().getSession().setAttribute("coursepage", coursepage);
-//		return "SUCCESS";
+//		return SUCCESS;
 //		}
 //		else{
-//			return "fail";
+//			return FAIL;
 //		}
 //	}
 }

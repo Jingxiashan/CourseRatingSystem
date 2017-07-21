@@ -34,16 +34,15 @@
 	    	<result name="fail">/modifyProfile.jsp</result>
 	    </action>
 	    
-	    <action name="course_*" class="com.courseratingsystem.web.action.CourseAction" method="findByName">
-	    	<result name="SUCCESS">courseTest.jsp</result>
-	    	<result name="fail">error.jsp</result>
-	    </action>
+	    <!-- 
 	    <action name="course_search" class="com.courseratingsystem.web.action.CourseAction" method="findByName">
 	    	<result name="SUCCESS">courseTest.jsp</result>
 	    	<result name="fail">error.jsp</result>
 	    </action>
+	     -->
 	    <action name="course_*" class="com.courseratingsystem.web.action.CourseAction" method="{1}">
-	    	<result name="SUCCESS">index.jsp</result>
+	    	<result name="success">index.jsp</result>
+	    	<result name="get_to_course_page">/course.jsp</result>
 	    	<result name="fail">error.jsp</result>
 	    </action>
 		<action name="comment_findByTeacher" class="com.courseratingsystem.web.action.CommentAction" method="findByTeacher">
