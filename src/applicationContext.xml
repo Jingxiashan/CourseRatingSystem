@@ -61,9 +61,10 @@
 	<bean id="commentAction" class="com.courseratingsystem.web.action.CommentAction" scope="prototype">
 		<property name="commentService" ref="commentService"/>
 	</bean>
-	<bean id="courseAction" class="com.courseratingsystem.web.action.CourseAction">
+	<bean id="courseAction" class="com.courseratingsystem.web.action.CourseAction" scope="prototype">
 		<property name="courseService" ref="courseService"/>
 		<property name="teacherService" ref="teacherService"/>
+		<property name="commentService" ref="commentService"/>
 	</bean>
 	<bean id="loginAction" class="com.courseratingsystem.web.action.LoginAction" scope="prototype">
 		<property name="logininfoService" ref="logininfoService"/>
@@ -95,9 +96,6 @@
 	</bean>
 	<bean id="courseService" class="com.courseratingsystem.web.service.impl.CourseServiceImpl">
 		<property name="courseDao" ref="courseDao"/>
-	</bean>
-	<bean id="teacherService" class="com.courseratingsystem.web.service.impl.TeacherServiceImpl">
-		<property name="teacherDao" ref="teacherDao"/>
 	</bean>
 	<bean id="teacherService" class="com.courseratingsystem.web.service.impl.TeacherServiceImpl">
 		<property name="teacherDao" ref="teacherDao"/>

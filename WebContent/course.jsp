@@ -76,8 +76,16 @@ body {
 .overlay.fixed .menu {
 	left: 800px;
 }
+#chart {
+  text-align: left;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #aaa;
+  margin: 32px auto;
+  background: white;
+}
 </style>
-
+<script src="js/jquery.js"></script>
+<script src="js/index.js"></script>
 </head>
 
 <body>
@@ -85,7 +93,7 @@ body {
 		<div class="ui container">
 			<a href="#" class="header item"> <img class="logo"
 				src="images/testPic.jpg"> 大众点评课
-			</a> <a href="homepage.jsp" class="item">主页</a> </a> <a href="index.jsp"
+			</a> <a href="homepage.jsp" class="item">主页</a>  <a href="index.jsp"
 				class="item">返回</a>
 			<div class="ui simple dropdown item">
 				课程搜索 <i class="dropdown icon"></i>
@@ -121,7 +129,8 @@ body {
 					</div>
 					<div class="field">
 						<div class="ui raised aligned segment" style="width: 250px">
-							<img class="medium ui left aligned image " src="images/jenny.jpg">
+							<!-- <img class="medium ui left aligned image " src="images/jenny.jpg">-->
+							<div id="chart"></div>
 						</div>
 					</div>
 					<br>
@@ -283,8 +292,20 @@ body {
 	</div>
 </body>
 <script>
-	$('.special.cards .image').dimmer({
-		on : 'hover'
+$(function(){
+	  $('#chart').radarChart({
+	    size: [500, 400],
+	    step: 1,
+	    title: "My Skills",
+	    values: {
+	      "JavaScript": 5,
+	      "Node.js": 3.5,
+	      "jQuery": 4,
+	      "PHP": 3,
+	      "C++": 2.5
+	    },
+	    showAxisLabels: true
+	  });
 	});
 </script>
 </html>
