@@ -1,6 +1,7 @@
 package com.courseratingsystem.web.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -57,6 +58,35 @@ public class UserServiceImpl implements UserService{
 		User tmpUser = userDao.findUserById(userid);
 		tmpUser.getCourses().add(course);
 		userDao.update(tmpUser);
+	}
+
+	@Override
+	public void deleteFavourateCourse(int userid, Course course) {
+		User tmpUser = userDao.findUserById(userid);
+		Set<Course> tmpsert= tmpUser.getCourses();
+		Iterator<Course> iter = tmpsert.iterator();
+		Course tmpCourse = new Course();
+		while(iter.hasNext()) {
+			tmpCourse = iter.next();
+			if(tmpCourse.getCourseid() == course.getCourseid()) {
+				break;
+			}
+		}
+		tmpUser.getCourses().remove(tmpCourse);
+		userDao.update(tmpUser);
+	}
+
+	@Override
+	public boolean ifFavourate(int userid, Course course) {
+		User tmpUser = userDao.findUserById(userid);
+		Set<Course> tmpsert= tmpUser.getCourses();
+		Iterator<Course> iter = tmpsert.iterator();
+		while(iter.hasNext()) {
+			if(iter.next().getCourseid() == course.getCourseid()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

@@ -7,12 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
 import com.courseratingsystem.web.domain.Course;
+import com.courseratingsystem.web.domain.User;
 import com.courseratingsystem.web.object.CourseOverview;
 import com.courseratingsystem.web.object.CourseOverviewPlusTeacher;
 import com.courseratingsystem.web.service.CommentService;
 import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.service.TeacherService;
+import com.courseratingsystem.web.service.UserService;
+import com.courseratingsystem.web.service.impl.CommentServiceImpl;
 import com.courseratingsystem.web.service.impl.CourseServiceImpl;
+import com.courseratingsystem.web.vo.CommentPage;
 import com.courseratingsystem.web.vo.CoursePage;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -66,11 +70,18 @@ public class CourseAction extends ActionSupport{
 	public void setSearchtext(String searchtext) {
 		this.searchtext = searchtext;
 	}
+	private UserService userService;
 	private CourseService courseService;
 	private TeacherService teacherService;
 	private CommentService commentService;
 
 	
+	public UserService getUserService() {
+		return userService;
+	}
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
 	public CommentService getCommentService() {
 		return commentService;
 	}
@@ -141,7 +152,14 @@ public class CourseAction extends ActionSupport{
 			tmpCourse.setTeacherList(teacherService.findTeachersByCourseID(tmpCourse.getCourseid()));
 			request.setAttribute("course", tmpCourse);
 			//get Comments
-			//TODO
+			CommentPage commentPage = commentService.findCommentByCourseID(courseid, currentPage, pageSize, CommentServiceImpl.COMMENT_SORT_METHOD_BYLIKECOUNT);
+			request.setAttribute("commentPage", commentPage);
+			//get favourate information
+			boolean ifFavourate;
+			if(request.getSession().getAttribute("user") != null) {
+				ifFavourate = userService.ifFavourate(((User)request.getSession().getAttribute("user")).getUserid(), courseService.findCourseById(courseid));	
+			}else ifFavourate = false;
+			request.setAttribute("ifFavourate", ifFavourate ? "true" : "false");
 			return GET_TO_COURSE_PAGE;	
 		}else {
 			return FAIL;

@@ -6,8 +6,21 @@
 
 <struts>
 	<package name="ajax" namespace="/" extends="json-default">
+	
+		<!-- 声明拦截器 -->
+    	<interceptors>
+    		<interceptor name="favourateInterceptor" class="com.courseratingsystem.web.interceptor.CommentInterceptor">
+    		</interceptor>
+    	</interceptors>
 		<action name="addFavourate" class="com.courseratingsystem.web.action.UserAction" method="addFavourate">
 			<result type="json" name="success"></result>
+	 	   <interceptor-ref name="favourateInterceptor"></interceptor-ref>
+	    	<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteFavourate" class="com.courseratingsystem.web.action.UserAction" method="deleteFavourate">
+			<result type="json" name="success"></result>
+	 	   <interceptor-ref name="favourateInterceptor"></interceptor-ref>
+	    	<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 	</package>
    
@@ -17,10 +30,6 @@
     	<interceptors>
     		<interceptor name="commentInterceptor" class="com.courseratingsystem.web.interceptor.CommentInterceptor">
     		</interceptor>
-    		<interceptor-stack name="realCommentInterceptor">
-    			<interceptor-ref name="commentInterceptor"></interceptor-ref>
-    			<interceptor-ref name="defaultStack"></interceptor-ref>
-    		</interceptor-stack>
     	</interceptors>
     
 	    <!-- <global-results><result name="fail">fail.jsp</result></global-results> -->
@@ -62,7 +71,8 @@
 	    	<result name="get_to_comment_page">/comment.jsp</result>
 	    	<result name="comment_success">/course.jsp</result>
 	    	<result name="fail">login.jsp</result>
-	    	<interceptor-ref name="realCommentInterceptor"></interceptor-ref>
+	    	<interceptor-ref name="commentInterceptor"></interceptor-ref>
+	    	<interceptor-ref name="defaultStack"></interceptor-ref>
 	    </action>
 		<action name="comment_findByTeacher" class="com.courseratingsystem.web.action.CommentAction" method="findByTeacher">
 			<result name="success">xingtest3.jsp</result>

@@ -99,6 +99,18 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		
 	}
 	
+	public String deleteFavourate(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String str_courseid = request.getParameter("courseid");
+		if(str_courseid != null) {
+			int courseid = Integer.parseInt(str_courseid);
+			User currentUser =	(User) ServletActionContext.getRequest().getSession().getAttribute("user");
+			userService.deleteFavourateCourse(currentUser.getUserid(), courseService.findCourseById(courseid));
+			return SUCCESS;	
+		}else return FAIL;
+		
+	}
+	
 	public String deleteComment() {
 		return null;
 	}

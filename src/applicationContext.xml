@@ -64,6 +64,7 @@
 		<property name="teacherService" ref="teacherService"/>
 	</bean>
 	<bean id="courseAction" class="com.courseratingsystem.web.action.CourseAction" scope="prototype">
+		<property name="userService" ref="userService"/>
 		<property name="courseService" ref="courseService"/>
 		<property name="teacherService" ref="teacherService"/>
 		<property name="commentService" ref="commentService"/>

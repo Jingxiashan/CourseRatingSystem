@@ -45,7 +45,7 @@ public class CommentServiceImpl implements CommentService{
 		List<Comment> commentList = commentDao.findCommentByCommentID(commentid);
 		if(!commentList.isEmpty()){
 			Sort(commentList, sortmethod);		
-			List<Comment> page = commentList.subList((currentPage - 1)*pageSize, currentPage*pageSize);
+			List<Comment> page = commentList.subList((currentPage - 1)*pageSize, commentList.size() < currentPage*pageSize ? commentList.size() : currentPage*pageSize);
 			int totalCount = commentList.size();
 			int totalPage = totalCount % pageSize ==0?totalCount/pageSize:totalCount/pageSize+1;
 			CommentPage commentPage = new CommentPage(pageSize, currentPage, totalCount, totalPage, page);
@@ -58,7 +58,7 @@ public class CommentServiceImpl implements CommentService{
 		List<Comment> commentList = commentDao.findCommentByUserID(userid);
 		if(!commentList.isEmpty()){
 			Sort(commentList, sortmethod);		
-			List<Comment> page = commentList.subList((currentPage - 1)*pageSize, currentPage*pageSize);
+			List<Comment> page = commentList.subList((currentPage - 1)*pageSize, commentList.size() < currentPage*pageSize ? commentList.size() : currentPage*pageSize);
 			int totalCount = commentList.size();
 			int totalPage = totalCount % pageSize ==0?totalCount/pageSize:totalCount/pageSize+1;
 			CommentPage commentPage = new CommentPage(pageSize, currentPage, totalCount, totalPage, page);
@@ -71,7 +71,7 @@ public class CommentServiceImpl implements CommentService{
 		List<Comment> commentList = commentDao.findCommentByCourseID(courseid);
 		if(!commentList.isEmpty()){
 			Sort(commentList, sortmethod);		
-			List<Comment> page = commentList.subList((currentPage - 1)*pageSize, currentPage*pageSize);
+			List<Comment> page = commentList.subList((currentPage - 1)*pageSize, commentList.size() < currentPage*pageSize ? commentList.size() : currentPage*pageSize);
 			int totalCount = commentList.size();
 			int totalPage = totalCount % pageSize ==0?totalCount/pageSize:totalCount/pageSize+1;
 			CommentPage commentPage = new CommentPage(pageSize, currentPage, totalCount, totalPage, page);
@@ -84,7 +84,7 @@ public class CommentServiceImpl implements CommentService{
 		List<Comment> commentList = commentDao.findCommentByTeacherID(teacherid);
 		if(!commentList.isEmpty()){
 			Sort(commentList, sortmethod);		
-			List<Comment> page = commentList.subList((currentPage - 1)*pageSize, currentPage*pageSize);
+			List<Comment> page = commentList.subList((currentPage - 1)*pageSize, commentList.size() < currentPage*pageSize ? commentList.size() : currentPage*pageSize);
 			int totalCount = commentList.size();
 			int totalPage = totalCount % pageSize ==0?totalCount/pageSize:totalCount/pageSize+1;
 			CommentPage commentPage = new CommentPage(pageSize, currentPage, totalCount, totalPage, page);

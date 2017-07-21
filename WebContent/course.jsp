@@ -135,8 +135,13 @@ body {
 								</c:forEach>
 							</h4> </span><br>
 						<button class="ui primary button"
-							onclick="windows.location.href='comment_getPage.action?courseid=${requestScope.course.courseid }'">啊，评论。</button>
-						<button class="ui primary button" onclick="addFavourate()">嗯，收藏。</button>
+							onclick="window.location.href='comment_getPage.action?courseid=${requestScope.course.courseid }'; window.event.returnValue = false;">啊，评论。</button>
+						 <c:if test="${requestScope.ifFavourate == 'true' }">
+							 <button class="ui primary button" id="favourate" onclick="deleteFavourate();window.event.returnValue = false;">取消收藏。</button> 
+						 </c:if>
+						 <c:if test="${requestScope.ifFavourate == 'false' }">
+ 							 <button class="ui primary button" id="favourate" onclick="addFavourate();window.event.returnValue = false;">嗯，收藏。</button> 
+						 </c:if>
 					</div>
 					<div class="ui right floated basic segment"
 						style="margin: 0px; padding: 0px; border: 0px">
@@ -255,12 +260,14 @@ body {
 		<h4 class="ui dividing header">嗯，老司机们这样说。</h4>
 		<div class="ui raised aligned segment">
 			<div class="ui comments">
+			
+				<c:forEach items="${requestScope.commentPage.commentList }" var="comment">
 				<div class="comment">
 					<a class="avatar"> <img src="images/elliot.jpg">
 					</a>
 					<div class="content">
-						<a class="author">鲁迪</a>
-						<div class="text">喜欢圣经与西方文化的孩子上辈子一定是拯救了世界的天使，比如我，鲁迪。</div>
+						<a class="author" href="profile.jsp?userid=${comment.user.userid }">${comment.user.nickname }</a>
+						<div class="text">${comment.critics }</div>
 
 						<!-- 这里是 点赞评论的action-->
 						<form class="actions">
@@ -268,12 +275,14 @@ body {
 								<div class="ui red button">
 									<i class="heart icon"></i> 戳
 								</div>
-								<div class="ui basic red left pointing label">1,048</div>
+								<div class="ui basic red left pointing label">${comment.likeCount }</div>
 
 							</div>
 						</form>
 					</div>
 				</div>
+				</c:forEach>
+				
 			</div>
 		</div>
 	</div>
@@ -344,17 +353,26 @@ $(function(){
 	    showAxisLabels: true
 	  });
 	});
-function addFavourate(){
+  function addFavourate(){
 	$.ajax({
 		type:'get',
 		url:'${pageContext.request.contextPath}/addFavourate.action',
 		data:{courseid:"${requestScope.course.courseid }" },
 		success:function(data){
-			$('.ui.basic.modal')
-			  .modal('show')
-			;		
+			$("#favourate").html("取消收藏。");	
 		}
-	});
-}
+	}); 
+  };
+  
+	  function deleteFavourate(){
+			$.ajax({
+				type:'get',
+				url:'${pageContext.request.contextPath}/deleteFavourate.action',
+				data:{courseid:"${requestScope.course.courseid }" },
+				success:function(data){
+					$("#favourate").html("嗯。收藏。");	
+				}
+			}); 
+} 
 </script>
 </html>

@@ -20,7 +20,7 @@
         <property name="wechatAccount" type="string">
             <column name="wechatAccount" />
         </property>
-        <set name="courses" table="favourate" inverse="true" lazy="true" fetch="select">
+        <set name="courses" table="favourate" inverse="false" cascade="all" lazy="false" fetch="select">
             <key>
                 <column name="userid" not-null="true" />
             </key>

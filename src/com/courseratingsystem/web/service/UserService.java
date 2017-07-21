@@ -13,4 +13,6 @@ public interface UserService {
 	public List<User> findUsersByGrade(String grade);
 	public List<Course> findFavouratesById(int userid);
 	public void addFavourateCourse(int userid, Course course);
+	public void deleteFavourateCourse(int userid, Course course);
+	public boolean ifFavourate(int userid, Course course);
 }
