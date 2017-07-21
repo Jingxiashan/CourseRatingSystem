@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -140,7 +130,7 @@ body {
 </style>
 <script src="js/jquery.js"></script>
 <script src="js/index.js"></script>
-<title>修改个人信息 - 大众点评课</title>
+<title>课程收藏 - 大众点评课</title>
 </head>
 
 <body id="example" class="started pushable" outouchstart>
@@ -160,50 +150,83 @@ body {
 							</div>
 						</div>
 					</div>
-
-
 					<div class="ui dividing header">
-						<h2>修改个人信息</h2>
+                           <h2>已收藏课程</h2>
 					</div>
-						${requestScope.message }
-	<div class="ui container">
-			<form class="ui form" action="" method="post">
-				<div class="ui segment">
-					<div class="field">
-						<label>昵称</label> <input type="text" name="nickname"
-							value="${sessionScope.user.nickname }" placeholder="请设置昵称" />
-					</div>
-					<div class="field">
-						<label>微信账号</label> <input type="text" name="wechatAccount"
-							value="${sessionScope.user.wechatAccount }"
-							placeholder="请填写您的微信账号" />
-					</div>
-					<div class="field">
-						<label>年级</label> <select class="ui search dropdown" name="grade">
-							<option value="">请选择年级</option>
-							<option value="2010">2010级</option>
-							<option value="2011">2011级</option>
-							<option value="2012">2012级</option>
-							<option value="2013">2013级</option>
-							<option value="2014">2014级</option>
-							<option value="2015">2015级</option>
-							<option value="2016">2016级</option>
-							<option value="2017">2017级</option>
-							<option value="2018">2018级</option>
-						</select>
-					</div>
-					<div class="field">
-						<label>简介</label> 
-						<textarea type="text" name="introduction"
-							placeholder="请填写关于您的简介" >${sessionScope.user.introduction }</textarea>
-					</div>
+					<br>
+				<!-- 这里定义收藏课程的删除以及点出详情的action -->
+					<form>
+						<div class="ui center aligned middle aligned grid">
+							<div class="ui special doubling cards" style="width: 80%">
+							<!-- 循环画出所有收藏课程的card -->
+								<div class="card">
+									<div class="content">
+										<img class="right floated mini ui image"
+											src="images/elliot.jpg">
+										<div class="header">
+											<h3>高等数学</h3>
+										</div>
+										<div class="meta">
+											<h5>孙玉华</h5>
+										</div>
+										<div class="ui star rating" data-rating="3"
+											data-max-rating="5">
+											<i class="icon active"></i>
+										</div>
+									</div>
+									<div class="extra content">
+										<div class="ui two buttons">
+											<div class="ui basic green button">戳详情</div>
+											<div class="ui basic red button">戳删除</div>
+										</div>
+									</div>
+								</div>
+								<div class="card">
+									<div class="content">
+										<img class="right floated mini ui image"
+											src="images/elliot.jpg">
+										<div class="header">
+											<h3>高等数学</h3>
+										</div>
+										<div class="meta">
+											<h5>孙玉华</h5>
+										</div>
+										<div class="ui star rating" data-rating="3"
+											data-max-rating="5">
+											<i class="icon active"></i>
+										</div>
+									</div>
+									<div class="extra content">
+										<div class="ui two buttons">
+											<div class="ui basic green button">戳详情</div>
+											<div class="ui basic red button">戳删除</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<br>
 				</div>
-				<button class="ui primary button" type="submit">修改信息</button>
-			</form>
-	</div>
-									
-</div>
-</div>
+			</div>
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		<div class="toc">
 			<div class="ui vertical inverted sticky menu">
@@ -237,47 +260,13 @@ body {
 				<div class="item" style="height: 750px">
 					<div class="header">其他</div>
 					<div class="menu">
-						<a class="item" href="homepage.jsp">网站介绍</a> <a class="item"
-							href="about.jsp">关于我们</a>
+						<a class="item" href="homepage.jsp">网站介绍</a> 
+						<a class="item" href="about.jsp">关于我们</a>
 
 					</div>
 				</div>
 			</div>
 		</div>
-</div>
-</div>
+	</div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

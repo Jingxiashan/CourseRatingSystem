@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -140,7 +130,7 @@ body {
 </style>
 <script src="js/jquery.js"></script>
 <script src="js/index.js"></script>
-<title>修改个人信息 - 大众点评课</title>
+<title>课程评论 - 大众点评课</title>
 </head>
 
 <body id="example" class="started pushable" outouchstart>
@@ -160,50 +150,63 @@ body {
 							</div>
 						</div>
 					</div>
-
+					
 
 					<div class="ui dividing header">
-						<h2>修改个人信息</h2>
+						<h2>已发表评论</h2>
 					</div>
-						${requestScope.message }
-	<div class="ui container">
-			<form class="ui form" action="" method="post">
-				<div class="ui segment">
-					<div class="field">
-						<label>昵称</label> <input type="text" name="nickname"
-							value="${sessionScope.user.nickname }" placeholder="请设置昵称" />
+
+					<!-- 循环画该segment实现循环显示多条评论  此处循环控制显示三条评论-->
+					<div class="ui middle aligned segment" style="width: 80%">
+						<div class="ui comments">
+							<div class="comment">
+								<a class="avatar"> <img src="images/elliot.jpg">
+								</a>
+								<div class="content">
+									<a class="author">鲁迪</a>
+									<div class="text">喜欢圣经与西方文化的孩子上辈子一定是拯救了世界的天使，比如我，鲁迪。</div>
+
+									<!-- 这里是 点赞评论和删除评论的action-->
+									<form class="actions">
+										<div class="ui labeled button" tabindex="0">
+											<div class="ui red button">
+												<i class="heart icon"></i> 戳
+											</div>
+											<!-- 1048显示当前该评论对应的点赞数 -->
+											<div class="ui basic red left pointing label">1,048</div>
+
+										</div>
+										<div class="ui labeled button" tabindex="0">
+											<div class="ui basic blue button">
+												<i class="fork icon"></i>删除
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="field">
-						<label>微信账号</label> <input type="text" name="wechatAccount"
-							value="${sessionScope.user.wechatAccount }"
-							placeholder="请填写您的微信账号" />
-					</div>
-					<div class="field">
-						<label>年级</label> <select class="ui search dropdown" name="grade">
-							<option value="">请选择年级</option>
-							<option value="2010">2010级</option>
-							<option value="2011">2011级</option>
-							<option value="2012">2012级</option>
-							<option value="2013">2013级</option>
-							<option value="2014">2014级</option>
-							<option value="2015">2015级</option>
-							<option value="2016">2016级</option>
-							<option value="2017">2017级</option>
-							<option value="2018">2018级</option>
-						</select>
-					</div>
-					<div class="field">
-						<label>简介</label> 
-						<textarea type="text" name="introduction"
-							placeholder="请填写关于您的简介" >${sessionScope.user.introduction }</textarea>
-					</div>
+
 				</div>
-				<button class="ui primary button" type="submit">修改信息</button>
-			</form>
-	</div>
-									
-</div>
-</div>
+			</div>
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		<div class="toc">
 			<div class="ui vertical inverted sticky menu">
@@ -237,47 +240,13 @@ body {
 				<div class="item" style="height: 750px">
 					<div class="header">其他</div>
 					<div class="menu">
-						<a class="item" href="homepage.jsp">网站介绍</a> <a class="item"
-							href="about.jsp">关于我们</a>
+						<a class="item" href="homepage.jsp">网站介绍</a> 
+						<a class="item" href="about.jsp">关于我们</a>
 
 					</div>
 				</div>
 			</div>
 		</div>
-</div>
-</div>
+	</div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
