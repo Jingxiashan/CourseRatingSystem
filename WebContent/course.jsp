@@ -269,27 +269,35 @@ body {
 					</a>
 					<div class="content">
 						<a class="author" href="profile.jsp?userid=${comment.user.userid }">${comment.user.nickname }</a>
+                        <div><h5>评论时间：${comment.timestamp }</h5></div>					
 						<div class="text">${comment.critics }</div>
 
 						<!-- 这里是 点赞评论的action-->
-						<form class="actions">
-							<div class="ui labeled button" tabindex="0">
-								<div class="ui red button" onclick="likeComment(${comment.commentid });window.event.returnValue = false;">
+						<form class="ui right aligned form">
+                        <div class="three fields">
+                        <div class="field"></div>
+                        <div class="field"></div>
+                        <div class="field">
+						<div class="right aligned segment" style="width:60%">
+							<div class="ui labeled mini button" tabindex="0">
+								<div class="ui red mini button" onclick="likeComment(${comment.commentid });window.event.returnValue = false;">
 									<i class="heart icon"></i> 戳
 								</div>
-								<div class="ui basic red left pointing label">${comment.likeCount }</div>
+								<div class="ui basic red left mini basic label">${comment.likeCount }</div>
 
+							</div>
+							</div>
+							</div>
 							</div>
 						</form>
 					</div>
 				</div>
+     <div class="ui divider"></div>
 				</c:forEach>
-				
+								</div>			
+
 			</div>
 		</div>
-	</div>
-
-	</div>
 
 
 

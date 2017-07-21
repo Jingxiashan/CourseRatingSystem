@@ -65,16 +65,19 @@ body {
 		<h1 class="ui header">${requestScope.teacher.teachername }</h1>
 		<br>
 	</div>
+
 	<div class="ui container" style="width: 50%">
 		<div class="ui segment">
 			<h3 class="ui header">该老师所教授课程</h3>
+					<div class="ui center aligned middle aligned ">
 			<div class="ui center aligned basic segment">
 
 				<!-- 在此处添加点出课程详情和收藏课程的action -->
 				<form class="ui form">
-					<div class="ui cards">
+					<div class="ui cards" style="width:50%;margin:auto">
 						<!-- 此处循环画 <div card>得到该老师全部课程 -->
 						<c:forEach items="${requestScope.courseList }" var="course">
+						
 							<div class="card">
 								<div class="content">
 									<div class="header">${course.coursename }</div>
@@ -96,9 +99,12 @@ body {
 
 								<br>
 							</div>
+							
 						</c:forEach>
 					</div>
 				</form>
+				</div>
+
 				</div>
 			</div>
 			<h3 class="ui header">该老师所教授课程的评论</h3>

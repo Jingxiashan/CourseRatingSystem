@@ -60,13 +60,13 @@ body {
 		</div>
 	</div>
 
-	<div class="ui center aligned main text container">
+	<div class="ui main text container">
 		<h1 class="ui header">课程信息</h1>
 		<br>
 	</div>
 
 	<div class="ui center aligned middle aligned grid">
-		<div class="ui special doubling cards" style="width:80%;margin:auto">
+		<div class="ui special doubling cards" style="width:50%;margin:auto">
 			<c:forEach items="${requestScope.coursepage.list}" var="course">
 				<div class="card" style="width:200px">
 					<a class="ui top attached label">${course.coursename}</a>
