@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,7 +47,7 @@ body {
 		<div class="ui container">
 			<a href="#" class="header item"> <img class="logo"
 				src="images/testPic.jpg"> 大众点评课
-			</a> <a href="homepage.jsp" class="item">主页</a>
+			</a> <a href="course_findAll.action" class="item">课程详情</a>
 			<div class="ui simple dropdown item">
 				课程搜索 <i class="dropdown icon"></i>
 				<div class="menu">
@@ -58,7 +59,7 @@ body {
 	</div>
 
 	<div class="ui main text container">
-		<h1 class="ui header">添加评课信息</h1>
+		<h1 class="ui header">评价课程：${requestScope.course.coursename }</h1>
 		<br>
 	</div>
 
@@ -68,10 +69,10 @@ body {
 			<div class="ui form">
 				<div class="two fields">
 					<div class="field">
-						<label>课程名称：课程A</label>
+						<label>课程名称：${requestScope.course.coursename }</label>
 					</div>
 					<div class="field">
-						<label>授课教师：教师B</label>
+						<label>授课教师：<c:forEach items="${requestScope.course.teacherList }" var="teacher"><a class="ui label" href="teacher.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a></c:forEach></label>
 					</div>
 				</div>
 			</div>
@@ -174,6 +175,18 @@ body {
 				<option value="3">闭卷考试</option>
 				<option value="4">其他</option>
 			</select>
+			<h4 class="ui dividing header">请选择评价老师</h4>
+			<select class="ui fluid search dropdown">
+				<c:forEach items="${requestScope.course.teacherList }" var="teacher">
+					<option value="${teacher.teacherid}">${teacher.teachername }</option>
+				</c:forEach>
+			</select>
+			<h4 class="ui dividing header">请选择对本门课的推荐等级</h4>
+			<div class="ui massive star rating" style="text-align:center">
+				<i class="icon active"></i> <i class="icon active"></i> <i
+					class="icon active"></i> <i class="icon active"></i> <i
+					class="icon active"></i>
+			</div>
 			<h4 class="ui dividing header">嗯，老司机有话要说。</h4>
 			<div class="field">
 				<textarea></textarea>

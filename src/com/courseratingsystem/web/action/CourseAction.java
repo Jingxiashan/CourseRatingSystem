@@ -91,6 +91,9 @@ public class CourseAction extends ActionSupport{
 	}
 	public String findByName(){
 		CoursePage coursepage = courseService.findCourseByName(searchtext,sortby,currentPage,pageSize);
+		for(CourseOverviewPlusTeacher tmpCourse : coursepage.getList()) {
+			tmpCourse.setTeacherList(teacherService.findTeachersByCourseID(tmpCourse.getCourseid()));
+		}
 		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
 			return SUCCESS;
@@ -101,6 +104,9 @@ public class CourseAction extends ActionSupport{
 	}
 	public String findByTeacher(){
 		CoursePage coursepage = courseService.findCourseByTeachername(searchtext,sortby,currentPage,pageSize);
+		for(CourseOverviewPlusTeacher tmpCourse : coursepage.getList()) {
+			tmpCourse.setTeacherList(teacherService.findTeachersByCourseID(tmpCourse.getCourseid()));
+		}
 		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
 			return SUCCESS;
@@ -133,7 +139,7 @@ public class CourseAction extends ActionSupport{
 			request.setAttribute("course", tmpCourse);
 			//get Comments
 			//TODO
-			return null;	
+			return GET_TO_COURSE_PAGE;	
 		}else {
 			return FAIL;
 		}

@@ -109,11 +109,6 @@
 	}
 }
 </style>
-
-<script src="assets/library/jquery.min.js"></script>
-<script src="../dist/components/visibility.js"></script>
-<script src="../dist/components/sidebar.js"></script>
-<script src="../dist/components/transition.js"></script>
 <script>
 	$(document).ready(function() {
 
@@ -185,11 +180,11 @@ body>.grid {
 
 		<div class="ui container" style="margin-top: 10rem; width: 450px">
 			<div class="column">
-				<form class="ui large form" method="post">
+				<form class="ui large form" action="course_findByName" method="post">
 					<div class="ui stacked inverted segment">
 						<div class="field">
 							<div class="ui left icon inverted transparent input">
-								<i class="student icon"></i> <input type="text" name="username"
+								<i class="student icon"></i> <input type="searchtext" name="username"
 									placeholder="课程姓名">
 							</div>
 						</div>
