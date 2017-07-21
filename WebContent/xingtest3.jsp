@@ -74,5 +74,26 @@
 	</form>
 </div>
 
+<div>
+	<form action="findTeacherByTeacherId" method="post">
+		<input type="text" name="teacherid"><br>
+		<input type="submit" value="findTeacherByTeacherId">
+	</form>
+</div>
+
+<div>
+	<form action="findTeachersByTeachername" method="post">
+		<input type="text" name="teachername"><br>
+		<input type="submit" value="findTeachersByTeachername">
+	</form>
+</div>
+
+<div>
+	<form action="findTeachersByCourseID" method="post">
+		<input type="text" name="courseid"><br>
+		<input type="submit" value="findTeachersByCourseID">
+	</form>
+</div>
+
 </body>
 </html>

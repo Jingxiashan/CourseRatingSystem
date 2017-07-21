@@ -12,7 +12,6 @@ public class TeacherServiceImpl implements TeacherService{
 	public TeacherDao getTeacherDao() {
 		return teacherDao;
 	}
-
 	public void setTeacherDao(TeacherDao teacherDao) {
 		this.teacherDao = teacherDao;
 	}
@@ -21,7 +20,6 @@ public class TeacherServiceImpl implements TeacherService{
 	public List<Teacher> findTeachersByTeachername(String teachername) {
 		return teacherDao.findTeacherByTeachername(teachername);
 	}
-
 	@Override
 	public Teacher findTeacherByTeacherId(int teacherid) {
 		return teacherDao.findTeacherByTeacherid(teacherid);
