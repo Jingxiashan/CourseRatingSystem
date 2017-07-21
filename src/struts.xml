@@ -45,6 +45,10 @@
 	    	<result name="get_to_course_page">/course.jsp</result>
 	    	<result name="fail">error.jsp</result>
 	    </action>
+	    <action name="comment_*" class="com.courseratingsystem.web.action.CommentAction" method="{1}">
+	    	<result name="get_to_comment_page">/comment.jsp</result>
+	    	<result name="comment_success">/course.jsp</result>
+	    </action>
 		<action name="comment_findByTeacher" class="com.courseratingsystem.web.action.CommentAction" method="findByTeacher">
 			<result name="success">xingtest3.jsp</result>
 			<result name="fail">error.jsp</result>

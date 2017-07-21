@@ -20,7 +20,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	
 	private int currentPage = 1;
 	private final int pageSize = 10;
-	private int courseid;
 	private int commentid;
 	public int getCommentid() {
 		return commentid;
@@ -29,15 +28,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	public void setCommentid(int commentid) {
 		this.commentid = commentid;
 	}
-
-	public int getCourseid() {
-		return courseid;
-	}
-
-	public void setCourseid(int courseid) {
-		this.courseid = courseid;
-	}
-
 	User user = new User();
 	UserService userService;
 	CommentService commentService;
@@ -91,9 +81,15 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	}
 	
 	public String addFavourate(){
-		User currentUser =	(User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		userService.addFavourateCourse(currentUser.getUserid(), courseService.findCourseById(courseid));
-		return SUCCESS;
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String str_courseid = request.getParameter("courseid");
+		if(str_courseid != null) {
+			int courseid = Integer.parseInt(str_courseid);
+			User currentUser =	(User) ServletActionContext.getRequest().getSession().getAttribute("user");
+			userService.addFavourateCourse(currentUser.getUserid(), courseService.findCourseById(courseid));
+			return SUCCESS;	
+		}else return FAIL;
+		
 	}
 	
 	public String deleteComment() {

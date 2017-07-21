@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -77,23 +78,19 @@ body {
 	left: 800px;
 }
 #chart {
-  text-align: left;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
-  border: 1px solid #aaa;
   margin: 32px auto;
-  background: white;
 }
 </style>
-<script src="js/jquery.js"></script>
-<script src="js/index.js"></script>
+<script src="js/radar_jquery.js"></script>
+<script src="js/radarChart.js"></script>
 </head>
 
 <body>
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
-			<a href="#" class="header item"> <img class="logo"
+			<a href="homepage.jsp" class="header item"> <img class="logo"
 				src="images/testPic.jpg"> 大众点评课
-			</a> <a href="homepage.jsp" class="item">主页</a>  <a href="index.jsp"
+			</a> <a href="course_findAll.action"
 				class="item">返回</a>
 			<div class="ui simple dropdown item">
 				课程搜索 <i class="dropdown icon"></i>
@@ -114,25 +111,25 @@ body {
 			<form class="ui form">
 				<div class="two fields">
 					<div class="field">
-						<h1 class="ui header">课程名称1</h1>
+						<h1 class="ui header">${requestScope.course.coursename}</h1>
 						<span class="date">
 							<h4>
 								推荐星级
 								<div class="ui star rating">
-									<i class="icon active"></i>
+									<c:forEach begin="0" end="${requestScope.course.recommendationScore-1 }">
+					                	<i class="icon active"></i>
+									</c:forEach>
 								</div>
+								     已有${requestScope.course.peopleCount }对这门课程进行了评价
 							</h4>
 						</span> <span class="date"><h4>
-								授课教师：<a href="#"> 教师A</a>
+								授课教师：<c:forEach items="${requestScope.course.teacherList }" var="teacher"><a class="ui label" href="teacher.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a></c:forEach>
 							</h4> </span><br>
-						<button class="ui primary button" type="submit">嗯，收藏。</button>
+						<button class="ui primary button" onclick="windows.location.href='user_addFavourate.action?courseid='${requestScope.course.courseid }'">嗯，收藏。</button>
 					</div>
-					<div class="field">
-						<div class="ui raised aligned segment" style="width: 250px">
-							<!-- <img class="medium ui left aligned image " src="images/jenny.jpg">-->
-							<div id="chart"></div>
+						<div class="ui right floated basic segment" style="width:320px;height:200px;border:0px">
+							<div id="chart" style="margin:0px"></div>
 						</div>
-					</div>
 					<br>
 				</div>
 			</form>
@@ -151,7 +148,9 @@ body {
 							</div>
 							<div class="extra content">
 								<div class="ui star rating" data-rating="3" data-max-rating="5">
-									<i class="icon active"></i>
+									<c:forEach begin="0" end="${requestScope.course.averageRatingsUsefulness-1 }">
+					                	<i class="icon active"></i>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -167,9 +166,9 @@ body {
 							</div>
 							<div class="extra content">
 								<div class="ui star rating" data-rating="3" data-max-rating="5">
-									<i class="icon active"></i> <i class="icon active"></i> <i
-										class="icon active"></i> <i class="icon active"></i> <i
-										class="icon active"></i>
+									<c:forEach begin="0" end="${requestScope.course.averageRatingsVividness-1 }">
+					                	<i class="icon active"></i>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -177,14 +176,16 @@ body {
 					<div class="field">
 						<div class="ui card">
 							<div class="content">
-								<div class="header">占用课余否?</div>
+								<div class="header">占时少否?</div>
 							</div>
 							<div class="content" style="height: 150px">
 								<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的完成课后作业或准备课后展示及与课程相关的大小考试所花费时间；占用课余时间少，请给多星。</h4>
 							</div>
 							<div class="extra content">
 								<div class="ui star rating" data-rating="3" data-max-rating="5">
-									<i class="icon active"></i> <i class="icon active"></i>
+									<c:forEach begin="0" end="${requestScope.course.averageRatingsSpareTimeOccupation-1 }">
+					                	<i class="icon active"></i>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -199,9 +200,9 @@ body {
 							</div>
 							<div class="extra content">
 								<div class="ui star rating" data-rating="3" data-max-rating="5">
-									<i class="icon active"></i> <i class="icon active"></i> <i
-										class="icon active"></i> <i class="icon active"></i> <i
-										class="icon active"></i>
+									<c:forEach begin="0" end="${requestScope.course.averageRatingsScoring-1 }">
+					                	<i class="icon active"></i>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -209,15 +210,16 @@ body {
 					<div class="field">
 						<div class="ui card">
 							<div class="content">
-								<div class="header">点名多否?</div>
+								<div class="header">点名少否?</div>
 							</div>
 							<div class="content" style="height: 150px">
-								<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的点名情况，节节必点、每月点名、点名看老师心情、一学期点名2-3次、几乎不点名；点名频率低，请给多星。</h4>
+								<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的点名情况比较；点名频率低，请给多星。</h4>
 							</div>
 							<div class="extra content">
 								<div class="ui star rating" data-rating="3" data-max-rating="5">
-									<i class="icon active"></i> <i class="icon active"></i> <i
-										class="icon active"></i>
+									<c:forEach begin="0" end="${requestScope.course.averageRatingsRollCall-1 }">
+					                	<i class="icon active"></i>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -272,27 +274,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<div class="ui inverted vertical footer segment">
 		<div class="ui left aligned container">
 			<div class="ui stackable inverted divided grid">
@@ -315,15 +296,15 @@ body {
 <script>
 $(function(){
 	  $('#chart').radarChart({
-	    size: [500, 400],
+	    size: [290, 200],
 	    step: 1,
-	    title: "My Skills",
+	    title: "",
 	    values: {
-	      "JavaScript": 5,
-	      "Node.js": 3.5,
-	      "jQuery": 4,
-	      "PHP": 3,
-	      "C++": 2.5
+	      "内容有用否？": ${requestScope.course.averageRatingsUsefulness },
+	      "课堂生动否？": ${requestScope.course.averageRatingsVividness },
+	      "占用课余时间否？": ${requestScope.course.averageRatingsSpareTimeOccupation },
+	      "给分高否？": ${requestScope.course.averageRatingsScoring },
+	      "点名少否？": ${requestScope.course.averageRatingsRollCall }
 	    },
 	    showAxisLabels: true
 	  });

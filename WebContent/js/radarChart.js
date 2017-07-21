@@ -8,8 +8,9 @@
       this.ele = ele;
       this.settings = $.extend({
         showAxisLabels: false,
+        title: "Untitled",
         step: 1,
-        size: [100,100],
+        size: [290,200],
         values: {},
         color: [255,0,0]
       },settings);
@@ -55,16 +56,16 @@
       min = Math.floor(min);
       max = Math.ceil(max);
 
-      var spacing = 20;
+      var spacing = 12;
       
-      for(var i = min; i <= max; i += this.settings.step) {
+      for(var i = min; i <= 5; i += this.settings.step) {
         this.cxt.beginPath();
         this.cxt.arc(this.width/2,
                      this.height/2,
                      this.settings.step * spacing * i,
                      0, 2 * Math.PI, false);
-        this.cxt.strokeStyle = "#666";
-        this.cxt.fillStyle = "#444";
+        this.cxt.strokeStyle = "#B4B4B4";
+        this.cxt.fillStyle = "#B4B4B4";
         this.cxt.stroke();
         if (this.settings.showAxisLabels)
           this.cxt.fillText(i,this.width/2 + this.settings.step * spacing * i+4, this.height/2-2);
@@ -77,8 +78,8 @@
       for(var i = 0; i < size; i += 1) {
         this.cxt.beginPath();
         this.cxt.moveTo(this.width / 2, this.height /2);
-        var x = this.width / 2 + Math.cos((Math.PI * 2) * (i / size)) * spacing * max;
-        var y = this.height /2 + Math.sin((Math.PI * 2) * (i / size)) * spacing * max;
+        var x = this.width / 2 + Math.cos((Math.PI * 2) * (i / size)) * spacing * 5;
+        var y = this.height /2 + Math.sin((Math.PI * 2) * (i / size)) * spacing * 5;
         this.cxt.lineTo(x, y);
         this.cxt.stroke();
       }
@@ -120,44 +121,41 @@
         that.newCanvas('label-'+i, i * 250);
         that.cxt.fillStyle = "rgba(0,0,0,.8)";
         that.cxt.strokeStyle = "rgba(0,0,0,.5)";
-        that.cxt.font = "bold 12px Verdana";
+        that.cxt.font = "bold 8px Verdana";
         var dist = Math.min(spacing * val, size * spacing);
         var x = that.width / 2 + Math.cos((Math.PI * 2) * (i / size)) * spacing * val;
         var y = that.height / 2 + Math.sin((Math.PI * 2) * (i / size)) * spacing * val;
 
-        var textX = that.width / 2 + Math.cos((Math.PI * 2) * (i / size)) * spacing * val;
-        var textY = that.height / 2 + Math.sin((Math.PI * 2) * (i / size)) * spacing * val * 1.5;
+        var textX = that.width / 2 + Math.cos((Math.PI * 2) * (i / size)) * 50;
+        var textY = that.height / 2 + Math.sin((Math.PI * 2) * (i / size)) * 20 * 4;
         
         if (textX < that.width/2) {
-          textX -= 75
+          textX -= 20
           that.cxt.textAlign="end";
-          that.cxt.beginPath();
+          /* that.cxt.beginPath();
           var width = that.cxt.measureText(key).width;
           that.cxt.moveTo(textX - width - 5, textY + 4);
           that.cxt.lineTo(textX + 15, textY + 4);
           that.cxt.lineTo(x - 2, y);
           that.cxt.lineWidth = 2;
-          that.cxt.stroke();
+          that.cxt.stroke(); */
         } else {
-          textX += 75
+          textX += 20
           that.cxt.textAlign="start";
-          that.cxt.beginPath();
+          /* that.cxt.beginPath();
           var width = that.cxt.measureText(key).width;
           that.cxt.moveTo(x + 2,y);
           that.cxt.lineTo(textX - 15, textY + 4);
           that.cxt.lineTo(textX + width + 5, textY + 4);
           that.cxt.lineWidth = 2;
-          that.cxt.stroke();
+          that.cxt.stroke(); */
         }
         that.cxt.fillText(key, textX, textY);
         //For arrows that aren't done.
         i += 1;
       });
       
-      
-      this.newCanvas('title',1000);
-      this.cxt.font = "bold 24px Verdana";
-      this.cxt.fillText(this.settings.title, 10, 30); 
+     
     }
     
     return Radar;

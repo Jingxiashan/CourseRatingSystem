@@ -97,7 +97,7 @@ body {
 						</div>
 					</div>
 					<div class="extra content">
-						<i class="smile icon"></i><a href="comment.action?courseid=${course.courseid}">老司机想说几句，嗯？</a>
+						<i class="smile icon"></i><a href="comment_getPage.action?courseid=${course.courseid}">老司机想说几句，嗯？</a>
 					</div>
 				</div>
 			</c:forEach>

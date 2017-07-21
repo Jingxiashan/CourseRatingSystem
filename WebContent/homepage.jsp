@@ -19,39 +19,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
 <!-- Site Properties -->
 <title>主页 - 大众点评课</title>
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/reset.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/site.css">
-
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/container.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/grid.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/header.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/image.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/menu.css">
-
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/divider.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/dropdown.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/segment.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/button.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/list.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/icon.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/sidebar.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/transition.css">
-
 <style type="text/css">
 .hidden.menu {
 	display: none;
@@ -147,10 +114,6 @@
 }
 </style>
 
-<script src="assets/library/jquery.min.js"></script>
-<script src="../dist/components/visibility.js"></script>
-<script src="../dist/components/sidebar.js"></script>
-<script src="../dist/components/transition.js"></script>
 <script>
   $(document)
     .ready(function() {
@@ -197,7 +160,7 @@
 
 	<!-- Sidebar Menu -->
 	<div class="ui vertical inverted sidebar menu">
-		<a class="active item">主页</a> <a href="index.jsp" class="item">课程详情</a>
+		<a class="active item">主页</a> <a href="course_findAll.action" class="item">课程详情</a>
 		<a href="login.jsp" class="ui inverted button">登录</a> <a
 			href="register.jsp" class="ui inverted button">注册</a>
 	</div>
@@ -210,7 +173,7 @@
 			<div class="ui container">
 				<div class="ui large secondary inverted pointing menu">
 					<a class="toc item"> <i class="sidebar icon"></i>
-					</a> <a class="active item">主页</a> <a href="index.jsp"
+					</a> <a class="active item">主页</a> <a href="course_findAll.action"
 						class="item">课程详情</a>
 					<div class="right item">
 						<a href="login.jsp" class="ui inverted button">登录</a> <a

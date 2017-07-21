@@ -8,7 +8,7 @@
 <title>Course Overview</title>
 </head>
 <body>
-	<h1>课程名称：${requestScope.CourseOverviewPlusTeacher.coursename}</h1>
+	<h1>课程名称：${requestScope.course.coursename}</h1>
 	<table>
 		<tr>
 			<td>综合推荐度</td>
@@ -19,16 +19,16 @@
 			<td>点名频率</td>
 		</tr>
 		<tr>
-			<td>${requestScope.CourseOverviewPlusTeacher.recommendationScore}</td>
-			<td>${requestScope.CourseOverviewPlusTeacher.averageRatingsUsefulness}</td>
-			<td>${requestScope.CourseOverviewPlusTeacher.averageRatingsVividness}</td>
-			<td>${requestScope.CourseOverviewPlusTeacher.averageRatingsSpareTimeOccupation}</td>
-			<td>${requestScope.CourseOverviewPlusTeacher.averageRatingsScoring}</td>
-			<td>${requestScope.CourseOverviewPlusTeacher.averageRatingsRollCall}</td>
+			<td>${requestScope.course.recommendationScore}</td>
+			<td>${requestScope.course.averageRatingsUsefulness}</td>
+			<td>${requestScope.course.averageRatingsVividness}</td>
+			<td>${requestScope.course.averageRatingsSpareTimeOccupation}</td>
+			<td>${requestScope.course.averageRatingsScoring}</td>
+			<td>${requestScope.course.averageRatingsRollCall}</td>
 		</tr>
 	</table>
 	<table>
-		<c:forEach items="${requestScope.CourseOverviewPlusTeacher.teacherList}" var="teacher">
+		<c:forEach items="${requestScope.course.teacherList}" var="teacher">
 			<tr>
 				<td><a href="findteacherbyid?teacherid=${teacher.teacherid}">${teacher.teachername}</a></td>
 			</tr>
