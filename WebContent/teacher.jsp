@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<title>${sessionScope.user.nickname }-大众点评课</title>
+<title>教师A-大众点评课</title>
 <head>
 <!-- Standard Meta -->
 <meta charset="utf-8" />
@@ -43,64 +43,112 @@ body {
 
 </head>
 
-
 <body>
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
 			<a href="homepage.jsp" class="header item"> <img class="logo"
-				src="images/testPic.jpg">大众点评课
-			</a>
+				src="images/testPic.jpg"> 大众点评课 </a>
 		</div>
 	</div>
 
 	<div class="ui left aligned main text container">
-		<img src="images/elliot.jpg" style="width: 100px">
-		<h1 class="ui header">${sessionScope.user.nickname }</h1>
+		<img src="images/jenny.jpg" style="width: 100px">
+		<h1 class="ui header">教师A</h1>
 		<br>
 	</div>
 	<div class="ui container" style="width: 50%">
 		<div class="ui segment">
-			<div class="ui header">
-				<h3>老司机基本信息</h3>
-			</div>
-			<div class="ui tall stacked segment">
-				<div>
-					<h4>昵称：${sessionScope.user.nickname }</h4>
-				</div>
-				<div class="ui divider"></div>
-				<div>
-					<h4>微信账号：${sessionScope.user.wechatAccount }</h4>
-				</div>
-				<div class="ui divider"></div>
-				<div>
-					<h4>年级：${sessionScope.user.grade }</h4>
-				</div>
-				<div class="ui divider"></div>
-				<div>
-					<h4>个人简介：</h4>
-					<p>${sessionScope.user.introduction }</p>
-				</div>
-			</div>
+			<h3 class="ui header">该老师所教授课程</h3>
+			<div class="ui center aligned segment">
 
-
-			<div class="ui header">
-				<h3>啊，老司机这样说过。</h3>
-			</div>
-						<div class="ui tall stacked segment">
-				<div class="ui comments">
-					<form class="actions">
-						<!-- 在这里循环画对应课程的评论 循环<div comment>+<div hidden divider> -->
-						<div class="comment">
-							<a class="avatar"> <img src="images/elliot.jpg"></a>
+				<!-- 在此处添加点出课程详情和收藏课程的action -->
+				<form class="ui form">
+					<div class="ui cards">
+						<!-- 此处循环画 <div card>得到该老师全部课程 -->
+						<div class="card">
 							<div class="content">
-								<a class="author">授课教师：李霞</a>
-								&nbsp;&nbsp; 
-								<a class="author">课程名称：圣经与西方文化</a>
-								<div  class="author">推荐星级：							
+								<div class="header">课程A</div>
+								<br>
+								<div class="meta">推荐指数</div>
 								<div class="ui star rating" data-rating="3" data-max-rating="5">
 									<i class="icon active"></i>
-							</div></div>
-							<p class="author">评论时间：1997-2-26</p>
+								</div>
+							</div>
+
+
+							<div class="center aligned container">
+								<div class="ui blue basic button">详情。</div>
+								<div class="ui red basic button">要了。</div>
+							</div>
+
+							<br>
+						</div>
+						<div class="card">
+							<div class="content">
+								<div class="header">课程A</div>
+								<br>
+								<div class="meta">推荐指数</div>
+								<div class="ui star rating" data-rating="3" data-max-rating="5">
+									<i class="icon active"></i>
+								</div>
+							</div>
+
+
+							<div class="center aligned container">
+								<div class="ui blue basic button">详情。</div>
+								<div class="ui red basic button">要了。</div>
+							</div>
+
+							<br>
+						</div>
+						<div class="card">
+							<div class="content">
+								<div class="header">课程A</div>
+								<br>
+								<div class="meta">推荐指数</div>
+								<div class="ui star rating" data-rating="3" data-max-rating="5">
+									<i class="icon active"></i>
+								</div>
+							</div>
+
+
+							<div class="center aligned container">
+								<div class="ui blue basic button">详情。</div>
+								<div class="ui red basic button">要了。</div>
+							</div>
+
+							<br>
+						</div>
+						<div class="card">
+							<div class="content">
+								<div class="header">课程A</div>
+								<br>
+								<div class="meta">推荐指数</div>
+								<div class="ui star rating" data-rating="3" data-max-rating="5">
+									<i class="icon active"></i>
+								</div>
+							</div>
+
+
+							<div class="center aligned container">
+								<div class="ui blue basic button">详情。</div>
+								<div class="ui red basic button">要了。</div>
+							</div>
+
+							<br>
+						</div>
+					</div>
+				</form>
+			</div>
+			<h3 class="ui header">该老师所教授课程的评论</h3>
+			<div class="ui left aligned segment">
+				<div class="ui comments">
+				<form class="actions">
+				<!-- 在这里循环画对应课程的评论 循环<div comment>+<div hidden divider> -->
+					<div class="comment">
+						<a class="avatar"> <img src="images/elliot.jpg"></a>
+							<div class="content">
+								<a class="author">鲁迪</a> <a class="author">课程A</a>
 								<div class="text">喜欢圣经与西方文化的孩子上辈子一定是拯救了世界的天使，比如我，鲁迪。</div>
 
 								<!-- 这里是 点赞评论和删除评论的action-->
@@ -116,33 +164,12 @@ body {
 
 							</div>
 						</div>
-						<div class="ui divider"></div>
-					</form>
-				</div>
-			</div>
-			
-			<!-- final code -->
-<%-- 			<div class="ui tall stacked segment">
-				<div class="ui comments">
-					<form class="actions">
-					<c:forEach items="${requestScope.commentPage }" var="comment">
-						<!-- 在这里循环画对应课程的评论 循环<div comment>+<div hidden divider> -->						
-						<div class="comment">
-							<a class="avatar"> <img src="images/elliot.jpg"></a>
+					<div class="ui hidden divider"></div>
+					<div class="comment">
+						<a class="avatar"> <img src="images/elliot.jpg"></a>
 							<div class="content">
-								<a class="author">授课教师：${comment.teacher.teachername }</a>
-								&nbsp;&nbsp; 
-								<a class="author">课程名称：${comment.course.coursename }</a>
-							  <div  class="author">推荐星级：							
-				           <div class="ui star rating" data-rating="3" data-max-rating="5">
-																	<c:forEach begin="0"
-									end="${requestScope.course.averageRatingsUsefulness-1 }">
-									<i class="icon active"></i>
-								</c:forEach>
-							</div></div>
-								
-								
-								<div class="text">${comment.critics }</div>
+								<a class="author">鲁迪</a> <a class="author">课程A</a>
+								<div class="text">喜欢圣经与西方文化的孩子上辈子一定是拯救了世界的天使，比如我，鲁迪。</div>
 
 								<!-- 这里是 点赞评论和删除评论的action-->
 
@@ -157,13 +184,19 @@ body {
 
 							</div>
 						</div>
-					</c:forEach>
 					</form>
 				</div>
-			</div> --%>
+			</div>
+
+
+
+
+
 
 		</div>
 	</div>
+
+
 
 
 
@@ -185,8 +218,6 @@ body {
 			<div class="ui inverted section divider"></div>
 		</div>
 	</div>
-
-
 </body>
 <script>
 	$('.special.cards .image').dimmer({
@@ -195,23 +226,6 @@ body {
 	$('.ui.star .rating').rating('disable');
 </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

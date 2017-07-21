@@ -21,7 +21,7 @@
 	<!-- 配置c3p0连接池 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${jdbc.driver}"/>
-		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="jdbcUrl" value="jdbc:mysql:///courseratingsystem?useUnicode=true&amp;characterEncoding=utf-8"/>
 		<property name="user" value="${jdbc.user}"/>
 		<property name="password" value="${jdbc.password}"/>
 	</bean>
