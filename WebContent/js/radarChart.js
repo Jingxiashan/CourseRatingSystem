@@ -10,14 +10,14 @@
         showAxisLabels: false,
         title: "Untitled",
         step: 1,
-        size: [290,200],
+        size: [400,300],
         values: {},
-        color: [255,0,0]
+        color: [0,255,0]
       },settings);
       this.width = settings.size[0];
       this.height = settings.size[1];
       $(ele).css({
-        'position': 'relative',
+        'position': 'absolute',
         'width': this.width,
         'height': this.height
       });
@@ -56,7 +56,7 @@
       min = Math.floor(min);
       max = Math.ceil(max);
 
-      var spacing = 12;
+      var spacing = 18;
       
       for(var i = min; i <= 5; i += this.settings.step) {
         this.cxt.beginPath();

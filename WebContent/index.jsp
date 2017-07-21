@@ -12,7 +12,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet prefech"
-	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
+	href="css/semantic.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
@@ -47,9 +47,8 @@ body {
 <body>
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
-			<a href="#" class="header item"> <img class="logo"
+			<a href="homepage.jsp" class="header item"> <img class="logo"
 				src="images/testPic.jpg"> 大众点评课
-			</a> <a href="homepage.jsp" class="item">主页</a>
 			<a href="course_findAll.action" class="item">全部课程</a>
 			<div class="ui simple dropdown item">
 				课程搜索 <i class="dropdown icon"></i>
