@@ -53,15 +53,25 @@
 			<result name="success">add.jsp</result>
 			<result name="fail">error.jsp</result>
 		</action>
-		
 		<action name="findTeacherCourseByID" class="com.courseratingsystem.web.action.TeacherAction" method="findTeacherCourseByID">
-			<result name="success">teacher.jsp</result>
+			<result name="success">xingtest1.jsp</result>
 			<result name="fail">error.jsp</result>
 		</action>
-		
 		<action name="findCommentAndCourseByID" class="com.courseratingsystem.web.action.TeacherAction" method="findCommentAndCourseByID">
-			<result name="success">teacher2.jsp</result>
+			<result name="success">xingtest2.jsp</result>
 			<result name="fail">error.jsp</result>		
+		</action>
+		<action name="findTeacherByTeacherId" class="com.courseratingsystem.web.action.TeacherAction" method="findTeacherByTeacherId">
+			<result name="success">xingtest2.jsp</result>
+			<result name="fail">error.jsp</result>	
+		</action>
+		<action name="findTeachersByTeachername" class="com.courseratingsystem.web.action.TeacherAction" method="findTeachersByTeachername">
+			<result name="success">xingtest2.jsp</result>
+			<result name="fail">error.jsp</result>	
+		</action>
+		<action name="findTeachersByCourseID" class="com.courseratingsystem.web.action.TeacherAction" method="findTeachersByCourseID">
+			<result name="success">xingtest2.jsp</result>
+			<result name="fail">error.jsp</result>	
 		</action>
     </package>
 
