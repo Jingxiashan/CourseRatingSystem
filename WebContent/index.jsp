@@ -12,7 +12,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet prefech"
-	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
+	href="css/semantic.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
@@ -47,9 +47,9 @@ body {
 <body>
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
-			<a href="#" class="header item"> <img class="logo"
+			<a href="homepage.jsp" class="header item"> <img class="logo"
 				src="images/testPic.jpg"> 大众点评课
-			</a> <a href="homepage.jsp" class="item">主页</a>
+			<a href="course_findAll.action" class="item">全部课程</a>
 			<div class="ui simple dropdown item">
 				课程搜索 <i class="dropdown icon"></i>
 				<div class="menu">
@@ -65,10 +65,10 @@ body {
 		<br>
 	</div>
 
-	<div class="ui center aligned grid">
-		<div class="ui special cards" style="width:600px">
+	<div class="ui center aligned middle aligned grid">
+		<div class="ui special doubling cards" style="width:80%;margin:auto">
 			<c:forEach items="${requestScope.coursepage.list}" var="course">
-				<div class="card" style="width:190px">
+				<div class="card" style="width:200px">
 					<a class="ui top attached label">${course.coursename}</a>
 					<div class="blurring dimmable image">
 						<div class="ui inverted dimmer">
@@ -84,7 +84,8 @@ body {
 					</div>
 					<div class="content">
 						<pre>
-							<h3><a style="color:black" href="course_getPage.action?courseid=${course.courseid}">${course.coursename}</a>   <c:forEach items="${course.teacherList }" var="teacher"><a class="ui label" href="teacher.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a></c:forEach></h3>
+							<h3><a style="color:black" href="course_getPage.action?courseid=${course.courseid}">${course.coursename}</a>
+							<br><c:forEach items="${course.teacherList }" var="teacher"><a class="ui label" href="teacher.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a></c:forEach></h3>
 						</pre>
 						<div class="meta">
 							<span class="date"><h4>推荐星级</h4>

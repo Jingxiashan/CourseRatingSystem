@@ -30,6 +30,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	}
 	User user = new User();
 	UserService userService;
+	public CourseService getCourseService() {
+		return courseService;
+	}
+
+	public void setCourseService(CourseService courseService) {
+		this.courseService = courseService;
+	}
 	CommentService commentService;
 	CourseService courseService;
 	private static final String FAIL = "fail";

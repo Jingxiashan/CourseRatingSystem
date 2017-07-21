@@ -75,7 +75,7 @@
 		<property name="userService" ref="userService"/>
 		<property name="logininfoService" ref="logininfoService"/>
 	</bean>
-	<bean id="userAction" class="com.courseratingsystem.web.action.UserAction" scope="prototype">
+	<bean id="userAction" class="com.courseratingsystem.web.action.UserAction" scope="prototype" >
 		<property name="userService" ref="userService"/>
 		<property name="commentService" ref="commentService"/>
 		<property name="courseService" ref="courseService"/>
