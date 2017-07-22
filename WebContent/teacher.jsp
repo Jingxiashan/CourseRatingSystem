@@ -118,7 +118,7 @@ body {
 							</a>
 							<div class="content">
 								<a class="author"
-									href="profile.jsp?userid=${comment.user.userid }">${comment.user.nickname }</a>
+									href="user_getOthersProfile.action?userid=${comment.user.userid }">${comment.user.nickname }</a>
 								<div class="text">${comment.critics }</div>
 
 								<!-- 这里是 点赞评论的action-->

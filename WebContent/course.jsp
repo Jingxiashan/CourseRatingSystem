@@ -216,42 +216,40 @@ body {
 		<h4 class="ui dividing header">嗯，老司机们这样说。</h4>
 		<div class="ui raised aligned segment">
 			<div class="ui comments">
-				<c:forEach items="${requestScope.commentPage.commentList }"
-					var="comment">
-					<div class="comment">
-						<a class="avatar"> <img src="images/elliot.jpg">
-						</a>
-						<div class="content">
-							<a class="author"
-								href="profile.jsp?userid=${comment.user.userid }">${comment.user.nickname }</a>
-							<div>
-								<h5>评论时间：${comment.timestamp }</h5>
-							</div>
-							<div class="text">${comment.critics }</div>
-
-						<!-- 这里是 点赞评论的action-->
-						<form class="ui right aligned form">
-							<div class="three fields">
-								<div class="field"></div>
-								<div class="field"></div>
-								<div class="field">
-									<div class="right aligned segment" style="width: 60%">
-										<div class="ui labeled mini button" tabindex="0">
-											<div class="ui red mini button" type=""
-												onclick="likeComment(${comment.commentid });">
-												<i class="heart icon"></i> 戳
-											</div>
-											<div id="comment${comment.commentid }Count"
-												class="ui basic red left mini basic label">${comment.likeCount }</div>
-
-										</div>
-									</div>
+				<c:forEach items="${requestScope.commentPage.commentList }" var="comment">	
+					<div class="ui two column very relaxed grid">
+					<div class="eleven wide column">
+						<div class="comment">
+							<a class="avatar"> <img src="images/elliot.jpg">
+							</a>
+							<div class="content">
+								<a class="author" href="user_getOthersProfile.action?userid=${comment.user.userid }">${comment.user.nickname }</a>
+								<div>
 								</div>
-							</div>
-						</form>
+								<div class="text" style="margin-top:10px">${comment.critics }</div>
+									</div>
+									
+									
+									<h5>评论时间：${comment.timestamp }</h5>
+						</div>
 					</div>
+					<div class="five wide column">
+											<div class="ui right floated labeled mini button" tabindex="0">
+												<div class="ui red mini button" type="" onclick="likeComment(${comment.commentid });">
+													<i class="heart icon"></i> 戳
+												</div>
+												<div id="comment${comment.commentid }Count"
+													class="ui basic red left mini basic label">${comment.likeCount }</div>
+	
+											</div>
+						
+						</div>
+
 			</div>
 			<div class="ui divider"></div>
+			
+			
+			
 			</c:forEach>
 		</div>
 
