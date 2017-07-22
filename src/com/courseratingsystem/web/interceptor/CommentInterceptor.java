@@ -14,7 +14,7 @@ public class CommentInterceptor extends MethodFilterInterceptor{
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		if(user==null){
 			ServletActionContext.getRequest().setAttribute("message", "请老司机您先上车哦");
-			return "fail";
+			return "loginNeeded";
 		}
 		return invocation.invoke();
 	}

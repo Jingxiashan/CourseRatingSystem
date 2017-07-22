@@ -14,6 +14,9 @@
     	</interceptors>
 		<action name="addFavourate" class="com.courseratingsystem.web.action.UserAction" method="addFavourate">
 			<result type="json" name="success"></result>
+			<result name="loginNeeded">/login.jsp</result>
+	    	<interceptor-ref name="loginInterceptor"></interceptor-ref>
+	    	<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		<action name="deleteFavourate" class="com.courseratingsystem.web.action.UserAction" method="deleteFavourate">
 			<result type="json" name="success"></result>
@@ -84,7 +87,8 @@
 	    </action>
 	    <action name="comment_*" class="com.courseratingsystem.web.action.CommentAction" method="{1}">
 	    	<result name="get_to_comment_page">/comment.jsp</result>
-	    	<result name="fail">login.jsp</result>
+	    	<result name="fail">course_findAll.action</result>
+	    	<result name="loginNeeded">/login.jsp</result>
 	    	<interceptor-ref name="loginInterceptor"></interceptor-ref>
 	    	<interceptor-ref name="defaultStack"></interceptor-ref>
 	    </action>
