@@ -66,11 +66,11 @@ body {
 		<br>
 	</div>
 
-	<div class="ui center aligned middle aligned grid">
-		<div class="ui special doubling cards" style="width:50%;margin:auto">
+	<div class="ui container"  style="text-align:center">
+		<div class="ui special doubling cards" style="width:80%;text-align:center;margin:auto">
 			<c:forEach items="${requestScope.coursepage.list}" var="course">
-				<div class="card" style="width:200px">
-					<a class="ui top attached label">${course.coursename}</a>
+				<div class="card" style="width:220px;margin-bottom:50px;margin:auto">
+					<a class="ui top attached label" style="text-size:20px">${course.coursename}</a>
 					<div class="blurring dimmable image">
 						<div class="ui inverted dimmer">
 							<div class="content">

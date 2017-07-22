@@ -43,7 +43,7 @@ body {
 
 </head>
 
-<body>
+<body style="text-align:center">
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
 			<a href="homepage.jsp" class="header item"> <img class="logo"
@@ -67,10 +67,10 @@ body {
 		<br>
 	</div>
 
-	<div class="ui center aligned middle aligned grid">
-		<div class="ui special doubling cards"
-			style="width: 50%; margin: auto">
-			<div class="ui card" style="width: 150px">
+	<div class="ui container" style="text-align:center">
+		<div class="ui special doubling four cards"
+			style="width: 70%; width:800px;text-align:center;;margin:auto">
+			<div class="ui card" style="width: 150px;margin:auto">
 				<div class="ui slide masked reveal image">
 					<img src="images/here.jpg" class="visible content"> <img
 						src="images/backend.jpg" class="hidden content">
@@ -86,7 +86,7 @@ body {
 					</a>
 				</div>
 			</div>
-			<div class="ui card" style="width: 150px">
+			<div class="ui card" style="width: 150px;margin:auto">
 				<div class="ui slide masked reveal image">
 					<img src="images/pretty.jpg" class="visible content"> <img
 						src="images/backend.jpg" class="hidden content">
@@ -102,7 +102,7 @@ body {
 					</a>
 				</div>
 			</div>
-			<div class="ui card" style="width: 150px">
+			<div class="ui card" style="width: 150px;margin:auto">
 				<div class="ui slide masked reveal image">
 					<img src="images/love.jpg" class="visible content"> <img
 						src="images/backend.jpg" class="hidden content">
@@ -118,7 +118,7 @@ body {
 					</a>
 				</div>
 			</div>
-			<div class="ui card" style="width: 150px">
+			<div class="ui card" style="width: 150px;margin:auto">
 				<div class="ui slide masked reveal image">
 					<img src="images/boom.jpg" class="visible content"> <img
 						src="images/frontend.jpg" class="hidden content">

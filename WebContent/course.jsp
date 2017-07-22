@@ -229,20 +229,6 @@ body {
 							</div>
 							<div class="text">${comment.critics }</div>
 
-
-							<!-- 这里是 点赞评论的action-->
-							<form class="actions">
-								<div class="ui labeled button" tabindex="0">
-									<div class="ui red button" type=button
-										onclick="likeComment(${comment.commentid });window.event.returnValue = false;">
-										<i class="heart icon"></i> 戳
-									</div>
-									<div id="comment${comment.commentid }Count"
-										class="ui basic red left pointing label">${comment.likeCount }</div>
-
-								</div>
-							</form>
-						</div>
 						<!-- 这里是 点赞评论的action-->
 						<form class="ui right aligned form">
 							<div class="three fields">
@@ -251,8 +237,8 @@ body {
 								<div class="field">
 									<div class="right aligned segment" style="width: 60%">
 										<div class="ui labeled mini button" tabindex="0">
-											<div class="ui red mini button"
-												onclick="likeComment(${comment.commentid });window.event.returnValue = false;">
+											<div class="ui red mini button" type=""
+												onclick="likeComment(${comment.commentid });">
 												<i class="heart icon"></i> 戳
 											</div>
 											<div id="comment${comment.commentid }Count"
