@@ -58,6 +58,9 @@ body {
 				</div>
 			</div>
 		</div>
+         <div style="margin-right:50px;margin-top:5px">
+			<a href="user.jsp" class="item">${sessionScope.user.nickname}</a>
+          </div>
 	</div>
 
 	<div class="ui main text container">
@@ -114,8 +117,8 @@ body {
 				<div class="three wide column">
 					<h4 class="ui inverted header">关于</h4>
 					<div class="ui inverted link list">
-						<a href="homepage.jsp" class="item">网站介绍</a> <a href="about.jsp"
-							class="item">联系我们 </a>
+						<a href="homepage.jsp" class="item">网站介绍</a> 
+						<a href="about.jsp" class="item">联系我们 </a>
 					</div>
 				</div>
 				<div class="seven wide column">

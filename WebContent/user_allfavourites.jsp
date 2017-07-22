@@ -144,8 +144,8 @@ body {
 					<div class="ui masthead vertical segment">
 						<div class="ui container">
 							<div class="introduction">
-								<h1 class="ui header">井下山</h1>
-								<div class="sub header">"宇宙无敌霹雳帅的孔啸爸爸井下山"</div>
+								<h1 class="ui header">${sessionScope.user.nickname}</h1>
+								<div class="sub header">${sessionScope.user.introduction}</div>
 								<div class="ui hidden divider"></div>
 							</div>
 						</div>

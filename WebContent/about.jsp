@@ -1,121 +1,167 @@
+<%@page import="com.courseratingsystem.web.vo.CoursePage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="Shortcut Icon" href="//www.dpfile.com/s/res/favicon.5ff777c11d7833e57e01c9d192b7e427.ico" type="image/x-icon">
-		<link rel="stylesheet prefech" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
-		<title>关于我们-大众点评课</title>
-	</head>
-	<body>
-		<div class="ui container" style="width:650px">
-			<div class="ui segment">
-				<div class="ui link cards">
-				
-				
-				  <div class="card">
-				    <div class="image">
-				      <img src="https://semantic-ui.com/images/avatar2/large/matthew.png">
-				    </div>
-				    <div class="content">
-				      <div class="header">张彦泽</div>
-				      <div class="meta">
-				        <span class="date">鲁迪的爸爸1</span>
-				      </div>
-				      <div class="description">
-				        	张彦泽是鲁迪的一号爸爸
-				      </div>
-				    </div>
-				    <div class="extra content">
-				      <span class="right floated">
-				        NOT SINGLE
-				      </span>
-				      <span>
-				        <i class="user icon"></i>
-				        1 Son
-				      </span>
-				    </div>
-				  </div>
-				  
-				  
-				  <div class="card">
-				    <div class="image">
-				      <img src="https://semantic-ui.com/images/avatar2/large/matthew.png">
-				    </div>
-				    <div class="content">
-				      <div class="header">孔啸</div>
-				      <div class="meta">
-				        <span class="date">鲁迪的爸爸2</span>
-				      </div>
-				      <div class="description">
-				        	孔啸是鲁迪的二号爸爸
-				      </div>
-				    </div>
-				    <div class="extra content">
-				      <span class="right floated">
-				        SINGLE
-				      </span>
-				      <span>
-				        <i class="user icon"></i>
-				        1 SON
-				      </span>
-				    </div>
-				  </div>
-				  
-				  
-				  <div class="card">
-				    <div class="image">
-				      <img src="https://semantic-ui.com/images/avatar2/large/elyse.png">
-				    </div>
-				    <div class="content">
-				      <div class="header">鲁迪</div>
-				      <div class="meta">
-				        <span class="date">大家的儿子</span>
-				      </div>
-				      <div class="description">
-				        	鲁迪是大家公认的儿子。
-				      </div>
-				    </div>
-				    <div class="extra content">
-				      <span class="right floated">
-				        SINGLE
-				      </span>
-				      <span>
-				        <i class="user icon"></i>
-				        3 FATHERS
-				      </span>
-				    </div>
-				  </div>
-				  
-				  
-				  <div class="card">
-				    <div class="image">
-				      <img src="https://semantic-ui.com/images/avatar2/large/matthew.png">
-				    </div>
-				    <div class="content">
-				      <div class="header">黄嘉星</div>
-				      <div class="meta">
-				        <span class="date">鲁迪的爸爸3</span>
-				      </div>
-				      <div class="description">
-				        	黄嘉星是鲁迪的三号爸爸
-				      </div>
-				    </div>
-				    <div class="extra content">
-				      <span class="right floated">
-				        NOT SINGLE
-				      </span>
-				      <span>
-				        <i class="user icon"></i>
-				        1 SON
-				      </span>
-				    </div>
-				  </div>
+<title>关于我们-大众点评课</title>
+<head>
+<!-- Standard Meta -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet prefech" href="css/semantic.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
+
+
+<style type="text/css">
+body {
+	background-color: #FFFFFF;
+}
+
+.ui.menu .item img.logo {
+	margin-right: 1.5em;
+}
+
+.main.container {
+	margin-top: 7em;
+}
+
+.wireframe {
+	margin-top: 2em;
+}
+
+.ui.footer.segment {
+	margin: 5em 0em 0em;
+	padding: 5em 0em;
+}
+</style>
+
+</head>
+
+<body>
+	<div class="ui fixed inverted menu">
+		<div class="ui container">
+			<a href="homepage.jsp" class="header item"> <img class="logo"
+				src="images/testPic.jpg"> 大众点评课 <a
+				href="course_findAll.action" class="item">全部课程</a>
+				<div class="ui simple dropdown item">
+					课程搜索 <i class="dropdown icon"></i>
+					<div class="menu">
+						<a class="item" href="courseSearchByCname.jsp">按课程名称</a> <a
+							class="item" href="courseSearchByTname.jsp">按授课教师</a>
+					</div>
+				</div>
+		</div>
+		<div style="margin-right: 50px; margin-top: 5px">
+			<a href="user.jsp" class="item">${sessionScope.user.nickname}</a>
+		</div>
+	</div>
+
+	<div class="ui main text container">
+		<h1 class="ui header">关于我们</h1>
+		<br>
+	</div>
+
+	<div class="ui center aligned middle aligned grid">
+		<div class="ui special doubling cards"
+			style="width: 50%; margin: auto">
+			<div class="ui card" style="width: 150px">
+				<div class="ui slide masked reveal image">
+					<img src="images/here.jpg" class="visible content"> <img
+						src="images/backend.jpg" class="hidden content">
+				</div>
+				<div class="content">
+					<a class="header">黄嘉星</a>
+					<div class="meta">
+						<span class="date">Create in Sep 2014</span>
+					</div>
+				</div>
+				<div class="extra content">
+					<a> <i class="users icon"></i> 2 Members
+					</a>
+				</div>
+			</div>
+			<div class="ui card" style="width: 150px">
+				<div class="ui slide masked reveal image">
+					<img src="images/pretty.jpg" class="visible content"> <img
+						src="images/backend.jpg" class="hidden content">
+				</div>
+				<div class="content">
+					<a class="header">张彦泽</a>
+					<div class="meta">
+						<span class="date">Create in Sep 2014</span>
+					</div>
+				</div>
+				<div class="extra content">
+					<a> <i class="users icon"></i> 2 Members
+					</a>
+				</div>
+			</div>
+			<div class="ui card" style="width: 150px">
+				<div class="ui slide masked reveal image">
+					<img src="images/love.jpg" class="visible content"> <img
+						src="images/backend.jpg" class="hidden content">
+				</div>
+				<div class="content">
+					<a class="header">孔啸</a>
+					<div class="meta">
+						<span class="date">Create in Sep 2014</span>
+					</div>
+				</div>
+				<div class="extra content">
+					<a> <i class="users icon"></i> 2 Members
+					</a>
+				</div>
+			</div>
+			<div class="ui card" style="width: 150px">
+				<div class="ui slide masked reveal image">
+					<img src="images/boom.jpg" class="visible content"> <img
+						src="images/frontend.jpg" class="hidden content">
+				</div>
+				<div class="content">
+					<a class="header">鲁迪</a>
+					<div class="meta">
+						<span class="date">Create in Sep 2014</span>
+					</div>
+				</div>
+				<div class="extra content">
+					<a> <i class="users icon"></i> 2 Members
+					</a>
 				</div>
 			</div>
 		</div>
-	</body>
+	</div>
+
+
+
+	<div class="ui inverted vertical footer segment">
+		<div class="ui left aligned container">
+			<div class="ui stackable inverted divided grid">
+				<div class="three wide column">
+					<h4 class="ui inverted header">关于</h4>
+					<div class="ui inverted link list">
+						<a href="homepage.jsp" class="item">网站介绍</a> <a href="about.jsp"
+							class="item">联系我们 </a>
+					</div>
+				</div>
+				<div class="seven wide column">
+					<h4 class="ui inverted header">大众点评课</h4>
+					<p>只做给你看的选课攻略。</p>
+				</div>
+			</div>
+			<div class="ui inverted section divider"></div>
+		</div>
+	</div>
+</body>
+<script>
+	$('.special.cards .image').dimmer({
+		on : 'hover'
+	});
+	$('.ui.star .rating').rating('disable');
+</script>
 </html>

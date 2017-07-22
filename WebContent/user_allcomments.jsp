@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -144,8 +145,8 @@ body {
 					<div class="ui masthead vertical segment">
 						<div class="ui container">
 							<div class="introduction">
-								<h1 class="ui header">井下山</h1>
-								<div class="sub header">"宇宙无敌霹雳帅的孔啸爸爸井下山"</div>
+								<h1 class="ui header">${sessionScope.user.nickname}</h1>
+								<div class="sub header">${sessionScope.user.introduction}</div>
 								<div class="ui hidden divider"></div>
 							</div>
 						</div>
@@ -157,7 +158,46 @@ body {
 					</div>
 
 					<!-- 循环画该segment实现循环显示多条评论  此处循环控制显示三条评论-->
+										<!-- 循环画该segment实现循环显示多条评论  此处循环控制显示三条评论-->
 					<div class="ui middle aligned segment" style="width: 80%">
+						<div class="ui comments">
+						
+							<c:forEach items="${requestScope.commentPage.commentList }" var="comment">
+							<div class="comment">
+								<a class="avatar"> <img src="images/elliot.jpg">
+								</a>
+								<div class="content">
+						<a class="author" href="profile.jsp?userid=${comment.user.userid }">${comment.user.nickname }</a>
+									<div><h5>评论时间：${comment.timestamp }</h5></div>	
+												<div class="text">${comment.critics }</div>
+
+									<!-- 这里是 点赞评论和删除评论的action-->
+									<form class="actions">
+										<div class="ui labeled mini button" tabindex="0">
+											<div class="ui red mini button"
+												onclick="likeComment(${comment.commentid });window.event.returnValue = false;">
+												<i class="heart icon"></i> 戳
+											</div>
+											<div id="comment${comment.commentid }Count"
+												class="ui basic red left mini basic label">${comment.likeCount }</div>
+
+										</div>
+										<div class="ui labeled mini button" tabindex="0">
+											<div class="ui basic blue mini button">
+												<i class="fork icon"></i>删除
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+											</c:forEach>
+						</div>
+					</div>
+					
+					
+					
+					
+<!-- 					<div class="ui middle aligned segment" style="width: 80%">
 						<div class="ui comments">
 							<div class="comment">
 								<a class="avatar"> <img src="images/elliot.jpg">
@@ -166,13 +206,13 @@ body {
 									<a class="author">鲁迪</a>
 									<div class="text">喜欢圣经与西方文化的孩子上辈子一定是拯救了世界的天使，比如我，鲁迪。</div>
 
-									<!-- 这里是 点赞评论和删除评论的action-->
+									这里是 点赞评论和删除评论的action
 									<form class="actions">
 										<div class="ui labeled button" tabindex="0">
 											<div class="ui red button">
 												<i class="heart icon"></i> 戳
 											</div>
-											<!-- 1048显示当前该评论对应的点赞数 -->
+											1048显示当前该评论对应的点赞数
 											<div class="ui basic red left pointing label">1,048</div>
 
 										</div>
@@ -185,7 +225,7 @@ body {
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 				</div>
 			</div>
