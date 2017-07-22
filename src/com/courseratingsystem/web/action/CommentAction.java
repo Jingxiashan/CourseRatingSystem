@@ -146,7 +146,7 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 	
 	public String addComment(){
 		commentService.add(comment);
-		return COMMENT_SUCCESS;
+		return SUCCESS;
 	}	
 
 	@Override

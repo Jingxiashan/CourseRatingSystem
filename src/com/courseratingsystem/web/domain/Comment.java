@@ -15,7 +15,6 @@ public class Comment implements java.io.Serializable{
 
 	private Integer commentid;
 	private Date timestamp;
-	
 	private Teacher teacher;
 	private Course course;
 	private User user;

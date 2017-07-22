@@ -13,10 +13,8 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet prefech"
 	href="css/semantic.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
 
 
 <style type="text/css">
@@ -92,11 +90,7 @@ body {
 						</pre>
 						<div class="meta">
 							<span class="date"><h4>推荐星级</h4>
-								<div class="ui star rating">
-									<c:forEach begin="0" end="${course.recommendationScore-1 }">
-					                	<i class="icon active"></i>
-									</c:forEach>
-									</div>
+								<div class="ui star rating" data-rating="${course.recommendationScore }" data-max-rating="5"></div>
 							</span>
 						</div>
 					</div>
@@ -134,6 +128,6 @@ body {
 	$('.special.cards .image').dimmer({
 		on : 'hover'
 	});
-	$('.ui.star .rating').rating('disable');
+	$('.ui .rating').rating('disable');
 </script>
 </html>

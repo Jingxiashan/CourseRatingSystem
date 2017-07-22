@@ -12,35 +12,13 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet prefech"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="js/radar_jquery.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
-<script>
-	$(document).ready(function() {
-
-		// fix main menu to page on passing
-		$('.main.menu').visibility({
-			type : 'fixed'
-		});
-		$('.overlay').visibility({
-			type : 'fixed',
-			offset : 80
-		});
-
-		// lazy load images
-		$('.image').visibility({
-			type : 'image',
-			transition : 'vertical flip in',
-			duration : 500
-		});
-
-		// show dropdown on hover
-		$('.main.menu  .ui.dropdown').dropdown({
-			on : 'hover'
-		});
-	});
-</script>
+<script src="js/radarChart.js"></script>
 
 <style type="text/css">
 body {
@@ -79,8 +57,6 @@ body {
 	left: 800px;
 }
 </style>
-<script src="js/radar_jquery.js"></script>
-<script src="js/radarChart.js"></script>
 </head>
 
 <body>
@@ -88,9 +64,8 @@ body {
 		<div class="ui container">
 			<a href="homepage.jsp" class="header item"> <img class="logo"
 				src="images/testPic.jpg"> 大众点评课
-			</a> 
-			<a onClick="javascript :history.back(-1);" class="item">返回</a>
-			<a href="course_findAll.action" class="item">课程列表</a>
+			</a> <a onClick="javascript :history.back(-1);" class="item">返回</a> <a
+				href="course_findAll.action" class="item">课程列表</a>
 			<div class="ui simple dropdown item">
 				课程搜索 <i class="dropdown icon"></i>
 				<div class="menu">
@@ -136,14 +111,16 @@ body {
 										href="teacher_getPage.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a>
 								</c:forEach>
 							</h4> </span><br>
-						<button class="ui primary button"
-							onclick="window.location.href='comment_getPage.action?courseid=${requestScope.course.courseid }'; window.event.returnValue = false;">啊，评论。</button>
-						 <c:if test="${requestScope.ifFavourate == 'true' }">
-							 <button class="ui primary button" id="favourate" onclick="deleteFavourate();window.event.returnValue = false;">取消收藏。</button> 
-						 </c:if>
-						 <c:if test="${requestScope.ifFavourate == 'false' }">
- 							 <button class="ui primary button" id="favourate" onclick="addFavourate();window.event.returnValue = false;">嗯，收藏。</button> 
-						 </c:if>
+						<button class="ui primary button" type=button
+							onclick="window.location.href='comment_getPage.action?courseid=${requestScope.course.courseid }'">啊，评论。</button>
+						<c:if test="${requestScope.ifFavourate == 'true' }">
+							<button class="ui primary button" id="favourate" type=button
+								onclick="deleteFavourate()">取消收藏。</button>
+						</c:if>
+						<c:if test="${requestScope.ifFavourate == 'false' }">
+							<button class="ui primary button" id="favourate" type=button
+								onclick="addFavourate()">嗯，收藏。</button>
+						</c:if>
 					</div>
 					<div class="ui right floated basic segment"
 						style="margin: 0px; padding: 0px; border: 0px">
@@ -167,12 +144,9 @@ body {
 							<h4 class="ui sub header">从老师讲授知识层面来讲，内容对自己有益程度；内容有益，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating" data-rating="3" data-max-rating="5">
-								<c:forEach begin="0"
-									end="${requestScope.course.averageRatingsUsefulness-1 }">
-									<i class="icon active"></i>
-								</c:forEach>
-							</div>
+							<div class="ui star rating"
+								data-rating="${requestScope.course.averageRatingsUsefulness }"
+								data-max-rating="5"></div>
 						</div>
 					</div>
 
@@ -186,12 +160,9 @@ body {
 							<h4 class="ui sub header">在上课时，课堂氛围情况；课堂氛围活跃，老师授课生动有趣，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating" data-rating="3" data-max-rating="5">
-								<c:forEach begin="0"
-									end="${requestScope.course.averageRatingsVividness-1 }">
-									<i class="icon active"></i>
-								</c:forEach>
-							</div>
+							<div class="ui star rating"
+								data-rating="${requestScope.course.averageRatingsVividness }"
+								data-max-rating="5"></div>
 						</div>
 					</div>
 				</div>
@@ -204,12 +175,9 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较，完成课后作业、课后展示及大小考试所花费时间；占用课余时间少，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating" data-rating="3" data-max-rating="5">
-								<c:forEach begin="0"
-									end="${requestScope.course.averageRatingsSpareTimeOccupation-1 }">
-									<i class="icon active"></i>
-								</c:forEach>
-							</div>
+							<div class="ui star rating"
+								data-rating="${requestScope.course.averageRatingsSpareTimeOccupation }"
+								data-max-rating="5"></div>
 						</div>
 					</div>
 				</div>
@@ -222,12 +190,9 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的期末分情况；期末给分高，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating" data-rating="3" data-max-rating="5">
-								<c:forEach begin="0"
-									end="${requestScope.course.averageRatingsScoring-1 }">
-									<i class="icon active"></i>
-								</c:forEach>
-							</div>
+							<div class="ui star rating"
+								data-rating="${requestScope.course.averageRatingsScoring }"
+								data-max-rating="5"></div>
 						</div>
 					</div>
 				</div>
@@ -240,64 +205,72 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的点名情况比较；点名频率低，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating" data-rating="3" data-max-rating="5">
-								<c:forEach begin="0"
-									end="${requestScope.course.averageRatingsRollCall-1 }">
-									<i class="icon active"></i>
-								</c:forEach>
-							</div>
+							<div class="ui star rating"
+								data-rating="${requestScope.course.averageRatingsRollCall }"
+								data-max-rating="5"></div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- 
-			<div class="overlay">
-				<div class="ui labeled icon vertical menu">
-					<a class="item"><i class="twitter icon"></i> 收藏该课</a> 
-					<a class="item"><i class="facebook icon"></i> 教师详情</a> 
-				</div>
-			</div>
-			 -->
 		<h4 class="ui dividing header">嗯，老司机们这样说。</h4>
 		<div class="ui raised aligned segment">
 			<div class="ui comments">
-			
-				<c:forEach items="${requestScope.commentPage.commentList }" var="comment">
-				<div class="comment">
-					<a class="avatar"> <img src="images/elliot.jpg">
-					</a>
-					<div class="content">
-						<a class="author" href="profile.jsp?userid=${comment.user.userid }">${comment.user.nickname }</a>
-                        <div><h5>评论时间：${comment.timestamp }</h5></div>					
-						<div class="text">${comment.critics }</div>
+				<c:forEach items="${requestScope.commentPage.commentList }"
+					var="comment">
+					<div class="comment">
+						<a class="avatar"> <img src="images/elliot.jpg">
+						</a>
+						<div class="content">
+							<a class="author"
+								href="profile.jsp?userid=${comment.user.userid }">${comment.user.nickname }</a>
+							<div>
+								<h5>评论时间：${comment.timestamp }</h5>
+							</div>
+							<div class="text">${comment.critics }</div>
 
+
+							<!-- 这里是 点赞评论的action-->
+							<form class="actions">
+								<div class="ui labeled button" tabindex="0">
+									<div class="ui red button" type=button
+										onclick="likeComment(${comment.commentid });window.event.returnValue = false;">
+										<i class="heart icon"></i> 戳
+									</div>
+									<div id="comment${comment.commentid }Count"
+										class="ui basic red left pointing label">${comment.likeCount }</div>
+
+								</div>
+							</form>
+						</div>
 						<!-- 这里是 点赞评论的action-->
 						<form class="ui right aligned form">
-                        <div class="three fields">
-                        <div class="field"></div>
-                        <div class="field"></div>
-                        <div class="field">
-						<div class="right aligned segment" style="width:60%">
-							<div class="ui labeled mini button" tabindex="0">
-								<div class="ui red mini button" onclick="likeComment(${comment.commentid });window.event.returnValue = false;">
-									<i class="heart icon"></i> 戳
-								</div>
-								<div id="comment${comment.commentid }Count" class="ui basic red left mini basic label">${comment.likeCount }</div>
+							<div class="three fields">
+								<div class="field"></div>
+								<div class="field"></div>
+								<div class="field">
+									<div class="right aligned segment" style="width: 60%">
+										<div class="ui labeled mini button" tabindex="0">
+											<div class="ui red mini button"
+												onclick="likeComment(${comment.commentid });window.event.returnValue = false;">
+												<i class="heart icon"></i> 戳
+											</div>
+											<div id="comment${comment.commentid }Count"
+												class="ui basic red left mini basic label">${comment.likeCount }</div>
 
-							</div>
-							</div>
-							</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</form>
 					</div>
-				</div>
-     <div class="ui divider"></div>
-				</c:forEach>
-								</div>			
-
 			</div>
+			<div class="ui divider"></div>
+			</c:forEach>
 		</div>
+
+	</div>
+	</div>
 
 
 
@@ -330,38 +303,55 @@ body {
 		</div>
 	</div>
 	<div class="ui basic modal">
-		<div class="ui icon header">
-			<i class="archive icon"></i> Archive Old Messages
-		</div>
-		<div class="content">
-			<p>Your inbox is getting full, would you like us to enable
-				automatic archiving of old messages?</p>
+		<div class="ui icon header" id="modalTitle">
+			<i class="archive icon"></i> 收藏成功
 		</div>
 		<div class="actions">
-			<div class="ui red basic cancel inverted button">
-				<i class="remove icon"></i> No
-			</div>
 			<div class="ui green ok inverted button">
-				<i class="checkmark icon"></i> Yes
+				<i class="checkmark icon"></i> 确定
 			</div>
 		</div>
 	</div>
 </body>
 <script>
+$(document).ready(function() {
+
+	// fix main menu to page on passing
+	$('.main.menu').visibility({
+		type : 'fixed'
+	});
+	$('.overlay').visibility({
+		type : 'fixed',
+		offset : 80
+	});
+
+	// lazy load images
+	$('.image').visibility({
+		type : 'image',
+		transition : 'vertical flip in',
+		duration : 500
+	});
+
+	// show dropdown on hover
+	$('.main.menu  .ui.dropdown').dropdown({
+		on : 'hover'
+	});
+	$('.ui .rating').rating('disable');
+});
 $(function(){
-	  $('#chart').radarChart({
-	    size: [400, 300],
-	    step: 1,
-	    title: "",
-	    values: {
-	      "内容好否？": ${requestScope.course.averageRatingsUsefulness },
-	      "上课爽否？": ${requestScope.course.averageRatingsVividness },
-	      "占时少否？": ${requestScope.course.averageRatingsSpareTimeOccupation },
-	      "给分高否？": ${requestScope.course.averageRatingsScoring },
-	      "点名少否？": ${requestScope.course.averageRatingsRollCall }
-	    },
-	    showAxisLabels: true
-	  });
+	 $('#chart').radarChart({
+		    size: [400, 300],
+		    step: 1,
+		    title: "",
+		    values: {
+		      "内容好否？": ${requestScope.course.averageRatingsUsefulness },
+		      "上课爽否？": ${requestScope.course.averageRatingsVividness },
+		      "占时少否？": ${requestScope.course.averageRatingsSpareTimeOccupation },
+		      "给分高否？": ${requestScope.course.averageRatingsScoring },
+		      "点名少否？": ${requestScope.course.averageRatingsRollCall }
+		    },
+		    showAxisLabels: true
+		  })
 	});
   function addFavourate(){
 	$.ajax({
@@ -369,10 +359,16 @@ $(function(){
 		url:'${pageContext.request.contextPath}/addFavourate.action',
 		data:{courseid:"${requestScope.course.courseid }" },
 		success:function(data){
-			$("#favourate").html("取消收藏。");	
+			var button = document.getElementById("favourate");
+			button.onclick=function(){deleteFavourate();};
+			button.innerHTML="取消收藏。";
+			document.getElementById("modalTitle").innerHTML="收藏成功";
+			$('.ui.basic.modal')
+			  .modal('show')
+			;
 		}
-	}); 
-  };
+	})
+  }
   
   function deleteFavourate(){
 		$.ajax({
@@ -380,10 +376,16 @@ $(function(){
 			url:'${pageContext.request.contextPath}/deleteFavourate.action',
 			data:{courseid:"${requestScope.course.courseid }" },
 			success:function(data){
-				$("#favourate").html("嗯。收藏。");	
+				var button = document.getElementById("favourate");
+				button.onclick=function(){addFavourate();};
+				button.innerHTML="嗯，收藏。";
+				document.getElementById("modalTitle").innerHTML="已取消收藏";
+				$('.ui.basic.modal')
+				  .modal('show')
+				;
 			}
-		});
-  };
+		})
+  }
   
   function likeComment(id){
 	  $.ajax({
@@ -393,8 +395,8 @@ $(function(){
 		success:function(data){
 			 $("#comment"+id+"Count").html(data.likeCount); 	
 		}		  
-	  });
+	  })
+}
 
-} 
 </script>
 </html>
