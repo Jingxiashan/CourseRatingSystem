@@ -12,10 +12,12 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet prefech"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
-	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="js/radar_jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
 <script src="js/radarChart.js"></script>
 
 <style type="text/css">
@@ -142,7 +144,9 @@ body {
 							<h4 class="ui sub header">从老师讲授知识层面来讲，内容对自己有益程度；内容有益，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating" data-rating="${requestScope.course.averageRatingsUsefulness }" data-max-rating="5"></div>
+							<div class="ui star rating"
+								data-rating="${requestScope.course.averageRatingsUsefulness }"
+								data-max-rating="5"></div>
 						</div>
 					</div>
 
@@ -156,7 +160,9 @@ body {
 							<h4 class="ui sub header">在上课时，课堂氛围情况；课堂氛围活跃，老师授课生动有趣，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating" data-rating="${requestScope.course.averageRatingsVividness }" data-max-rating="5"></div>
+							<div class="ui star rating"
+								data-rating="${requestScope.course.averageRatingsVividness }"
+								data-max-rating="5"></div>
 						</div>
 					</div>
 				</div>
@@ -169,7 +175,9 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较，完成课后作业、课后展示及大小考试所花费时间；占用课余时间少，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating" data-rating="${requestScope.course.averageRatingsSpareTimeOccupation }" data-max-rating="5"></div>
+							<div class="ui star rating"
+								data-rating="${requestScope.course.averageRatingsSpareTimeOccupation }"
+								data-max-rating="5"></div>
 						</div>
 					</div>
 				</div>
@@ -182,7 +190,9 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的期末分情况；期末给分高，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating" data-rating="${requestScope.course.averageRatingsScoring }" data-max-rating="5"></div>
+							<div class="ui star rating"
+								data-rating="${requestScope.course.averageRatingsScoring }"
+								data-max-rating="5"></div>
 						</div>
 					</div>
 				</div>
@@ -195,7 +205,9 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的点名情况比较；点名频率低，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating" data-rating="${requestScope.course.averageRatingsRollCall }" data-max-rating="5"></div>
+							<div class="ui star rating"
+								data-rating="${requestScope.course.averageRatingsRollCall }"
+								data-max-rating="5"></div>
 						</div>
 					</div>
 				</div>
@@ -204,7 +216,6 @@ body {
 		<h4 class="ui dividing header">嗯，老司机们这样说。</h4>
 		<div class="ui raised aligned segment">
 			<div class="ui comments">
-
 				<c:forEach items="${requestScope.commentPage.commentList }"
 					var="comment">
 					<div class="comment">
@@ -213,7 +224,11 @@ body {
 						<div class="content">
 							<a class="author"
 								href="profile.jsp?userid=${comment.user.userid }">${comment.user.nickname }</a>
+							<div>
+								<h5>评论时间：${comment.timestamp }</h5>
+							</div>
 							<div class="text">${comment.critics }</div>
+
 
 							<!-- 这里是 点赞评论的action-->
 							<form class="actions">
@@ -228,13 +243,33 @@ body {
 								</div>
 							</form>
 						</div>
+						<!-- 这里是 点赞评论的action-->
+						<form class="ui right aligned form">
+							<div class="three fields">
+								<div class="field"></div>
+								<div class="field"></div>
+								<div class="field">
+									<div class="right aligned segment" style="width: 60%">
+										<div class="ui labeled mini button" tabindex="0">
+											<div class="ui red mini button"
+												onclick="likeComment(${comment.commentid });window.event.returnValue = false;">
+												<i class="heart icon"></i> 戳
+											</div>
+											<div id="comment${comment.commentid }Count"
+												class="ui basic red left mini basic label">${comment.likeCount }</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
 					</div>
-				</c:forEach>
-
 			</div>
+			<div class="ui divider"></div>
+			</c:forEach>
 		</div>
-	</div>
 
+	</div>
 	</div>
 
 
