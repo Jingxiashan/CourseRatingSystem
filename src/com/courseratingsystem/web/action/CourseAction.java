@@ -43,7 +43,7 @@ public class CourseAction extends ActionSupport{
 	private static final String FAIL = "fail";
 	private static final String GET_TO_COURSE_PAGE = "get_to_course_page";
 	private int currentPage = 1;
-	private int pageSize = 5;
+	private int pageSize = 20;
 	private String sortby="recommendationScore";
 	public String getSortby() {
 		return sortby;
@@ -105,28 +105,18 @@ public class CourseAction extends ActionSupport{
 		for(CourseOverviewPlusTeacher tmpCourse : coursepage.getList()) {
 			tmpCourse.setTeacherList(teacherService.findTeachersByCourseID(tmpCourse.getCourseid()));
 		}
-		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
 			ServletActionContext.getRequest().setAttribute("seachtext", "搜索课程名："+searchtext);
 			return SUCCESS;
-		}
-		else{
-			return FAIL;
-		}
 	}
 	public String findByTeacher(){
 		CoursePage coursepage = courseService.findCourseByTeachername(searchtext,sortby,currentPage,pageSize);
 		for(CourseOverviewPlusTeacher tmpCourse : coursepage.getList()) {
 			tmpCourse.setTeacherList(teacherService.findTeachersByCourseID(tmpCourse.getCourseid()));
 		}
-		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
 			ServletActionContext.getRequest().setAttribute("seachtext", "搜索教师："+searchtext);
 			return SUCCESS;
-		}
-		else{
-			return FAIL;
-		}
 	}
 	public String findAll(){
 		CoursePage coursepage = courseService.findAll(sortby,currentPage,pageSize);

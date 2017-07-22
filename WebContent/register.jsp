@@ -14,40 +14,6 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
 <title>注册-大众点评课</title>
-<!-- Site Properties -->
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/reset.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/site.css">
-
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/container.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/grid.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/header.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/image.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/menu.css">
-
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/divider.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/dropdown.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/segment.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/button.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/list.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/icon.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/sidebar.css">
-<link rel="stylesheet" type="text/css"
-	href="../dist/components/transition.css">
-
 <style type="text/css">
 .hidden.menu {
 	display: none;
@@ -142,11 +108,6 @@
 	}
 }
 </style>
-
-<script src="assets/library/jquery.min.js"></script>
-<script src="../dist/components/visibility.js"></script>
-<script src="../dist/components/sidebar.js"></script>
-<script src="../dist/components/transition.js"></script>
 <script>
 	$(document).ready(function() {
 
@@ -181,36 +142,37 @@
 		${requestScope.message }
 		<div class="ui container" style="margin-top: 10rem; width: 450px">
 			<div class="column">
-				<form class="ui large form" action="register" method="post">
+				<form class="ui large form">
 					<div class="ui stacked inverted aligned right segment">
 						<div class="field">
 							<div class="ui left icon inverted transparent input">
-								<i class="user icon"></i> <input type="text" name="username"
-									placeholder="请输入用户名" style="color:#FFFFFF">
+								<i class="user icon"></i> 
+								<input type="text" name="username" id="username" onkeyup="checkUsername()" placeholder="请输入用户名" style="color:#FFFFFF">
+							</div>
+						</div>
+						<div class="field" id="usernameHint"></div>
+						<div class="field">
+							<div class="ui left icon inverted transparent input">
+								<i class="lock icon"></i> <input type="password" id="password1"
+									name="password1" placeholder="请输入密码" onblur="checkPassword()" style="color:#FFFFFF">
 							</div>
 						</div>
 						<div class="field">
 							<div class="ui left icon inverted transparent input">
-								<i class="lock icon"></i> <input type="password"
-									name="password1" placeholder="请输入密码" style="color:#FFFFFF">
+								<i class="lock icon"></i> <input type="password" id="password2"
+									name="password2" placeholder="请再次输入密码" onblur="checkPassword()" style="color:#FFFFFF">
 							</div>
 						</div>
-						<div class="field">
-							<div class="ui left icon inverted transparent input">
-								<i class="lock icon"></i> <input type="password"
-									name="password2" placeholder="请再次输入密码" style="color:#FFFFFF">
-							</div>
-						</div>
-
+						<div class="field" id="passwordHint"></div>
 						<div class="ui inverted divider"></div>
 						<div class="field">
 							<div class="ui left icon inverted transparent input">
-								<i class="child icon"></i> <input type="text" name="nickname"
+								<i class="child icon"></i> <input type="text" name="nickname" id="nickname"
 									placeholder="请输入昵称" style="color:#FFFFFF">
 							</div>
 						</div>
 						<div class="field">
-							<select class="ui inverted dropdown" name="grade">
+							<select class="ui inverted dropdown" name="grade" id="grade">
 								<option value="">请选择年级</option>
 								<option value="2010">2010级</option>
 								<option value="2011">2011级</option>
@@ -225,7 +187,7 @@
 						</div>
 					</div>
 					<h4 class="ui horizontal inverted divider">欢迎你，我的朋友</h4>
-					<button class="ui inverted basic button" type="submit">注册</button>
+					<button class="ui inverted basic button" id="registerButton" type="button" onclick="register()">注册</button>
 					<div class="ui inverted message">
 						已经是老朋友啦？ <a href="login.jsp">登录</a>
 					</div>
@@ -233,5 +195,124 @@
 			</div>
 		</div>
 	</div>
+	<div class="ui basic modal">
+		<div class="ui icon header" id="modalTitle">
+			<i class="remove icon"></i> 注册失败
+		</div>
+		<div class="content">
+    		<p id="modalMessage"></p>
+  		</div>
+		<div class="actions">
+			<button class="ui green ok inverted button" type="button">
+				<i class="checkmark icon"></i> 确定
+			</button>
+		</div>
+	</div>
 </body>
+<script>
+function checkUsername(){
+	var username = document.getElementById('username').value;
+	var usernameHint = document.getElementById("usernameHint");
+	var registerButton = document.getElementById("registerButton");
+	if(username.length <= 3){
+		usernameHint.innerHTML = "<i class='remove icon'></i>"+"用户名须在四位以上";
+		registerButton.className="ui inverted basic disabled button";
+		return;
+	}
+	$.ajax({
+		type:'post',
+	 	url:"${pageContext.request.contextPath}/register_checkUsername.action",
+	 	data:{ "username":username},
+		success:function(data){
+			var resultData =  JSON.parse(data);
+			var usernameHint = document.getElementById("usernameHint");
+			var registerButton = document.getElementById("registerButton");
+			console.log(registerButton.innerHTML);
+			if(resultData.result == "success"){
+				usernameHint.innerHTML = "<i class='checkmark icon'></i>"+resultData.message;
+				registerButton.className="ui inverted basic button";
+			}else{
+				usernameHint.innerHTML="<i class='remove icon'></i>"+resultData.message;
+				registerButton.className="ui inverted basic disabled button";
+			} 
+		}
+	});
+} 
+
+function checkPassword(){
+	var password1 = document.getElementById('password1').value;
+	var password2 = document.getElementById('password2').value;
+	if(password2.length == 0){
+		return;
+	}
+	var passwordHint = document.getElementById("passwordHint");
+	var registerButton = document.getElementById("registerButton");
+	if(password1 == password2){
+		if(password1.length < 6){
+			passwordHint.innerHTML="<i class='remove icon'></i>密码太短啦！！！这么不安全的密码都不敢给你存！";
+			registerButton.className="ui inverted basic disabled button";		
+		}else{
+			passwordHint.innerHTML="<i class='checkmark icon'></i>哇密码通过啦！";
+			registerButton.className="ui inverted basic button";			
+		}
+	}else{
+		passwordHint.innerHTML="<i class='remove icon'></i>手残嘛！两次密码都输得不一样！";
+		registerButton.className="ui inverted basic disabled button";
+		
+	}
+}
+
+function register(){
+	var username = document.getElementById('username').value;
+	var password1 = document.getElementById('password1').value;
+	var password2 = document.getElementById('password2').value;
+	var nickname = document.getElementById('nickname').value;
+	var grade = document.getElementById('grade').value;
+	var modalMessage = document.getElementById('modalMessage');
+	if(username.length == 0){
+		modalMessage.innerHTML = "用户名不能为空啊！";
+		$('.ui.basic.modal')
+		  .modal('show')
+		;
+		return;
+	}
+	if(password1.length == 0 || password2.length == 0){
+		modalMessage.innerHTML = "密码不能为空啊！";
+		$('.ui.basic.modal')
+		  .modal('show')
+		;
+		return;
+	}
+	if(nickname.length == 0){
+		modalMessage.innerHTML = "昵称不能为空啊！";
+		$('.ui.basic.modal')
+		  .modal('show')
+		;
+		return;
+	}
+	if(grade.length == 0){
+		modalMessage.innerHTML = "年级不能为空啊！";
+		$('.ui.basic.modal')
+		  .modal('show')
+		;
+		return;
+	}
+	var password = password1;
+	$.ajax({
+		type:'post',
+	 	url:"${pageContext.request.contextPath}/register_register.action",
+	 	data:{
+	 		"username":username,
+	 		"password":password,
+	 		"nickname":nickname,
+	 		"grade":grade
+	 		},
+		success:function(data){
+			if(data == "success"){
+				window.location.href="course_findAll.action";
+			}
+		}
+	}); 
+}  
+</script>
 </html>
