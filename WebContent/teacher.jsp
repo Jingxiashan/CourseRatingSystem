@@ -57,6 +57,18 @@ body {
 						class="item" href="courseSearchByTname.jsp">按授课教师</a>
 				</div>
 			</div>
+			<div class="right menu">
+				<!-- 如果未登录，显示登录注册 -->
+				<c:if test="${empty sessionScope.user}">
+					<a href="login.jsp" class="item">登录</a> 
+					<a href="register.jsp" class="item">注册</a>
+				</c:if>
+				<!-- 如果已经登录，显示个人中心链接 -->
+				<c:if test="${!empty sessionScope.user}">
+					<a href="user.jsp" class="item">${sessionScope.user.nickname}</a>
+					<a href="logout.action" class="item">注销</a>
+				</c:if>
+			</div>
 		</div>
 	</div>
 	<div class="ui left aligned main text container">

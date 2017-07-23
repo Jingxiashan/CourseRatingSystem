@@ -73,7 +73,9 @@
 	    	<result name="success">/profile.jsp</result>
 	    	<result name="fail">/modifyProfile.jsp</result>
 	    </action>
-	    
+	    <action name="logout" class="com.courseratingsystem.web.action.LoginAction" method="logout">
+	    	<result name="success">/homepage.jsp</result>
+	    </action>
 	    <!-- 
 	    <action name="course_search" class="com.courseratingsystem.web.action.CourseAction" method="findByName">
 	    	<result name="SUCCESS">courseTest.jsp</result>
