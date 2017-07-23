@@ -33,6 +33,11 @@ public class LoginAction extends ActionSupport implements ModelDriven<Logininfo>
 			return FAIL;
 		}
 	}
+	
+	public String logout() {
+		ServletActionContext.getRequest().getSession().removeAttribute("user");
+		return SUCCESS;
+	}
 
 	public String getResult() {
 		return result;

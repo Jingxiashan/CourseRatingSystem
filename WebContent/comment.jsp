@@ -88,7 +88,7 @@ body {
 					<div class="field">
 						<div class="ui card">
 							<div class="content">
-								<div class="header">内容有用否？</div>
+								<div class="header">内容好否？</div>
 							</div>
 							<div class="content" style="height: 150px">
 								<h4 class="ui sub header">从老师讲授知识层面来讲，内容对自己有益程度；内容有益，请给多星。</h4>
@@ -108,7 +108,7 @@ body {
 					<div class="field">
 						<div class="ui card">
 							<div class="content">
-								<div class="header">课堂生动否？</div>
+								<div class="header">上课爽否？</div>
 							</div>
 							<div class="content" style="height: 150px">
 								<h4 class="ui sub header">在上课时，课堂氛围情况；课堂氛围活跃，老师授课生动有趣，请给多星。</h4>
@@ -127,7 +127,7 @@ body {
 					<div class="field">
 						<div class="ui card">
 							<div class="content">
-								<div class="header">占用课余否？</div>
+								<div class="header">占时少否？</div>
 							</div>
 							<div class="content" style="height: 150px">
 								<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的完成课后作业或准备课后展示及与课程相关的大小考试所花费时间；占用课余时间少，请给多星。</h4>

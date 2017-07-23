@@ -73,6 +73,18 @@ body {
 						class="item" href="courseSearchByTname.jsp">按授课教师</a>
 				</div>
 			</div>
+			<div class="right menu">
+				<!-- 如果未登录，显示登录注册 -->
+				<c:if test="${empty sessionScope.user}">
+					<a href="login.jsp" class="item">登录</a> 
+					<a href="register.jsp" class="item">注册</a>
+				</c:if>
+				<!-- 如果已经登录，显示个人中心链接 -->
+				<c:if test="${!empty sessionScope.user}">
+					<a href="user.jsp" class="item">${sessionScope.user.nickname}</a>
+					<a href="logout.action" class="item">注销</a>
+				</c:if>
+			</div>
 		</div>
 	</div>
 
@@ -217,43 +229,33 @@ body {
 		<div class="ui raised aligned segment">
 			<div class="ui comments">
 				<c:forEach items="${requestScope.commentPage.commentList }" var="comment">	
-					<div class="ui two column very relaxed grid">
-					<div class="eleven wide column">
-						<div class="comment">
-							<a class="avatar"> <img src="images/elliot.jpg">
-							</a>
-							<div class="content">
-								<a class="author" href="user_getOthersProfile.action?userid=${comment.user.userid }">${comment.user.nickname }</a>
-								<div>
+					<div class="ui two column grid">
+						<div class="eleven wide column">
+							<div class="comment">
+								<a class="avatar"> 
+									<img src="images/elliot.jpg">
+								</a>
+								<div class="content">
+									<a class="author" href="user_getOthersProfile.action?userid=${comment.user.userid }">${comment.user.nickname }</a>
+								      <div class="metadata">
+								        <span class="date">${comment.timestamp }</span>
+								      </div>
+									<div class="text" style="margin-top:10px">${comment.critics }</div>
 								</div>
-								<div class="text" style="margin-top:10px">${comment.critics }</div>
-									</div>
-									
-									
-									<h5>评论时间：${comment.timestamp }</h5>
+							</div>
+						</div>
+						<div class="five wide column">
+							<div class="ui right floated labeled mini button" tabindex="0">
+								<div class="ui red mini button" type="button" onclick="likeComment(${comment.commentid });">
+									<i class="heart icon"></i> 戳
+								</div>
+								<div id="comment${comment.commentid }Count" class="ui basic red left mini basic label">${comment.likeCount }</div>
+							</div>		
 						</div>
 					</div>
-					<div class="five wide column">
-											<div class="ui right floated labeled mini button" tabindex="0">
-												<div class="ui red mini button" type="" onclick="likeComment(${comment.commentid });">
-													<i class="heart icon"></i> 戳
-												</div>
-												<div id="comment${comment.commentid }Count"
-													class="ui basic red left mini basic label">${comment.likeCount }</div>
-	
-											</div>
-						
-						</div>
-
+				</c:forEach>
 			</div>
-			<div class="ui divider"></div>
-			
-			
-			
-			</c:forEach>
 		</div>
-
-	</div>
 	</div>
 
 
