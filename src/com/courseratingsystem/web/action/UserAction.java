@@ -72,7 +72,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String str_userid = ServletActionContext.getRequest().getParameter("userid");
 		if(str_userid != null) {
-			int userid = Integer.parseInt(ServletActionContext.getRequest().getParameter("userid"));
+			int userid = Integer.parseInt(str_userid);
 			//save user in request
 			User userToShow =	userService.findUserById(userid);
 			ServletActionContext.getRequest().setAttribute("user", userToShow);

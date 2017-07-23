@@ -109,9 +109,10 @@ body {
 									<div class="ui red mini button" type="" onclick="likeComment(${comment.commentid });">
 										<i class="heart icon"></i> 戳
 									</div>
-										<div id="comment${comment.commentid }Count"
-											class="ui basic red left mini basic label">${comment.likeCount }</div>
+									<div id="comment${comment.commentid }Count"
+										class="ui basic red left mini basic label">${comment.likeCount }
 									</div>
+								</div>
 							</div>
 						</div>
 				<div class="ui divider"></div>

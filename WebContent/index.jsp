@@ -307,9 +307,35 @@ function sort(sortby){
 		break;
 	case 1:
 		//按课程名称搜索
+		var tempform = document.createElement("form");        
+		tempform.action = "course_findByName";        
+		tempform.method = "post";        
+        var opt1 = document.createElement("textarea");        
+        opt1.name = "sortby";        
+        opt1.value = sortby;
+        opt2 = document.createElement("textarea");        
+        opt2.name = "searchtext";        
+        opt2.value = "${requestScope.searchtext }";
+        tempform.appendChild(opt1);   
+        tempform.appendChild(opt2);   
+    	document.body.appendChild(tempform);  
+        tempform.submit();
 		break;
 	case 2:
 		//按老师搜索
+		var tempform = document.createElement("form");        
+		tempform.action = "course_findByTeacher";        
+		tempform.method = "post";        
+        var opt1 = document.createElement("textarea");        
+        opt1.name = "sortby";        
+        opt1.value = sortby;
+        opt2 = document.createElement("textarea");        
+        opt2.name = "searchtext";        
+        opt2.value = "${requestScope.searchtext }";
+        tempform.appendChild(opt1);   
+        tempform.appendChild(opt2); 
+    	document.body.appendChild(tempform);  
+        tempform.submit();
 		break;
 	}
 }
