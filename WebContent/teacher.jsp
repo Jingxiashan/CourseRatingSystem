@@ -71,6 +71,7 @@ body {
 			</div>
 		</div>
 	</div>
+	
 	<div class="ui left aligned main text container">
 		<img src="images/jenny.jpg" style="width: 100px">
 		<h1 class="ui header">${requestScope.teacher.teachername }</h1>
@@ -121,60 +122,37 @@ body {
 		<h3 class="ui header">该老师所教授课程的评论</h3>
 		<div class="ui left aligned segment">
 			<div class="ui comments">
-				<form class="actions">
 					<!-- 在这里循环画对应课程的评论 循环<div comment>+<div hidden divider> -->
-					<c:forEach items="${requestScope.commentPage.commentList }"
-						var="comment">
-						<div class="comment">
-							<a class="avatar"> <img src="images/elliot.jpg">
-							</a>
-							<div class="content">
-								<a class="author"
-									href="user_getOthersProfile.action?userid=${comment.user.userid }">${comment.user.nickname }</a>
-								<div class="text">${comment.critics }</div>
-
-								<!-- 这里是 点赞评论的action-->
-								<%-- 									<form class="actions">
-										<div class="ui labeled button" tabindex="0">
-											<div class="ui red button">
-												<i class="heart icon"></i> 戳
-											</div>
-											<div class="ui basic red left pointing label">${comment.likeCount }</div>
-
-										</div>
-									</form> --%>
-								<form class="ui right aligned form">
-									<div class="three fields">
-										<div class="field"></div>
-										<div class="field"></div>
-										<div class="field">
-											<div class="right aligned segment" style="width: 60%">
-												<div class="ui labeled mini button" tabindex="0">
-													<div class="ui red mini button"
-														onclick="likeComment(${comment.commentid });window.event.returnValue = false;">
-														<i class="heart icon"></i> 戳
-													</div>
-													<div id="comment${comment.commentid }Count"
-														class="ui basic red left mini basic label">${comment.likeCount }</div>
-
-												</div>
-											</div>
-										</div>
-									</div>
-								</form>
+					<c:forEach items="${requestScope.commentList }" var="comment">
+					<div class="ui two column very relaxed grid">
+						<div class="eleven wide column">
+							<div class="comment">
+								<a class="avatar"> <img src="images/elliot.jpg"></a>
+								<div class="content">
+									<a class="author" href="user_getOthersProfile.action?userid=${comment.userid }">${request.user.nickname }</a>
+									<div class="text" style="margin-top:15px">${comment.critics }</div>
+									
+								</div>
+								<h5>评论时间：${comment.timestamp }</h5>
 							</div>
 						</div>
+						
+						<div class="five wide column" style="margin:0px">
+							<div class="ui right floated labeled mini button" tabindex="0">
+								<div class="ui red mini button" type="" onclick="likeComment(${comment.commentid });">
+									<i class="heart icon"></i> 戳
+								</div>
+								<div id="comment${comment.commentid }Count"
+									class="ui basic red left mini basic label">${comment.likeCount }
+								</div>
+							</div>
+						</div>
+					</div>	
+					<div class="ui divider"></div>
 					</c:forEach>
-				</form>
 			</div>
 		</div>
 
-
-
-
-
-
-	</div>
 	</div>
 
 

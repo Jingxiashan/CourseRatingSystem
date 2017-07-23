@@ -255,6 +255,21 @@ body {
 					</div>
 				</c:forEach>
 			</div>
+			<div>每页${requestScope.commentPage.pageSize}条记录 总共${requestScope.commentPage.totalPage}页
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				当前：第${requestScope.commentPage.currentPage} / ${requestScope.commentPage.totalPage}页
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				请选择：第
+				<c:forEach begin="1" end="${requestScope.commentPage.totalPage}" step="1" var="i">
+					<c:if test="${i==requestScope.commentPage.currentPage}">
+						【${i}】
+					</c:if>
+					<c:if test="${i!=requestScope.commentPage.currentPage}">
+						<a href="course_getPage?currentPage=${i}&courseid=${requestScope.course.courseid}">${i}</a>
+					</c:if>
+				</c:forEach>
+				页</div>
 		</div>
 	</div>
 
@@ -375,7 +390,7 @@ $(function(){
 				  .modal('show')
 				;
 			}
-		})
+		});
   }
   
   function likeComment(id){
@@ -386,8 +401,18 @@ $(function(){
 		success:function(data){
 			 $("#comment"+id+"Count").html(data.likeCount); 	
 		}		  
-	  })
+	  });
 }
 
+  function turnPage(page){
+	  $.ajax({
+		  type:'get',
+		  url:"${pageContext.request.contextPath}/TurnPage.action",
+		  data:{currentPage:page},
+		  success:function(data){
+			  
+		  }
+	  });
+  }
 </script>
 </html>
