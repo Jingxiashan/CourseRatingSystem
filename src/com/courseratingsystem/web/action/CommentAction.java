@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 public class CommentAction extends ActionSupport implements ModelDriven<Comment>{
 	private int currentPage=1;
-	private int pageSize=5;
+	private int pageSize=1;
 	String result;
 	private static final String GET_TO_COMMENT_PAGE = "get_to_comment_page";;
 	private static final String COMMENT_SUCCESS = "comment_success";
