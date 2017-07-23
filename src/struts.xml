@@ -14,19 +14,40 @@
     	</interceptors>
 		<action name="addFavourate" class="com.courseratingsystem.web.action.UserAction" method="addFavourate">
 			<result type="json" name="success"></result>
-	 	   <interceptor-ref name="loginInterceptor"></interceptor-ref>
+			<result name="loginNeeded">/login.jsp</result>
+	    	<interceptor-ref name="loginInterceptor"></interceptor-ref>
 	    	<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		<action name="deleteFavourate" class="com.courseratingsystem.web.action.UserAction" method="deleteFavourate">
 			<result type="json" name="success"></result>
-	 	   <interceptor-ref name="loginInterceptor"></interceptor-ref>
-	    	<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result type="json" name="fail"></result>
 		</action>
 		<action name="likeComment" class="com.courseratingsystem.web.action.CommentAction" method="like">
 			<result type="json" name="success"></result>
-	 	   <interceptor-ref name="loginInterceptor"></interceptor-ref>
-	    	<interceptor-ref name="defaultStack"></interceptor-ref>
+			<param name="excludeProperties">comment</param>
+			<param name="excludeProperties">commentService</param>
+			<param name="excludeProperties">courseService</param>
+			<param name="excludeProperties">teacherService</param>
+		</action>	
+		<action name="addComment" class="com.courseratingsystem.web.action.CommentAction" method="addComment">
+			<result type="json" name="success"></result>
 		</action>
+	    <action name="login" class="com.courseratingsystem.web.action.LoginAction">
+	    	<result type="json" name="success">
+				<param name="root">result</param>
+			</result>
+	    	<result type="json" name="fail">
+				<param name="root">result</param>
+	    	</result>
+	    </action>
+	    <action name="register_*" class="com.courseratingsystem.web.action.RegisterAction" method="{1}">
+	    	<result type="json" name="success">
+				<param name="root">result</param>
+			</result>
+	    	<result type="json" name="fail">
+				<param name="root">result</param>
+	    	</result>
+	    </action>
 	</package>
    
     <package name="default" namespace="/" extends="struts-default">
@@ -44,14 +65,6 @@
 	    <result name="success" type="redirectAction">book_search</result>
 	    </action>
 	    -->
-	    <action name="login" class="com.courseratingsystem.web.action.LoginAction">
-	    	<result name="success" type="redirectAction">course_findAll</result>
-	    	<result name="fail">/login.jsp</result>
-	    </action>
-	    <action name="register" class="com.courseratingsystem.web.action.RegisterAction">
-	    	<result name="success" type="redirect">/index.jsp</result>
-	    	<result name="fail">/register.jsp</result>
-	    </action>
 	    <action name="changePassword" class="com.courseratingsystem.web.action.ChangePasswordAction">
 	    	<result name="success" type="redirect">/index.jsp</result>
 	    	<result name="fail">/changePass.jsp</result>
@@ -60,7 +73,9 @@
 	    	<result name="success">/profile.jsp</result>
 	    	<result name="fail">/modifyProfile.jsp</result>
 	    </action>
-	    
+	    <action name="logout" class="com.courseratingsystem.web.action.LoginAction" method="logout">
+	    	<result name="success">/homepage.jsp</result>
+	    </action>
 	    <!-- 
 	    <action name="course_search" class="com.courseratingsystem.web.action.CourseAction" method="findByName">
 	    	<result name="SUCCESS">courseTest.jsp</result>
@@ -74,17 +89,13 @@
 	    </action>
 	    <action name="comment_*" class="com.courseratingsystem.web.action.CommentAction" method="{1}">
 	    	<result name="get_to_comment_page">/comment.jsp</result>
-	    	<result name="comment_success">/course.jsp</result>
-	    	<result name="fail">login.jsp</result>
+	    	<result name="fail">course_findAll.action</result>
+	    	<result name="loginNeeded">/login.jsp</result>
 	    	<interceptor-ref name="loginInterceptor"></interceptor-ref>
 	    	<interceptor-ref name="defaultStack"></interceptor-ref>
 	    </action>
 		<action name="comment_findByTeacher" class="com.courseratingsystem.web.action.CommentAction" method="findByTeacher">
 			<result name="success">xingtest3.jsp</result>
-			<result name="fail">error.jsp</result>
-		</action>	
-		<action name="addcomment" class="com.courseratingsystem.web.action.CommentAction" method="addComment">
-			<result name="success">add.jsp</result>
 			<result name="fail">error.jsp</result>
 		</action>
 		

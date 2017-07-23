@@ -164,46 +164,26 @@ body>.grid {
 
 
 
-		<div class="ui basic modal">
-			<div class="ui icon header">
-				<i class="archive icon"></i> Archive Old Messages
-			</div>
-			<div class="content">
-				<p>Y${requestScope.message}</p>
-			</div>
-			<div class="actions">
-				<div class="ui red basic cancel inverted button">
-					<i class="remove icon"></i> No
-				</div>
-				<div class="ui green ok inverted button">
-					<i class="checkmark icon"></i> Yes
-				</div>
-			</div>
-		</div>
-
-
-
-		<div class="ui container" style="margin-top: 10rem; width: 450px">
+				<div class="ui container" style="margin-top: 10rem; width: 450px">
 			<div class="column">
-				<form class="ui large form" id="loginForm"
-					action="login" method="post">
+				<form class="ui large form" id="loginForm" method="post">
 					<div class="ui stacked inverted segment">
 						<div class="field">
 							<div class="ui left icon inverted transparent input">
-								<i class="user icon"></i> <input type="text" name="username"
+								<i class="user icon"></i> <input type="text" name="username" id="username"
 									placeholder="用户名" style="color:#FFFFFF">
 							</div>
 						</div>
 						<div class="ui inverted divider"></div>
 						<div class="field">
 							<div class="ui left icon inverted transparent input">
-								<i class="lock icon"></i> <input type="password" name="password"
+								<i class="lock icon"></i> <input type="password" name="password" id="password"
 									placeholder="密码" style="color:#FFFFFF">
 							</div>
 						</div>
 					</div>
 					<h4 class="ui horizontal inverted divider">好久不见？</h4>
-					<button class="ui inverted basic button" type="submit">登录</button>
+					<button class="ui inverted basic button" type="button" onclick="login()">登录</button>
 				</form>
 					<div class="ui inverted message">
 						不如交个朋友，嗯？ <a href="register.jsp">注册</a>
@@ -211,6 +191,44 @@ body>.grid {
 			</div>
 		</div>
 	</div>
+	<div class="ui basic modal">
+		<div class="ui icon header" id="modalTitle">
+			<i class="remove icon"></i> 登陆失败
+		</div>
+		<div class="content">
+    		<p id="modalMessage"></p>
+  		</div>
+		<div class="actions">
+			<button class="ui green ok inverted button" type="button">
+				<i class="checkmark icon"></i> 确定
+			</button>
+		</div>
+	</div>
 </body>
-
+<script>
+function login(){
+	var username = document.getElementById('username').value;
+	var password = document.getElementById('password').value;
+	$.ajax({
+		type:'post',
+	 	url:"${pageContext.request.contextPath}/login.action",
+	 	data:{
+	 		"username":username,
+	 		"password":password
+	 		},
+		success:function(data){
+			var result = data;			console.log(result);
+			if(result == "success"){
+				window.location.href="course_findAll.action";
+			}else{
+				document.getElementById("modalMessage").innerHTML = result;
+				$('.ui.basic.modal')
+				  .modal('show')
+				;	
+			} 
+			
+		}
+	});
+}
+</script>
 </html>

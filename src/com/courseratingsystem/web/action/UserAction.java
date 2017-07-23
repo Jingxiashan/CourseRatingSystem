@@ -12,6 +12,7 @@ import com.courseratingsystem.web.domain.User;
 import com.courseratingsystem.web.service.CommentService;
 import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.service.UserService;
+import com.courseratingsystem.web.service.impl.CommentServiceImpl;
 import com.courseratingsystem.web.vo.CommentPage;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -71,18 +72,15 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String str_userid = ServletActionContext.getRequest().getParameter("userid");
 		if(str_userid != null) {
-			int userid = Integer.parseInt(ServletActionContext.getRequest().getParameter("userid"));
+			int userid = Integer.parseInt(str_userid);
 			//save user in request
 			User userToShow =	userService.findUserById(userid);
 			ServletActionContext.getRequest().setAttribute("user", userToShow);
-			/*
+
 			//get comments
-			CommentPage commentPage = commentService.findCommentByUserID(userToShow.getUserid(), currentPage, pageSize);
+			CommentPage commentPage = commentService.findCommentByUserID(userToShow.getUserid(), currentPage, pageSize, CommentServiceImpl.COMMENT_SORT_METHOD_BYLIKECOUNT);
 			ServletActionContext.getRequest().setAttribute("commentPage", commentPage);
-			*/
-			//get favorites
-			List<Course> favourateList = userService.findFavouratesById(userToShow.getUserid());
-			ServletActionContext.getRequest().setAttribute("favourateList", favourateList);
+
 			return SUCCESS;
 		}else return FAIL;		
 	}

@@ -8,11 +8,12 @@
             <column name="commentid" />
             <generator class="identity" />
         </id>
-        <timestamp name="timestamp" column="timestamp" />
-        <many-to-one name="teacher" class="com.courseratingsystem.web.domain.Teacher" fetch="select">
+         <property name="timestamp" update="false" insert="false" generated="always" type="timestamp" />
+<!--         <timestamp name="timestamp" column="timestamp"/> -->
+        <many-to-one name="teacher" class="com.courseratingsystem.web.domain.Teacher" fetch="select" lazy="false">
             <column name="teacherid" not-null="true" />
         </many-to-one>
-        <many-to-one name="course" class="com.courseratingsystem.web.domain.Course" fetch="select">
+        <many-to-one name="course" class="com.courseratingsystem.web.domain.Course" fetch="select" lazy="false">
             <column name="courseid" not-null="true" />
         </many-to-one>
         <many-to-one name="user" class="com.courseratingsystem.web.domain.User" fetch="select" lazy="false">

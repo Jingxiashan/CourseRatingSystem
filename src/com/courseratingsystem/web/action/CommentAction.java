@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.courseratingsystem.web.domain.Comment;
 import com.courseratingsystem.web.domain.Course;
 import com.courseratingsystem.web.object.CourseOverview;
@@ -134,7 +136,9 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 		String str_commentid = ServletActionContext.getRequest().getParameter("commentid");
 		if(str_commentid != null) {
 			int commentid = Integer.parseInt(str_commentid);
-			commentService.addLikeCount(commentid);
+			int likeCount = commentService.addLikeCount(commentid);
+			result = Integer.toString(likeCount);
+			comment.setLikeCount(likeCount);
 			return SUCCESS;
 		}
 		return FAIL;
@@ -142,7 +146,7 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 	
 	public String addComment(){
 		commentService.add(comment);
-		return COMMENT_SUCCESS;
+		return SUCCESS;
 	}	
 
 	@Override
