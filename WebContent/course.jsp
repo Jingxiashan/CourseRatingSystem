@@ -350,6 +350,11 @@ $(function(){
 		  })
 	});
   function addFavourate(){
+	  var user = "${sessionScope.user }";
+	  if(user.length == 0){
+		  window.location.href="login.jsp";
+		  return;
+	  }
 	$.ajax({
 		type:'get',
 		url:'${pageContext.request.contextPath}/addFavourate.action',
@@ -363,7 +368,7 @@ $(function(){
 			  .modal('show')
 			;
 		}
-	})
+	});
   }
   
   function deleteFavourate(){
