@@ -21,30 +21,13 @@ import com.courseratingsystem.web.vo.CoursePage;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-//class SearchInfo{
-//	String searchtext;
-//	String searchtype;
-//	public String getSearchtext() {
-//		return searchtext;
-//	}
-//	public void setSearchtext(String searchtext) {
-//		this.searchtext = searchtext;
-//	}
-//	public String getSearchtype() {
-//		return searchtype;
-//	}
-//	public void setSearchtype(String searchtype) {
-//		this.searchtype = searchtype;
-//	}
-//}
 public class CourseAction extends ActionSupport{
-//	private SearchInfo searchinfo= new SearchInfo();
 	private static final String SUCCESS = "success";
 	private static final String FAIL = "fail";
 	private static final String GET_TO_COURSE_PAGE = "get_to_course_page";
 	private int currentPage = 1;
 	private int pageSize = 20;
-	private String sortby="recommendationScore";
+	private String sortby=CourseServiceImpl.COURSE_SORT_METHOD_BY_RECO;
 	public String getSortby() {
 		return sortby;
 	}
@@ -106,7 +89,8 @@ public class CourseAction extends ActionSupport{
 			tmpCourse.setTeacherList(teacherService.findTeachersByCourseID(tmpCourse.getCourseid()));
 		}
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
-			ServletActionContext.getRequest().setAttribute("seachtext", "搜索课程名："+searchtext);
+			ServletActionContext.getRequest().setAttribute("searchtext", searchtext);
+			ServletActionContext.getRequest().setAttribute("searchtype", 1);
 			return SUCCESS;
 	}
 	public String findByTeacher(){
@@ -115,7 +99,8 @@ public class CourseAction extends ActionSupport{
 			tmpCourse.setTeacherList(teacherService.findTeachersByCourseID(tmpCourse.getCourseid()));
 		}
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
-			ServletActionContext.getRequest().setAttribute("seachtext", "搜索教师："+searchtext);
+			ServletActionContext.getRequest().setAttribute("searchtext", searchtext);
+			ServletActionContext.getRequest().setAttribute("searchtype", 2);
 			return SUCCESS;
 	}
 	public String findAll(){
@@ -125,7 +110,7 @@ public class CourseAction extends ActionSupport{
 		}
 		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
-			ServletActionContext.getRequest().setAttribute("seachtext", "全部课程");
+			ServletActionContext.getRequest().setAttribute("searchtype", 0);
 			return SUCCESS;
 		}
 		else{
