@@ -48,7 +48,7 @@ body {
 			<a href="homepage.jsp" class="header item">
 				<img class="logo" src="images/testPic.jpg"> 大众点评课
 			</a>
-			<a href="course_findAll.action" class="item">全部课程</a>
+			<a href="course_findAll.action" class="item active">全部课程</a>
 			<div class="ui simple dropdown item">
 				课程搜索 <i class="dropdown icon"></i>
 				<div class="menu">
@@ -69,9 +69,6 @@ body {
 				</c:if>
 			</div>
 		</div>
-         <%-- <div style="margin-right:50px;margin-top:5px">
-			<a href="user.jsp" class="item">${sessionScope.user.nickname}</a>
-          </div> --%>
 	</div>
 
 	<div class="ui main text container">

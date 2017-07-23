@@ -234,6 +234,7 @@ function checkUsername(){
 			}else{
 				usernameHint.innerHTML="<i class='remove icon'></i>"+resultData.message;
 				registerButton.className="ui inverted basic disabled button";
+				$('#usernameHint').transition('tada');
 			} 
 		}
 	});
@@ -250,7 +251,8 @@ function checkPassword(){
 	if(password1 == password2){
 		if(password1.length < 6){
 			passwordHint.innerHTML="<i class='remove icon'></i>密码太短啦！！！这么不安全的密码都不敢给你存！";
-			registerButton.className="ui inverted basic disabled button";		
+			registerButton.className="ui inverted basic disabled button";
+			$('#passwordHint').transition('tada');
 		}else{
 			passwordHint.innerHTML="<i class='checkmark icon'></i>哇密码通过啦！";
 			registerButton.className="ui inverted basic button";			
@@ -258,6 +260,7 @@ function checkPassword(){
 	}else{
 		passwordHint.innerHTML="<i class='remove icon'></i>手残嘛！两次密码都输得不一样！";
 		registerButton.className="ui inverted basic disabled button";
+		$('#passwordHint').transition('tada');
 		
 	}
 }
