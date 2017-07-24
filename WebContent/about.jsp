@@ -11,7 +11,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<link rel="stylesheet prefech" href="css/semantic.css">
+<link rel="stylesheet prefech"
+	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
@@ -68,70 +69,70 @@ body {
 	</div>
 
 	<div class="ui container" style="text-align:center">
-		<div class="ui special doubling four cards"
-			style="width: 70%; width:800px;text-align:center;;margin:auto">
-			<div class="ui card" style="width: 150px;margin:auto">
+		<div class="ui special doubling two cards"
+			style="width: 80%; width:1000px;text-align:center;;margin:auto">
+			<div class="ui card" style="width: 230px;margin:auto">
 				<div class="ui slide masked reveal image">
 					<img src="images/here.jpg" class="visible content"> <img
 						src="images/backend.jpg" class="hidden content">
 				</div>
 				<div class="content">
-					<a class="header">黄嘉星</a>
+					<div class="header">黄嘉星</div>
 					<div class="meta">
-						<span class="date">Create in Sep 2014</span>
+						<span class="date"></span>
 					</div>
 				</div>
 				<div class="extra content">
-					<a> <i class="users icon"></i> 2 Members
-					</a>
+					<i class="github alternate icon"></i><br>
+					<a href="https://github.com/killer6">https://github.com/killer6</a>
 				</div>
 			</div>
-			<div class="ui card" style="width: 150px;margin:auto">
+			<div class="ui card" style="width: 230px;margin:auto">
 				<div class="ui slide masked reveal image">
 					<img src="images/pretty.jpg" class="visible content"> <img
 						src="images/backend.jpg" class="hidden content">
 				</div>
 				<div class="content">
-					<a class="header">张彦泽</a>
+					<div class="header">张彦泽</div>
 					<div class="meta">
-						<span class="date">Create in Sep 2014</span>
+						<span class="date"></span>
 					</div>
 				</div>
 				<div class="extra content">
-					<a> <i class="users icon"></i> 2 Members
-					</a>
+					<i class="github alternate icon"></i><br>
+					<a href="https://github.com/Lancelot-97">https://github.com/Lancelot-97</a>
 				</div>
 			</div>
-			<div class="ui card" style="width: 150px;margin:auto">
+						<div class="ui card" style="width: 230px;margin:auto">
 				<div class="ui slide masked reveal image">
 					<img src="images/love.jpg" class="visible content"> <img
-						src="images/backend.jpg" class="hidden content">
-				</div>
-				<div class="content">
-					<a class="header">孔啸</a>
-					<div class="meta">
-						<span class="date">Create in Sep 2014</span>
-					</div>
-				</div>
-				<div class="extra content">
-					<a> <i class="users icon"></i> 2 Members
-					</a>
-				</div>
-			</div>
-			<div class="ui card" style="width: 150px;margin:auto">
-				<div class="ui slide masked reveal image">
-					<img src="images/boom.jpg" class="visible content"> <img
 						src="images/frontend.jpg" class="hidden content">
 				</div>
 				<div class="content">
-					<a class="header">鲁迪</a>
+					<div class="header">鲁迪</div>
 					<div class="meta">
-						<span class="date">Create in Sep 2014</span>
+						<span class="date"></span>
 					</div>
 				</div>
 				<div class="extra content">
-					<a> <i class="users icon"></i> 2 Members
-					</a>
+					<i class="github alternate icon"></i>
+					<a href="https://github.com/Jingxiashan">https://github.com/Jingxiashan</a>
+				</div>
+			</div>
+			<div class="ui card" style="width: 230px;margin:auto">
+				<div class="ui slide masked reveal image">
+					<img src="images/boom.jpg" class="visible content"> <img
+						src="images/bandf.jpg" class="hidden content">
+				</div>
+				<div class="content">
+					<div class="header">孔啸</div>
+					<div class="meta">
+						<span class="date"></span>
+					</div>
+				</div>
+				<div class="extra content">
+					 <i class="github alternate icon"></i>
+					 <a href="https://github.com/kongxiao0532">https://github.com/kongxiao0532</a>
 				</div>
 			</div>
 		</div>
@@ -149,9 +150,11 @@ body {
 							class="item">联系我们 </a>
 					</div>
 				</div>
-				<div class="seven wide column">
+				<div class="ten wide column">
 					<h4 class="ui inverted header">大众点评课</h4>
 					<p>只做给你看的选课攻略。</p>
+					<i class="github icon"></i>
+					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
 				</div>
 			</div>
 			<div class="ui inverted section divider"></div>
