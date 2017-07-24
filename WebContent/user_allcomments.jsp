@@ -88,6 +88,7 @@ body {
 
 <div class="ui two column grid">
 
+
 	<div class="three wide column">
 		<div class="ui vertical inverted sticky menu" style="position:fixed!important;top:0">
 			<div class="item" style="width: 80px">
@@ -98,6 +99,13 @@ body {
 			</div>
 			<br>
 			<div class="item">
+				<div class="header">个人中心</div>
+				<div class="menu">
+					<a class="item" href="user.jsp">个人中心 </a>
+					<a href="logout.action" class="item">注销</a>
+				</div>
+			</div>
+			<div class="item">
 				<div class="header">课程管理</div>
 				<div class="menu">
 					<a class="item" href="user_allfavourites.jsp">课程收藏管理 </a>
@@ -105,21 +113,18 @@ body {
 			</div>
 			<div class="item">
 				<div class="header">评论管理</div>
-				<div class="menu">
-					<a class="item" href="user_allcomments.jsp">发表评论管理</a>
-				</div>
+				<div class="menu"><a class="item" href="user_allcomments.jsp">发表评论管理</a></div>
 			</div>
 			<div class="item">
 				<div class="header">个人信息管理</div>
 				<div class="menu">
-					<a class="item" href="modifyProfile.jsp"> 修改个人信息 </a> <a
-						class="item" href="changePass.jsp"> 修改个人密码 </a>
+					<a class="item" href="modifyProfile.jsp"> 修改个人信息 </a> 
+					<a class="item" href="changePass.jsp"> 修改个人密码 </a>
 				</div>
 			</div>
 			<div class="item" style="height: 750px">
-				<div class="header">其他</div>
+				<div class="header"><i class="left arrow icon"></i></div>
 				<div class="menu">
-					<a class="item" href="user.jsp" class="item">个人中心</a>
 					<a href="course_findAll.action" class="item">课程详情</a>					
 					<a class="item" href="courseSearchByCname.jsp">课程查询</a>
 					<a class="item" href="homepage.jsp">网站介绍</a> 
