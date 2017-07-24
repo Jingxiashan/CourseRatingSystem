@@ -78,6 +78,10 @@
 	    <result name="success" type="redirectAction">book_search</result>
 	    </action>
 	    -->
+	    <action name="photoUpload" class="com.courseratingsystem.web.action.UploadAction">
+	    	<result name="success">/homepage.jsp</result>
+	    	<result name="fail">/error.jsp</result>
+	    </action>
 	    <action name="changePassword" class="com.courseratingsystem.web.action.ChangePasswordAction">
 	    	<result name="success" type="redirect">/index.jsp</result>
 	    	<result name="fail">/changePass.jsp</result>
