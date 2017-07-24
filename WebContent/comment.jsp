@@ -170,7 +170,7 @@ body {
 					<div class="field">
 						<div class="ui card">
 							<div class="content">
-								<div class="header">点名多否？</div>
+								<div class="header">点名少否？</div>
 							</div>
 							<div class="content" style="height: 150px">
 								<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的点名情况，节节必点、每月点名、点名看老师心情、一学期点名2-3次、几乎不点名；点名频率低，请给多星。</h4>
