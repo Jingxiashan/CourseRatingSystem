@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <title>课程列表-我的课</title>
@@ -204,10 +205,14 @@ body {
 					    <div class="content">
 					      <a class="header" href="course_getPage.action?courseid=${course.courseid }" style="margin-top:10px">${course.coursename }</a>
 							<span class="date" style="color: rgba(0, 0, 0, 0.4);font-size: 0.875em;">
-								有用${course.averageRatingsUsefulness } 有趣${course.averageRatingsVividness } 占时${course.averageRatingsSpareTimeOccupation } 给分${course.averageRatingsScoring } 点名${course.averageRatingsRollCall }
+								有用<fmt:formatNumber type="number" value="${course.averageRatingsUsefulness }" pattern="0.0" maxFractionDigits="1"/> 
+								有趣<fmt:formatNumber type="number" value="${course.averageRatingsVividness }" pattern="0.0" maxFractionDigits="1"/> 
+								占时<fmt:formatNumber type="number" value="${course.averageRatingsSpareTimeOccupation }" pattern="0.0" maxFractionDigits="1"/> 
+								给分<fmt:formatNumber type="number" value="${course.averageRatingsScoring }" pattern="0.0" maxFractionDigits="1"/> 
+								点名<fmt:formatNumber type="number" value="${course.averageRatingsRollCall }" pattern="0.0" maxFractionDigits="1"/>
 								</span>
 					      <div class="meta">
-					        <span class="cinema"><div class="ui mini star rating" data-rating="${course.recommendationScore }" data-max-rating="5" style="margin-top:10px"></div></span>
+					        <span class="cinema"><div class="ui mini star rating" data-rating="${((course.recommendationScore % 1) > 0.5) ? (course.recommendationScore + 1 - (course.recommendationScore % 1)) : (course.recommendationScore - (course.recommendationScore % 1)) }" data-max-rating="5" style="margin-top:10px"></div></span>
 					      </div>
 					      <div class="description">
 					        <p></p>

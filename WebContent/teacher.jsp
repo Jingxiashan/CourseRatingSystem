@@ -99,11 +99,7 @@ body {
 										<div class="header">${course.coursename }</div>
 										<br>
 										<div class="meta">推荐指数</div>
-										<div class="ui star rating">
-											<c:forEach begin="0" end="${course.recommendationScore-1 }">
-												<i class="icon active"></i>
-											</c:forEach>
-										</div>
+										<div class="ui star rating" data-rating="${((course.recommendationScore % 1) > 0.5) ? (course.recommendationScore + 1 - (course.recommendationScore % 1)) : (course.recommendationScore - (course.recommendationScore % 1)) }" data-max-rating="5"></div>
 									</div>
 
 
@@ -198,7 +194,7 @@ body {
 	$('.special.cards .image').dimmer({
 		on : 'hover'
 	});
-	$('.ui.star .rating').rating('disable');
+	$('.ui .rating').rating('disable');
 	
 	
 	 function likeComment(id){

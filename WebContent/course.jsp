@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +16,6 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet prefech"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
-
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="js/radar_jquery.js"></script>
@@ -107,7 +107,8 @@ body {
 								<div class="statistic">
 									<div class="value">
 										<i class="thumbs up icon"></i>
-										${requestScope.course.recommendationScore}/5
+										<fmt:formatNumber type="number" value="${requestScope.course.recommendationScore}" pattern="0.0" maxFractionDigits="1"/>
+										
 									</div>
 									<div class="label">推荐指数</div>
 								</div>
@@ -160,9 +161,10 @@ body {
 							<h4 class="ui sub header">从老师讲授知识层面来讲，内容对自己有益程度；内容有益，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating"
-								data-rating="${requestScope.course.averageRatingsUsefulness }"
-								data-max-rating="5"></div>
+							 <div class="ui star rating"
+								data-rating="
+								${((course.averageRatingsUsefulness % 1) > 0.5) ? (course.averageRatingsUsefulness + 1 - (course.averageRatingsUsefulness % 1)) : (course.averageRatingsUsefulness - (course.averageRatingsUsefulness % 1)) }"
+								data-max-rating="5"></div> 
 						</div>
 					</div>
 
@@ -177,8 +179,9 @@ body {
 						</div>
 						<div class="extra content">
 							<div class="ui star rating"
-								data-rating="${requestScope.course.averageRatingsVividness }"
-								data-max-rating="5"></div>
+								data-rating="
+								${((course.averageRatingsVividness % 1) > 0.5) ? (course.averageRatingsVividness + 1 - (course.averageRatingsVividness % 1)) : (course.averageRatingsVividness - (course.averageRatingsVividness % 1)) }"
+								data-max-rating="5"></div> 
 						</div>
 					</div>
 				</div>
@@ -191,9 +194,10 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较，完成课后作业、课后展示及大小考试所花费时间；占用课余时间少，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating"
-								data-rating="${requestScope.course.averageRatingsSpareTimeOccupation }"
-								data-max-rating="5"></div>
+							 <div class="ui star rating"
+								data-rating="
+								${((course.averageRatingsSpareTimeOccupation % 1) > 0.5) ? (course.averageRatingsSpareTimeOccupation + 1 - (course.averageRatingsSpareTimeOccupation % 1)) : (course.averageRatingsSpareTimeOccupation - (course.averageRatingsSpareTimeOccupation % 1)) }"
+								data-max-rating="5"></div> 
 						</div>
 					</div>
 				</div>
@@ -206,9 +210,10 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的期末分情况；期末给分高，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating"
-								data-rating="${requestScope.course.averageRatingsScoring }"
-								data-max-rating="5"></div>
+							 <div class="ui star rating"
+								data-rating="
+								${((course.averageRatingsScoring % 1) > 0.5) ? (course.averageRatingsScoring + 1 - (course.averageRatingsScoring % 1)) : (course.averageRatingsScoring - (course.averageRatingsScoring % 1)) }"
+								data-max-rating="5"></div> 
 						</div>
 					</div>
 				</div>
@@ -221,8 +226,9 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的点名情况比较；点名频率低，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating"
-								data-rating="${requestScope.course.averageRatingsRollCall }"
+							 <div class="ui star rating"
+								data-rating="
+								${((course.averageRatingsRollCall % 1) > 0.5) ? (course.averageRatingsRollCall + 1 - (course.averageRatingsRollCall % 1)) : (course.averageRatingsRollCall - (course.averageRatingsRollCall % 1)) }"
 								data-max-rating="5"></div>
 						</div>
 					</div>

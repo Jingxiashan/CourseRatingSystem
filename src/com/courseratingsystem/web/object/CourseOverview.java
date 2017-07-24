@@ -3,13 +3,13 @@ package com.courseratingsystem.web.object;
 public class CourseOverview {
 	private Integer courseid;
 	private String coursename;
-	private Integer averageRatingsUsefulness;
-	private Integer averageRatingsVividness;
-	private Integer averageRatingsSpareTimeOccupation;
-	private Integer averageRatingsScoring;
-	private Integer averageRatingsRollCall;
+	private Float averageRatingsUsefulness;
+	private Float averageRatingsVividness;
+	private Float averageRatingsSpareTimeOccupation;
+	private Float averageRatingsScoring;
+	private Float averageRatingsRollCall;
 	private Integer peopleCount;
-	private Integer recommendationScore;
+	private Float recommendationScore;
 	private Integer finalType;
 	public CourseOverview(){};
 	public CourseOverview(CourseOverview tmpCourse) {
@@ -26,11 +26,11 @@ public class CourseOverview {
 		this.finalType = tmpCourse.finalType;
 		}
 	public CourseOverview(Integer courseid, String coursename,
-			Integer averageRatingsUsefulness,
-			Integer averageRatingsVividness,
-			Integer averageRatingsSpareTimeOccupation,
-			Integer averageRatingsScoring, Integer averageRatingsRollCall,
-			Integer peopleCount, Integer recommendationScore, Integer finalType) {
+			Float averageRatingsUsefulness,
+			Float averageRatingsVividness,
+			Float averageRatingsSpareTimeOccupation,
+			Float averageRatingsScoring, Float averageRatingsRollCall,
+			Integer peopleCount, Float recommendationScore, Integer finalType) {
 		super();
 		this.courseid = courseid;
 		this.coursename = coursename;
@@ -55,35 +55,35 @@ public class CourseOverview {
 	public void setCoursename(String coursename) {
 		this.coursename = coursename;
 	}
-	public Integer getAverageRatingsUsefulness() {
+	public Float getAverageRatingsUsefulness() {
 		return averageRatingsUsefulness;
 	}
-	public void setAverageRatingsUsefulness(Integer averageRatingsUsefulness) {
+	public void setAverageRatingsUsefulness(Float averageRatingsUsefulness) {
 		this.averageRatingsUsefulness = averageRatingsUsefulness;
 	}
-	public Integer getAverageRatingsVividness() {
+	public Float getAverageRatingsVividness() {
 		return averageRatingsVividness;
 	}
-	public void setAverageRatingsVividness(Integer averageRatingsVividness) {
+	public void setAverageRatingsVividness(Float averageRatingsVividness) {
 		this.averageRatingsVividness = averageRatingsVividness;
 	}
-	public Integer getAverageRatingsSpareTimeOccupation() {
+	public Float getAverageRatingsSpareTimeOccupation() {
 		return averageRatingsSpareTimeOccupation;
 	}
 	public void setAverageRatingsSpareTimeOccupation(
-			Integer averageRatingsSpareTimeOccupation) {
+			Float averageRatingsSpareTimeOccupation) {
 		this.averageRatingsSpareTimeOccupation = averageRatingsSpareTimeOccupation;
 	}
-	public Integer getAverageRatingsScoring() {
+	public Float getAverageRatingsScoring() {
 		return averageRatingsScoring;
 	}
-	public void setAverageRatingsScoring(Integer averageRatingsScoring) {
+	public void setAverageRatingsScoring(Float averageRatingsScoring) {
 		this.averageRatingsScoring = averageRatingsScoring;
 	}
-	public Integer getAverageRatingsRollCall() {
+	public Float getAverageRatingsRollCall() {
 		return averageRatingsRollCall;
 	}
-	public void setAverageRatingsRollCall(Integer averageRatingsRollCall) {
+	public void setAverageRatingsRollCall(Float averageRatingsRollCall) {
 		this.averageRatingsRollCall = averageRatingsRollCall;
 	}
 	public Integer getPeopleCount() {
@@ -92,10 +92,10 @@ public class CourseOverview {
 	public void setPeopleCount(Integer peopleCount) {
 		this.peopleCount = peopleCount;
 	}
-	public Integer getRecommendationScore() {
+	public Float getRecommendationScore() {
 		return recommendationScore;
 	}
-	public void setRecommendationScore(Integer recommendationScore) {
+	public void setRecommendationScore(Float recommendationScore) {
 		this.recommendationScore = recommendationScore;
 	}
 	public Integer getFinalType() {

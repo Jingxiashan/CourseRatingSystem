@@ -19,22 +19,22 @@
         <many-to-one name="user" class="com.courseratingsystem.web.domain.User" fetch="select" lazy="false">
             <column name="userid" not-null="true" />
         </many-to-one>
-        <property name="ratingUsefulness" type="java.lang.Integer">
+        <property name="ratingUsefulness" type="java.lang.Float">
             <column name="rating_usefulness" />
         </property>
-        <property name="ratingVividness" type="java.lang.Integer">
+        <property name="ratingVividness" type="java.lang.Float">
             <column name="rating_vividness" />
         </property>
-        <property name="ratingSpareTimeOccupation" type="java.lang.Integer">
+        <property name="ratingSpareTimeOccupation" type="java.lang.Float">
             <column name="rating_spareTimeOccupation" />
         </property>
-        <property name="ratingScoring" type="java.lang.Integer">
+        <property name="ratingScoring" type="java.lang.Float">
             <column name="rating_scoring" />
         </property>
-        <property name="ratingRollCall" type="java.lang.Integer">
+        <property name="ratingRollCall" type="java.lang.Float">
             <column name="rating_rollCall" />
         </property>
-        <property name="recommandScore" type="java.lang.Integer">
+        <property name="recommandScore" type="java.lang.Float">
             <column name="recommandScore" />
         </property>
         <property name="critics" type="string">

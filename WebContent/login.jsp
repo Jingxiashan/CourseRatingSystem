@@ -112,10 +112,6 @@
 }
 </style>
 
-<script src="assets/library/jquery.min.js"></script>
-<script src="../dist/components/visibility.js"></script>
-<script src="../dist/components/sidebar.js"></script>
-<script src="../dist/components/transition.js"></script>
 <script>
 	$(document).ready(function() {
 
@@ -220,7 +216,10 @@ function login(){
 		success:function(data){
 			var result = data;			console.log(result);
 			if(result == "success"){
-				window.location.href="course_findAll.action";
+				//console.log(document.referrer);
+				window.location.href=((document.referrer.length == 0 || document.referrer.indexOf("login") != -1) 
+						? "course_findAll.action" : 
+							document.referrer);
 			}else{
 				document.getElementById("modalMessage").innerHTML = result;
 				$('.ui.basic.modal')
