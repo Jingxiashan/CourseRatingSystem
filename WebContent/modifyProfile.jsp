@@ -6,6 +6,9 @@
 <!-- Standard Meta -->
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet prefech"
@@ -77,7 +80,7 @@ body {
 }
 </style>
 
-<title>修改个人信息 - 大众点评课</title>
+<title>修改个人信息 - 我的课</title>
 </head>
 
 <body id="example">
@@ -130,35 +133,26 @@ body {
 		<div class="ui container" style="background:#FFFFFF;padding-left:50px;width:auto">
 			<div class="article">
 			
-				<div class="ui masthead vertical segment" style="width: 80%">
-					<div class="ui container">
-						<div class="introduction">
-							<h1 class="ui header">${sessionScope.user.nickname}</h1>
-							<div class="sub header">${sessionScope.user.introduction}</div>
-							<div class="ui hidden divider"></div>
-						</div>
-					</div>
-				</div>
-
-				<div class="ui dividing header" style="width: 80%">
+			
+				<div class="ui dividing header" style="width: 80%;margin-top:80px">
 					<h2>修改个人信息</h2>
 				</div>
 			
-				${requestScope.message }
+
 				<div class="ui container">
-					<form class="ui form" action="" method="post" style="width: 80%">
-						<div class="ui segment">
+					<form class="ui form" style="width: 80%">
+						<div class="ui basic segment">
 							<div class="field">
-								<label>昵称</label> <input type="text" name="nickname"
+								<label>昵称</label> <input type="text" name="nickname" id="nickname"
 									value="${sessionScope.user.nickname }" placeholder="请设置昵称" />
 							</div>
 							<div class="field">
-								<label>微信账号</label> <input type="text" name="wechatAccount"
+								<label>微信账号</label> <input type="text" name="wechatAccount" id="wechatAccount"
 									value="${sessionScope.user.wechatAccount }"
 									placeholder="请填写您的微信账号" />
 							</div>
 							<div class="field">
-								<label>年级</label> <select class="ui search dropdown" name="grade">
+								<label>年级</label> <select class="ui search dropdown" id="gradeSelect" name="grade">
 									<option value="">请选择年级</option>
 									<option value="2010">2010级</option>
 									<option value="2011">2011级</option>
@@ -173,11 +167,11 @@ body {
 							</div>
 							<div class="field">
 								<label>简介</label> 
-								<textarea type="text" name="introduction"
+								<textarea type="text" name="introduction" id="introduction"
 									placeholder="请填写关于您的简介" >${sessionScope.user.introduction }</textarea>
 							</div>
 						</div>
-						<button class="ui primary button" type="submit">修改信息</button>
+						<button class="ui black basic right floated button" type="button" onclick="modifyProfile()">修改信息</button>
 					</form>
 				</div>
 									
@@ -187,7 +181,77 @@ body {
 
 </div>
 
+<div class="ui basic modal">
+		<div class="ui icon header" id="modalTitle">
+			<i class="remove icon" id="modalIcon"></i> 修改失败
+		</div>
+		<div class="content">
+    		<p id="modalMessage"></p>
+  		</div>
+		<div class="actions">
+			<button class="ui green ok inverted button" type="button" id="modalButton">
+				<i class="checkmark icon"></i> 确定
+			</button>
+		</div>
+	</div>
 </body>
+<script>
+$("#gradeSelect").dropdown('set selected',${sessionScope.user.grade });
+function modifyProfile(){
+	var nickname = document.getElementById("nickname");
+	var wechatAccount = document.getElementById("wechatAccount");
+	var gradeSelect = document.getElementById("gradeSelect");
+	var introduction = document.getElementById("introduction");
+	
+	if(nickname.length == 0){
+		modalMessage.innerHTML = "昵称不能为空啊！";
+		modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 修改失败"
+		modalButton.removeAttribute("onclick");
+		$('.ui.basic.modal')
+		  .modal('show')
+		;
+		return;
+	}
+	if(wechatAccount.length == 0){
+		modalMessage.innerHTML = "微信账号不能为空啊！";
+		modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 修改失败"
+		modalButton.removeAttribute("onclick");
+		$('.ui.basic.modal')
+		  .modal('show')
+		;
+		return;
+	}
+	var password = password1;
+	$.ajax({
+		type:'post',
+	 	url:"${pageContext.request.contextPath}/user_modifyProfile.action",
+	 	data:{
+	 		"userid":${sessionScope.user.userid },
+	 		"nickname":nickname,
+	 		"wechatAccount":wechatAccount,
+	 		"gradeSelect":gradeSelect,
+	 		"introduction":introduction
+	 		},
+		success:function(data){
+			if(data == "success"){
+				modalTitle.innerHTML = "<i class='checkmark icon' id='modalIcon'></i> 修改密码成功"
+				modalMessage.innerHTML = "密码修改成功！";
+				modalButton.setAttribute("onclick","window.location.href='user.jsp'");
+				$('.ui.basic.modal')
+				  .modal('show')
+				;
+			}else{
+				modalMessage.innerHTML = data;
+				modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 修改密码失败"
+					modalButton.removeAttribute("onclick");
+				$('.ui.basic.modal')
+				  .modal('show')
+				;
+			}
+		}
+	});
+}
+</script>
 </html>
 
 

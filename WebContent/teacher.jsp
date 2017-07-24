@@ -4,11 +4,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<title>${requestScope.teacher.teachername }-大众点评课</title>
+<title>${requestScope.teacher.teachername }-我的课</title>
 <head>
 <!-- Standard Meta -->
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet prefech"
@@ -46,8 +49,8 @@ body {
 <body>
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
-			<a href="homepage.jsp" class="header item"> <img class="logo"
-				src="images/testPic.jpg"> 大众点评课
+			<a href="homepage.jsp" class="header item">
+				<img class="logo" src="images/logos/logo_menu.png" style="width:105px;margin-right:0px"> 
 			</a> <a onClick="javascript :history.back(-1);" class="item">返回</a> <a
 				href="course_findAll.action" class="item">课程列表</a>
 			<div class="ui simple dropdown item">
@@ -121,7 +124,7 @@ body {
 		</div>
 		<h4 class="ui dividing header">嗯，老司机们这样说。</h4>
 		<div class="ui raised aligned segment">
-			<div id="commentlist" class="ui comments">
+			<div id="commentlist" class="ui comments" style="margin-bottom:0">
 				<c:forEach items="${requestScope.commentPage.commentList }" var="comment">
 					<div class="ui two column grid">
 						<div class="eleven wide column">
@@ -132,7 +135,7 @@ body {
 									<div class="metadata">
 								        <span class="date">${comment.timestamp }</span>
 								    </div>
-								    <div class="author" style="margin-top:15px">评价课程：${comment.course.coursename }</div>
+								    <div class="author" style="margin-top:5px">评价课程：${comment.course.coursename }</div>
 									<div class="text" style="margin-top:10px">${comment.critics }</div>
 								</div>
 							</div>
@@ -147,24 +150,20 @@ body {
 							</div>
 						</div>
 					</div>	
-					<div class="ui divider"></div>
 					</c:forEach>
 			</div>
-			<div id="pageturner">每页${requestScope.commentPage.pageSize}条记录 总共${requestScope.commentPage.totalPage}页
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				当前：第${requestScope.commentPage.currentPage} / ${requestScope.commentPage.totalPage}页
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				请选择：第
-				<c:forEach begin="1" end="${requestScope.commentPage.totalPage}" step="1" var="i">
-					<c:if test="${i==requestScope.commentPage.currentPage}">
-						【${i}】
-					</c:if>
-					<c:if test="${i!=requestScope.commentPage.currentPage}">
-						<button onclick="turnPage(${i},${requestScope.teacher.teacherid});">${i}</button>
-					</c:if>
-				</c:forEach>
-				页</div>
+			<div class="ui basic segment" style="margin-top:0;margin-bottom:20px">
+				<div id="pageturner" class="ui right floated mini pagination menu">
+					<c:forEach begin="1" end="${requestScope.commentPage.totalPage}" step="1" var="i">
+						<c:if test="${i==requestScope.commentPage.currentPage}">
+							<a class="disabled item">${i }</a>
+						</c:if>
+						<c:if test="${i!=requestScope.commentPage.currentPage}">
+							<a class="item" onclick="turnPage(${i},${requestScope.teacher.teacherid});">${i }</a>
+						</c:if>
+					</c:forEach>
+				</div>
+			</div>
 		</div>
 
 	</div>
@@ -184,7 +183,7 @@ body {
 					</div>
 				</div>
 				<div class="ten wide column">
-					<h4 class="ui inverted header">大众点评课</h4>
+					<h4 class="ui inverted header">我的课</h4>
 					<p>只做给你看的选课攻略。</p>
 					<i class="github icon"></i>
 					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
@@ -263,21 +262,15 @@ body {
 				    commentlist.innerHTML=html;
 				    var pageturner=document.getElementById("pageturner");
 				    var cpage = returnData[0].currentPage;
-				    var html2="每页${requestScope.commentPage.pageSize}条记录 总共${requestScope.commentPage.totalPage}页"+
-						"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-						"当前：第"+cpage+"/ ${requestScope.commentPage.totalPage}页"+
-						"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-						"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-						"请选择：第";
+				    var html2="";
 					for(var i = 1;i<=${requestScope.commentPage.totalPage};i++){
 						if(i==cpage){
-							html2=html2+"【"+i+"】";
+							html2=html2+"<a class='disabled item'>"+i+"</a>";
 						}
 						else if(i!=cpage){
-							html2=html2+"&nbsp<button onclick='turnPage("+i+","+teacherid+");'>"+i+"</button>&nbsp";
+							html2=html2+"<a class='item' onclick='turnPage("+i+","+teacherid+");'>"+i+"</a>";
 						}
 					}
-					html2=html2+"页";
 
 				pageturner.innerHTML=html2;
 			  }
