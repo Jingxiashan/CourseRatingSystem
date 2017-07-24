@@ -22,6 +22,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	private int currentPage = 1;
 	private final int pageSize = 10;
 	private int commentid;
+	private static final String GET_TO_SELF_PROFILE = "get_to_self_profile";
 	public int getCommentid() {
 		return commentid;
 	}
@@ -53,26 +54,19 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		ServletActionContext.getRequest().getSession().setAttribute("user", currentUser);
 		return SUCCESS;
 	}
-	
-	public String getSelfProfile(){
-		User currentUser =	(User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		//personal page is saved in session.user
-		/*
-		//get comments
-		CommentPage commentPage = commentService.findCommentByUserID(currentUser.getUserid(), currentPage, pageSize);
-		ServletActionContext.getRequest().setAttribute("commentPage", commentPage);
-		*/
-		//get favorites
-		List<Course> favourateList = userService.findFavouratesById(currentUser.getUserid());
-		ServletActionContext.getRequest().setAttribute("favourateList", favourateList);
-		return SUCCESS;
-	}
+
 	
 	public String getOthersProfile(){
 		HttpServletRequest request = ServletActionContext.getRequest();
-		String str_userid = ServletActionContext.getRequest().getParameter("userid");
+		String str_userid = request.getParameter("userid");
 		if(str_userid != null) {
 			int userid = Integer.parseInt(str_userid);
+			if(request.getSession().getAttribute("user") != null){
+				if(userid == ((User)request.getSession().getAttribute("user")).getUserid()){
+					return GET_TO_SELF_PROFILE;
+				}	
+			}
+			
 			//save user in request
 			User userToShow =	userService.findUserById(userid);
 			ServletActionContext.getRequest().setAttribute("user", userToShow);
@@ -104,6 +98,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 			int courseid = Integer.parseInt(str_courseid);
 			User currentUser =	(User) ServletActionContext.getRequest().getSession().getAttribute("user");
 			userService.deleteFavourateCourse(currentUser.getUserid(), courseService.findCourseById(courseid));
+			User user =  userService.findUserById(((User)ServletActionContext.getRequest().getSession().getAttribute("user")).getUserid());
+			ServletActionContext.getRequest().getSession().setAttribute("user", user);
 			return SUCCESS;	
 		}else return FAIL;
 		

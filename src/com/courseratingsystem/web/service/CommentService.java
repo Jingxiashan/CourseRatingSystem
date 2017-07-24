@@ -9,7 +9,7 @@ public interface CommentService {
 	public void add(Comment comment);
 	public void update(Comment comment);
 	public void delete(Comment comment);
-	public Comment findCommentByCommentID(int commentid,int currentPage,int pageSize,String sortmethod);
+	public Comment findCommentByCommentID(int commentid);
 	public CommentPage findCommentByUserID(int userid,int currentPage,int pageSize,String sortmethod);
 	public CommentPage findCommentByCourseID(int courseid,int currentPage,int pageSize,String sortmethod);
 	public CommentPage findCommentByTeacherID(int teacherid,int currentPage,int pageSize,String sortmethod);

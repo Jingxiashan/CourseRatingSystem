@@ -24,10 +24,12 @@ import com.opensymphony.xwork2.ModelDriven;
 public class CourseAction extends ActionSupport{
 	private static final String SUCCESS = "success";
 	private static final String FAIL = "fail";
+
 	private static final String GET_TO_COURSE_PAGE = "get_to_course_page";
 	private int currentPage = 1;
 	private int pageSize = 20;
 	private String sortby=CourseServiceImpl.COURSE_SORT_METHOD_BY_RECO;
+
 	public String getSortby() {
 		return sortby;
 	}

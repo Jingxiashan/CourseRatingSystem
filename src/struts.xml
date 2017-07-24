@@ -22,6 +22,11 @@
 			<result type="json" name="success"></result>
 			<result type="json" name="fail"></result>
 		</action>
+		<action name="deleteComment" class="com.courseratingsystem.web.action.CommentAction" method="deleteComment">
+			<result type="json" name="success"></result>
+			<result type="json" name="fail"></result>
+		</action>
+		
 		<action name="likeComment" class="com.courseratingsystem.web.action.CommentAction" method="like">
 			<result type="json" name="success"></result>
 			<param name="excludeProperties">comment</param>
@@ -41,6 +46,14 @@
 	    	</result>
 	    </action>
 	    <action name="register_*" class="com.courseratingsystem.web.action.RegisterAction" method="{1}">
+	    	<result type="json" name="success">
+				<param name="root">result</param>
+			</result>
+	    	<result type="json" name="fail">
+				<param name="root">result</param>
+	    	</result>
+	    </action>
+	    <action name="turnPage" class="com.courseratingsystem.web.action.CommentAction" method="getJsonPage">
 	    	<result type="json" name="success">
 				<param name="root">result</param>
 			</result>
@@ -72,6 +85,7 @@
 	    <action name="user_*" class="com.courseratingsystem.web.action.UserAction" method="{1}">
 	    	<result name="success">/profile.jsp</result>
 	    	<result name="fail">/modifyProfile.jsp</result>
+	    	<result name="get_to_self_profile" type="redirect">/user.jsp</result>
 	    </action>
 	    <action name="logout" class="com.courseratingsystem.web.action.LoginAction" method="logout">
 	    	<result name="success">/homepage.jsp</result>

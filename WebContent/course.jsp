@@ -227,7 +227,9 @@ body {
 		</div>
 		<h4 class="ui dividing header">嗯，老司机们这样说。</h4>
 		<div class="ui raised aligned segment">
-			<div class="ui comments">
+			<div id="commentlist" class="ui comments">
+			
+			
 				<c:forEach items="${requestScope.commentPage.commentList }" var="comment">	
 					<div class="ui two column grid">
 						<div class="eleven wide column">
@@ -254,8 +256,10 @@ body {
 						</div>
 					</div>
 				</c:forEach>
+				
+				
 			</div>
-			<div>每页${requestScope.commentPage.pageSize}条记录 总共${requestScope.commentPage.totalPage}页
+			<div id="pageturner">每页${requestScope.commentPage.pageSize}条记录 总共${requestScope.commentPage.totalPage}页
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				当前：第${requestScope.commentPage.currentPage} / ${requestScope.commentPage.totalPage}页
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -266,7 +270,7 @@ body {
 						【${i}】
 					</c:if>
 					<c:if test="${i!=requestScope.commentPage.currentPage}">
-						<a href="course_getPage?currentPage=${i}&courseid=${requestScope.course.courseid}">${i}</a>
+						<button onclick="turnPage(${i},${requestScope.course.courseid});">${i}</button>
 					</c:if>
 				</c:forEach>
 				页</div>
@@ -404,13 +408,73 @@ $(function(){
 	  });
 }
 
-  function turnPage(page){
+  function turnPage(page,courseid){
 	  $.ajax({
 		  type:'get',
-		  url:"${pageContext.request.contextPath}/TurnPage.action",
-		  data:{currentPage:page},
+		  url:"${pageContext.request.contextPath}/turnPage.action",
+		  data:{"currentPage":page,"courseid":courseid,"pageSize": ${requestScope.commentPage.pageSize }},
 		  success:function(data){
-			  
+				var returnData = JSON.parse(data);
+				var html="";
+			    for(var tmp in returnData[1].results){
+			    	var commentid = returnData[1].results[tmp].commentid;
+			    	var critics = returnData[1].results[tmp].critics;
+			    	var userid = returnData[1].results[tmp].userid;
+			    	var nickname = returnData[1].results[tmp].nickname;
+			    	var timestamp = returnData[1].results[tmp].timestamp;
+			    	var likecount = returnData[1].results[tmp].likeCount;
+			    	var newDate = new Date();
+			    	newDate.setTime(timestamp);
+			    	// Wed Jun 18 2014 
+			    	timestamp=newDate.toLocaleString();
+			    	
+			    	html = html + "<div class='ui two column grid'>"+
+					"<div class='eleven wide column'>"+
+					"<div class='comment'>"+
+						"<a class='avatar'> "+
+							"<img src='images/elliot.jpg'>"+
+						"</a>"+
+						"<div class='content'>"+
+							"<a class='author' href='user_getOthersProfile.action?userid="+userid+"'>"+nickname+"</a>"+
+						      "<div class='metadata'>"+
+						       "<span class='date'>"+timestamp+"</span>"+
+						      "</div>"+
+							"<div class='text' style='margin-top:10px'>"+critics+"</div>"+
+						"</div>"+
+					"</div>"+
+				"</div>"+
+				"<div class='five wide column'>"+
+					"<div class='ui right floated labeled mini button' tabindex='0'>"+
+						"<div class='ui red mini button' type='button' onclick='likeComment("+commentid+");'>"+
+							"<i class='heart icon'></i> 戳"+
+						"</div>"+
+						"<div id='comment"+commentid+"Count' class='ui basic red left mini basic label'>"+likecount+"</div>"+
+					"</div>"+
+				"</div>"+
+			"</div>";
+			
+			  }
+			    var commentlist = document.getElementById("commentlist");
+			    commentlist.innerHTML=html;
+			    var pageturner=document.getElementById("pageturner");
+			    var cpage = returnData[0].currentPage;
+			    var html2="每页${requestScope.commentPage.pageSize}条记录 总共${requestScope.commentPage.totalPage}页"+
+					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+					"当前：第"+cpage+"/ ${requestScope.commentPage.totalPage}页"+
+					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+					"请选择：第";
+				for(var i = 1;i<=${requestScope.commentPage.totalPage};i++){
+					if(i==cpage){
+						html2=html2+"【"+i+"】";
+					}
+					else if(i!=cpage){
+						html2=html2+"&nbsp<button onclick='turnPage("+i+","+courseid+");'>"+i+"</button>&nbsp";
+					}
+				}
+				html2=html2+"页";
+
+			pageturner.innerHTML=html2;
 		  }
 	  });
   }
