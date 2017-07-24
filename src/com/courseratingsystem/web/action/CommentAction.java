@@ -8,11 +8,13 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.courseratingsystem.web.domain.Comment;
 import com.courseratingsystem.web.domain.Course;
+import com.courseratingsystem.web.domain.User;
 import com.courseratingsystem.web.object.CourseOverview;
 import com.courseratingsystem.web.object.CourseOverviewPlusTeacher;
 import com.courseratingsystem.web.service.CommentService;
 import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.service.TeacherService;
+import com.courseratingsystem.web.service.UserService;
 import com.courseratingsystem.web.service.impl.CommentServiceImpl;
 import com.courseratingsystem.web.vo.CommentPage;
 import com.courseratingsystem.web.vo.CoursePage;
@@ -44,9 +46,16 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 	private CommentService commentService;
 	private CourseService courseService;
 	private TeacherService teacherService;
+	private UserService userService;
 	
 	public TeacherService getTeacherService() {
 		return teacherService;
+	}
+	public UserService getUserService() {
+		return userService;
+	}
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 	public void setTeacherService(TeacherService teacherService) {
 		this.teacherService = teacherService;
@@ -140,8 +149,8 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 			result = Integer.toString(likeCount);
 			comment.setLikeCount(likeCount);
 			return SUCCESS;
-		}
-		return FAIL;
+		}else return FAIL;
+		
 	}
 	
 	public String addComment(){
@@ -149,6 +158,19 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 		return SUCCESS;
 	}	
 
+	public String deleteComment(){
+		String str_commentid = ServletActionContext.getRequest().getParameter("commentid");
+		if(str_commentid!=null){
+			int commentid = Integer.parseInt(str_commentid);
+			comment = commentService.findCommentByCommentID(commentid);
+			commentService.delete(comment);
+			User user =  userService.findUserById(((User)ServletActionContext.getRequest().getSession().getAttribute("user")).getUserid());
+			ServletActionContext.getRequest().getSession().setAttribute("user", user);
+			return SUCCESS;
+		}else return FAIL;
+		
+	}
+	
 	@Override
 	public Comment getModel() {
 		return comment;

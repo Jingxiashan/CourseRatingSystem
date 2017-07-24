@@ -34,7 +34,7 @@
             </key>
             <one-to-many class="com.courseratingsystem.web.domain.Logininfo" />
         </set>
-        <set name="comments" table="comment" inverse="true" lazy="true" fetch="select">
+        <set name="comments" table="comment" inverse="true" lazy="false" fetch="select">
             
             <key>
                 <column name="userid" not-null="true" />
