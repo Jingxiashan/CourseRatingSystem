@@ -192,8 +192,6 @@
 				<div class="ui image" style="margin-top:170px">
 					<img src="images/logos/logo_homepage.png"></img>
 				</div>
-				<!-- <h1 class="ui inverted header">我的课</h1> -->
-				<!-- <h2>“专门打造给你看的选课攻略”</h2> -->
 			</div>
 		</div>
 		<div class="ui horizontal">
