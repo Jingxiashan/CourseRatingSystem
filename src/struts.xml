@@ -48,6 +48,14 @@
 				<param name="root">result</param>
 	    	</result>
 	    </action>
+	    <action name="turnPage" class="com.courseratingsystem.web.action.CommentAction" method="getJsonPage">
+	    	<result type="json" name="success">
+				<param name="root">result</param>
+			</result>
+	    	<result type="json" name="fail">
+				<param name="root">result</param>
+	    	</result>
+	    </action>
 	</package>
    
     <package name="default" namespace="/" extends="struts-default">

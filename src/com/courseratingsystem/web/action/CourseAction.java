@@ -43,7 +43,7 @@ public class CourseAction extends ActionSupport{
 	private static final String FAIL = "fail";
 	private static final String GET_TO_COURSE_PAGE = "get_to_course_page";
 	private int currentPage = 1;
-	private int pageSize = 20;
+	private int pageSize = 2;
 	private String sortby="recommendationScore";
 	public String getSortby() {
 		return sortby;
