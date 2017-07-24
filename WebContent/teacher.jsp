@@ -47,11 +47,12 @@ body {
 </head>
 
 <body>
-	<div class="ui fixed inverted menu">
+	<div class="ui fixed borderless inverted menu">
 		<div class="ui container">
+			
 			<a href="homepage.jsp" class="header item">
 				<img class="logo" src="images/logos/logo_menu.png" style="width:105px;margin-right:0px"> 
-			</a> <a onClick="javascript :history.back(-1);" class="item">返回</a> <a
+			</a><a onClick="javascript :history.back(-1);" class="item">返回</a> <a
 				href="course_findAll.action" class="item">课程列表</a>
 			<div class="ui simple dropdown item">
 				课程搜索 <i class="dropdown icon"></i>

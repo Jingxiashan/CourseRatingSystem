@@ -63,7 +63,7 @@ body {
 </head>
 
 <body>
-	<div class="ui fixed inverted menu">
+	<div class="ui fixed borderless inverted menu">
 		<div class="ui container">
 			
 			<a href="homepage.jsp" class="header item">

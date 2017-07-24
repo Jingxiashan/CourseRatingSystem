@@ -48,21 +48,20 @@ body {
 </head>
 
 <body style="text-align:center">
-	<div class="ui fixed inverted menu">
+	<div class="ui fixed borderless inverted menu">
 		<div class="ui container">
+			
 			<a href="homepage.jsp" class="header item">
 				<img class="logo" src="images/logos/logo_menu.png" style="width:105px;margin-right:0px"> 
-			</a>
-			 <a onClick="javascript :history.back(-1);" class="item">返回</a>
-			 <a	href="course_findAll.action" class="item">全部课程</a>
-				<div class="ui simple dropdown item">
-					课程搜索 <i class="dropdown icon"></i>
-					<div class="menu">
-						<a class="item" href="courseSearchByCname.jsp">按课程名称</a> <a
-							class="item" href="courseSearchByTname.jsp">按授课教师</a>
-					</div>
+			</a><a onClick="javascript :history.back(-1);" class="item">返回</a> <a
+				href="course_findAll.action" class="item">课程列表</a>
+			<div class="ui simple dropdown item">
+				课程搜索 <i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item" href="courseSearchByCname.jsp">按课程名称</a> <a
+						class="item" href="courseSearchByTname.jsp">按授课教师</a>
 				</div>
-		</div>
+			</div>
 			<div class="right menu">
 				<!-- 如果未登录，显示登录注册 -->
 				<c:if test="${empty sessionScope.user}">
@@ -75,6 +74,7 @@ body {
 					<a href="logout.action" class="item">注销</a>
 				</c:if>
 			</div>
+		</div>
 	</div>
 
 	<div class="ui main text container">
