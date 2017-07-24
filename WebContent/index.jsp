@@ -214,47 +214,83 @@ body {
 					</div>
 				</c:forEach>
 				</div>
+				
+				
+				<!-- 翻页按钮 -->
+				<div class="ui right floated pagination menu">
+					<!-- 如果总页数少于六页 -->
+					<c:if test="${requestScope.coursepage.totalPage <= 6 }">
+						<!-- 如果不是第一页，显示上一页键 -->
+						<c:if test="${requestScope.coursepage.currentPage > 1 }">
+							<a class="item" onclick="getPage(${requestScope.coursepage.currentPage-1 })">上一页</a>
+						</c:if>
+						<c:forEach begin="1" end="${requestScope.coursepage.totalPage}" step="1" var="i">
+							<c:if test="${i==requestScope.coursepage.currentPage}">
+								<a class="disabled item">${i }</a>
+							</c:if>
+							<c:if test="${i!=requestScope.coursepage.currentPage}">
+								<a class="item" onclick="getPage(${i })">${i }</a>
+							</c:if>
+						</c:forEach>
+						<!-- 如果不是最后一页，显示下一页键 -->
+						<c:if test="${requestScope.coursepage.currentPage < requestScope.coursepage.totalPage }">
+							<a class="item" onclick="getPage(${requestScope.coursepage.currentPage+1  })">下一页</a>
+						</c:if>
+					</c:if>
+					<!-- 如果总页数多于六页 -->
+					<c:if test="${requestScope.coursepage.totalPage > 6 }">
+						<!-- 如果不是第一页，显示上一页键 -->
+						<c:if test="${requestScope.coursepage.currentPage > 1 }">
+							<a class="item" onclick="getPage(${requestScope.coursepage.currentPage-1 })">上一页</a>
+							<a class="item" onclick="getPage(1)">1</a>
+						</c:if>
+						<!-- 如果是第一页 -->
+						<c:if test="${requestScope.coursepage.currentPage == 1 }">
+							<a class="disabled item">1</a>
+							<a class="item" onclick="getPage(2)">2</a>
+							<a class="item" onclick="getPage(3)">3</a>
+							<a class="disabled item">...</a>
+						</c:if>
+						<!-- 如果是最后一页 -->
+						<c:if test="${requestScope.coursepage.currentPage == requestScope.coursepage.totalPage }">
+							<a class="disabled item">...</a>
+							<a class="item" onclick="getPage(${requestScope.coursepage.totalPage - 2 })">${requestScope.coursepage.totalPage - 1 }</a>
+							<a class="item" onclick="getPage(${requestScope.coursepage.totalPage - 1 })">${requestScope.coursepage.totalPage - 1 }</a>
+							<a class="disabled item">${requestScope.coursepage.totalPage }</a>
+						</c:if>
+						<!-- 如果不是第一页也不是最后一页 -->
+						<c:if test="${requestScope.coursepage.currentPage != 1 && requestScope.coursepage.currentPage != requestScope.coursepage.totalPage }">
+							<c:if test="${requestScope.coursepage.currentPage-1 > 2  }">
+								<a class="disabled item">...</a>
+							</c:if>
+							<c:if test="${requestScope.coursepage.currentPage-1 > 1  }">
+								<a class="item" onclick="getPage(${requestScope.coursepage.currentPage - 1 })">${requestScope.coursepage.currentPage - 1 }</a>
+							</c:if>
+							<a class="disabled item">${requestScope.coursepage.currentPage }</a>
+							<c:if test="${requestScope.coursepage.currentPage+1 < requestScope.coursepage.totalPage }">
+								<a class="item" onclick="getPage(${requestScope.coursepage.currentPage + 1 })">${requestScope.coursepage.currentPage + 1 }</a>
+							</c:if>
+							<c:if test="${requestScope.coursepage.currentPage+1 < requestScope.coursepage.totalPage - 1 }">
+								<a class="disabled item">...</a>
+							</c:if>
+						</c:if>
+						<!-- 如果不是最后一页，显示下一页键 -->
+						<c:if test="${requestScope.coursepage.currentPage < requestScope.coursepage.totalPage }">
+							<a class="item" onclick="getPage(${requestScope.coursepage.totalPage })">${requestScope.coursepage.totalPage }</a>
+							<a class="item" onclick="getPage(${requestScope.coursepage.currentPage+1  })">下一页</a>
+						</c:if>
+					</c:if>
+				</div>
+				
+				
 			</div>
 		
 		
 		</div>
 	</div>
+
+
 	
-<%-- 	<div class="ui container"  style="text-align:center">
-		<div class="ui special doubling cards" style="width:80%;margin:auto">
-			<c:forEach items="${requestScope.coursepage.list}" var="course">
-				<div class="ui centered card">
-					<a class="ui top attached label" style="text-size:20px">${course.coursename}</a>
-					<div class="blurring dimmable image">
-						<div class="ui inverted dimmer">
-							<div class="content">
-								<div class="center">
-									<button class="ui inverted button" type="button" onclick="window.location.href='course_getPage.action?courseid=${course.courseid}'">“戳”</button>
-								</div>
-							</div>
-						</div>
-						<img src="images/elliot.jpg">
-					</div>
-					<div class="content">
-						<pre>
-							<h3><a style="color:black" href="course_getPage.action?courseid=${course.courseid}">${course.coursename}</a>
-							<br><c:forEach items="${course.teacherList }" var="teacher"><a class="ui label" href="teacher_getPage.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a></c:forEach></h3>
-						</pre>
-						<div class="meta">
-							<span class="date"><h4>推荐星级</h4>
-								<div class="ui star rating" data-rating="${course.recommendationScore }" data-max-rating="5"></div>
-							</span>
-						</div>
-					</div>
-					<div class="extra content">
-						<i class="smile icon"></i><a href="comment_getPage.action?courseid=${course.courseid}">老司机想说几句，嗯？</a>
-					</div>
-				</div>
-			</c:forEach>
-
-		</div>
-	</div> --%>
-
 
 
 	<div class="ui fixed inverted vertical footer segment">
@@ -290,8 +326,6 @@ $('.ui .dropdown')
   })
 ;
 function sort(sortby){
-	var xmlobj = new XMLHttpRequest();
-	var parm;
 	switch(${requestScope.searchtype }){
 	case 0:
 		//全部显示
@@ -334,6 +368,69 @@ function sort(sortby){
         opt2.value = "${requestScope.searchtext }";
         tempform.appendChild(opt1);   
         tempform.appendChild(opt2); 
+    	document.body.appendChild(tempform);  
+        tempform.submit();
+		break;
+	}
+}
+
+
+function getPage(page){
+	var sortby = "${requestScope.sortby }";
+	switch(${requestScope.searchtype }){
+	case 0:
+		//全部显示
+		var tempform = document.createElement("form");        
+		tempform.action = "course_findAll";        
+		tempform.method = "post";        
+        var opt1 = document.createElement("textarea");        
+        opt1.name = "sortby";        
+        opt1.value = sortby;    
+        var opt2 = document.createElement("textarea");        
+        opt2.name = "currentPage";        
+        opt2.value = page;
+        tempform.appendChild(opt1); 
+        tempform.appendChild(opt2);  
+    	document.body.appendChild(tempform);  
+        tempform.submit();
+		break;
+	case 1:
+		//按课程名称搜索
+		var tempform = document.createElement("form");        
+		tempform.action = "course_findByName";        
+		tempform.method = "post";        
+        var opt1 = document.createElement("textarea");        
+        opt1.name = "sortby";        
+        opt1.value = sortby;
+        opt2 = document.createElement("textarea");        
+        opt2.name = "searchtext";        
+        opt2.value = "${requestScope.searchtext }";    
+        var opt3 = document.createElement("textarea");        
+        opt3.name = "currentPage";        
+        opt3.value = page;
+        tempform.appendChild(opt1);   
+        tempform.appendChild(opt2);   
+        tempform.appendChild(opt3);   
+    	document.body.appendChild(tempform);  
+        tempform.submit();
+		break;
+	case 2:
+		//按老师搜索
+		var tempform = document.createElement("form");        
+		tempform.action = "course_findByTeacher";        
+		tempform.method = "post";        
+        var opt1 = document.createElement("textarea");        
+        opt1.name = "sortby";        
+        opt1.value = sortby;
+        opt2 = document.createElement("textarea");        
+        opt2.name = "searchtext";        
+        opt2.value = "${requestScope.searchtext }";
+        var opt3 = document.createElement("textarea");        
+        opt3.name = "currentPage";        
+        opt3.value = page;
+        tempform.appendChild(opt1);   
+        tempform.appendChild(opt2);   
+        tempform.appendChild(opt3); 
     	document.body.appendChild(tempform);  
         tempform.submit();
 		break;
