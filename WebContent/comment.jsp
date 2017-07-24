@@ -77,7 +77,7 @@ body {
 						<label>授课教师：<c:forEach
 								items="${requestScope.course.teacherList }" var="teacher">
 								<a class="ui label"
-									href="teacher.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a>
+									href="teacher_getPage.action?teacherid=${teacher.teacherid}">${teacher.teachername }</a>
 							</c:forEach></label>
 					</div>
 				</div>

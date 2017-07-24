@@ -199,9 +199,8 @@
 					<div class="row">
 						<div class="ui vertical stripe segment">
 							<div class="ui text container">
-								<h3 class="ui header">提供一切你最想知道的关于课程的信息。</h3>
-								<p>给分情况？/期末考评方式？/点名平率？/课堂氛围？</p>
-								</h4>
+							<h3 class="ui header">提供一切你最想知道的关于课程的信息。</h3>
+								<p>给分情况？/期末考评方式？/点名频率？/课堂氛围？</p>
 								<h3 class="ui header">听听老司机们血的教训/拔草经历</h3>
 								<p>获得来自过来人的第一笔资料。</p>
 							</div>
@@ -224,10 +223,12 @@
 							<a href="#" class="item">网站介绍</a> <a href="about.jsp" class="item">联系我们</a>
 						</div>
 					</div>
-					<div class="seven wide column">
-						<h4 class="ui inverted header">大众点评课</h4>
-						<p>只做给你看的选课攻略。</p>
-					</div>
+				<div class="ten wide column">
+					<h4 class="ui inverted header">大众点评课</h4>
+					<p>只做给你看的选课攻略。</p>
+					<i class="github icon"></i>
+					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
+				</div>
 				</div>
 			</div>
 		</div>
