@@ -90,7 +90,7 @@ body {
 	<div class="three wide column">
 		<div class="ui vertical inverted sticky menu" style="position:fixed!important;top:0">
 			<div class="item" style="width: 80px">
-				<img src="images/stevie.jpg">
+				<img style="background:#FFFFFF" class="ui tiny image" src="${empty sessionScope.user.picpath ? 'images/stevie.jpg' : sessionScope.user.picpath }">
 			</div>
 			<div class="container" style="color: #FFFFFF">
 				<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好久不见，${sessionScope.user.nickname }。</b>
@@ -142,6 +142,25 @@ body {
 				<div class="ui container">
 					<form class="ui form" style="width: 80%">
 						<div class="ui basic segment">
+						
+						
+						
+						<!-- <label for="upload">上传头像:</label>
+						<input type="file" name="avatar" id="avatar" onchange="preImg(this.id,'imgPre')"> 
+				            <img id="imgPre" src="" style="display: block;" /> 
+				            <input type="text" name="userid"> 
+				 		<button type="submit">上传</button> -->
+						
+							<div class="field" style="width:150px">
+								<label>头像</label> 
+								<img class="ui small image" id="avatarPre" src="${empty sessionScope.user.picpath ? 'images/stevie.jpg' : sessionScope.user.picpath }" style="display:block"/>
+								<label for="avatar" class="ui basic icon button" id="cvIntro"> <i class="user circle outline icon"></i>上传新头像</label>
+                    			<input type="file" id="avatar" name="avatar" style="display:none" onchange="preImg(this.id,'avatarPre')">
+							</div>
+						
+						
+						
+						
 							<div class="field">
 								<label>昵称</label> <input type="text" name="nickname" id="nickname"
 									value="${sessionScope.user.nickname }" placeholder="请设置昵称" />
@@ -198,6 +217,7 @@ body {
 <script>
 $("#gradeSelect").dropdown('set selected',${sessionScope.user.grade });
 function modifyProfile(){
+	var formData = new FormData($('.ui.form')[0]);
 	var nickname = document.getElementById("nickname").value;
 	var wechatAccount = document.getElementById("wechatAccount").value;
 	var gradeSelect = document.getElementById("gradeSelect").value;
@@ -245,13 +265,10 @@ function modifyProfile(){
 	$.ajax({
 		type:'post',
 	 	url:"${pageContext.request.contextPath}/json_user_modifyProfile.action",
-	 	data:{
-	 		"userid":${sessionScope.user.userid },
-	 		"nickname":nickname,
-	 		"wechatAccount":wechatAccount,
-	 		"grade":gradeSelect,
-	 		"introduction":introduction
-	 		},
+	 	data:formData,
+		processData: false,
+		contentType: false,
+		cache: false,
 		success:function(data){
 			if(data == "success"){
 				modalTitle.innerHTML = "<i class='checkmark icon' id='modalIcon'></i> 修改信息成功";
@@ -287,36 +304,3 @@ function preImg(sourceId, targetId) {
 }  
 </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

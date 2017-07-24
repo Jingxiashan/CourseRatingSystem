@@ -39,7 +39,7 @@ function upload(){
             <label for="upload">上传头像:</label> <input type="file" name="file" id="imgOne" onchange="preImg(this.id,'imgPre')"> 
             <img id="imgPre" src="" style="display: block;" /> 
             <input type="text" name="userid"> 
-            <br> <br> <button onclick="upload();">上传</button>
+            <br> <br> <button type="submit">上传</button>
       </form>
         <img src="/CourseRatingSystem/userphoto/1.jpg"/>
 </body>

@@ -78,7 +78,7 @@ body {
 	</div>
 
 	<div class="ui left aligned main text container">
-		<img src="images/elliot.jpg" style="width: 100px">
+		<img src="${empty requestScope.user.picpath ? 'images/stevie.jpg' : requestScope.user.picpath }" style="width: 100px">
 		<h1 class="ui header">${requestScope.user.nickname }</h1>
 		<br>
 	</div>
@@ -117,7 +117,7 @@ body {
 						<div class="ui two column very relaxed grid">
 							<div class="eleven wide column">
 								<div class="comment">
-								<a class="avatar"> <img src="images/elliot.jpg"></a>
+								<a class="avatar"> <img src="${empty requestScope.user.picpath ? 'images/stevie.jpg' : requestScope.user.picpath }"></a>
 								<div class="content">
 									授课教师：<a class="author" href="teacher_getPage.action?teacherid=${comment.teacher.teacherid}">${comment.teacher.teachername }</a>
 									<br>课程名称：<a class="author" href="course_getPage.action?courseid=${comment.course.courseid}">${comment.course.coursename }</a>

@@ -245,7 +245,7 @@ body {
 						<div class="eleven wide column">
 							<div class="comment">
 								<a class="avatar"> 
-									<img src="images/elliot.jpg">
+									<img src="${empty comment.user.picpath ? 'images/stevie.jpg' : comment.user.picpath }">
 								</a>
 								<div class="content">
 									<a class="author" href="user_getOthersProfile.action?userid=${comment.user.userid }">${comment.user.nickname }</a>
