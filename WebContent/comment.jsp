@@ -7,6 +7,9 @@
 <title>课程评价-${requestScope.course.coursename }</title>
 <!-- Standard Meta -->
 <meta charset="utf-8" />
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -46,9 +49,11 @@ body {
 <body>
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
-			<a href="homepage.jsp" class="header item"> <img class="logo"
-				src="images/testPic.jpg"> 大众点评课
-			</a> <a onClick="javascript :history.back(-1);" class="item">返回</a> <a
+			
+			<a href="homepage.jsp" class="header item">
+				<img class="logo" src="images/logos/logo_menu.png" style="width:105px;margin-right:0px"> 
+			</a>
+			 <a onClick="javascript :history.back(-1);" class="item">返回</a> <a
 				href="course_findAll.action" class="item">课程列表</a>
 			<div class="ui simple dropdown item">
 				课程搜索 <i class="dropdown icon"></i>
@@ -56,6 +61,18 @@ body {
 					<a class="item" href="courseSearchByCname.jsp">按课程名称</a> <a
 						class="item" href="courseSearchByTname.jsp">按授课教师</a>
 				</div>
+			</div>
+			<div class="right menu">
+				<!-- 如果未登录，显示登录注册 -->
+				<c:if test="${empty sessionScope.user}">
+					<a href="login.jsp" class="item">登录</a> 
+					<a href="register.jsp" class="item">注册</a>
+				</c:if>
+				<!-- 如果已经登录，显示个人中心链接 -->
+				<c:if test="${!empty sessionScope.user}">
+					<a href="user.jsp" class="item">${sessionScope.user.nickname}</a>
+					<a href="logout.action" class="item">注销</a>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -165,7 +182,7 @@ body {
 					<div class="field">
 						<div class="ui card">
 							<div class="content">
-								<div class="header">点名多否？</div>
+								<div class="header">点名少否？</div>
 							</div>
 							<div class="content" style="height: 150px">
 								<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的点名情况，节节必点、每月点名、点名看老师心情、一学期点名2-3次、几乎不点名；点名频率低，请给多星。</h4>
@@ -227,8 +244,10 @@ body {
 					</div>
 				</div>
 				<div class="seven wide column">
-					<h4 class="ui inverted header">大众点评课</h4>
+					<h4 class="ui inverted header">我的课</h4>
 					<p>只做给你看的选课攻略。</p>
+					<i class="github icon"></i>
+					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
 				</div>
 			</div>
 			<div class="ui inverted section divider"></div>

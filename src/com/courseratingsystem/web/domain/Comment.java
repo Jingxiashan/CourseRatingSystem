@@ -18,12 +18,12 @@ public class Comment implements java.io.Serializable{
 	private Teacher teacher;
 	private Course course;
 	private User user;
-	private Integer ratingUsefulness;
-	private Integer ratingVividness;
-	private Integer ratingSpareTimeOccupation;
-	private Integer ratingScoring;
-	private Integer ratingRollCall;
-	private Integer recommandScore;
+	private Float ratingUsefulness;
+	private Float ratingVividness;
+	private Float ratingSpareTimeOccupation;
+	private Float ratingScoring;
+	private Float ratingRollCall;
+	private Float recommandScore;
 	private String critics;
 	private Integer likeCount;
 
@@ -37,9 +37,9 @@ public class Comment implements java.io.Serializable{
 	}
 
 	public Comment(Teacher teacher, Course course, User user,
-			Integer ratingUsefulness, Integer ratingVividness,
-			Integer ratingSpareTimeOccupation, Integer ratingScoring,
-			Integer ratingRollCall, Integer recommandScore, String critics,
+			Float ratingUsefulness, Float ratingVividness,
+			Float ratingSpareTimeOccupation, Float ratingScoring,
+			Float ratingRollCall, Float recommandScore, String critics,
 			Integer likeCount) {
 		this.teacher = teacher;
 		this.course = course;
@@ -94,51 +94,51 @@ public class Comment implements java.io.Serializable{
 		this.user = user;
 	}
 
-	public Integer getRatingUsefulness() {
+	public Float getRatingUsefulness() {
 		return this.ratingUsefulness;
 	}
 
-	public void setRatingUsefulness(Integer ratingUsefulness) {
+	public void setRatingUsefulness(Float ratingUsefulness) {
 		this.ratingUsefulness = ratingUsefulness;
 	}
 
-	public Integer getRatingVividness() {
+	public Float getRatingVividness() {
 		return this.ratingVividness;
 	}
 
-	public void setRatingVividness(Integer ratingVividness) {
+	public void setRatingVividness(Float ratingVividness) {
 		this.ratingVividness = ratingVividness;
 	}
 
-	public Integer getRatingSpareTimeOccupation() {
+	public Float getRatingSpareTimeOccupation() {
 		return this.ratingSpareTimeOccupation;
 	}
 
-	public void setRatingSpareTimeOccupation(Integer ratingSpareTimeOccupation) {
+	public void setRatingSpareTimeOccupation(Float ratingSpareTimeOccupation) {
 		this.ratingSpareTimeOccupation = ratingSpareTimeOccupation;
 	}
 
-	public Integer getRatingScoring() {
+	public Float getRatingScoring() {
 		return this.ratingScoring;
 	}
 
-	public void setRatingScoring(Integer ratingScoring) {
+	public void setRatingScoring(Float ratingScoring) {
 		this.ratingScoring = ratingScoring;
 	}
 
-	public Integer getRatingRollCall() {
+	public Float getRatingRollCall() {
 		return this.ratingRollCall;
 	}
 
-	public void setRatingRollCall(Integer ratingRollCall) {
+	public void setRatingRollCall(Float ratingRollCall) {
 		this.ratingRollCall = ratingRollCall;
 	}
 
-	public Integer getRecommandScore() {
+	public Float getRecommandScore() {
 		return this.recommandScore;
 	}
 
-	public void setRecommandScore(Integer recommandScore) {
+	public void setRecommandScore(Float recommandScore) {
 		this.recommandScore = recommandScore;
 	}
 

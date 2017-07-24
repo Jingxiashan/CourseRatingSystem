@@ -4,8 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<title>关于我们-大众点评课</title>
+<title>关于我们-我的课</title>
 <head>
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 <!-- Standard Meta -->
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -45,21 +48,32 @@ body {
 </head>
 
 <body style="text-align:center">
-	<div class="ui fixed inverted menu">
+	<div class="ui fixed borderless inverted menu">
 		<div class="ui container">
-			<a href="homepage.jsp" class="header item"> <img class="logo"
-				src="images/testPic.jpg"> 大众点评课 <a
-				href="course_findAll.action" class="item">全部课程</a>
-				<div class="ui simple dropdown item">
-					课程搜索 <i class="dropdown icon"></i>
-					<div class="menu">
-						<a class="item" href="courseSearchByCname.jsp">按课程名称</a> <a
-							class="item" href="courseSearchByTname.jsp">按授课教师</a>
-					</div>
+			
+			<a href="homepage.jsp" class="header item">
+				<img class="logo" src="images/logos/logo_menu.png" style="width:105px;margin-right:0px"> 
+			</a><a onClick="javascript :history.back(-1);" class="item">返回</a> <a
+				href="course_findAll.action" class="item">课程列表</a>
+			<div class="ui simple dropdown item">
+				课程搜索 <i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item" href="courseSearchByCname.jsp">按课程名称</a> <a
+						class="item" href="courseSearchByTname.jsp">按授课教师</a>
 				</div>
-		</div>
-		<div style="margin-right: 50px; margin-top: 5px">
-			<a href="user.jsp" class="item">${sessionScope.user.nickname}</a>
+			</div>
+			<div class="right menu">
+				<!-- 如果未登录，显示登录注册 -->
+				<c:if test="${empty sessionScope.user}">
+					<a href="login.jsp" class="item">登录</a> 
+					<a href="register.jsp" class="item">注册</a>
+				</c:if>
+				<!-- 如果已经登录，显示个人中心链接 -->
+				<c:if test="${!empty sessionScope.user}">
+					<a href="user.jsp" class="item">${sessionScope.user.nickname}</a>
+					<a href="logout.action" class="item">注销</a>
+				</c:if>
+			</div>
 		</div>
 	</div>
 
@@ -151,7 +165,7 @@ body {
 					</div>
 				</div>
 				<div class="ten wide column">
-					<h4 class="ui inverted header">大众点评课</h4>
+					<h4 class="ui inverted header">我的课</h4>
 					<p>只做给你看的选课攻略。</p>
 					<i class="github icon"></i>
 					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>

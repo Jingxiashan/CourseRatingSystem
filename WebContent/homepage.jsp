@@ -9,8 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<link rel="Shortcut Icon"
-	href="//www.dpfile.com/s/res/favicon.5ff777c11d7833e57e01c9d192b7e427.ico"
+<link rel="Shortcut Icon" href="images/logos/icon.ico"
 	type="image/x-icon">
 <link rel="stylesheet prefech"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
@@ -19,7 +18,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
 <!-- Site Properties -->
-<title>主页 - 大众点评课</title>
+<title>主页 - 我的课</title>
 <style type="text/css">
 .hidden.menu {
 	display: none;
@@ -116,39 +115,41 @@
 </style>
 
 <script>
-  $(document)
-    .ready(function() {
+	$(document).ready(function() {
 
-      // fix menu when passed
-      $('.masthead')
-        .visibility({
-          once: false,
-          onBottomPassed: function() {
-            $('.fixed.menu').transition('fade in');
-          },
-          onBottomPassedReverse: function() {
-            $('.fixed.menu').transition('fade out');
-          }
-        })
-      ;
+		// fix menu when passed
+		$('.masthead').visibility({
+			once : false,
+			onBottomPassed : function() {
+				$('.fixed.menu').transition('fade in');
+			},
+			onBottomPassedReverse : function() {
+				$('.fixed.menu').transition('fade out');
+			}
+		});
 
-      // create sidebar and attach to menu open
-      $('.ui.sidebar')
-        .sidebar('attach events', '.toc.item')
-      ;
+		// create sidebar and attach to menu open
+		$('.ui.sidebar').sidebar('attach events', '.toc.item');
 
-    })
-  ;
-  </script>
+	});
+</script>
 </head>
 <body>
 
 	<!-- Following Menu -->
 	<div class="ui large top fixed hidden menu">
 		<div class="ui container">
-			<a class="active item">主页</a>
-			<a href="course_findAll.action" class="item">课程详情</a>
-			<div class="right menu"><!-- 如果未登录，显示登录注册 -->
+			<a class="active item">主页</a> <a href="course_findAll.action"
+				class="item">课程详情</a>
+			<div class="ui simple dropdown item">
+				课程搜索 <i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item" href="courseSearchByCname.jsp">按课程名称</a> <a
+						class="item" href="courseSearchByTname.jsp">按授课教师</a>
+				</div>
+			</div>
+			<div class="right menu">
+				<!-- 如果未登录，显示登录注册 -->
 				<c:if test="${empty sessionScope.user}">
 					<a href="login.jsp" class="item">登录</a>
 					<a href="register.jsp" class="item">注册</a>
@@ -168,15 +169,20 @@
 			<!-- 顶端菜单 -->
 			<div class="ui container">
 				<div class="ui large secondary inverted pointing menu">
-					<a class="toc item">
-						<i class="sidebar icon"></i>
-					</a>
-					<a class="active item">主页</a>
-					<a href="course_findAll.action" class="item">课程详情</a>
+					<a class="toc item"> <i class="sidebar icon"></i>
+					</a> <a class="active item">主页</a> <a href="course_findAll.action"
+						class="item">课程详情</a>
+					<div class="ui simple dropdown item">
+						课程搜索 <i class="dropdown icon"></i>
+						<div class="menu">
+							<a class="item" href="courseSearchByCname.jsp">按课程名称</a> <a
+								class="item" href="courseSearchByTname.jsp">按授课教师</a>
+						</div>
+					</div>
 					<div class="right menu">
 						<!-- 如果未登录，显示登录注册 -->
 						<c:if test="${empty sessionScope.user}">
-							<a href="login.jsp" class="item">登录</a> 
+							<a href="login.jsp" class="item">登录</a>
 							<a href="register.jsp" class="item">注册</a>
 						</c:if>
 						<!-- 如果已经登录，显示个人中心链接 -->
@@ -189,8 +195,9 @@
 			</div>
 
 			<div class="ui text container">
-				<h1 class="ui inverted header">大众点评课</h1>
-				<h2>“专门打造给你看的选课攻略”</h2>
+				<div class="ui image" style="margin-top: 170px">
+					<img src="images/logos/logo_homepage.png"></img>
+				</div>
 			</div>
 		</div>
 		<div class="ui horizontal">
@@ -199,16 +206,29 @@
 					<div class="row">
 						<div class="ui vertical stripe segment">
 							<div class="ui text container">
-							<h3 class="ui header">提供一切你最想知道的关于课程的信息。</h3>
-								<p>给分情况？/期末考评方式？/点名频率？/课堂氛围？</p>
+								<h3 class="ui header">提供一切你最想知道的关于课程的信息。</h3>
+								<p>内容丰富？/给分情况？/期末考评方式？/点名频率？/课堂氛围？</p>
 								<h3 class="ui header">听听老司机们血的教训/拔草经历</h3>
 								<p>获得来自过来人的第一笔资料。</p>
 							</div>
 						</div>
+						、
+
+
+
 						<div class="six wide right floated column">
-							<img src="images/testPic.jpg"
-								class="ui large bordered rounded image">
+							<div class="ui card" style="border: 0px; width: 400px">
+								<div class="ui slide masked reveal image">
+									<img src="images/screenshoot1.jpg" class="visible content">
+									<img src="images/screenshoot2.jpg" class="hidden content">
+								</div>
+
+							</div>
 						</div>
+
+
+
+
 					</div>
 				</div>
 			</div>
@@ -220,15 +240,17 @@
 					<div class="three wide column">
 						<h4 class="ui inverted header">关于</h4>
 						<div class="ui inverted link list">
-							<a href="#" class="item">网站介绍</a> <a href="about.jsp" class="item">联系我们</a>
+							<a href="#" class="item">网站介绍</a> <a href="about.jsp"
+								class="item">联系我们</a>
 						</div>
 					</div>
-				<div class="ten wide column">
-					<h4 class="ui inverted header">大众点评课</h4>
-					<p>只做给你看的选课攻略。</p>
-					<i class="github icon"></i>
-					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
-				</div>
+					<div class="ten wide column">
+						<h4 class="ui inverted header">我的课</h4>
+						<p>只做给你看的选课攻略。</p>
+						<i class="github icon"></i> <a
+							href="https://github.com/Jingxiashan/CourseRatingSystem"
+							style="color: #B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -9,13 +9,13 @@ public class Coursemark implements java.io.Serializable {
 
 	private int courseid;
 	private Course course;
-	private Integer averageRatingsUsefulness;
-	private Integer averageRatingsVividness;
-	private Integer averageRatingsSpareTimeOccupation;
-	private Integer averageRatingsScoring;
-	private Integer averageRatingsRollCall;
+	private Float averageRatingsUsefulness;
+	private Float averageRatingsVividness;
+	private Float averageRatingsSpareTimeOccupation;
+	private Float averageRatingsScoring;
+	private Float averageRatingsRollCall;
 	private Integer peopleCount;
-	private Integer recommendationScore;
+	private Float recommendationScore;
 	private Integer finalType;
 
 	public Coursemark() {
@@ -25,11 +25,11 @@ public class Coursemark implements java.io.Serializable {
 		this.course = course;
 	}
 
-	public Coursemark(Course course, Integer averageRatingsUsefulness,
-			Integer averageRatingsVividness,
-			Integer averageRatingsSpareTimeOccupation,
-			Integer averageRatingsScoring, Integer averageRatingsRollCall,
-			Integer peopleCount, Integer recommendationScore, Integer finalType) {
+	public Coursemark(Course course, Float averageRatingsUsefulness,
+			Float averageRatingsVividness,
+			Float averageRatingsSpareTimeOccupation,
+			Float averageRatingsScoring, Float averageRatingsRollCall,
+			Integer peopleCount, Float recommendationScore, Integer finalType) {
 		this.course = course;
 		this.averageRatingsUsefulness = averageRatingsUsefulness;
 		this.averageRatingsVividness = averageRatingsVividness;
@@ -57,44 +57,44 @@ public class Coursemark implements java.io.Serializable {
 		this.course = course;
 	}
 
-	public Integer getAverageRatingsUsefulness() {
+	public Float getAverageRatingsUsefulness() {
 		return this.averageRatingsUsefulness;
 	}
 
-	public void setAverageRatingsUsefulness(Integer averageRatingsUsefulness) {
+	public void setAverageRatingsUsefulness(Float averageRatingsUsefulness) {
 		this.averageRatingsUsefulness = averageRatingsUsefulness;
 	}
 
-	public Integer getAverageRatingsVividness() {
+	public Float getAverageRatingsVividness() {
 		return this.averageRatingsVividness;
 	}
 
-	public void setAverageRatingsVividness(Integer averageRatingsVividness) {
+	public void setAverageRatingsVividness(Float averageRatingsVividness) {
 		this.averageRatingsVividness = averageRatingsVividness;
 	}
 
-	public Integer getAverageRatingsSpareTimeOccupation() {
+	public Float getAverageRatingsSpareTimeOccupation() {
 		return this.averageRatingsSpareTimeOccupation;
 	}
 
 	public void setAverageRatingsSpareTimeOccupation(
-			Integer averageRatingsSpareTimeOccupation) {
+			Float averageRatingsSpareTimeOccupation) {
 		this.averageRatingsSpareTimeOccupation = averageRatingsSpareTimeOccupation;
 	}
 
-	public Integer getAverageRatingsScoring() {
+	public Float getAverageRatingsScoring() {
 		return this.averageRatingsScoring;
 	}
 
-	public void setAverageRatingsScoring(Integer averageRatingsScoring) {
+	public void setAverageRatingsScoring(Float averageRatingsScoring) {
 		this.averageRatingsScoring = averageRatingsScoring;
 	}
 
-	public Integer getAverageRatingsRollCall() {
+	public Float getAverageRatingsRollCall() {
 		return this.averageRatingsRollCall;
 	}
 
-	public void setAverageRatingsRollCall(Integer averageRatingsRollCall) {
+	public void setAverageRatingsRollCall(Float averageRatingsRollCall) {
 		this.averageRatingsRollCall = averageRatingsRollCall;
 	}
 
@@ -106,11 +106,11 @@ public class Coursemark implements java.io.Serializable {
 		this.peopleCount = peopleCount;
 	}
 
-	public Integer getRecommendationScore() {
+	public Float getRecommendationScore() {
 		return this.recommendationScore;
 	}
 
-	public void setRecommendationScore(Integer recommendationScore) {
+	public void setRecommendationScore(Float recommendationScore) {
 		this.recommendationScore = recommendationScore;
 	}
 

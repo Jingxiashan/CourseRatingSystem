@@ -2,12 +2,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<title>课程列表-大众点评课</title>
+<title>课程列表-我的课</title>
 <head>
 <!-- Standard Meta -->
 <meta charset="utf-8" />
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -72,7 +76,7 @@ body {
 	<div class="ui fixed borderless inverted menu">
 		<div class="ui container">
 			<a href="homepage.jsp" class="header item">
-				<img class="logo" src="images/testPic.jpg"> 大众点评课
+				<img class="logo" src="images/logos/logo_menu.png" style="width:105px;margin-right:0px"> 
 			</a>
 			<a href="course_findAll.action" class="item active">全部课程</a>
 			<div class="ui simple dropdown item">
@@ -133,7 +137,15 @@ body {
 				  </c:if>
 				   <div class="ui left pointing dropdown link item">
 				    <i class="dropdown icon"></i>
-				    排序
+				    <%
+				    	String tmpString = (String)request.getAttribute("sortby");
+				    	if("recommendationScore".equals(tmpString))out.print("按推荐得分排序");
+				    	else if("averageRatingsUsefulness".equals(tmpString))out.print("按内容有用性排序");
+				    	else if("averageRatingsVividness".equals(tmpString))out.print("按课堂生动性排序");
+				    	else if("averageRatingsSpareTimeOccupation".equals(tmpString))out.print("按占用时间（少）排序");
+				    	else if("averageRatingsScoring".equals(tmpString))out.print("按期末给分排序");
+				    	else if("averageRatingsRollCall".equals(tmpString))out.print("按平日点名（少）排序");
+				    %>
 				    <div class="menu">
 				      <div class="item" onclick="sort('recommendationScore')">推荐得分</div>
 				      <div class="item" onclick="sort('averageRatingsUsefulness')">内容有用性</div>
@@ -193,10 +205,14 @@ body {
 					    <div class="content">
 					      <a class="header" href="course_getPage.action?courseid=${course.courseid }" style="margin-top:10px">${course.coursename }</a>
 							<span class="date" style="color: rgba(0, 0, 0, 0.4);font-size: 0.875em;">
-								有用${course.averageRatingsUsefulness } 有趣${course.averageRatingsVividness } 占时${course.averageRatingsSpareTimeOccupation } 给分${course.averageRatingsScoring } 点名${course.averageRatingsRollCall }
+								有用<fmt:formatNumber type="number" value="${course.averageRatingsUsefulness }" pattern="0.0" maxFractionDigits="1"/> 
+								有趣<fmt:formatNumber type="number" value="${course.averageRatingsVividness }" pattern="0.0" maxFractionDigits="1"/> 
+								占时<fmt:formatNumber type="number" value="${course.averageRatingsSpareTimeOccupation }" pattern="0.0" maxFractionDigits="1"/> 
+								给分<fmt:formatNumber type="number" value="${course.averageRatingsScoring }" pattern="0.0" maxFractionDigits="1"/> 
+								点名<fmt:formatNumber type="number" value="${course.averageRatingsRollCall }" pattern="0.0" maxFractionDigits="1"/>
 								</span>
 					      <div class="meta">
-					        <span class="cinema"><div class="ui mini star rating" data-rating="${course.recommendationScore }" data-max-rating="5" style="margin-top:10px"></div></span>
+					        <span class="cinema"><div class="ui mini star rating" data-rating="${((course.recommendationScore % 1) > 0.5) ? (course.recommendationScore + 1 - (course.recommendationScore % 1)) : (course.recommendationScore - (course.recommendationScore % 1)) }" data-max-rating="5" style="margin-top:10px"></div></span>
 					      </div>
 					      <div class="description">
 					        <p></p>
@@ -254,7 +270,7 @@ body {
 						<!-- 如果是最后一页 -->
 						<c:if test="${requestScope.coursepage.currentPage == requestScope.coursepage.totalPage }">
 							<a class="disabled item">...</a>
-							<a class="item" onclick="getPage(${requestScope.coursepage.totalPage - 2 })">${requestScope.coursepage.totalPage - 1 }</a>
+							<a class="item" onclick="getPage(${requestScope.coursepage.totalPage - 2 })">${requestScope.coursepage.totalPage - 2 }</a>
 							<a class="item" onclick="getPage(${requestScope.coursepage.totalPage - 1 })">${requestScope.coursepage.totalPage - 1 }</a>
 							<a class="disabled item">${requestScope.coursepage.totalPage }</a>
 						</c:if>
@@ -304,7 +320,7 @@ body {
 					</div>
 				</div>
 				<div class="ten wide column">
-					<h4 class="ui inverted header">大众点评课</h4>
+					<h4 class="ui inverted header">我的课</h4>
 					<p>只做给你看的选课攻略。</p>
 					<i class="github icon"></i>
 					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>

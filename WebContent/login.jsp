@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <link rel="Shortcut Icon"
-	href="//www.dpfile.com/s/res/favicon.5ff777c11d7833e57e01c9d192b7e427.ico"
+	href="images/logos/icon.ico"
 	type="image/x-icon">
 <link rel="stylesheet prefech"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
@@ -13,7 +14,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
-<title>登录-大众点评课</title>
+<title>登录-我的课</title>
 
 
 <style type="text/css">
@@ -111,10 +112,6 @@
 }
 </style>
 
-<script src="assets/library/jquery.min.js"></script>
-<script src="../dist/components/visibility.js"></script>
-<script src="../dist/components/sidebar.js"></script>
-<script src="../dist/components/transition.js"></script>
 <script>
 	$(document).ready(function() {
 
@@ -219,7 +216,10 @@ function login(){
 		success:function(data){
 			var result = data;			console.log(result);
 			if(result == "success"){
-				window.location.href="course_findAll.action";
+				//console.log(document.referrer);
+				window.location.href=((document.referrer.length == 0 || document.referrer.indexOf("login") != -1) 
+						? "course_findAll.action" : 
+							document.referrer);
 			}else{
 				document.getElementById("modalMessage").innerHTML = result;
 				$('.ui.basic.modal')

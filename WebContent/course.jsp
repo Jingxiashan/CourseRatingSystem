@@ -1,18 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>课程详情-${requestScope.course.coursename}</title>
 <!-- Standard Meta -->
 <meta charset="utf-8" />
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet prefech"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
-
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="js/radar_jquery.js"></script>
@@ -60,11 +63,12 @@ body {
 </head>
 
 <body>
-	<div class="ui fixed inverted menu">
+	<div class="ui fixed borderless inverted menu">
 		<div class="ui container">
-			<a href="homepage.jsp" class="header item"> <img class="logo"
-				src="images/testPic.jpg"> 大众点评课
-			</a> <a onClick="javascript :history.back(-1);" class="item">返回</a> <a
+			
+			<a href="homepage.jsp" class="header item">
+				<img class="logo" src="images/logos/logo_menu.png" style="width:105px;margin-right:0px"> 
+			</a><a onClick="javascript :history.back(-1);" class="item">返回</a> <a
 				href="course_findAll.action" class="item">课程列表</a>
 			<div class="ui simple dropdown item">
 				课程搜索 <i class="dropdown icon"></i>
@@ -103,7 +107,8 @@ body {
 								<div class="statistic">
 									<div class="value">
 										<i class="thumbs up icon"></i>
-										${requestScope.course.recommendationScore}/5
+										<fmt:formatNumber type="number" value="${requestScope.course.recommendationScore}" pattern="0.0" maxFractionDigits="1"/>
+										
 									</div>
 									<div class="label">推荐指数</div>
 								</div>
@@ -156,9 +161,10 @@ body {
 							<h4 class="ui sub header">从老师讲授知识层面来讲，内容对自己有益程度；内容有益，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating"
-								data-rating="${requestScope.course.averageRatingsUsefulness }"
-								data-max-rating="5"></div>
+							 <div class="ui star rating"
+								data-rating="
+								${((course.averageRatingsUsefulness % 1) > 0.5) ? (course.averageRatingsUsefulness + 1 - (course.averageRatingsUsefulness % 1)) : (course.averageRatingsUsefulness - (course.averageRatingsUsefulness % 1)) }"
+								data-max-rating="5"></div> 
 						</div>
 					</div>
 
@@ -173,8 +179,9 @@ body {
 						</div>
 						<div class="extra content">
 							<div class="ui star rating"
-								data-rating="${requestScope.course.averageRatingsVividness }"
-								data-max-rating="5"></div>
+								data-rating="
+								${((course.averageRatingsVividness % 1) > 0.5) ? (course.averageRatingsVividness + 1 - (course.averageRatingsVividness % 1)) : (course.averageRatingsVividness - (course.averageRatingsVividness % 1)) }"
+								data-max-rating="5"></div> 
 						</div>
 					</div>
 				</div>
@@ -187,9 +194,10 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较，完成课后作业、课后展示及大小考试所花费时间；占用课余时间少，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating"
-								data-rating="${requestScope.course.averageRatingsSpareTimeOccupation }"
-								data-max-rating="5"></div>
+							 <div class="ui star rating"
+								data-rating="
+								${((course.averageRatingsSpareTimeOccupation % 1) > 0.5) ? (course.averageRatingsSpareTimeOccupation + 1 - (course.averageRatingsSpareTimeOccupation % 1)) : (course.averageRatingsSpareTimeOccupation - (course.averageRatingsSpareTimeOccupation % 1)) }"
+								data-max-rating="5"></div> 
 						</div>
 					</div>
 				</div>
@@ -202,9 +210,10 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的期末分情况；期末给分高，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating"
-								data-rating="${requestScope.course.averageRatingsScoring }"
-								data-max-rating="5"></div>
+							 <div class="ui star rating"
+								data-rating="
+								${((course.averageRatingsScoring % 1) > 0.5) ? (course.averageRatingsScoring + 1 - (course.averageRatingsScoring % 1)) : (course.averageRatingsScoring - (course.averageRatingsScoring % 1)) }"
+								data-max-rating="5"></div> 
 						</div>
 					</div>
 				</div>
@@ -217,8 +226,9 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的点名情况比较；点名频率低，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							<div class="ui star rating"
-								data-rating="${requestScope.course.averageRatingsRollCall }"
+							 <div class="ui star rating"
+								data-rating="
+								${((course.averageRatingsRollCall % 1) > 0.5) ? (course.averageRatingsRollCall + 1 - (course.averageRatingsRollCall % 1)) : (course.averageRatingsRollCall - (course.averageRatingsRollCall % 1)) }"
 								data-max-rating="5"></div>
 						</div>
 					</div>
@@ -259,21 +269,19 @@ body {
 				
 				
 			</div>
-			<div id="pageturner">每页${requestScope.commentPage.pageSize}条记录 总共${requestScope.commentPage.totalPage}页
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				当前：第${requestScope.commentPage.currentPage} / ${requestScope.commentPage.totalPage}页
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				请选择：第
-				<c:forEach begin="1" end="${requestScope.commentPage.totalPage}" step="1" var="i">
-					<c:if test="${i==requestScope.commentPage.currentPage}">
-						【${i}】
-					</c:if>
-					<c:if test="${i!=requestScope.commentPage.currentPage}">
-						<button onclick="turnPage(${i},${requestScope.course.courseid});">${i}</button>
-					</c:if>
-				</c:forEach>
-				页</div>
+			
+			<div class="ui basic segment" style="margin-top:0;margin-bottom:20px">
+				<div id="pageturner" class="ui right floated mini pagination menu">
+					<c:forEach begin="1" end="${requestScope.commentPage.totalPage}" step="1" var="i">
+						<c:if test="${i==requestScope.commentPage.currentPage}">
+							<a class="disabled item">${i }</a>
+						</c:if>
+						<c:if test="${i!=requestScope.commentPage.currentPage}">
+							<a class="item" onclick="turnPage(${i},${requestScope.course.courseid});">${i }</a>
+						</c:if>
+					</c:forEach>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -300,7 +308,7 @@ body {
 					</div>
 				</div>
 				<div class="seven wide column">
-					<h4 class="ui inverted header">大众点评课</h4>
+					<h4 class="ui inverted header">我的课</h4>
 					<p>只做给你看的选课攻略。</p>
 				</div>
 			</div>
@@ -458,21 +466,15 @@ $(function(){
 			    commentlist.innerHTML=html;
 			    var pageturner=document.getElementById("pageturner");
 			    var cpage = returnData[0].currentPage;
-			    var html2="每页${requestScope.commentPage.pageSize}条记录 总共${requestScope.commentPage.totalPage}页"+
-					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-					"当前：第"+cpage+"/ ${requestScope.commentPage.totalPage}页"+
-					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-					"请选择：第";
+			    var html2="";
 				for(var i = 1;i<=${requestScope.commentPage.totalPage};i++){
 					if(i==cpage){
-						html2=html2+"【"+i+"】";
+						html2=html2+"<a class='disabled item'>"+i+"</a>";
 					}
 					else if(i!=cpage){
-						html2=html2+"&nbsp<button onclick='turnPage("+i+","+courseid+");'>"+i+"</button>&nbsp";
+						html2=html2+"<a class='item' onclick='turnPage("+i+","+courseid+");'>"+i+"</a>";
 					}
 				}
-				html2=html2+"页";
 
 			pageturner.innerHTML=html2;
 		  }

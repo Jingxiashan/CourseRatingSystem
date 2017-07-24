@@ -11,25 +11,25 @@
             </generator>
         </id>
         <one-to-one name="course" class="com.courseratingsystem.web.domain.Course" constrained="true"></one-to-one>
-        <property name="averageRatingsUsefulness" type="java.lang.Integer">
+        <property name="averageRatingsUsefulness" type="java.lang.Float">
             <column name="averageRatings_usefulness" />
         </property>
-        <property name="averageRatingsVividness" type="java.lang.Integer">
+        <property name="averageRatingsVividness" type="java.lang.Float">
             <column name="averageRatings_vividness" />
         </property>
-        <property name="averageRatingsSpareTimeOccupation" type="java.lang.Integer">
+        <property name="averageRatingsSpareTimeOccupation" type="java.lang.Float">
             <column name="averageRatings_spareTimeOccupation" />
         </property>
-        <property name="averageRatingsScoring" type="java.lang.Integer">
+        <property name="averageRatingsScoring" type="java.lang.Float">
             <column name="averageRatings_scoring" />
         </property>
-        <property name="averageRatingsRollCall" type="java.lang.Integer">
+        <property name="averageRatingsRollCall" type="java.lang.Float">
             <column name="averageRatings_rollCall" />
         </property>
         <property name="peopleCount" type="java.lang.Integer">
             <column name="peopleCount" />
         </property>
-        <property name="recommendationScore" type="java.lang.Integer">
+        <property name="recommendationScore" type="java.lang.Float">
             <column name="recommendationScore" />
         </property>
         <property name="finalType" type="java.lang.Integer">

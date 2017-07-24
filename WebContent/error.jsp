@@ -5,6 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 </head>
 <body>
 error happened.

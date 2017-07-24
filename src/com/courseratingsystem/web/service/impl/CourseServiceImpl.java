@@ -83,8 +83,8 @@ public class CourseServiceImpl implements CourseService {
 				  
 	            @Override  
 	            public int compare(CourseOverview o1, CourseOverview o2) {  
-	                int i = o2.getAverageRatingsUsefulness() - o1.getAverageRatingsUsefulness();   
-	                return i;  
+	                float i = o2.getAverageRatingsUsefulness() - o1.getAverageRatingsUsefulness();   
+	                return i > 0 ? 1 : (i < 0 ? -1 : 0);  
 	            }  
 	        });
 			break;
@@ -93,8 +93,8 @@ public class CourseServiceImpl implements CourseService {
 				  
 	            @Override  
 	            public int compare(CourseOverview o1, CourseOverview o2) {  
-	                int i = o2.getAverageRatingsVividness() - o1.getAverageRatingsVividness();   
-	                return i;  
+	                float i = o2.getAverageRatingsVividness() - o1.getAverageRatingsVividness();      
+	                return i > 0 ? 1 : (i < 0 ? -1 : 0);  
 	            }  
 	        });
 			break;
@@ -103,8 +103,8 @@ public class CourseServiceImpl implements CourseService {
 				  
 	            @Override  
 	            public int compare(CourseOverview o1, CourseOverview o2) {  
-	                int i = o2.getAverageRatingsSpareTimeOccupation() - o1.getAverageRatingsSpareTimeOccupation();   
-	                return i;  
+	                float i = o2.getAverageRatingsSpareTimeOccupation() - o1.getAverageRatingsSpareTimeOccupation();   
+	                return i > 0 ? 1 : (i < 0 ? -1 : 0);  
 	            }  
 	        });
 			break;
@@ -113,8 +113,8 @@ public class CourseServiceImpl implements CourseService {
 				  
 	            @Override  
 	            public int compare(CourseOverview o1, CourseOverview o2) {  
-	                int i = o2.getAverageRatingsScoring() - o1.getAverageRatingsScoring();   
-	                return i;  
+	                float i = o2.getAverageRatingsScoring() - o1.getAverageRatingsScoring();     
+	                return i > 0 ? 1 : (i < 0 ? -1 : 0);  
 	            }  
 	        });
 			break;
@@ -123,8 +123,8 @@ public class CourseServiceImpl implements CourseService {
 				  
 	            @Override  
 	            public int compare(CourseOverview o1, CourseOverview o2) {  
-	                int i = o2.getAverageRatingsRollCall() - o1.getAverageRatingsRollCall();   
-	                return i;  
+	                float i = o2.getAverageRatingsRollCall() - o1.getAverageRatingsRollCall();    
+	                return i > 0 ? 1 : (i < 0 ? -1 : 0);  
 	            }  
 	        });
 			break;
@@ -133,8 +133,8 @@ public class CourseServiceImpl implements CourseService {
 				  
 	            @Override  
 	            public int compare(CourseOverview o1, CourseOverview o2) {  
-	                int i = o2.getRecommendationScore() - o1.getRecommendationScore();   
-	                return i;  
+	                float i = o2.getRecommendationScore() - o1.getRecommendationScore();      
+	                return i > 0 ? 1 : (i < 0 ? -1 : 0);  
 	            }  
 	        });
 			break;
