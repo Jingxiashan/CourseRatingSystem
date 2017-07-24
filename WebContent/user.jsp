@@ -88,7 +88,7 @@ body {
 	<div class="three wide column">
 		<div class="ui vertical inverted sticky menu" style="position:fixed!important;top:0">
 			<div class="item" style="width: 80px">
-				<img src="images/jenny.jpg">
+				<img src="images/stevie.jpg">
 			</div>
 			<div class="container" style="color: #FFFFFF">
 				<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好久不见，${sessionScope.user.nickname }。</b>
@@ -98,7 +98,6 @@ body {
 				<div class="header">课程管理</div>
 				<div class="menu">
 					<a class="item" href="user_allfavourites.jsp">课程收藏管理 </a>
-					<a class="item" href="courseSearchByCname.jsp">课程查询</a>
 				</div>
 			</div>
 			<div class="item">
@@ -115,6 +114,9 @@ body {
 			<div class="item" style="height: 750px">
 				<div class="header">其他</div>
 				<div class="menu">
+					<a class="item" href="user.jsp" class="item">个人中心</a>
+					<a href="course_findAll.action" class="item">课程详情</a>					
+					<a class="item" href="courseSearchByCname.jsp">课程查询</a>
 					<a class="item" href="homepage.jsp">网站介绍</a> 
 					<a class="item" href="about.jsp">关于我们</a>
 				</div>
@@ -122,23 +124,22 @@ body {
 		</div>
 	</div>
 
-	<div class="thirteen wide column" style="background:#FFFFFF;padding-left:50px;width:auto">
-		<div class="ui container" style="width:60%">
 
-			<div class="ui left aligned main text container">
-				<img src="images/elliot.jpg" style="width: 100px">
+	<div class="thirteen wide column" style="background:#FFFFFF;padding-left:20px;width:auto">
+           <div class="ui basic segment" style="margin:50px">
+		<div class="ui left aligned vertical container">
+				<img src="images/stevie.jpg" style="width: 100px">
 				<h1 class="ui header">${sessionScope.user.nickname }</h1>
 				<br>
-			</div>
 			
 			
-			<div class="ui segment">
+			<div class="ui basic segment">
 			
 				<div class="ui header">
 					<h3>老司机基本信息</h3>
 				</div>
 				
-				<div class="ui tall stacked segment">
+				<div class="ui basic segment">
 					<div>
 						<h4>昵称：${sessionScope.user.nickname }</h4>
 					</div>
@@ -155,14 +156,18 @@ body {
 						<h4>个人简介：</h4>
 						<p>${sessionScope.user.introduction }</p>
 					</div>
+					<div class="ui divider"></div>
 				</div>
 		
 			</div>	
 			
 		</div>
+		</div>
 	</div>
+	</div>
+
 	
-</div>
+
 
 </body>
 </html>

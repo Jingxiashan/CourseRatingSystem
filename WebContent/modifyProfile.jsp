@@ -87,7 +87,7 @@ body {
 	<div class="three wide column">
 		<div class="ui vertical inverted sticky menu" style="position:fixed!important;top:0">
 			<div class="item" style="width: 80px">
-				<img src="images/jenny.jpg">
+				<img src="images/stevie.jpg">
 			</div>
 			<div class="container" style="color: #FFFFFF">
 				<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好久不见，${sessionScope.user.nickname }。</b>
@@ -96,8 +96,7 @@ body {
 			<div class="item">
 				<div class="header">课程管理</div>
 				<div class="menu">
-					<a class="item" href="user_allfavourites.jsp">课程收藏管理 </a> <a
-						class="item" href="courseSearchByCname.jsp">课程查询</a>
+					<a class="item" href="user_allfavourites.jsp">课程收藏管理 </a> 
 				</div>
 			</div>
 			<div class="item">
@@ -116,8 +115,11 @@ body {
 			<div class="item" style="height: 750px">
 				<div class="header">其他</div>
 				<div class="menu">
-					<a class="item" href="homepage.jsp">网站介绍</a> <a class="item"
-						href="about.jsp">关于我们</a>
+					<a class="item" href="user.jsp" class="item">个人中心</a>
+					<a href="course_findAll.action" class="item">课程详情</a>					
+					<a class="item" href="courseSearchByCname.jsp">课程查询</a>
+					<a class="item" href="homepage.jsp">网站介绍</a> 
+					<a class="item" href="about.jsp">关于我们</a>
 				</div>
 			</div>
 		</div>
