@@ -217,7 +217,7 @@ function login(){
 			var result = data;			console.log(result);
 			if(result == "success"){
 				//console.log(document.referrer);
-				window.location.href=((document.referrer.length == 0 || document.referrer.indexOf("login") != -1) 
+				window.location.href=((document.referrer.length == 0 || document.referrer.indexOf("log") != -1) 
 						? "course_findAll.action" : 
 							document.referrer);
 			}else{

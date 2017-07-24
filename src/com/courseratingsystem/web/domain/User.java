@@ -24,6 +24,15 @@ public class User implements java.io.Serializable {
 	private Set courses = new HashSet(0);
 	private Set logininfos = new HashSet(0);
 	private Set comments = new HashSet(0);
+	private String picpath;
+
+	public String getPicpath() {
+		return picpath;
+	}
+
+	public void setPicpath(String picpath) {
+		this.picpath = picpath;
+	}
 
 	public User() {
 	}

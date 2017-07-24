@@ -55,6 +55,9 @@
 	</bean>
 	
 	<!-- 配置Action -->
+	<bean id="uploadAction" class="com.courseratingsystem.web.action.UploadAction" scope="prototype">
+		<property name="userService" ref="userService"/>
+	</bean>
 	<bean id="changePasswordAction" class="com.courseratingsystem.web.action.ChangePasswordAction" scope="prototype">
 		<property name="logininfoService" ref="logininfoService"/>
 	</bean>
