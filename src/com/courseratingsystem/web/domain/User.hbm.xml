@@ -11,6 +11,9 @@
         <property name="nickname" type="string">
             <column name="nickname" />
         </property>
+        <property name="picpath" type="string">
+            <column name="picpath" />
+        </property>
         <property name="grade" type="string">
             <column name="grade" length="4" />
         </property>
