@@ -198,11 +198,14 @@ body {
 <script>
 $("#gradeSelect").dropdown('set selected',${sessionScope.user.grade });
 function modifyProfile(){
-	var nickname = document.getElementById("nickname");
-	var wechatAccount = document.getElementById("wechatAccount");
-	var gradeSelect = document.getElementById("gradeSelect");
-	var introduction = document.getElementById("introduction");
-	
+	var nickname = document.getElementById("nickname").value;
+	var wechatAccount = document.getElementById("wechatAccount").value;
+	var gradeSelect = document.getElementById("gradeSelect").value;
+	var introduction = document.getElementById("introduction").value;
+	var modalMessage = document.getElementById("modalMessage");
+	var modalTitle = document.getElementById("modalTitle");
+	var modalButton = document.getElementById("modalButton");
+	console.log(gradeSelect);
 	if(nickname.length == 0){
 		modalMessage.innerHTML = "昵称不能为空啊！";
 		modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 修改失败"
@@ -221,7 +224,24 @@ function modifyProfile(){
 		;
 		return;
 	}
-	var password = password1;
+	if(gradeSelect.length == 0){
+		modalMessage.innerHTML = "年级不能为空啊！";
+		modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 修改失败"
+		modalButton.removeAttribute("onclick");
+		$('.ui.basic.modal')
+		  .modal('show')
+		;
+		return;
+	}
+	if(introduction.length == 0){
+		modalMessage.innerHTML = "个人简介不能为空啊！";
+		modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 修改失败"
+		modalButton.removeAttribute("onclick");
+		$('.ui.basic.modal')
+		  .modal('show')
+		;
+		return;
+	}
 	$.ajax({
 		type:'post',
 	 	url:"${pageContext.request.contextPath}/json_user_modifyProfile.action",
@@ -229,28 +249,42 @@ function modifyProfile(){
 	 		"userid":${sessionScope.user.userid },
 	 		"nickname":nickname,
 	 		"wechatAccount":wechatAccount,
-	 		"gradeSelect":gradeSelect,
+	 		"grade":gradeSelect,
 	 		"introduction":introduction
 	 		},
 		success:function(data){
 			if(data == "success"){
-				modalTitle.innerHTML = "<i class='checkmark icon' id='modalIcon'></i> 修改密码成功"
-				modalMessage.innerHTML = "密码修改成功！";
+				modalTitle.innerHTML = "<i class='checkmark icon' id='modalIcon'></i> 修改信息成功";
+				modalMessage.innerHTML = "";
 				modalButton.setAttribute("onclick","window.location.href='user.jsp'");
 				$('.ui.basic.modal')
 				  .modal('show')
 				;
 			}else{
 				modalMessage.innerHTML = data;
-				modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 修改密码失败"
-					modalButton.removeAttribute("onclick");
+				modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 修改信息失败";
+				modalMessage.innerHTML = "";
+				modalButton.removeAttribute("onclick");
 				$('.ui.basic.modal')
 				  .modal('show')
 				;
 			}
 		}
-	});
+	}); 
 }
+function preImg(sourceId, targetId) {  
+    if (typeof FileReader === 'undefined') {  
+        alert('Your browser does not support photo uploads...');  
+        return;  
+    }  
+    var reader = new FileReader();  
+  
+    reader.onload = function(e) {  
+        var img = document.getElementById(targetId);  
+        img.src = this.result;  
+    }  
+    reader.readAsDataURL(document.getElementById(sourceId).files[0]);  
+}  
 </script>
 </html>
 

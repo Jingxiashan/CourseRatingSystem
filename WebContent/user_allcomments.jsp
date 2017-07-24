@@ -133,17 +133,8 @@ body {
 		<div class="ui container" style="background:#FFFFFF;padding-left:50px;width:auto">
 			<div class="article">
 			
-				<div class="ui masthead vertical segment" style="width: 80%">
-					<div class="ui container">
-						<div class="introduction">
-							<h1 class="ui header">${sessionScope.user.nickname}</h1>
-							<div class="sub header">${sessionScope.user.introduction}</div>
-							<div class="ui hidden divider"></div>
-						</div>
-					</div>
-				</div>
 				
-				<div class="ui dividing header" style="width: 80%">
+				<div class="ui dividing header" style="width: 80%;margin-top:80px">
 					<h2>已发表评论</h2>
 				</div>
 
@@ -152,7 +143,7 @@ body {
 						<c:forEach items="${sessionScope.user.comments }" var="comment">
 							<div class="ui two column grid" id="comment${comment.commentid }">
 							
-								<div class="ten wide column">
+								<div class="eleven wide column">
 									<div class="comment">
 										<a class="avatar"><img src="images/stevie.jpg"></a>
 									
@@ -161,29 +152,23 @@ body {
 											<div class="metadata">
 												<span class="date">${comment.timestamp }</span>
 											</div>
-											
-											<div class="author" style="margin-top:10px">评价课程：${comment.course.coursename }</div>
-											<div class="author" style="margin-top:5px">评价教师：${comment.teacher.teachername }</div>
 											<div class="text" style="margin-top:10px">${comment.critics }</div>
+											<div class="ui basic horizontal label" style="margin-top:10px"><a style="color:black" href="teacher_getPage.action?teacherid=${comment.teacher.teacherid }">${comment.teacher.teachername }</a>
+									      		<a class="ui detail" href="course_getPage.action?courseid=${comment.course.courseid }">${comment.course.coursename }</a>
+									      	</div>
 										</div>
 									</div>
 								</div>
 								
-								<div class="six wide column">
+								<div class="five wide column">
 									<!-- 这里是 点赞评论和删除评论的action-->
 									<form class="actions">
-										<div class="ui labeled mini button" tabindex="0">
-											<div class="ui red mini button" window.event.returnValue = false;">
-												<i class="heart icon"></i> 戳
-											</div>
-											<div id="comment${comment.commentid }Count" class="ui basic red left mini basic label">
-												${comment.likeCount }
-											</div>
-										</div>
-										<div class="ui labeled mini button" tabindex="0">
-											<div class="ui basic blue mini button" onclick="deleteComment(${comment.commentid})">
-												<i class="fork icon"></i>删除
-											</div>
+										<button class="ui basic red mini button">
+										  <i class="heart icon"></i>
+										  ${comment.likeCount }
+										</button>
+										<div class="ui basic blue mini button" onclick="deleteComment(${comment.commentid})">
+											<i class="remove icon"></i>删除
 										</div>
 									</form>
 								</div>

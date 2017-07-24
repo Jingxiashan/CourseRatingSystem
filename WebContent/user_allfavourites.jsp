@@ -134,17 +134,8 @@ body {
 		<div class="ui container" style="background:#FFFFFF;padding-left:50px;width:auto">
 			<div class="article">
 			
-				<div class="ui masthead vertical segment" style="width: 80%">
-					<div class="ui container">
-						<div class="introduction">
-							<h1 class="ui header">${sessionScope.user.nickname}</h1>
-							<div class="sub header">${sessionScope.user.introduction}</div>
-							<div class="ui hidden divider"></div>
-						</div>
-					</div>
-				</div>
 				
-				<div class="ui dividing header" style="width: 80%">
+				<div class="ui dividing header" style="width: 80%;margin-top:80px">
                     <h2>已收藏课程</h2>
 				</div>
 				<br>

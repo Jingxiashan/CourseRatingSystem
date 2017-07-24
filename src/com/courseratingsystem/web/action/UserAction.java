@@ -60,6 +60,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		userService.update(currentUser);
 		//最后 更新session里面的user
 		ServletActionContext.getRequest().getSession().setAttribute("user", currentUser);
+		result = SUCCESS;
 		return SUCCESS;
 	}
 
