@@ -22,6 +22,14 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	private int currentPage = 1;
 	private final int pageSize = 10;
 	private int commentid;
+	private String result;
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
 	private static final String GET_TO_SELF_PROFILE = "get_to_self_profile";
 	public int getCommentid() {
 		return commentid;
@@ -86,6 +94,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 			int courseid = Integer.parseInt(str_courseid);
 			User currentUser =	(User) ServletActionContext.getRequest().getSession().getAttribute("user");
 			userService.addFavourateCourse(currentUser.getUserid(), courseService.findCourseById(courseid));
+			ServletActionContext.getRequest().getSession().setAttribute("user", userService.findUserById(currentUser.getUserid()));
 			return SUCCESS;	
 		}else return FAIL;
 		
@@ -98,17 +107,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 			int courseid = Integer.parseInt(str_courseid);
 			User currentUser =	(User) ServletActionContext.getRequest().getSession().getAttribute("user");
 			userService.deleteFavourateCourse(currentUser.getUserid(), courseService.findCourseById(courseid));
-			User user =  userService.findUserById(((User)ServletActionContext.getRequest().getSession().getAttribute("user")).getUserid());
-			ServletActionContext.getRequest().getSession().setAttribute("user", user);
+			ServletActionContext.getRequest().getSession().setAttribute("user", userService.findUserById(currentUser.getUserid()));
 			return SUCCESS;	
 		}else return FAIL;
 		
 	}
-	
-	public String deleteComment() {
-		return null;
-	}
-	
 	public UserService getUserService() {
 		return userService;
 	}

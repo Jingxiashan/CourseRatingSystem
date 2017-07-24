@@ -158,6 +158,8 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 	
 	public String addComment(){
 		commentService.add(comment);
+		User user =  userService.findUserById(((User)ServletActionContext.getRequest().getSession().getAttribute("user")).getUserid());
+		ServletActionContext.getRequest().getSession().setAttribute("user", user);
 		return SUCCESS;
 	}	
 

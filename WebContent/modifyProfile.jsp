@@ -224,7 +224,7 @@ function modifyProfile(){
 	var password = password1;
 	$.ajax({
 		type:'post',
-	 	url:"${pageContext.request.contextPath}/user_modifyProfile.action",
+	 	url:"${pageContext.request.contextPath}/json_user_modifyProfile.action",
 	 	data:{
 	 		"userid":${sessionScope.user.userid },
 	 		"nickname":nickname,
