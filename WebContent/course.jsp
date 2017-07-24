@@ -7,6 +7,9 @@
 <title>课程详情-${requestScope.course.coursename}</title>
 <!-- Standard Meta -->
 <meta charset="utf-8" />
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">

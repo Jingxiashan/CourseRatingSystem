@@ -8,6 +8,9 @@
 <head>
 <!-- Standard Meta -->
 <meta charset="utf-8" />
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -72,7 +75,7 @@ body {
 	<div class="ui fixed borderless inverted menu">
 		<div class="ui container">
 			<a href="homepage.jsp" class="header item">
-				<img class="logo" src="images/testPic.jpg"> 大众点评课
+				<img class="logo" src="images/logos/logo_menu.png" style="width:105px;margin-right:0px"> 
 			</a>
 			<a href="course_findAll.action" class="item active">全部课程</a>
 			<div class="ui simple dropdown item">

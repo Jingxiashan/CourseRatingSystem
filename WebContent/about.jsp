@@ -6,6 +6,9 @@
 <html>
 <title>关于我们-大众点评课</title>
 <head>
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 <!-- Standard Meta -->
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -48,7 +51,7 @@ body {
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
 			<a href="homepage.jsp" class="header item"> <img class="logo"
-				src="images/testPic.jpg"> 大众点评课 <a
+				src="images/testPic.jpg"> 大众点评课 <a onClick="javascript :history.back(-1);" class="item">返回</a><a
 				href="course_findAll.action" class="item">全部课程</a>
 				<div class="ui simple dropdown item">
 					课程搜索 <i class="dropdown icon"></i>

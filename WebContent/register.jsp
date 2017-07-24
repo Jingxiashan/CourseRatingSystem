@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="Shortcut Icon"
-	href="//www.dpfile.com/s/res/favicon.5ff777c11d7833e57e01c9d192b7e427.ico"
+	href="images/logos/icon.ico"
 	type="image/x-icon">
 <link rel="stylesheet prefech"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
@@ -197,13 +197,13 @@
 	</div>
 	<div class="ui basic modal">
 		<div class="ui icon header" id="modalTitle">
-			<i class="remove icon"></i> 注册失败
+			<i class="remove icon" id="modalIcon"></i> 注册失败
 		</div>
 		<div class="content">
     		<p id="modalMessage"></p>
   		</div>
 		<div class="actions">
-			<button class="ui green ok inverted button" type="button">
+			<button class="ui green ok inverted button" type="button" id="modalButton">
 				<i class="checkmark icon"></i> 确定
 			</button>
 		</div>
@@ -272,8 +272,12 @@ function register(){
 	var nickname = document.getElementById('nickname').value;
 	var grade = document.getElementById('grade').value;
 	var modalMessage = document.getElementById('modalMessage');
+	var modalTitle = document.getElementById('modalTitle');
+	var modalButton = document.getElementById('modalButton');
 	if(username.length == 0){
 		modalMessage.innerHTML = "用户名不能为空啊！";
+		modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 注册失败"
+		modalButton.removeAttribute("onclick");
 		$('.ui.basic.modal')
 		  .modal('show')
 		;
@@ -281,6 +285,8 @@ function register(){
 	}
 	if(password1.length == 0 || password2.length == 0){
 		modalMessage.innerHTML = "密码不能为空啊！";
+		modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 注册失败"
+			modalButton.removeAttribute("onclick");
 		$('.ui.basic.modal')
 		  .modal('show')
 		;
@@ -288,6 +294,8 @@ function register(){
 	}
 	if(nickname.length == 0){
 		modalMessage.innerHTML = "昵称不能为空啊！";
+		modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 注册失败"
+			modalButton.removeAttribute("onclick");
 		$('.ui.basic.modal')
 		  .modal('show')
 		;
@@ -295,6 +303,8 @@ function register(){
 	}
 	if(grade.length == 0){
 		modalMessage.innerHTML = "年级不能为空啊！";
+		modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 注册失败"
+			modalButton.removeAttribute("onclick");
 		$('.ui.basic.modal')
 		  .modal('show')
 		;
@@ -312,7 +322,12 @@ function register(){
 	 		},
 		success:function(data){
 			if(data == "success"){
-				window.location.href="course_findAll.action";
+				modalTitle.innerHTML = "<i class='checkmark icon' id='modalIcon'></i> 注册成功"
+				modalMessage.innerHTML = "恭喜上车！请站稳扶好哦";
+				modalButton.setAttribute("onclick","window.location.href='course_findAll.action'");
+				$('.ui.basic.modal')
+				  .modal('show')
+				;
 			}
 		}
 	}); 
