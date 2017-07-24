@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -51,58 +41,6 @@
 </script>
 
 
-
-<script src="/dist/semantic.min.js"></script>
-
-
-
-<script src="/javascript/docs.js"></script>
-
-
-<link rel="stylesheet" type="text/css" class="ui"
-	href="/dist/semantic.min.css">
-
-
-
-
-<link rel="stylesheet" type="text/css" href="/stylesheets/docs.css">
-<link rel="stylesheet" type="text/css" href="/stylesheets/rtl.css">
-
-
-
-
-
-
-<script>
-	(function(i, s, o, g, r, a, m) {
-		i['GoogleAnalyticsObject'] = r;
-		i[r] = i[r] || function() {
-			(i[r].q = i[r].q || []).push(arguments)
-		}, i[r].l = 1 * new Date();
-		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-		a.async = 1;
-		a.src = g;
-		m.parentNode.insertBefore(a, m)
-	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
-			'ga');
-
-	ga('create', 'UA-44039803-2', 'auto');
-	ga('send', 'pageview');
-</script>
-
-
-<script type="text/javascript">
-	window.liveSettings = {
-		api_key : '9ede3015b9f84c1aabc81ab839c55d74',
-		parse_attr : [ 'data-title', 'data-content' ],
-		detectlang : false,
-		autocollect : true,
-		ignore_tags : [ 'i', 'code', 'pre' ],
-		parse_attr : [ 'data-title', 'data-content', 'data-text' ],
-		ignore_class : [ 'code', 'anchor' ]
-	};
-</script>
-<script type="text/javascript" src="//cdn.transifex.com/live.js"></script>
 <style type="text/css">
 body {
 	background-color: #FFFFFF;
@@ -138,114 +76,115 @@ body {
 	background: white;
 }
 </style>
-<script src="js/jquery.js"></script>
-<script src="js/index.js"></script>
+
 <title>修改个人信息 - 大众点评课</title>
 </head>
 
-<body id="example" class="started pushable" outouchstart>
+<body id="example">
 
+<div class="ui two column grid">
 
-	<div class="pusher">
-		<div class="full height">
-			<div class="ui right floated segment"
-				style="left: 35px; border: 0px; width: 1150px">
-				<div class="article">
-					<div class="ui masthead vertical segment">
-						<div class="ui container">
-							<div class="introduction">
-								<h1 class="ui header">${sessionScope.user.nickname}</h1>
-								<div class="sub header">${sessionScope.user.introduction}</div>
-								<div class="ui hidden divider"></div>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="ui dividing header">
-						<h2>修改个人信息</h2>
-					</div>
-						${requestScope.message }
-	<div class="ui container">
-			<form class="ui form" action="" method="post">
-				<div class="ui segment">
-					<div class="field">
-						<label>昵称</label> <input type="text" name="nickname"
-							value="${sessionScope.user.nickname }" placeholder="请设置昵称" />
-					</div>
-					<div class="field">
-						<label>微信账号</label> <input type="text" name="wechatAccount"
-							value="${sessionScope.user.wechatAccount }"
-							placeholder="请填写您的微信账号" />
-					</div>
-					<div class="field">
-						<label>年级</label> <select class="ui search dropdown" name="grade">
-							<option value="">请选择年级</option>
-							<option value="2010">2010级</option>
-							<option value="2011">2011级</option>
-							<option value="2012">2012级</option>
-							<option value="2013">2013级</option>
-							<option value="2014">2014级</option>
-							<option value="2015">2015级</option>
-							<option value="2016">2016级</option>
-							<option value="2017">2017级</option>
-							<option value="2018">2018级</option>
-						</select>
-					</div>
-					<div class="field">
-						<label>简介</label> 
-						<textarea type="text" name="introduction"
-							placeholder="请填写关于您的简介" >${sessionScope.user.introduction }</textarea>
-					</div>
+	<div class="three wide column">
+		<div class="ui vertical inverted sticky menu" style="position:fixed!important;top:0">
+			<div class="item" style="width: 80px">
+				<img src="images/jenny.jpg">
+			</div>
+			<div class="container" style="color: #FFFFFF">
+				<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好久不见，${sessionScope.user.nickname }。</b>
+			</div>
+			<br>
+			<div class="item">
+				<div class="header">课程管理</div>
+				<div class="menu">
+					<a class="item" href="user_allfavourites.jsp">课程收藏管理 </a> <a
+						class="item" href="courseSearchByCname.jsp">课程查询</a>
 				</div>
-				<button class="ui primary button" type="submit">修改信息</button>
-			</form>
-	</div>
-									
-</div>
-</div>
-
-		<div class="toc">
-			<div class="ui vertical inverted sticky menu">
-				<div class="item" style="width: 80px">
-					<img src="images/jenny.jpg">
+			</div>
+			<div class="item">
+				<div class="header">评论管理</div>
+				<div class="menu">
+					<a class="item" href="user_allcomments.jsp">发表评论管理</a>
 				</div>
-				<div class="container" style="color: #FFFFFF">
-					<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好久不见，井下山。</b>
+			</div>
+			<div class="item">
+				<div class="header">个人信息管理</div>
+				<div class="menu">
+					<a class="item" href="modifyProfile.jsp"> 修改个人信息 </a> <a
+						class="item" href="changePass.jsp"> 修改个人密码 </a>
 				</div>
-				<br>
-				<div class="item">
-					<div class="header">课程管理</div>
-					<div class="menu">
-						<a class="item" href="user_allfavourites.jsp">课程收藏管理 </a> <a
-							class="item" href="courseSearchByCname.jsp">课程查询</a>
-					</div>
-				</div>
-				<div class="item">
-					<div class="header">评论管理</div>
-					<div class="menu">
-						<a class="item" href="user_allcomments.jsp">发表评论管理</a>
-					</div>
-				</div>
-				<div class="item">
-					<div class="header">个人信息管理</div>
-					<div class="menu">
-						<a class="item" href="modifyProfile.jsp"> 修改个人信息 </a> <a
-							class="item" href="changePass.jsp"> 修改个人密码 </a>
-					</div>
-				</div>
-				<div class="item" style="height: 750px">
-					<div class="header">其他</div>
-					<div class="menu">
-						<a class="item" href="homepage.jsp">网站介绍</a> <a class="item"
-							href="about.jsp">关于我们</a>
-
-					</div>
+			</div>
+			<div class="item" style="height: 750px">
+				<div class="header">其他</div>
+				<div class="menu">
+					<a class="item" href="homepage.jsp">网站介绍</a> <a class="item"
+						href="about.jsp">关于我们</a>
 				</div>
 			</div>
 		</div>
+	</div>
+
+
+	<div class="thirteen wide column">
+		<div class="ui container" style="background:#FFFFFF;padding-left:50px;width:auto">
+			<div class="article">
+			
+				<div class="ui masthead vertical segment" style="width: 80%">
+					<div class="ui container">
+						<div class="introduction">
+							<h1 class="ui header">${sessionScope.user.nickname}</h1>
+							<div class="sub header">${sessionScope.user.introduction}</div>
+							<div class="ui hidden divider"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="ui dividing header" style="width: 80%">
+					<h2>修改个人信息</h2>
+				</div>
+			
+				${requestScope.message }
+				<div class="ui container">
+					<form class="ui form" action="" method="post" style="width: 80%">
+						<div class="ui segment">
+							<div class="field">
+								<label>昵称</label> <input type="text" name="nickname"
+									value="${sessionScope.user.nickname }" placeholder="请设置昵称" />
+							</div>
+							<div class="field">
+								<label>微信账号</label> <input type="text" name="wechatAccount"
+									value="${sessionScope.user.wechatAccount }"
+									placeholder="请填写您的微信账号" />
+							</div>
+							<div class="field">
+								<label>年级</label> <select class="ui search dropdown" name="grade">
+									<option value="">请选择年级</option>
+									<option value="2010">2010级</option>
+									<option value="2011">2011级</option>
+									<option value="2012">2012级</option>
+									<option value="2013">2013级</option>
+									<option value="2014">2014级</option>
+									<option value="2015">2015级</option>
+									<option value="2016">2016级</option>
+									<option value="2017">2017级</option>
+									<option value="2018">2018级</option>
+								</select>
+							</div>
+							<div class="field">
+								<label>简介</label> 
+								<textarea type="text" name="introduction"
+									placeholder="请填写关于您的简介" >${sessionScope.user.introduction }</textarea>
+							</div>
+						</div>
+						<button class="ui primary button" type="submit">修改信息</button>
+					</form>
+				</div>
+									
+			</div>
+		</div>
+	</div>
+
 </div>
-</div>
+
 </body>
 </html>
 

@@ -6,23 +6,46 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
-import com.courseratingsystem.web.object.CommentWithCourseName;
 import com.courseratingsystem.web.object.CourseOverview;
+import com.courseratingsystem.web.domain.Comment;
 import com.courseratingsystem.web.domain.Teacher;
 import com.courseratingsystem.web.service.CommentService;
 import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.service.TeacherService;
+import com.courseratingsystem.web.service.impl.CommentServiceImpl;
+import com.courseratingsystem.web.vo.CommentPage;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.sun.net.httpserver.HttpServer;
 
 public class TeacherAction extends ActionSupport implements ModelDriven<Teacher>{
+	private int currentPage=1;
+	private int pageSize=5;
+	private String sortmethod=CommentServiceImpl.COMMENT_SORT_METHOD_BYLIKECOUNT;
 	private Teacher teacher = new Teacher();
 	private static final String FAIL = "fail";
 	private TeacherService teacherService;
 	private CourseService courseService;
 	private CommentService commentService;
-
+	
+	public int getCurrentPage() {
+		return currentPage;
+	}
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+	public int getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+	public String getSortmethod() {
+		return sortmethod;
+	}
+	public void setSortmethod(String sortmethod) {
+		this.sortmethod = sortmethod;
+	}
 	public Teacher getTeacher() {
 		return teacher;
 	}
@@ -62,9 +85,9 @@ public class TeacherAction extends ActionSupport implements ModelDriven<Teacher>
 				//GET TEACHER NAME
 				request.setAttribute("teacher", teacher);
 				//GET COMMENTS
-				List<CommentWithCourseName> commentWithCourseNameList = courseService.findCommentWithCourseNameByTeacherid(teacherid);
-				if(!commentWithCourseNameList.isEmpty()){
-					request.setAttribute("commentList", commentWithCourseNameList);
+				CommentPage commentPage = commentService.findCommentByTeacherID(teacherid, currentPage, pageSize, sortmethod);
+				if(!commentPage.getCommentList().isEmpty()){
+					request.setAttribute("commentPage", commentPage);
 				}
 				//GET COURSES
 				List<CourseOverview> courseList = courseService.findCourseOverviewByTeacherid(teacherid);

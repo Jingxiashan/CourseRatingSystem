@@ -11,7 +11,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.courseratingsystem.web.dao.CourseDao;
 import com.courseratingsystem.web.domain.Course;
-import com.courseratingsystem.web.object.CommentWithCourseName;
 import com.courseratingsystem.web.object.CourseOverview;
 
 public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
@@ -145,13 +144,13 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
 		return list;
 	}
 
-	@Override
-	public List<CommentWithCourseName> findCommentWithCourseNameByTeacherid(int teacherid) {
-		String hql = ("select new com.courseratingsystem.web.object.CommentWithCourseName"
-				+ "(c.courseid,c.coursename,m.commentid,u.userid,m.ratingUsefulness,m.ratingVividness,m.ratingSpareTimeOccupation,m.ratingScoring,m.ratingRollCall,m.recommandScore,m.critics,m.likeCount,m.timestamp) "
-				+ "from Comment m left join m.course c left join m.teacher t left join m.user u where "
-				+ "t.teacherid = ?");
-		List<CommentWithCourseName> list = getHibernateTemplate().find(hql,teacherid);
-		return list;
-	}
+//	@Override
+//	public List<CommentWithCourseName> findCommentWithCourseNameByTeacherid(int teacherid) {
+//		String hql = ("select new com.courseratingsystem.web.object.CommentWithCourseName"
+//				+ "(c.courseid,c.coursename,m.commentid,u.userid,m.ratingUsefulness,m.ratingVividness,m.ratingSpareTimeOccupation,m.ratingScoring,m.ratingRollCall,m.recommandScore,m.critics,m.likeCount,m.timestamp) "
+//				+ "from Comment m left join m.course c left join m.teacher t left join m.user u where "
+//				+ "t.teacherid = ?");
+//		List<CommentWithCourseName> list = getHibernateTemplate().find(hql,teacherid);
+//		return list;
+//	}
 }

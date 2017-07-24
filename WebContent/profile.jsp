@@ -58,6 +58,7 @@ body {
 		<h1 class="ui header">${requestScope.user.nickname }</h1>
 		<br>
 	</div>
+	
 	<div class="ui container" style="width: 50%">
 		<div class="ui segment">
 			<div class="ui header">

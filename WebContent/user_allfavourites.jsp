@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,84 +16,32 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
 <script>
-	$(document).ready(function() {
+$(document).ready(function() {
 
-		// fix main menu to page on passing
-		$('.main.menu').visibility({
-			type : 'fixed'
-		});
-		$('.overlay').visibility({
-			type : 'fixed',
-			offset : 80
-		});
-
-		// lazy load images
-		$('.image').visibility({
-			type : 'image',
-			transition : 'vertical flip in',
-			duration : 500
-		});
-
-		// show dropdown on hover
-		$('.main.menu  .ui.dropdown').dropdown({
-			on : 'hover'
-		});
+	// fix main menu to page on passing
+	$('.main.menu').visibility({
+		type : 'fixed'
 	});
+	$('.overlay').visibility({
+		type : 'fixed',
+		offset : 80
+	});
+
+	// lazy load images
+	$('.image').visibility({
+		type : 'image',
+		transition : 'vertical flip in',
+		duration : 500
+	});
+
+	// show dropdown on hover
+	$('.main.menu  .ui.dropdown').dropdown({
+		on : 'hover'
+	});
+});
 </script>
 
 
-
-<script src="/dist/semantic.min.js"></script>
-
-
-
-<script src="/javascript/docs.js"></script>
-
-
-<link rel="stylesheet" type="text/css" class="ui"
-	href="/dist/semantic.min.css">
-
-
-
-
-<link rel="stylesheet" type="text/css" href="/stylesheets/docs.css">
-<link rel="stylesheet" type="text/css" href="/stylesheets/rtl.css">
-
-
-
-
-
-
-<script>
-	(function(i, s, o, g, r, a, m) {
-		i['GoogleAnalyticsObject'] = r;
-		i[r] = i[r] || function() {
-			(i[r].q = i[r].q || []).push(arguments)
-		}, i[r].l = 1 * new Date();
-		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-		a.async = 1;
-		a.src = g;
-		m.parentNode.insertBefore(a, m)
-	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
-			'ga');
-
-	ga('create', 'UA-44039803-2', 'auto');
-	ga('send', 'pageview');
-</script>
-
-
-<script type="text/javascript">
-	window.liveSettings = {
-		api_key : '9ede3015b9f84c1aabc81ab839c55d74',
-		parse_attr : [ 'data-title', 'data-content' ],
-		detectlang : false,
-		autocollect : true,
-		ignore_tags : [ 'i', 'code', 'pre' ],
-		parse_attr : [ 'data-title', 'data-content', 'data-text' ],
-		ignore_class : [ 'code', 'anchor' ]
-	};
-</script>
-<script type="text/javascript" src="//cdn.transifex.com/live.js"></script>
 <style type="text/css">
 body {
 	background-color: #FFFFFF;
@@ -128,145 +77,149 @@ body {
 	background: white;
 }
 </style>
-<script src="js/jquery.js"></script>
-<script src="js/index.js"></script>
+
 <title>课程收藏 - 大众点评课</title>
 </head>
 
-<body id="example" class="started pushable" outouchstart>
+<body id="example">
 
+<div class="ui two column grid">
 
-	<div class="pusher">
-		<div class="full height">
-			<div class="ui right floated segment"
-				style="left: 35px; border: 0px; width: 1150px">
-				<div class="article">
-					<div class="ui masthead vertical segment">
-						<div class="ui container">
-							<div class="introduction">
-								<h1 class="ui header">${sessionScope.user.nickname}</h1>
-								<div class="sub header">${sessionScope.user.introduction}</div>
-								<div class="ui hidden divider"></div>
-							</div>
-						</div>
-					</div>
-					<div class="ui dividing header">
-                           <h2>已收藏课程</h2>
-					</div>
-					<br>
-				<!-- 这里定义收藏课程的删除以及点出详情的action -->
-					<form>
-						<div class="ui center aligned middle aligned grid">
-							<div class="ui special doubling cards" style="width: 80%">
-							<!-- 循环画出所有收藏课程的card -->
-								<div class="card">
-									<div class="content">
-										<img class="right floated mini ui image"
-											src="images/elliot.jpg">
-										<div class="header">
-											<h3>高等数学</h3>
-										</div>
-										<div class="meta">
-											<h5>孙玉华</h5>
-										</div>
-										<div class="ui star rating" data-rating="3"
-											data-max-rating="5">
-											<i class="icon active"></i>
-										</div>
-									</div>
-									<div class="extra content">
-										<div class="ui two buttons">
-											<div class="ui basic green button">戳详情</div>
-											<div class="ui basic red button">戳删除</div>
-										</div>
-									</div>
-								</div>
-								<div class="card">
-									<div class="content">
-										<img class="right floated mini ui image"
-											src="images/elliot.jpg">
-										<div class="header">
-											<h3>高等数学</h3>
-										</div>
-										<div class="meta">
-											<h5>孙玉华</h5>
-										</div>
-										<div class="ui star rating" data-rating="3"
-											data-max-rating="5">
-											<i class="icon active"></i>
-										</div>
-									</div>
-									<div class="extra content">
-										<div class="ui two buttons">
-											<div class="ui basic green button">戳详情</div>
-											<div class="ui basic red button">戳删除</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
-					<br>
+	<div class="three wide column">
+		<div class="ui vertical inverted sticky menu" style="position:fixed!important;left:0;top:0">
+			<div class="item" style="width: 80px">
+				<img src="images/jenny.jpg">
+			</div>
+			<div class="container" style="color: #FFFFFF">
+				<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好久不见，${sessionScope.user.nickname }。</b>
+			</div>
+			<br>
+			<div class="item">
+				<div class="header">课程管理</div>
+				<div class="menu">
+					<a class="item" href="user_allfavourites.jsp">课程收藏管理 </a> <a
+						class="item" href="courseSearchByCname.jsp">课程查询</a>
 				</div>
 			</div>
-
-		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<div class="toc">
-			<div class="ui vertical inverted sticky menu">
-				<div class="item" style="width: 80px">
-					<img src="images/jenny.jpg">
+			<div class="item">
+				<div class="header">评论管理</div>
+				<div class="menu">
+					<a class="item" href="user_allcomments.jsp">发表评论管理</a>
 				</div>
-				<div class="container" style="color: #FFFFFF">
-					<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好久不见，井下山。</b>
+			</div>
+			<div class="item">
+				<div class="header">个人信息管理</div>
+				<div class="menu">
+					<a class="item" href="modifyProfile.jsp"> 修改个人信息 </a> <a
+						class="item" href="changePass.jsp"> 修改个人密码 </a>
 				</div>
-				<br>
-				<div class="item">
-					<div class="header">课程管理</div>
-					<div class="menu">
-						<a class="item" href="user_allfavourites.jsp">课程收藏管理 </a> <a
-							class="item" href="courseSearchByCname.jsp">课程查询</a>
-					</div>
-				</div>
-				<div class="item">
-					<div class="header">评论管理</div>
-					<div class="menu">
-						<a class="item" href="user_allcomments.jsp">发表评论管理</a>
-					</div>
-				</div>
-				<div class="item">
-					<div class="header">个人信息管理</div>
-					<div class="menu">
-						<a class="item" href="modifyProfile.jsp"> 修改个人信息 </a> <a
-							class="item" href="changePass.jsp"> 修改个人密码 </a>
-					</div>
-				</div>
-				<div class="item" style="height: 750px">
-					<div class="header">其他</div>
-					<div class="menu">
-						<a class="item" href="homepage.jsp">网站介绍</a> 
-						<a class="item" href="about.jsp">关于我们</a>
-
-					</div>
+			</div>
+			<div class="item" style="height: 750px">
+				<div class="header">其他</div>
+				<div class="menu">
+					<a class="item" href="homepage.jsp">网站介绍</a> 
+					<a class="item" href="about.jsp">关于我们</a>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
+	<div class="thirteen wide column">
+		<div class="ui container" style="background:#FFFFFF;padding-left:50px;width:auto">
+			<div class="article">
+			
+				<div class="ui masthead vertical segment" style="width: 80%">
+					<div class="ui container">
+						<div class="introduction">
+							<h1 class="ui header">${sessionScope.user.nickname}</h1>
+							<div class="sub header">${sessionScope.user.introduction}</div>
+							<div class="ui hidden divider"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="ui dividing header" style="width: 80%">
+                    <h2>已收藏课程</h2>
+				</div>
+				<br>
+				
+				<!-- 这里定义收藏课程的删除以及点出详情的action -->
+				<form>
+					<div class="ui center aligned middle aligned grid">
+						<div class="ui  special doubling cards"  id="courseCards">
+							<c:forEach items="${sessionScope.user.courses }" var="course">
+								<div class="centered card" id="course${course.courseid }">
+									<div class="content">
+										<img class="right floated mini ui image" src="images/elliot.jpg">
+										<div class="header">
+											<h4><a style="color:black" href="course_getPage.action?courseid=${course.courseid }">${course.coursename }</a></h4>
+										</div>
+										
+										<div class="meta" style="margin-top:30px">
+											<span class="date"><h5>推荐星级</h5>
+												<div class="ui star rating" data-rating="${course.coursemark.recommendationScore }" data-max-rating="5"></div>
+											</span>
+										</div>
+									</div>
+									<div class="extra content">
+										<div class="ui two buttons">
+											<div class="ui basic green button" onclick="coursegetPage(${course.courseid });">戳详情</div>
+											<div class="ui basic red button" onclick="deleteFavourate(${course.courseid })">戳删除</div>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+				</form>
+				<br>
+				
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<div class="ui basic modal">
+	<div class="ui icon header" id="modalTitle">
+		<i class="archive icon"></i> 收藏成功
+	</div>
+	<div class="actions">
+		<div class="ui green ok inverted button">
+			<i class="checkmark icon"></i> 确定
+		</div>
+	</div>
+</div>
+
 </body>
+
+<script type="text/javascript">
+
+$(".ui .rating").rating('disable');
+
+function deleteFavourate(courseid){
+	$.ajax({
+		type:'get',
+		url:'${pageContext.request.contextPath}/deleteFavourate.action',
+		data:{"courseid":courseid },
+		success:function(data){
+			var cards = document.getElementById("courseCards");
+			var card = document.getElementById("course"+courseid);
+			cards.removeChild(card);
+			document.getElementById("modalTitle").innerHTML="已取消收藏";
+			$('.ui.basic.modal')
+			  .modal('show')
+			;
+		}
+	});
+}
+
+function coursegetPage(courseid){
+	document.forms[0].method="post";
+	document.forms[0].action='${pageContext.request.contextPath}/course_getPage.action?courseid='+courseid;
+	document.forms[0].submit();
+}
+
+</script>
 </html>

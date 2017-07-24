@@ -119,32 +119,31 @@ body {
 
 			</div>
 		</div>
-		<h3 class="ui header">该老师所教授课程的评论</h3>
-		<div class="ui left aligned segment">
+		<h4 class="ui dividing header">嗯，老司机们这样说。</h4>
+		<div class="ui raised aligned segment">
 			<div class="ui comments">
-					<!-- 在这里循环画对应课程的评论 循环<div comment>+<div hidden divider> -->
-					<c:forEach items="${requestScope.commentList }" var="comment">
-					<div class="ui two column very relaxed grid">
+				<c:forEach items="${requestScope.commentPage.commentList }" var="comment">
+					<div class="ui two column grid">
 						<div class="eleven wide column">
 							<div class="comment">
 								<a class="avatar"> <img src="images/elliot.jpg"></a>
 								<div class="content">
-									<a class="author" href="user_getOthersProfile.action?userid=${comment.userid }">${request.user.nickname }</a>
-									<div class="text" style="margin-top:15px">${comment.critics }</div>
-									
+									<a class="author" href="user_getOthersProfile.action?userid=${comment.user.userid }">${comment.user.nickname }</a>
+									<div class="metadata">
+								        <span class="date">${comment.timestamp }</span>
+								    </div>
+								    <div class="author" style="margin-top:15px">评价课程：${comment.course.coursename }</div>
+									<div class="text" style="margin-top:10px">${comment.critics }</div>
 								</div>
-								<h5>评论时间：${comment.timestamp }</h5>
 							</div>
 						</div>
 						
-						<div class="five wide column" style="margin:0px">
+						<div class="five wide column">
 							<div class="ui right floated labeled mini button" tabindex="0">
-								<div class="ui red mini button" type="" onclick="likeComment(${comment.commentid });">
+								<div class="ui red mini button" type="button" onclick="likeComment(${comment.commentid });">
 									<i class="heart icon"></i> 戳
 								</div>
-								<div id="comment${comment.commentid }Count"
-									class="ui basic red left mini basic label">${comment.likeCount }
-								</div>
+								<div id="comment${comment.commentid }Count" class="ui basic red left mini basic label">${comment.likeCount }</div>
 							</div>
 						</div>
 					</div>	
@@ -169,9 +168,11 @@ body {
 							class="item">联系我们 </a>
 					</div>
 				</div>
-				<div class="seven wide column">
+				<div class="ten wide column">
 					<h4 class="ui inverted header">大众点评课</h4>
 					<p>只做给你看的选课攻略。</p>
+					<i class="github icon"></i>
+					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
 				</div>
 			</div>
 			<div class="ui inverted section divider"></div>
@@ -183,6 +184,18 @@ body {
 		on : 'hover'
 	});
 	$('.ui.star .rating').rating('disable');
+	
+	
+	 function likeComment(id){
+		  $.ajax({
+		 	type:'get',
+		 	url:"${pageContext.request.contextPath}/likeComment.action",
+		 	data:{commentid:id},
+			success:function(data){
+				 $("#comment"+id+"Count").html(data.likeCount); 	
+			}		  
+		  })
+	}
 </script>
 </html>
 

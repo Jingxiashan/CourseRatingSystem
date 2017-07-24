@@ -41,7 +41,7 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public Comment findCommentByCommentID(int commentid,int currentPage,int pageSize,String sortmethod) {
+	public Comment findCommentByCommentID(int commentid) {
 		return commentDao.findCommentByCommentID(commentid);
 	}
 	@Override

@@ -42,58 +42,6 @@
 </script>
 
 
-
-<script src="/dist/semantic.min.js"></script>
-
-
-
-<script src="/javascript/docs.js"></script>
-
-
-<link rel="stylesheet" type="text/css" class="ui"
-	href="/dist/semantic.min.css">
-
-
-
-
-<link rel="stylesheet" type="text/css" href="/stylesheets/docs.css">
-<link rel="stylesheet" type="text/css" href="/stylesheets/rtl.css">
-
-
-
-
-
-
-<script>
-	(function(i, s, o, g, r, a, m) {
-		i['GoogleAnalyticsObject'] = r;
-		i[r] = i[r] || function() {
-			(i[r].q = i[r].q || []).push(arguments)
-		}, i[r].l = 1 * new Date();
-		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-		a.async = 1;
-		a.src = g;
-		m.parentNode.insertBefore(a, m)
-	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
-			'ga');
-
-	ga('create', 'UA-44039803-2', 'auto');
-	ga('send', 'pageview');
-</script>
-
-
-<script type="text/javascript">
-	window.liveSettings = {
-		api_key : '9ede3015b9f84c1aabc81ab839c55d74',
-		parse_attr : [ 'data-title', 'data-content' ],
-		detectlang : false,
-		autocollect : true,
-		ignore_tags : [ 'i', 'code', 'pre' ],
-		parse_attr : [ 'data-title', 'data-content', 'data-text' ],
-		ignore_class : [ 'code', 'anchor' ]
-	};
-</script>
-<script type="text/javascript" src="//cdn.transifex.com/live.js"></script>
 <style type="text/css">
 body {
 	background-color: #FFFFFF;
@@ -129,164 +77,155 @@ body {
 	background: white;
 }
 </style>
-<script src="js/jquery.js"></script>
-<script src="js/index.js"></script>
+
 <title>课程评论 - 大众点评课</title>
 </head>
 
-<body id="example" class="started pushable" outouchstart>
+<body id="example">
 
+<div class="ui two column grid">
 
-	<div class="pusher">
-		<div class="full height">
-			<div class="ui right floated segment"
-				style="left: 35px; border: 0px; width: 1150px">
-				<div class="article">
-					<div class="ui masthead vertical segment">
-						<div class="ui container">
-							<div class="introduction">
-								<h1 class="ui header">${sessionScope.user.nickname}</h1>
-								<div class="sub header">${sessionScope.user.introduction}</div>
-								<div class="ui hidden divider"></div>
-							</div>
-						</div>
-					</div>
-					
-
-					<div class="ui dividing header">
-						<h2>已发表评论</h2>
-					</div>
-
-					<!-- 循环画该segment实现循环显示多条评论  此处循环控制显示三条评论-->
-										<!-- 循环画该segment实现循环显示多条评论  此处循环控制显示三条评论-->
-					<div class="ui middle aligned segment" style="width: 80%">
-						<div class="ui comments">
-						
-							<c:forEach items="${requestScope.commentPage.commentList }" var="comment">
-							<div class="comment">
-								<a class="avatar"> <img src="images/elliot.jpg">
-								</a>
-								<div class="content">
-						<a class="author" href="profile.jsp?userid=${comment.user.userid }">${comment.user.nickname }</a>
-									<div><h5>评论时间：${comment.timestamp }</h5></div>	
-												<div class="text">${comment.critics }</div>
-
-									<!-- 这里是 点赞评论和删除评论的action-->
-									<form class="actions">
-										<div class="ui labeled mini button" tabindex="0">
-											<div class="ui red mini button"
-												onclick="likeComment(${comment.commentid });window.event.returnValue = false;">
-												<i class="heart icon"></i> 戳
-											</div>
-											<div id="comment${comment.commentid }Count"
-												class="ui basic red left mini basic label">${comment.likeCount }</div>
-
-										</div>
-										<div class="ui labeled mini button" tabindex="0">
-											<div class="ui basic blue mini button">
-												<i class="fork icon"></i>删除
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-											</c:forEach>
-						</div>
-					</div>
-					
-					
-					
-					
-<!-- 					<div class="ui middle aligned segment" style="width: 80%">
-						<div class="ui comments">
-							<div class="comment">
-								<a class="avatar"> <img src="images/elliot.jpg">
-								</a>
-								<div class="content">
-									<a class="author">鲁迪</a>
-									<div class="text">喜欢圣经与西方文化的孩子上辈子一定是拯救了世界的天使，比如我，鲁迪。</div>
-
-									这里是 点赞评论和删除评论的action
-									<form class="actions">
-										<div class="ui labeled button" tabindex="0">
-											<div class="ui red button">
-												<i class="heart icon"></i> 戳
-											</div>
-											1048显示当前该评论对应的点赞数
-											<div class="ui basic red left pointing label">1,048</div>
-
-										</div>
-										<div class="ui labeled button" tabindex="0">
-											<div class="ui basic blue button">
-												<i class="fork icon"></i>删除
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div> -->
-
+	<div class="three wide column">
+		<div class="ui vertical inverted sticky menu" style="position:fixed!important;top:0">
+			<div class="item" style="width: 80px">
+				<img src="images/jenny.jpg">
+			</div>
+			<div class="container" style="color: #FFFFFF">
+				<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好久不见，${sessionScope.user.nickname }。</b>
+			</div>
+			<br>
+			<div class="item">
+				<div class="header">课程管理</div>
+				<div class="menu">
+					<a class="item" href="user_allfavourites.jsp">课程收藏管理 </a> <a
+						class="item" href="courseSearchByCname.jsp">课程查询</a>
 				</div>
 			</div>
-
-		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<div class="toc">
-			<div class="ui vertical inverted sticky menu">
-				<div class="item" style="width: 80px">
-					<img src="images/jenny.jpg">
+			<div class="item">
+				<div class="header">评论管理</div>
+				<div class="menu">
+					<a class="item" href="user_allcomments.jsp">发表评论管理</a>
 				</div>
-				<div class="container" style="color: #FFFFFF">
-					<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好久不见，井下山。</b>
+			</div>
+			<div class="item">
+				<div class="header">个人信息管理</div>
+				<div class="menu">
+					<a class="item" href="modifyProfile.jsp"> 修改个人信息 </a> <a
+						class="item" href="changePass.jsp"> 修改个人密码 </a>
 				</div>
-				<br>
-				<div class="item">
-					<div class="header">课程管理</div>
-					<div class="menu">
-						<a class="item" href="user_allfavourites.jsp">课程收藏管理 </a> <a
-							class="item" href="courseSearchByCname.jsp">课程查询</a>
-					</div>
-				</div>
-				<div class="item">
-					<div class="header">评论管理</div>
-					<div class="menu">
-						<a class="item" href="user_allcomments.jsp">发表评论管理</a>
-					</div>
-				</div>
-				<div class="item">
-					<div class="header">个人信息管理</div>
-					<div class="menu">
-						<a class="item" href="modifyProfile.jsp"> 修改个人信息 </a> <a
-							class="item" href="changePass.jsp"> 修改个人密码 </a>
-					</div>
-				</div>
-				<div class="item" style="height: 750px">
-					<div class="header">其他</div>
-					<div class="menu">
-						<a class="item" href="homepage.jsp">网站介绍</a> 
-						<a class="item" href="about.jsp">关于我们</a>
-
-					</div>
+			</div>
+			<div class="item" style="height: 750px">
+				<div class="header">其他</div>
+				<div class="menu">
+					<a class="item" href="homepage.jsp">网站介绍</a> 
+					<a class="item" href="about.jsp">关于我们</a>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<div class="thirteen wide column">
+		<div class="ui container" style="background:#FFFFFF;padding-left:50px;width:auto">
+			<div class="article">
+			
+				<div class="ui masthead vertical segment" style="width: 80%">
+					<div class="ui container">
+						<div class="introduction">
+							<h1 class="ui header">${sessionScope.user.nickname}</h1>
+							<div class="sub header">${sessionScope.user.introduction}</div>
+							<div class="ui hidden divider"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="ui dividing header" style="width: 80%">
+					<h2>已发表评论</h2>
+				</div>
+
+				<div class="ui raised aligned segment" style="width: 80%">
+					<div class="ui comments"  id="comments">
+						<c:forEach items="${sessionScope.user.comments }" var="comment">
+							<div class="ui two column grid" id="comment${comment.commentid }">
+							
+								<div class="ten wide column">
+									<div class="comment">
+										<a class="avatar"><img src="images/elliot.jpg"></a>
+									
+										<div class="content">
+											<a class="author" href="user_getOthersProfile.action?userid=${comment.user.userid }">${comment.user.nickname }</a>
+											<div class="metadata">
+												<span class="date">${comment.timestamp }</span>
+											</div>
+											
+											<div class="author" style="margin-top:10px">评价课程：${comment.course.coursename }</div>
+											<div class="author" style="margin-top:5px">评价教师：${comment.teacher.teachername }</div>
+											<div class="text" style="margin-top:10px">${comment.critics }</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="six wide column">
+									<!-- 这里是 点赞评论和删除评论的action-->
+									<form class="actions">
+										<div class="ui labeled mini button" tabindex="0">
+											<div class="ui red mini button" window.event.returnValue = false;">
+												<i class="heart icon"></i> 戳
+											</div>
+											<div id="comment${comment.commentid }Count" class="ui basic red left mini basic label">
+												${comment.likeCount }
+											</div>
+										</div>
+										<div class="ui labeled mini button" tabindex="0">
+											<div class="ui basic blue mini button" onclick="deleteComment(${comment.commentid})">
+												<i class="fork icon"></i>删除
+											</div>
+										</div>
+									</form>
+								</div>
+								
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<div class="ui basic modal">
+	<div class="ui icon header" id="modalTitle">
+		<i class="archive icon"></i> 评论成功
+	</div>
+	<div class="actions">
+		<div class="ui green ok inverted button">
+			<i class="checkmark icon"></i> 确定
+		</div>
+	</div>
+</div>
+
 </body>
+<script>
+$(".ui .rating").rating('disable');
+
+function deleteComment(commentid){
+	$.ajax({
+		type:'get',
+		url:'${pageContext.request.contextPath}/deleteComment.action',
+		data:{"commentid":commentid },
+		success:function(data){
+			var parent = document.getElementById("comments");
+			var child = document.getElementById("comment"+commentid);
+			parent.removeChild(child);
+			document.getElementById("modalTitle").innerHTML="已删除评论";
+			$('.ui.basic.modal')
+			  .modal('show')
+			;
+		}
+	});
+}
+
+
+</script>
 </html>

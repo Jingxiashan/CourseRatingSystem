@@ -1,6 +1,9 @@
 package com.courseratingsystem.web.action;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -8,11 +11,13 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.courseratingsystem.web.domain.Comment;
 import com.courseratingsystem.web.domain.Course;
+import com.courseratingsystem.web.domain.User;
 import com.courseratingsystem.web.object.CourseOverview;
 import com.courseratingsystem.web.object.CourseOverviewPlusTeacher;
 import com.courseratingsystem.web.service.CommentService;
 import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.service.TeacherService;
+import com.courseratingsystem.web.service.UserService;
 import com.courseratingsystem.web.service.impl.CommentServiceImpl;
 import com.courseratingsystem.web.vo.CommentPage;
 import com.courseratingsystem.web.vo.CoursePage;
@@ -21,7 +26,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 public class CommentAction extends ActionSupport implements ModelDriven<Comment>{
 	private int currentPage=1;
-	private int pageSize=1;
+	private int pageSize=2;
 	String result;
 	private static final String GET_TO_COMMENT_PAGE = "get_to_comment_page";;
 	private static final String COMMENT_SUCCESS = "comment_success";
@@ -44,9 +49,16 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 	private CommentService commentService;
 	private CourseService courseService;
 	private TeacherService teacherService;
+	private UserService userService;
 	
 	public TeacherService getTeacherService() {
 		return teacherService;
+	}
+	public UserService getUserService() {
+		return userService;
+	}
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 	public void setTeacherService(TeacherService teacherService) {
 		this.teacherService = teacherService;
@@ -140,8 +152,8 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 			result = Integer.toString(likeCount);
 			comment.setLikeCount(likeCount);
 			return SUCCESS;
-		}
-		return FAIL;
+		}else return FAIL;
+		
 	}
 	
 	public String addComment(){
@@ -149,8 +161,58 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 		return SUCCESS;
 	}	
 
+	public String deleteComment(){
+		String str_commentid = ServletActionContext.getRequest().getParameter("commentid");
+		if(str_commentid!=null){
+			int commentid = Integer.parseInt(str_commentid);
+			comment = commentService.findCommentByCommentID(commentid);
+			commentService.delete(comment);
+			User user =  userService.findUserById(((User)ServletActionContext.getRequest().getSession().getAttribute("user")).getUserid());
+			ServletActionContext.getRequest().getSession().setAttribute("user", user);
+			return SUCCESS;
+		}else return FAIL;
+		
+	}
+	
 	@Override
 	public Comment getModel() {
 		return comment;
+	}
+	public String getJsonPage(){
+		String str_courseid = ServletActionContext.getRequest().getParameter("courseid");
+		String str_currentPage = ServletActionContext.getRequest().getParameter("currentPage");
+		String str_pageSize = ServletActionContext.getRequest().getParameter("pageSize");
+		if(str_courseid != null && str_currentPage != null && str_pageSize != null) {
+			int courseid = Integer.parseInt(str_courseid);
+			int tmpCurrentPage = Integer.parseInt(str_currentPage);
+			int tmpPageSize = Integer.parseInt(str_pageSize);
+			CommentPage commentPage = commentService.findCommentByCourseID(courseid, tmpCurrentPage, tmpPageSize, CommentServiceImpl.COMMENT_SORT_METHOD_BYLIKECOUNT);
+			List<Object> commentList = new ArrayList<>();
+			for(Comment tmpComment : commentPage.getCommentList()){
+				Map<String,Object> comment = new HashMap<>();
+				comment.put("userid", tmpComment.getUser().getUserid());
+				comment.put("nickname", tmpComment.getUser().getNickname());
+				comment.put("timestamp", tmpComment.getTimestamp());
+				comment.put("critics", tmpComment.getCritics());
+				comment.put("commentid", tmpComment.getCommentid());
+				comment.put("likeCount", tmpComment.getLikeCount());
+				commentList.add(comment);
+			}
+			Map<String,Object> map1 = new HashMap<String,Object>();
+			map1.put("currentPage",commentPage.getCurrentPage());
+			Map<String,Object> map2 = new HashMap<String,Object>();
+			map2.put("results",commentList);
+			List<Object> resultList = new ArrayList<>();
+			resultList.add(map1);
+			resultList.add(map2);
+			result = JSON.toJSONString(resultList);
+			return SUCCESS;			
+		}else return FAIL;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
 	}
 }
