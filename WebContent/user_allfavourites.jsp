@@ -81,11 +81,11 @@ body {
 <title>课程收藏 - 大众点评课</title>
 </head>
 
-<body id="example" class="started pushable" outouchstart>
+<body id="example">
 
 <div class="ui two column grid">
 
-	<div class="two wide column">
+	<div class="three wide column">
 		<div class="ui vertical inverted sticky menu" style="position:fixed!important;left:0;top:0">
 			<div class="item" style="width: 80px">
 				<img src="images/jenny.jpg">

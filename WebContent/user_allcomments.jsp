@@ -81,50 +81,50 @@ body {
 <title>课程评论 - 大众点评课</title>
 </head>
 
-<body id="example" class="started pushable" outouchstart>
+<body id="example">
 
 <div class="ui two column grid">
 
-	<div class="two wide column">
-		<div class="toc" style="position:fixed!important;left:0;top:0">
-			<div class="ui vertical inverted sticky menu">
-				<div class="item" style="width: 80px">
-					<img src="images/jenny.jpg">
+	<div class="three wide column">
+		<div class="ui vertical inverted sticky menu" style="position:fixed!important;top:0">
+			<div class="item" style="width: 80px">
+				<img src="images/jenny.jpg">
+			</div>
+			<div class="container" style="color: #FFFFFF">
+				<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好久不见，${sessionScope.user.nickname }。</b>
+			</div>
+			<br>
+			<div class="item">
+				<div class="header">课程管理</div>
+				<div class="menu">
+					<a class="item" href="user_allfavourites.jsp">课程收藏管理 </a> <a
+						class="item" href="courseSearchByCname.jsp">课程查询</a>
 				</div>
-				<div class="container" style="color: #FFFFFF">
-					<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好久不见，${sessionScope.user.nickname }。</b>
+			</div>
+			<div class="item">
+				<div class="header">评论管理</div>
+				<div class="menu">
+					<a class="item" href="user_allcomments.jsp">发表评论管理</a>
 				</div>
-				<br>
-				<div class="item">
-					<div class="header">课程管理</div>
-					<div class="menu">
-						<a class="item" href="user_allfavourites.jsp">课程收藏管理 </a>
-						<a class="item" href="courseSearchByCname.jsp">课程查询</a>
-					</div>
+			</div>
+			<div class="item">
+				<div class="header">个人信息管理</div>
+				<div class="menu">
+					<a class="item" href="modifyProfile.jsp"> 修改个人信息 </a> <a
+						class="item" href="changePass.jsp"> 修改个人密码 </a>
 				</div>
-				<div class="item">
-					<div class="header">评论管理</div>
-					<div class="menu"><a class="item" href="user_allcomments.jsp">发表评论管理</a></div>
-				</div>
-				<div class="item">
-					<div class="header">个人信息管理</div>
-					<div class="menu">
-						<a class="item" href="modifyProfile.jsp"> 修改个人信息 </a> 
-						<a class="item" href="changePass.jsp"> 修改个人密码 </a>
-					</div>
-				</div>
-				<div class="item" style="height: 750px">
-					<div class="header">其他</div>
-					<div class="menu">
-						<a class="item" href="homepage.jsp">网站介绍</a> 
-						<a class="item" href="about.jsp">关于我们</a>
-					</div>
+			</div>
+			<div class="item" style="height: 750px">
+				<div class="header">其他</div>
+				<div class="menu">
+					<a class="item" href="homepage.jsp">网站介绍</a> 
+					<a class="item" href="about.jsp">关于我们</a>
 				</div>
 			</div>
 		</div>
 	</div>
 	
-	<div class="fourteen wide column">
+	<div class="thirteen wide column">
 		<div class="ui container" style="background:#FFFFFF;padding-left:50px;width:auto">
 			<div class="article">
 			
