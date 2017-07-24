@@ -412,7 +412,7 @@ $(function(){
 	  $.ajax({
 		  type:'get',
 		  url:"${pageContext.request.contextPath}/turnPage.action",
-		  data:{"currentPage":page,"courseid":courseid,"pageSize": ${requestScope.commentPage.pageSize }},
+		  data:{"currentPage":page,"id":courseid,"pageSize": ${requestScope.commentPage.pageSize },"findBy":"course"},
 		  success:function(data){
 				var returnData = JSON.parse(data);
 				var html="";

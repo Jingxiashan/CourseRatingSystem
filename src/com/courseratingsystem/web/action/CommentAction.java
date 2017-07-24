@@ -179,14 +179,22 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 		return comment;
 	}
 	public String getJsonPage(){
-		String str_courseid = ServletActionContext.getRequest().getParameter("courseid");
+		String str_id = ServletActionContext.getRequest().getParameter("id");
 		String str_currentPage = ServletActionContext.getRequest().getParameter("currentPage");
 		String str_pageSize = ServletActionContext.getRequest().getParameter("pageSize");
-		if(str_courseid != null && str_currentPage != null && str_pageSize != null) {
-			int courseid = Integer.parseInt(str_courseid);
+		String str_findBy=ServletActionContext.getRequest().getParameter("findBy");
+		if(str_id != null && str_currentPage != null && str_pageSize != null) {
+			int id = Integer.parseInt(str_id);
 			int tmpCurrentPage = Integer.parseInt(str_currentPage);
 			int tmpPageSize = Integer.parseInt(str_pageSize);
-			CommentPage commentPage = commentService.findCommentByCourseID(courseid, tmpCurrentPage, tmpPageSize, CommentServiceImpl.COMMENT_SORT_METHOD_BYLIKECOUNT);
+			CommentPage commentPage = new CommentPage();
+			switch(str_findBy){
+			case "course":
+			commentPage = commentService.findCommentByCourseID(id, tmpCurrentPage, tmpPageSize, CommentServiceImpl.COMMENT_SORT_METHOD_BYLIKECOUNT);
+			break;
+			case "teacher":
+			commentPage = commentService.findCommentByTeacherID(id, tmpCurrentPage, tmpPageSize, CommentServiceImpl.COMMENT_SORT_METHOD_BYLIKECOUNT);
+			}
 			List<Object> commentList = new ArrayList<>();
 			for(Comment tmpComment : commentPage.getCommentList()){
 				Map<String,Object> comment = new HashMap<>();
@@ -196,6 +204,7 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 				comment.put("critics", tmpComment.getCritics());
 				comment.put("commentid", tmpComment.getCommentid());
 				comment.put("likeCount", tmpComment.getLikeCount());
+				comment.put("courseName", tmpComment.getCourse().getCoursename());
 				commentList.add(comment);
 			}
 			Map<String,Object> map1 = new HashMap<String,Object>();
