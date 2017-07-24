@@ -235,7 +235,7 @@ body {
 					<h4 class="ui inverted header">我的课</h4>
 					<p>只做给你看的选课攻略。</p>
 					<i class="github icon"></i>
-					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
+					<a href="https://github.com/Jingxiashan/CourseRatingSystem" target="_blank" style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
 				</div>
 			</div>
 			<div class="ui inverted section divider"></div>

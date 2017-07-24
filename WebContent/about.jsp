@@ -98,7 +98,7 @@ body {
 				</div>
 				<div class="extra content">
 					<i class="github alternate icon"></i><br>
-					<a href="https://github.com/killer6">https://github.com/killer6</a>
+					<a href="https://github.com/killer6" target="_blank">https://github.com/killer6</a>
 				</div>
 			</div>
 			<div class="ui card" style="width: 230px;margin:auto">
@@ -114,7 +114,7 @@ body {
 				</div>
 				<div class="extra content">
 					<i class="github alternate icon"></i><br>
-					<a href="https://github.com/Lancelot-97">https://github.com/Lancelot-97</a>
+					<a href="https://github.com/Lancelot-97" target="_blank">https://github.com/Lancelot-97</a>
 				</div>
 			</div>
 						<div class="ui card" style="width: 230px;margin:auto">
@@ -130,7 +130,7 @@ body {
 				</div>
 				<div class="extra content">
 					<i class="github alternate icon"></i>
-					<a href="https://github.com/Jingxiashan">https://github.com/Jingxiashan</a>
+					<a href="https://github.com/Jingxiashan" target="_blank">https://github.com/Jingxiashan</a>
 				</div>
 			</div>
 			<div class="ui card" style="width: 230px;margin:auto">
@@ -146,7 +146,7 @@ body {
 				</div>
 				<div class="extra content">
 					 <i class="github alternate icon"></i>
-					 <a href="https://github.com/kongxiao0532">https://github.com/kongxiao0532</a>
+					 <a href="https://github.com/kongxiao0532" target="_blank">https://github.com/kongxiao0532</a>
 				</div>
 			</div>
 		</div>
@@ -168,7 +168,7 @@ body {
 					<h4 class="ui inverted header">我的课</h4>
 					<p>只做给你看的选课攻略。</p>
 					<i class="github icon"></i>
-					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
+					<a href="https://github.com/Jingxiashan/CourseRatingSystem" target="_blank" style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
 				</div>
 			</div>
 			<div class="ui inverted section divider"></div>

@@ -8,8 +8,7 @@
 <title>课程详情-${requestScope.course.coursename}</title>
 <!-- Standard Meta -->
 <meta charset="utf-8" />
-<link rel="Shortcut Icon"
-	href="images/logos/icon.ico"
+<link rel="Shortcut Icon" href="images/logos/icon.ico"
 	type="image/x-icon">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport"
@@ -65,9 +64,10 @@ body {
 <body>
 	<div class="ui fixed borderless inverted menu">
 		<div class="ui container">
-			
-			<a href="homepage.jsp" class="header item">
-				<img class="logo" src="images/logos/logo_menu.png" style="width:105px;margin-right:0px"> 
+
+			<a href="homepage.jsp" class="header item"> <img class="logo"
+				src="images/logos/logo_menu.png"
+				style="width: 105px; margin-right: 0px">
 			</a><a onClick="javascript :history.back(-1);" class="item">返回</a> <a
 				href="course_findAll.action" class="item">课程列表</a>
 			<div class="ui simple dropdown item">
@@ -80,7 +80,7 @@ body {
 			<div class="right menu">
 				<!-- 如果未登录，显示登录注册 -->
 				<c:if test="${empty sessionScope.user}">
-					<a href="login.jsp" class="item">登录</a> 
+					<a href="login.jsp" class="item">登录</a>
 					<a href="register.jsp" class="item">注册</a>
 				</c:if>
 				<!-- 如果已经登录，显示个人中心链接 -->
@@ -107,8 +107,10 @@ body {
 								<div class="statistic">
 									<div class="value">
 										<i class="thumbs up icon"></i>
-										<fmt:formatNumber type="number" value="${requestScope.course.recommendationScore}" pattern="0.0" maxFractionDigits="1"/>
-										
+										<fmt:formatNumber type="number"
+											value="${requestScope.course.recommendationScore}"
+											pattern="0.0" maxFractionDigits="1" />
+
 									</div>
 									<div class="label">推荐指数</div>
 								</div>
@@ -161,10 +163,10 @@ body {
 							<h4 class="ui sub header">从老师讲授知识层面来讲，内容对自己有益程度；内容有益，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							 <div class="ui star rating"
+							<div class="ui star rating"
 								data-rating="
 								${((course.averageRatingsUsefulness % 1) > 0.5) ? (course.averageRatingsUsefulness + 1 - (course.averageRatingsUsefulness % 1)) : (course.averageRatingsUsefulness - (course.averageRatingsUsefulness % 1)) }"
-								data-max-rating="5"></div> 
+								data-max-rating="5"></div>
 						</div>
 					</div>
 
@@ -181,7 +183,7 @@ body {
 							<div class="ui star rating"
 								data-rating="
 								${((course.averageRatingsVividness % 1) > 0.5) ? (course.averageRatingsVividness + 1 - (course.averageRatingsVividness % 1)) : (course.averageRatingsVividness - (course.averageRatingsVividness % 1)) }"
-								data-max-rating="5"></div> 
+								data-max-rating="5"></div>
 						</div>
 					</div>
 				</div>
@@ -194,10 +196,10 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较，完成课后作业、课后展示及大小考试所花费时间；占用课余时间少，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							 <div class="ui star rating"
+							<div class="ui star rating"
 								data-rating="
 								${((course.averageRatingsSpareTimeOccupation % 1) > 0.5) ? (course.averageRatingsSpareTimeOccupation + 1 - (course.averageRatingsSpareTimeOccupation % 1)) : (course.averageRatingsSpareTimeOccupation - (course.averageRatingsSpareTimeOccupation % 1)) }"
-								data-max-rating="5"></div> 
+								data-max-rating="5"></div>
 						</div>
 					</div>
 				</div>
@@ -210,10 +212,10 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的期末分情况；期末给分高，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							 <div class="ui star rating"
+							<div class="ui star rating"
 								data-rating="
 								${((course.averageRatingsScoring % 1) > 0.5) ? (course.averageRatingsScoring + 1 - (course.averageRatingsScoring % 1)) : (course.averageRatingsScoring - (course.averageRatingsScoring % 1)) }"
-								data-max-rating="5"></div> 
+								data-max-rating="5"></div>
 						</div>
 					</div>
 				</div>
@@ -226,7 +228,7 @@ body {
 							<h4 class="ui sub header">根据自己的学习经历，与其他同类型课程比较的点名情况比较；点名频率低，请给多星。</h4>
 						</div>
 						<div class="extra content">
-							 <div class="ui star rating"
+							<div class="ui star rating"
 								data-rating="
 								${((course.averageRatingsRollCall % 1) > 0.5) ? (course.averageRatingsRollCall + 1 - (course.averageRatingsRollCall % 1)) : (course.averageRatingsRollCall - (course.averageRatingsRollCall % 1)) }"
 								data-max-rating="5"></div>
@@ -238,46 +240,52 @@ body {
 		<h4 class="ui dividing header">嗯，老司机们这样说。</h4>
 		<div class="ui raised aligned segment">
 			<div id="commentlist" class="ui comments">
-			
-			
-				<c:forEach items="${requestScope.commentPage.commentList }" var="comment">	
+
+
+				<c:forEach items="${requestScope.commentPage.commentList }"
+					var="comment">
 					<div class="ui two column grid">
 						<div class="eleven wide column">
 							<div class="comment">
-								<a class="avatar"> 
-									<img src="images/elliot.jpg">
+								<a class="avatar"> <img src="images/elliot.jpg">
 								</a>
 								<div class="content">
-									<a class="author" href="user_getOthersProfile.action?userid=${comment.user.userid }">${comment.user.nickname }</a>
-								      <div class="metadata">
-								        <span class="date">${comment.timestamp }</span>
-								      </div>
-									<div class="text" style="margin-top:10px">${comment.critics }</div>
+									<a class="author"
+										href="user_getOthersProfile.action?userid=${comment.user.userid }">${comment.user.nickname }</a>
+									<div class="metadata">
+										<span class="date">${comment.timestamp }</span>
+									</div>
+									<div class="text" style="margin-top: 10px">${comment.critics }</div>
 								</div>
 							</div>
 						</div>
 						<div class="five wide column">
 							<div class="ui right floated labeled mini button" tabindex="0">
-								<div class="ui red mini button" type="button" onclick="likeComment(${comment.commentid });">
+								<div class="ui red mini button" type="button"
+									onclick="likeComment(${comment.commentid });">
 									<i class="heart icon"></i> 戳
 								</div>
-								<div id="comment${comment.commentid }Count" class="ui basic red left mini basic label">${comment.likeCount }</div>
-							</div>		
+								<div id="comment${comment.commentid }Count"
+									class="ui basic red left mini basic label">${comment.likeCount }</div>
+							</div>
 						</div>
 					</div>
 				</c:forEach>
-				
-				
+
+
 			</div>
-			
-			<div class="ui basic segment" style="margin-top:0;margin-bottom:20px">
+
+			<div class="ui basic segment"
+				style="margin-top: 0; margin-bottom: 20px">
 				<div id="pageturner" class="ui right floated mini pagination menu">
-					<c:forEach begin="1" end="${requestScope.commentPage.totalPage}" step="1" var="i">
+					<c:forEach begin="1" end="${requestScope.commentPage.totalPage}"
+						step="1" var="i">
 						<c:if test="${i==requestScope.commentPage.currentPage}">
 							<a class="disabled item">${i }</a>
 						</c:if>
 						<c:if test="${i!=requestScope.commentPage.currentPage}">
-							<a class="item" onclick="turnPage(${i},${requestScope.course.courseid});">${i }</a>
+							<a class="item"
+								onclick="turnPage(${i},${requestScope.course.courseid});">${i }</a>
 						</c:if>
 					</c:forEach>
 				</div>
@@ -307,9 +315,12 @@ body {
 							class="item">联系我们 </a>
 					</div>
 				</div>
-				<div class="seven wide column">
+				<div class="ten wide column">
 					<h4 class="ui inverted header">我的课</h4>
 					<p>只做给你看的选课攻略。</p>
+					<i class="github icon"></i> <a
+						href="https://github.com/Jingxiashan/CourseRatingSystem" target="_blank"
+						style="color: #B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
 				</div>
 			</div>
 			<div class="ui inverted section divider"></div>
