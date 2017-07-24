@@ -231,22 +231,12 @@
 								class="item">联系我们</a>
 						</div>
 					</div>
-<<<<<<< HEAD
-					<div class="ten wide column">
-						<h4 class="ui inverted header">大众点评课</h4>
-						<p>只做给你看的选课攻略。</p>
-						<i class="github icon"></i> <a
-							href="https://github.com/Jingxiashan/CourseRatingSystem"
-							style="color: #B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
-					</div>
-=======
 				<div class="ten wide column">
 					<h4 class="ui inverted header">我的课</h4>
 					<p>只做给你看的选课攻略。</p>
 					<i class="github icon"></i>
 					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
 				</div>
->>>>>>> branch 'master' of https://github.com/Jingxiashan/CourseRatingSystem.git
 				</div>
 			</div>
 		</div>
