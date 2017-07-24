@@ -20,7 +20,7 @@ import com.sun.net.httpserver.HttpServer;
 
 public class TeacherAction extends ActionSupport implements ModelDriven<Teacher>{
 	private int currentPage=1;
-	private int pageSize=20;
+	private int pageSize=15;
 	private String sortmethod=CommentServiceImpl.COMMENT_SORT_METHOD_BYLIKECOUNT;
 	private Teacher teacher = new Teacher();
 	private static final String FAIL = "fail";

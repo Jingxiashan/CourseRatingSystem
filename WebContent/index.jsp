@@ -254,7 +254,7 @@ body {
 						<!-- 如果是最后一页 -->
 						<c:if test="${requestScope.coursepage.currentPage == requestScope.coursepage.totalPage }">
 							<a class="disabled item">...</a>
-							<a class="item" onclick="getPage(${requestScope.coursepage.totalPage - 2 })">${requestScope.coursepage.totalPage - 1 }</a>
+							<a class="item" onclick="getPage(${requestScope.coursepage.totalPage - 2 })">${requestScope.coursepage.totalPage - 2 }</a>
 							<a class="item" onclick="getPage(${requestScope.coursepage.totalPage - 1 })">${requestScope.coursepage.totalPage - 1 }</a>
 							<a class="disabled item">${requestScope.coursepage.totalPage }</a>
 						</c:if>

@@ -259,21 +259,19 @@ body {
 				
 				
 			</div>
-			<div id="pageturner">每页${requestScope.commentPage.pageSize}条记录 总共${requestScope.commentPage.totalPage}页
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				当前：第${requestScope.commentPage.currentPage} / ${requestScope.commentPage.totalPage}页
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				请选择：第
-				<c:forEach begin="1" end="${requestScope.commentPage.totalPage}" step="1" var="i">
-					<c:if test="${i==requestScope.commentPage.currentPage}">
-						【${i}】
-					</c:if>
-					<c:if test="${i!=requestScope.commentPage.currentPage}">
-						<button onclick="turnPage(${i},${requestScope.course.courseid});">${i}</button>
-					</c:if>
-				</c:forEach>
-				页</div>
+			
+			<div class="ui basic segment" style="margin-top:0;margin-bottom:20px">
+				<div id="pageturner" class="ui right floated mini pagination menu">
+					<c:forEach begin="1" end="${requestScope.commentPage.totalPage}" step="1" var="i">
+						<c:if test="${i==requestScope.commentPage.currentPage}">
+							<a class="disabled item">${i }</a>
+						</c:if>
+						<c:if test="${i!=requestScope.commentPage.currentPage}">
+							<a class="item" onclick="turnPage(${i},${requestScope.course.courseid});">${i }</a>
+						</c:if>
+					</c:forEach>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -458,21 +456,15 @@ $(function(){
 			    commentlist.innerHTML=html;
 			    var pageturner=document.getElementById("pageturner");
 			    var cpage = returnData[0].currentPage;
-			    var html2="每页${requestScope.commentPage.pageSize}条记录 总共${requestScope.commentPage.totalPage}页"+
-					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-					"当前：第"+cpage+"/ ${requestScope.commentPage.totalPage}页"+
-					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-					"请选择：第";
+			    var html2="";
 				for(var i = 1;i<=${requestScope.commentPage.totalPage};i++){
 					if(i==cpage){
-						html2=html2+"【"+i+"】";
+						html2=html2+"<a class='disabled item'>"+i+"</a>";
 					}
 					else if(i!=cpage){
-						html2=html2+"&nbsp<button onclick='turnPage("+i+","+courseid+");'>"+i+"</button>&nbsp";
+						html2=html2+"<a class='item' onclick='turnPage("+i+","+courseid+");'>"+i+"</a>";
 					}
 				}
-				html2=html2+"页";
 
 			pageturner.innerHTML=html2;
 		  }
