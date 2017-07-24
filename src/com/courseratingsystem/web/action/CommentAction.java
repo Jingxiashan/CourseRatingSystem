@@ -207,6 +207,7 @@ public class CommentAction extends ActionSupport implements ModelDriven<Comment>
 				comment.put("commentid", tmpComment.getCommentid());
 				comment.put("likeCount", tmpComment.getLikeCount());
 				comment.put("courseName", tmpComment.getCourse().getCoursename());
+				comment.put("picpath", tmpComment.getUser().getPicpath());
 				commentList.add(comment);
 			}
 			Map<String,Object> map1 = new HashMap<String,Object>();

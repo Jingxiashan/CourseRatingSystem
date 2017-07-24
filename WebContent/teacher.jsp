@@ -223,6 +223,7 @@ body {
 				    	var timestamp = returnData[1].results[tmp].timestamp;
 				    	var likecount = returnData[1].results[tmp].likeCount;
 				    	var coursename = returnData[1].results[tmp].courseName;
+				    	var picpath = returnData[1].results[tmp].picpath;
 				    	var newDate = new Date();
 				    	newDate.setTime(timestamp);
 				    	// Wed Jun 18 2014 
@@ -232,7 +233,14 @@ body {
 						"<div class='eleven wide column'>"+
 						"<div class='comment'>"+
 							"<a class='avatar'> "+
-								"<img src='images/elliot.jpg'>"+
+							"<img src='";
+						if(picpath.length==0){
+							html+="images/stevie.jpg";
+						}
+						else{
+							html+=picpath;
+						}
+						html+="'>"+
 							"</a>"+
 							"<div class='content'>"+
 								"<a class='author' href='user_getOthersProfile.action?userid="+userid+"'>"+nickname+"</a>"+
