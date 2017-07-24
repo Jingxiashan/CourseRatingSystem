@@ -136,7 +136,15 @@ body {
 				  </c:if>
 				   <div class="ui left pointing dropdown link item">
 				    <i class="dropdown icon"></i>
-				    排序
+				    <%
+				    	String tmpString = (String)request.getAttribute("sortby");
+				    	if("recommendationScore".equals(tmpString))out.print("按推荐得分排序");
+				    	else if("averageRatingsUsefulness".equals(tmpString))out.print("按内容有用性排序");
+				    	else if("averageRatingsVividness".equals(tmpString))out.print("按课堂生动性排序");
+				    	else if("averageRatingsSpareTimeOccupation".equals(tmpString))out.print("按占用时间（少）排序");
+				    	else if("averageRatingsScoring".equals(tmpString))out.print("按期末给分排序");
+				    	else if("averageRatingsRollCall".equals(tmpString))out.print("按平日点名（少）排序");
+				    %>
 				    <div class="menu">
 				      <div class="item" onclick="sort('recommendationScore')">推荐得分</div>
 				      <div class="item" onclick="sort('averageRatingsUsefulness')">内容有用性</div>
