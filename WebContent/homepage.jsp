@@ -9,8 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<link rel="Shortcut Icon"
-	href="images/logos/icon.ico"
+<link rel="Shortcut Icon" href="images/logos/icon.ico"
 	type="image/x-icon">
 <link rel="stylesheet prefech"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
@@ -196,9 +195,10 @@
 			</div>
 
 			<div class="ui text container">
-				<div class="ui image" style="margin-top:170px">
+				<div class="ui image" style="margin-top: 170px">
 					<img src="images/logos/logo_homepage.png"></img>
-				</div>			</div>
+				</div>
+			</div>
 		</div>
 		<div class="ui horizontal">
 			<div class="ui vertical">
@@ -207,15 +207,28 @@
 						<div class="ui vertical stripe segment">
 							<div class="ui text container">
 								<h3 class="ui header">提供一切你最想知道的关于课程的信息。</h3>
-								<p>给分情况？/期末考评方式？/点名频率？/课堂氛围？</p>
+								<p>内容丰富？/给分情况？/期末考评方式？/点名频率？/课堂氛围？</p>
 								<h3 class="ui header">听听老司机们血的教训/拔草经历</h3>
 								<p>获得来自过来人的第一笔资料。</p>
 							</div>
 						</div>
+						、
+
+
+
 						<div class="six wide right floated column">
-							<img src="images/frontend.jpg"
-								class="ui large bordered rounded image">
+							<div class="ui card" style="border: 0px; width: 400px">
+								<div class="ui slide masked reveal image">
+									<img src="images/screenshoot1.jpg" class="visible content">
+									<img src="images/screenshoot2.jpg" class="hidden content">
+								</div>
+
+							</div>
 						</div>
+
+
+
+
 					</div>
 				</div>
 			</div>
@@ -231,12 +244,13 @@
 								class="item">联系我们</a>
 						</div>
 					</div>
-				<div class="ten wide column">
-					<h4 class="ui inverted header">我的课</h4>
-					<p>只做给你看的选课攻略。</p>
-					<i class="github icon"></i>
-					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
-				</div>
+					<div class="ten wide column">
+						<h4 class="ui inverted header">我的课</h4>
+						<p>只做给你看的选课攻略。</p>
+						<i class="github icon"></i> <a
+							href="https://github.com/Jingxiashan/CourseRatingSystem"
+							style="color: #B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>
+					</div>
 				</div>
 			</div>
 		</div>
