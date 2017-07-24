@@ -27,7 +27,7 @@ public class CourseAction extends ActionSupport{
 
 	private static final String GET_TO_COURSE_PAGE = "get_to_course_page";
 	private int currentPage = 1;
-	private int pageSize = 20;
+	private int pageSize = 15;
 	private String sortby=CourseServiceImpl.COURSE_SORT_METHOD_BY_RECO;
 
 	public String getSortby() {
@@ -92,6 +92,7 @@ public class CourseAction extends ActionSupport{
 		}
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
 			ServletActionContext.getRequest().setAttribute("searchtext", searchtext);
+			ServletActionContext.getRequest().setAttribute("sortby", sortby);
 			ServletActionContext.getRequest().setAttribute("searchtype", 1);
 			return SUCCESS;
 	}
@@ -102,6 +103,7 @@ public class CourseAction extends ActionSupport{
 		}
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
 			ServletActionContext.getRequest().setAttribute("searchtext", searchtext);
+			ServletActionContext.getRequest().setAttribute("sortby", sortby);
 			ServletActionContext.getRequest().setAttribute("searchtype", 2);
 			return SUCCESS;
 	}
@@ -112,6 +114,7 @@ public class CourseAction extends ActionSupport{
 		}
 		if(!coursepage.getList().isEmpty()){
 			ServletActionContext.getRequest().setAttribute("coursepage", coursepage);
+			ServletActionContext.getRequest().setAttribute("sortby", sortby);
 			ServletActionContext.getRequest().setAttribute("searchtype", 0);
 			return SUCCESS;
 		}
