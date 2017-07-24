@@ -7,6 +7,9 @@
 <!-- Standard Meta -->
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet prefech"
@@ -78,7 +81,7 @@ body {
 }
 </style>
 
-<title>课程收藏 - 大众点评课</title>
+<title>课程收藏 - 我的课</title>
 </head>
 
 <body id="example">

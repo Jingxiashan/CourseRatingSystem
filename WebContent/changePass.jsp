@@ -6,6 +6,9 @@
 <!-- Standard Meta -->
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet prefech"
@@ -77,7 +80,7 @@ body {
 }
 </style>
 
-<title>个人中心 - 大众点评课</title>
+<title>个人中心 - 我的课</title>
 </head>
 
 <body id="example">
@@ -128,43 +131,37 @@ body {
 		<div class="ui container" style="background:#FFFFFF;padding-left:50px;width:auto">
 			<div class="article">
 			
-				<div class="ui masthead vertical segment" style="width: 80%">
-					<div class="ui container">
-						<div class="introduction">
-							<h1 class="ui header">${sessionScope.user.nickname}</h1>
-							<div class="sub header">${sessionScope.user.introduction}</div>
-							<div class="ui hidden divider"></div>
-						</div>
-					</div>
-				</div>
 
 
-				<div class="ui dividing header" style="width: 80%">
+				<div class="ui dividing header" style="width: 80%;margin-top:80px">
 					<h2>修改个人密码</h2>
 				</div>	
 							
-				${requestScope.message } 
+
 				<div class="ui container">
-					<form class="ui form" action="changePassword" method="post" style="width: 80%">
-						<div class="ui segment">
+					<form class="ui form" style="width: 80%">
+						<div class="ui basic segment">
 							<div class="field">
 								<input type="hidden" name="userid"
 									value="${sessionScope.user.userid }" />
 							</div>
 							<div class="field">
-								<label>原密码</label> <input type="password" name="oldPassword"
+								<label>原密码</label> <input type="password" name="oldPassword" id="oldPassword"
 									placeholder="请输入旧密码" />
 							</div>
 							<div class="field">
-								<label>新密码</label> <input type="password" name="newPassword1"
+								<label>新密码</label> 
+								<input type="password" name="newPassword1" id="newPassword1" onblur="checkPassword()"
 									placeholder="请输入新密码" />
 							</div>
 							<div class="field">
-								<label>确认密码</label> <input type="password" name="newPassword2"
+								<label>确认密码</label> 
+								<input type="password" name="newPassword2" id="newPassword2" onblur="checkPassword()"
 									placeholder="请再次输入新密码" />
 							</div>
+							<div class="field" id="passwordHint"></div>
 						</div>
-						<button class="ui primary button" type="submit">修改</button>
+						<button class="ui right floated black basic button" type="button" onclick="changePass()" id="submitButton">修改</button>
 					</form>
 				</div>
 			</div>
@@ -174,8 +171,100 @@ body {
 
 
 </div>
-
+<div class="ui basic modal">
+		<div class="ui icon header" id="modalTitle">
+			<i class="remove icon" id="modalIcon"></i> 修改失败
+		</div>
+		<div class="content">
+    		<p id="modalMessage"></p>
+  		</div>
+		<div class="actions">
+			<button class="ui green ok inverted button" type="button" id="modalButton">
+				<i class="checkmark icon"></i> 确定
+			</button>
+		</div>
+	</div>
 </body>
+<script>
+function checkPassword(){
+	var password1 = document.getElementById('newPassword1').value;
+	var password2 = document.getElementById('newPassword2').value;
+	if(password2.length == 0){
+		return;
+	}
+	var passwordHint = document.getElementById("passwordHint");
+	var registerButton = document.getElementById("submitButton");
+	if(password1 == password2){
+		if(password1.length < 6){
+			passwordHint.innerHTML="<i class='remove icon'></i>密码太短啦！！！这么不安全的密码都不敢给你存！";
+			registerButton.className="ui right floated disabled black basic button";
+			$('#passwordHint').transition('tada');
+		}else{
+			passwordHint.innerHTML="<i class='checkmark icon'></i>哇密码通过啦！";
+			registerButton.className="ui right floated black basic button";			
+		}
+	}else{
+		passwordHint.innerHTML="<i class='remove icon'></i>手残嘛！两次密码都输得不一样！";
+		registerButton.className="ui right floated disabled black basic button";
+		$('#passwordHint').transition('tada');
+		
+	}
+}
+function changePass(){
+	var oldPassword = document.getElementById('oldPassword').value;
+	var password1 = document.getElementById('newPassword1').value;
+	var password2 = document.getElementById('newPassword2').value;
+
+	var modalMessage = document.getElementById('modalMessage');
+	var modalTitle = document.getElementById('modalTitle');
+	var modalButton = document.getElementById('modalButton');
+	if(oldPassword.length == 0){
+		modalMessage.innerHTML = "原密码不能为空啊！";
+		modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 修改失败"
+		modalButton.removeAttribute("onclick");
+		$('.ui.basic.modal')
+		  .modal('show')
+		;
+		return;
+	}
+	if(password1.length == 0 || password2.length == 0){
+		modalMessage.innerHTML = "新密码不能为空啊！";
+		modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 修改失败"
+			modalButton.removeAttribute("onclick");
+		$('.ui.basic.modal')
+		  .modal('show')
+		;
+		return;
+	}
+	var password = password1;
+	$.ajax({
+		type:'post',
+	 	url:"${pageContext.request.contextPath}/changePassword.action",
+	 	data:{
+	 		"userid":${sessionScope.user.userid },
+	 		"oldPassword":oldPassword,
+	 		"newPassword":password
+	 		},
+		success:function(data){
+			if(data == "success"){
+				modalTitle.innerHTML = "<i class='checkmark icon' id='modalIcon'></i> 修改密码成功"
+				modalMessage.innerHTML = "密码修改成功！";
+				modalButton.setAttribute("onclick","window.location.href='user.jsp'");
+				$('.ui.basic.modal')
+				  .modal('show')
+				;
+			}else{
+				modalMessage.innerHTML = data;
+				modalTitle.innerHTML = "<i class='remove icon' id='modalIcon'></i> 修改密码失败"
+					modalButton.removeAttribute("onclick");
+				$('.ui.basic.modal')
+				  .modal('show')
+				;
+			}
+		}
+	});
+}
+</script>
 </html>
 
 

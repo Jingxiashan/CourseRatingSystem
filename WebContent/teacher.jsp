@@ -4,11 +4,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<title>${requestScope.teacher.teachername }-大众点评课</title>
+<title>${requestScope.teacher.teachername }-我的课</title>
 <head>
 <!-- Standard Meta -->
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet prefech"
@@ -46,8 +49,8 @@ body {
 <body>
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
-			<a href="homepage.jsp" class="header item"> <img class="logo"
-				src="images/testPic.jpg"> 大众点评课
+			<a href="homepage.jsp" class="header item">
+				<img class="logo" src="images/logos/logo_menu.png" style="width:105px;margin-right:0px"> 
 			</a> <a onClick="javascript :history.back(-1);" class="item">返回</a> <a
 				href="course_findAll.action" class="item">课程列表</a>
 			<div class="ui simple dropdown item">
@@ -180,7 +183,7 @@ body {
 					</div>
 				</div>
 				<div class="ten wide column">
-					<h4 class="ui inverted header">大众点评课</h4>
+					<h4 class="ui inverted header">我的课</h4>
 					<p>只做给你看的选课攻略。</p>
 					<i class="github icon"></i>
 					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>

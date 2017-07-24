@@ -10,7 +10,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="Shortcut Icon"
-	href="//www.dpfile.com/s/res/favicon.5ff777c11d7833e57e01c9d192b7e427.ico"
+	href="images/logos/icon.ico"
 	type="image/x-icon">
 <link rel="stylesheet prefech"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.css">
@@ -19,7 +19,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
 <!-- Site Properties -->
-<title>主页 - 大众点评课</title>
+<title>主页 - 我的课</title>
 <style type="text/css">
 .hidden.menu {
 	display: none;
@@ -189,8 +189,11 @@
 			</div>
 
 			<div class="ui text container">
-				<h1 class="ui inverted header">大众点评课</h1>
-				<h2>“专门打造给你看的选课攻略”</h2>
+				<div class="ui image" style="margin-top:170px">
+					<img src="images/logos/logo_homepage.png"></img>
+				</div>
+				<!-- <h1 class="ui inverted header">我的课</h1> -->
+				<!-- <h2>“专门打造给你看的选课攻略”</h2> -->
 			</div>
 		</div>
 		<div class="ui horizontal">
@@ -224,7 +227,7 @@
 						</div>
 					</div>
 				<div class="ten wide column">
-					<h4 class="ui inverted header">大众点评课</h4>
+					<h4 class="ui inverted header">我的课</h4>
 					<p>只做给你看的选课攻略。</p>
 					<i class="github icon"></i>
 					<a href="https://github.com/Jingxiashan/CourseRatingSystem"style="color:#B0B0B0">https://github.com/Jingxiashan/CourseRatingSystem</a>

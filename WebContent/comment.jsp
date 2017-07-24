@@ -7,6 +7,9 @@
 <title>课程评价-${requestScope.course.coursename }</title>
 <!-- Standard Meta -->
 <meta charset="utf-8" />
+<link rel="Shortcut Icon"
+	href="images/logos/icon.ico"
+	type="image/x-icon">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -46,9 +49,11 @@ body {
 <body>
 	<div class="ui fixed inverted menu">
 		<div class="ui container">
-			<a href="homepage.jsp" class="header item"> <img class="logo"
-				src="images/testPic.jpg"> 大众点评课
-			</a> <a onClick="javascript :history.back(-1);" class="item">返回</a> <a
+			
+			<a href="homepage.jsp" class="header item">
+				<img class="logo" src="images/logos/logo_menu.png" style="width:105px;margin-right:0px"> 
+			</a>
+			 <a onClick="javascript :history.back(-1);" class="item">返回</a> <a
 				href="course_findAll.action" class="item">课程列表</a>
 			<div class="ui simple dropdown item">
 				课程搜索 <i class="dropdown icon"></i>
@@ -227,7 +232,7 @@ body {
 					</div>
 				</div>
 				<div class="seven wide column">
-					<h4 class="ui inverted header">大众点评课</h4>
+					<h4 class="ui inverted header">我的课</h4>
 					<p>只做给你看的选课攻略。</p>
 				</div>
 			</div>

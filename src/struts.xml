@@ -61,6 +61,14 @@
 				<param name="root">result</param>
 	    	</result>
 	    </action>
+	    <action name="changePassword" class="com.courseratingsystem.web.action.ChangePasswordAction">
+	    	<result type="json" name="success">
+				<param name="root">result</param>
+			</result>
+	    	<result type="json" name="fail">
+				<param name="root">result</param>
+			</result>
+	    </action>
 	</package>
    
     <package name="default" namespace="/" extends="struts-default">
@@ -73,15 +81,6 @@
     
 	    <!-- <global-results><result name="fail">fail.jsp</result></global-results> -->
 	    
-	    <!--  
-	    <action name="LoginAction" class="com.chinasoft.app.action.LoginAction" method="login">    
-	    <result name="success" type="redirectAction">book_search</result>
-	    </action>
-	    -->
-	    <action name="changePassword" class="com.courseratingsystem.web.action.ChangePasswordAction">
-	    	<result name="success" type="redirect">/index.jsp</result>
-	    	<result name="fail">/changePass.jsp</result>
-	    </action>
 	    <action name="user_*" class="com.courseratingsystem.web.action.UserAction" method="{1}">
 	    	<result name="success">/profile.jsp</result>
 	    	<result name="fail">/modifyProfile.jsp</result>
@@ -90,12 +89,6 @@
 	    <action name="logout" class="com.courseratingsystem.web.action.LoginAction" method="logout">
 	    	<result name="success">/homepage.jsp</result>
 	    </action>
-	    <!-- 
-	    <action name="course_search" class="com.courseratingsystem.web.action.CourseAction" method="findByName">
-	    	<result name="SUCCESS">courseTest.jsp</result>
-	    	<result name="fail">error.jsp</result>
-	    </action>
-	     -->
 	    <action name="course_*" class="com.courseratingsystem.web.action.CourseAction" method="{1}">
 	    	<result name="success">index.jsp</result>
 	    	<result name="get_to_course_page">/course.jsp</result>
@@ -108,12 +101,7 @@
 	    	<interceptor-ref name="loginInterceptor"></interceptor-ref>
 	    	<interceptor-ref name="defaultStack"></interceptor-ref>
 	    </action>
-		<action name="comment_findByTeacher" class="com.courseratingsystem.web.action.CommentAction" method="findByTeacher">
-			<result name="success">xingtest3.jsp</result>
-			<result name="fail">error.jsp</result>
-		</action>
-		
-		<action name="teacher_getPage" class="com.courseratingsystem.web.action.TeacherAction" method="getPage">
+		<action name="teacher_*" class="com.courseratingsystem.web.action.TeacherAction" method="{1}">
 			<result name="success">teacher.jsp</result>
 			<result name="fail">error.jsp</result>
 		</action>
