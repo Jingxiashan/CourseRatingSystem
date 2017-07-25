@@ -503,12 +503,12 @@ $(function(){
 			    	// Wed Jun 18 2014 
 			    	timestamp=newDate.toLocaleString();
 			    	
-			    	html += "<div class='ui two column grid'>"+
+			    	html += "<div class='ui two column grid' id='comment"+commentid+"'>"+
 					"<div class='eleven wide column'>"+
 					"<div class='comment'>"+
 						"<a class='avatar'> "+
 						"<img src='";
-						if(picpath.length==0){
+						if(picpath == null){
 							html += "images/stevie.jpg";
 						}
 						else{
@@ -526,24 +526,32 @@ $(function(){
 					"</div>"+
 				"</div>"+
 				"<div class='five wide column'>";
-					if(userid == ${empty sessionScope.user.userid ? 0 : sessionScope.user.userid}){
-						html +=
-							"<div class='ui right floated basic blue mini button' onclick='deleteComment('"+commentid+"'>"+
-								"<i class='remove icon'></i>删除"+
+					if("${empty sessionScope.user.userid ? "false" : "true"}" == "true"){
+						//is logged in
+						if(userid == ${empty sessionScope.user.userid ? 0 : sessionScope.user.userid}){
+							html +=
+								"<div class='ui right floated basic blue mini button' onclick='deleteComment("+commentid+")'>"+
+									"<i class='remove icon'></i>删除"+
+								"</div>"+
+								"<button class='ui right floated basic red mini button' type='button'>"+
+									"<i class='heart icon'></i>"+likecount+
+								"</button>";
+						} 
+						else{
+							html += 
+						"<div class='ui right floated labeled mini button' tabindex='0'>"+
+							"<div class='ui red mini button' type='button' onclick='likeComment("+commentid+");'>"+
+								"<i class='heart icon'></i> 戳"+
 							"</div>"+
+							"<div id='comment"+commentid+"Count' class='ui basic red left mini basic label'>"+likecount+"</div>"+
+						"</div>";	
+						}
+					}else{
+						html +=
 							"<button class='ui right floated basic red mini button' type='button'>"+
 								"<i class='heart icon'></i>"+likecount+
 							"</button>";
-					} 
-					else{
-						html += 
-					"<div class='ui right floated labeled mini button' tabindex='0'>"+
-						"<div class='ui red mini button' type='button' onclick='likeComment("+commentid+");'>"+
-							"<i class='heart icon'></i> 戳"+
-						"</div>"+
-						"<div id='comment"+commentid+"Count' class='ui basic red left mini basic label'>"+likecount+"</div>"+
-					"</div>";	
-					}
+					}					
 					html +=
 				"</div>"+
 			"</div>";
