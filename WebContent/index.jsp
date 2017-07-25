@@ -199,7 +199,7 @@ body {
 								</div>
 							</div>
 						</div>
-						<img src="images/elliot.jpg">
+						<img src="images/logos/icon.png">
 					</div>
 					 
 					    <div class="content">

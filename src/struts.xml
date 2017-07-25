@@ -13,14 +13,20 @@
     		</interceptor>
     	</interceptors>
 		<action name="addFavourate" class="com.courseratingsystem.web.action.UserAction" method="addFavourate">
-			<result type="json" name="success"></result>
+			<result type="json" name="success">
+				<param name="root">result</param>
+			</result>
 			<result name="loginNeeded">/login.jsp</result>
 	    	<interceptor-ref name="loginInterceptor"></interceptor-ref>
 	    	<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		<action name="deleteFavourate" class="com.courseratingsystem.web.action.UserAction" method="deleteFavourate">
-			<result type="json" name="success"></result>
-			<result type="json" name="fail"></result>
+			<result type="json" name="success">
+				<param name="root">result</param>
+				</result>
+			<result type="json" name="fail">
+				<param name="root">result</param>
+				</result>
 		</action>
 		<action name="deleteComment" class="com.courseratingsystem.web.action.CommentAction" method="deleteComment">
 			<result type="json" name="success"></result>

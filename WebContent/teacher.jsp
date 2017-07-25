@@ -123,7 +123,7 @@ body {
 		<div class="ui raised aligned segment">
 			<div id="commentlist" class="ui comments" style="margin-bottom:0">
 				<c:forEach items="${requestScope.commentPage.commentList }" var="comment">
-					<div class="ui two column grid">
+					<div class="ui two column grid"  id="comment${comment.commentid }">
 						<div class="eleven wide column">
 							<div class="comment">
 								<a class="avatar"> <img src="${empty comment.user.picpath ? 'images/stevie.jpg' : comment.user.picpath }"></a>
@@ -139,12 +139,37 @@ body {
 						</div>
 						
 						<div class="five wide column">
-							<div class="ui right floated labeled mini button" tabindex="0">
-								<div class="ui red mini button" type="button" onclick="likeComment(${comment.commentid });">
-									<i class="heart icon"></i> 戳
-								</div>
-								<div id="comment${comment.commentid }Count" class="ui basic red left mini basic label">${comment.likeCount }</div>
-							</div>
+							<c:if test="${empty sessionScope.user.userid }">
+								<!-- 如果未登录 -->
+								<button class="ui right floated basic red mini button" type="button">
+								  <i class="heart icon"></i>
+								  ${comment.likeCount }
+								</button>
+							</c:if>
+							<c:if test="${!empty sessionScope.user.userid }">
+								<!-- 如果已登录 -->
+								<c:if test="${comment.user.userid == sessionScope.user.userid }">
+									<!-- 如果是自己的评论 -->
+									<div class="ui right floated basic blue mini button" onclick="deleteComment(${comment.commentid})">
+										<i class="remove icon"></i>删除
+									</div>
+									<button class="ui right floated basic red mini button" type="button">
+									  <i class="heart icon"></i>
+									  ${comment.likeCount }
+									</button>
+								</c:if>
+								<c:if test="${comment.user.userid != sessionScope.user.userid }">
+									<!-- 如果不是自己的评论 -->
+									<div class="ui right floated labeled mini button" tabindex="0">
+										<div class="ui red mini button" type="button"
+											onclick="likeComment(${comment.commentid });">
+											<i class="heart icon"></i> 戳
+										</div>
+										<div id="comment${comment.commentid }Count"
+											class="ui basic red left mini basic label">${comment.likeCount }</div>
+									</div>
+								</c:if>
+							</c:if>
 						</div>
 					</div>	
 					</c:forEach>
@@ -189,6 +214,16 @@ body {
 			<div class="ui inverted section divider"></div>
 		</div>
 	</div>
+	<div class="ui basic modal" id="favourateModal">
+		<div class="ui icon header" id="modalTitle">
+			<i class="archive icon"></i> 收藏成功
+		</div>
+		<div class="actions">
+			<div class="ui green ok inverted button">
+				<i class="checkmark icon"></i> 确定
+			</div>
+		</div>
+	</div>
 </body>
 <script>
 	$('.special.cards .image').dimmer({
@@ -207,6 +242,24 @@ body {
 			}		  
 		  })
 	}
+	 function deleteComment(commentid){
+		  	$.ajax({
+		  		type:'get',
+		  		url:'${pageContext.request.contextPath}/deleteComment.action',
+		  		data:{"commentid":commentid },
+		  		success:function(data){
+		  			var parent = document.getElementById("commentlist");
+		  			var child = document.getElementById("comment"+commentid);
+		  			console.log(parent);
+		  			console.log(child);
+		  			parent.removeChild(child);
+		  			document.getElementById("modalTitle").innerHTML="已删除评论";
+		  			$('.ui.basic.modal')
+		  			  .modal('show')
+		  			;
+		  		}
+		  	});
+		  }
 	 function turnPage(page,teacherid){
 		  $.ajax({
 			  type:'get',
@@ -252,13 +305,26 @@ body {
 							"</div>"+
 						"</div>"+
 					"</div>"+
-					"<div class='five wide column'>"+
+					"<div class='five wide column'>";
+						if(userid == ${empty sessionScope.user.userid ? 0 : sessionScope.user.userid}){
+							html +=
+								"<div class='ui right floated basic blue mini button' onclick='deleteComment('"+commentid+"'>"+
+									"<i class='remove icon'></i>删除"+
+								"</div>"+
+								"<button class='ui right floated basic red mini button' type='button'>"+
+									"<i class='heart icon'></i>"+likecount+
+								"</button>";
+						} 
+						else{
+							html += 
 						"<div class='ui right floated labeled mini button' tabindex='0'>"+
 							"<div class='ui red mini button' type='button' onclick='likeComment("+commentid+");'>"+
 								"<i class='heart icon'></i> 戳"+
 							"</div>"+
 							"<div id='comment"+commentid+"Count' class='ui basic red left mini basic label'>"+likecount+"</div>"+
-						"</div>"+
+						"</div>";	
+						}
+						html +=
 					"</div>"+
 				"</div>";
 				

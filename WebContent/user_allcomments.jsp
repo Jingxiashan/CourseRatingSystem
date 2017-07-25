@@ -168,13 +168,13 @@ body {
 								<div class="five wide column">
 									<!-- 这里是 点赞评论和删除评论的action-->
 									<form class="actions">
-										<button class="ui basic red mini button">
+										<div class="ui right floated basic blue mini button" onclick="deleteComment(${comment.commentid})">
+											<i class="remove icon"></i>删除
+										</div>
+										<button class="ui right floated basic red mini button" type="button">
 										  <i class="heart icon"></i>
 										  ${comment.likeCount }
 										</button>
-										<div class="ui basic blue mini button" onclick="deleteComment(${comment.commentid})">
-											<i class="remove icon"></i>删除
-										</div>
 									</form>
 								</div>
 								
