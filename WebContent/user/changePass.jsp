@@ -1,14 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <!-- Standard Meta -->
+<link rel="Shortcut Icon"
+	href="../images/logos/icon.ico"
+	type="image/x-icon">
+<c:if test="${empty sessionScope.user.userid }">
+	<meta http-equiv="refresh" content="0;url=../404.jsp"> 
+</c:if>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<link rel="Shortcut Icon"
-	href="images/logos/icon.ico"
-	type="image/x-icon">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet prefech"
@@ -16,7 +20,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
-	src="js/sha1.js"></script>
+	src="../js/sha1.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
 <script>
@@ -102,34 +106,34 @@ body {
 			<div class="item">
 				<div class="header">个人中心</div>
 				<div class="menu">
-					<a class="item" href="user.jsp">个人中心 </a>
-					<a href="logout.action" class="item">注销</a>
+					<a class="item" href="./">个人中心 </a>
+					<a href="../logout.action" class="item">注销</a>
 				</div>
 			</div>
 			<div class="item">
 				<div class="header">课程管理</div>
 				<div class="menu">
-					<a class="item" href="user_allfavourites.jsp">课程收藏管理 </a>
+					<a class="item" href="./favourites.jsp">课程收藏管理 </a>
 				</div>
 			</div>
 			<div class="item">
 				<div class="header">评论管理</div>
-				<div class="menu"><a class="item" href="user_allcomments.jsp">发表评论管理</a></div>
+				<div class="menu"><a class="item" href="./comments.jsp">发表评论管理</a></div>
 			</div>
 			<div class="item">
 				<div class="header">个人信息管理</div>
 				<div class="menu">
-					<a class="item" href="modifyProfile.jsp"> 修改个人信息 </a> 
-					<a class="item" href="changePass.jsp"> 修改个人密码 </a>
+					<a class="item" href="./modifyProfile.jsp"> 修改个人信息 </a> 
+					<a class="item" href="./changePass.jsp"> 修改个人密码 </a>
 				</div>
 			</div>
 			<div class="item" style="height: 750px">
 				<div class="header"><i class="left arrow icon"></i></div>
 				<div class="menu">
-					<a href="course_findAll.action" class="item">课程详情</a>					
-					<a class="item" href="courseSearchByCname.jsp">课程查询</a>
-					<a class="item" href="homepage.jsp">网站介绍</a> 
-					<a class="item" href="about.jsp">关于我们</a>
+					<a href="../course_findAll.action" class="item">课程详情</a>					
+					<a class="item" href="../courseSearchByCname.jsp">课程查询</a>
+					<a class="item" href="../homepage.jsp">网站介绍</a> 
+					<a class="item" href="../about.jsp">关于我们</a>
 				</div>
 			</div>
 		</div>
@@ -246,7 +250,7 @@ function changePass(){
 		return;
 	}
 	var sha1_newPassword = hex_sha1(password1);
-	var sha1_oldPassword = oldPassword;
+	var sha1_oldPassword = hex_sha1(oldPassword);
 	$.ajax({
 		type:'post',
 	 	url:"${pageContext.request.contextPath}/changePassword.action",
@@ -259,7 +263,7 @@ function changePass(){
 			if(data == "success"){
 				modalTitle.innerHTML = "<i class='checkmark icon' id='modalIcon'></i> 修改密码成功"
 				modalMessage.innerHTML = "密码修改成功！";
-				modalButton.setAttribute("onclick","window.location.href='user.jsp'");
+				modalButton.setAttribute("onclick","window.location.href='./'");
 				$('.ui.basic.modal')
 				  .modal('show')
 				;

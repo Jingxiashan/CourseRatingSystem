@@ -7,6 +7,9 @@
 <head>
 <title>课程详情-${requestScope.course.coursename}</title>
 <!-- Standard Meta -->
+<c:if test="${empty requestScope.course.courseid }">
+	<meta http-equiv="refresh" content="0;url=404.jsp"> 
+</c:if>
 <meta charset="utf-8" />
 <link rel="Shortcut Icon" href="images/logos/icon.ico"
 	type="image/x-icon">
@@ -85,7 +88,7 @@ body {
 				</c:if>
 				<!-- 如果已经登录，显示个人中心链接 -->
 				<c:if test="${!empty sessionScope.user}">
-					<a href="user.jsp" class="item">${sessionScope.user.nickname}</a>
+					<a href="./user/" class="item">${sessionScope.user.nickname}</a>
 					<a href="logout.action" class="item">注销</a>
 				</c:if>
 			</div>

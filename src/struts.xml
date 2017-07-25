@@ -95,7 +95,7 @@
 	    <action name="user_*" class="com.courseratingsystem.web.action.UserAction" method="{1}">
 	    	<result name="success">/profile.jsp</result>
 	    	<result name="fail">/modifyProfile.jsp</result>
-	    	<result name="get_to_self_profile" type="redirect">/user.jsp</result>
+	    	<result name="get_to_self_profile" type="redirect">/user/</result>
 	    </action>
 	    <action name="logout" class="com.courseratingsystem.web.action.LoginAction" method="logout">
 	    	<result name="success">/homepage.jsp</result>

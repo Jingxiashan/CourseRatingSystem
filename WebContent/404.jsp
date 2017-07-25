@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>出错啦</title>
+<title>肆零肆</title>
 <link rel="Shortcut Icon"
 	href="images/logos/icon.ico"
 	type="image/x-icon">
@@ -17,10 +17,10 @@
 </head>
 <body style="background:#1B1C1D;text-align:center">
 	<div class="ui sizer vertical segment" style="font-size:60px;margin-top:120px">
-	  <div class="ui huge header" style="color:white">出错啦</div>
+	  <div class="ui huge header" style="color:white">肆零肆</div>
 	</div>
 	<div class="ui sizer vertical segment">
-	  <div class="ui huge header" style="color:white" id="hint">3秒后返回...</div>
+	  <div class="ui huge header" style="color:white" id="hint">3秒后返回主页...</div>
 	</div>
 
 </body>
@@ -28,15 +28,13 @@
 $(document).ready(function() {
 	var countDown = 3;
 	var hint = document.getElementById("hint");
-	hint.innerHTML = countDown + "秒后返回..."
+	hint.innerHTML = countDown + "秒后返回主页..."
 	setInterval(function(){
 		countDown--;
-		hint.innerHTML = countDown + "秒后返回...";
+		hint.innerHTML = countDown + "秒后返回主页...";
 	},1000);
 	setTimeout(function(){
-		window.location.href=((document.referrer.length == 0) 
-				? "homepage.jsp" : 
-					document.referrer);	
+		window.location.href="${pageContext.request.contextPath}/homepage.jsp";
 	},countDown * 1000); 
 	
 });

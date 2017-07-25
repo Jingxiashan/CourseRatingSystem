@@ -164,7 +164,7 @@ body>.grid {
 					</c:if>
 					<!-- 如果已经登录，显示个人中心链接 -->
 					<c:if test="${!empty sessionScope.user}">
-						<a href="user.jsp" class="item">${sessionScope.user.nickname}</a>
+						<a href="./user/" class="item">${sessionScope.user.nickname}</a>
 						<a href="logout.action" class="item">注销</a>
 					</c:if>
 				</div>
