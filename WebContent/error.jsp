@@ -20,7 +20,7 @@
 	  <div class="ui huge header" style="color:white">出错啦</div>
 	</div>
 	<div class="ui sizer vertical segment">
-	  <div class="ui huge header" style="color:white" id="hint">3秒后返回...</div>
+	  <div class="ui huge header" style="color:white" id="hint">3秒后返回主页...</div>
 	</div>
 
 </body>
@@ -28,15 +28,13 @@
 $(document).ready(function() {
 	var countDown = 3;
 	var hint = document.getElementById("hint");
-	hint.innerHTML = countDown + "秒后返回..."
+	hint.innerHTML = countDown + "秒后返回主页..."
 	setInterval(function(){
 		countDown--;
-		hint.innerHTML = countDown + "秒后返回...";
+		hint.innerHTML = countDown + "秒后返回主页...";
 	},1000);
 	setTimeout(function(){
-		window.location.href=((document.referrer.length == 0) 
-				? "homepage.jsp" : 
-					document.referrer);	
+		window.location.href="homepage.jsp";	
 	},countDown * 1000); 
 	
 });

@@ -6,19 +6,11 @@
 
 <struts>
 	<package name="ajax" namespace="/" extends="json-default">
-	
-		<!-- 声明拦截器 -->
-    	<interceptors>
-    		<interceptor name="loginInterceptor" class="com.courseratingsystem.web.interceptor.CommentInterceptor">
-    		</interceptor>
-    	</interceptors>
 		<action name="addFavourate" class="com.courseratingsystem.web.action.UserAction" method="addFavourate">
 			<result type="json" name="success">
 				<param name="root">result</param>
 			</result>
 			<result name="loginNeeded">/login.jsp</result>
-	    	<interceptor-ref name="loginInterceptor"></interceptor-ref>
-	    	<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		<action name="deleteFavourate" class="com.courseratingsystem.web.action.UserAction" method="deleteFavourate">
 			<result type="json" name="success">
@@ -32,7 +24,6 @@
 			<result type="json" name="success"></result>
 			<result type="json" name="fail"></result>
 		</action>
-		
 		<action name="likeComment" class="com.courseratingsystem.web.action.CommentAction" method="like">
 			<result type="json" name="success"></result>
 			<param name="excludeProperties">comment</param>
@@ -90,11 +81,10 @@
     		</interceptor>
     	</interceptors>
     
-	    <!-- <global-results><result name="fail">fail.jsp</result></global-results> -->
+	    <global-results><result name="fail">/error.jsp</result></global-results>
 
 	    <action name="user_*" class="com.courseratingsystem.web.action.UserAction" method="{1}">
 	    	<result name="success">/profile.jsp</result>
-	    	<result name="fail">/modifyProfile.jsp</result>
 	    	<result name="get_to_self_profile" type="redirect">/user/</result>
 	    </action>
 	    <action name="logout" class="com.courseratingsystem.web.action.LoginAction" method="logout">
@@ -103,18 +93,15 @@
 	    <action name="course_*" class="com.courseratingsystem.web.action.CourseAction" method="{1}">
 	    	<result name="success">index.jsp</result>
 	    	<result name="get_to_course_page">/course.jsp</result>
-	    	<result name="fail">error.jsp</result>
 	    </action>
 	    <action name="comment_*" class="com.courseratingsystem.web.action.CommentAction" method="{1}">
 	    	<result name="get_to_comment_page">/comment.jsp</result>
-	    	<result name="fail">course_findAll.action</result>
 	    	<result name="loginNeeded">/login.jsp</result>
 	    	<interceptor-ref name="loginInterceptor"></interceptor-ref>
 	    	<interceptor-ref name="defaultStack"></interceptor-ref>
 	    </action>
 		<action name="teacher_*" class="com.courseratingsystem.web.action.TeacherAction" method="{1}">
 			<result name="success">teacher.jsp</result>
-			<result name="fail">error.jsp</result>
 		</action>
     </package>
 
