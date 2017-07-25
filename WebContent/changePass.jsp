@@ -16,6 +16,8 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
+	src="js/sha1.js"></script>
+<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
 <script>
 	$(document).ready(function() {
@@ -243,14 +245,15 @@ function changePass(){
 		;
 		return;
 	}
-	var password = password1;
+	var sha1_newPassword = hex_sha1(password1);
+	var sha1_oldPassword = oldPassword;
 	$.ajax({
 		type:'post',
 	 	url:"${pageContext.request.contextPath}/changePassword.action",
 	 	data:{
 	 		"userid":${sessionScope.user.userid },
-	 		"oldPassword":oldPassword,
-	 		"newPassword":password
+	 		"oldPassword":sha1_oldPassword,
+	 		"newPassword":sha1_newPassword
 	 		},
 		success:function(data){
 			if(data == "success"){

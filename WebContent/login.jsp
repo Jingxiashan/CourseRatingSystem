@@ -14,6 +14,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
+<script
+	src="js/sha1.js"></script>
 <title>登录-我的课</title>
 
 
@@ -206,12 +208,13 @@ body>.grid {
 function login(){
 	var username = document.getElementById('username').value;
 	var password = document.getElementById('password').value;
+	var sha1_password = hex_sha1(password);
 	$.ajax({
 		type:'post',
 	 	url:"${pageContext.request.contextPath}/login.action",
 	 	data:{
 	 		"username":username,
-	 		"password":password
+	 		"password":sha1_password
 	 		},
 		success:function(data){
 			var result = data;			console.log(result);
