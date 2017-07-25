@@ -95,7 +95,7 @@ body {
 	<div class="three wide column">
 		<div class="ui vertical inverted sticky menu" style="position:fixed!important;top:0">
 			<div class="item" style="width: 80px">
-				<img style="background:#FFFFFF" class="ui tiny image" src="${empty sessionScope.user.picpath ? 'images/stevie.jpg' : sessionScope.user.picpath }">
+				<img style="background:#FFFFFF" class="ui tiny image" src="${empty sessionScope.user.picpath ? '../images/stevie.jpg' : sessionScope.user.picpath }">
 			</div>
 			<div class="container" style="color: #FFFFFF">
 				<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好久不见，${sessionScope.user.nickname }。</b>
@@ -163,7 +163,7 @@ body {
 						
 							<div class="field" style="width:150px">
 								<label>头像</label> 
-								<img class="ui small image" id="avatarPre" src="${empty sessionScope.user.picpath ? 'images/stevie.jpg' : sessionScope.user.picpath }" style="display:block"/>
+								<img class="ui small image" id="avatarPre" src="${empty sessionScope.user.picpath ? '../images/stevie.jpg' : sessionScope.user.picpath }" style="display:block"/>
 								<label for="avatar" class="ui basic icon button" id="cvIntro"> <i class="user circle outline icon"></i>上传新头像</label>
                     			<input type="file" id="avatar" name="avatar" style="display:none" onchange="preImg(this.id,'avatarPre')">
 							</div>

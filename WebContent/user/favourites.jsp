@@ -95,7 +95,7 @@ body {
 	<div class="three wide column">
 		<div class="ui vertical inverted sticky menu" style="position:fixed!important;top:0">
 			<div class="item" style="width: 80px">
-				<img style="background:#FFFFFF" class="ui tiny image" src="${empty sessionScope.user.picpath ? 'images/stevie.jpg' : sessionScope.user.picpath }">
+				<img style="background:#FFFFFF" class="ui tiny image" src="${empty sessionScope.user.picpath ? '../images/stevie.jpg' : sessionScope.user.picpath }">
 			</div>
 			<div class="container" style="color: #FFFFFF">
 				<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好久不见，${sessionScope.user.nickname }。</b>
