@@ -85,7 +85,7 @@ body {
 		<br>
 	</div>
 
-	<div class="ui container" style="width: 50%">
+	<div class="ui container" style="width: 60%">
 		<div class="ui segment">
 			<h3 class="ui header">该老师所教授课程</h3>
 			<div class="ui center aligned middle aligned ">
@@ -93,11 +93,11 @@ body {
 
 					<!-- 在此处添加点出课程详情和收藏课程的action -->
 					<form class="ui form">
-						<div class="ui cards" style="width: 50%; margin: auto">
+						<div class="ui doubling cards">
 							<!-- 此处循环画 <div card>得到该老师全部课程 -->
 							<c:forEach items="${requestScope.courseList }" var="course">
 
-								<div class="card">
+								<div class="ui centered card">
 									<div class="content">
 										<div class="header">${course.coursename }</div>
 										<br>

@@ -86,7 +86,7 @@ public class TeacherAction extends ActionSupport implements ModelDriven<Teacher>
 				request.setAttribute("teacher", teacher);
 				//GET COMMENTS
 				CommentPage commentPage = commentService.findCommentByTeacherID(teacherid, currentPage, pageSize, sortmethod);
-				if(!commentPage.getCommentList().isEmpty()){
+				if(commentPage.getCommentList() != null){
 					request.setAttribute("commentPage", commentPage);
 				}
 				//GET COURSES
