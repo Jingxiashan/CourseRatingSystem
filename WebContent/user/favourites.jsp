@@ -163,7 +163,7 @@ body {
 										
 										<div class="meta" style="margin-top:30px">
 											<span class="date"><h5>推荐星级</h5>
-												<div class="ui star rating" data-rating="${course.coursemark.recommendationScore }" data-max-rating="5"></div>
+												<div class="ui star rating" data-rating="${((course.coursemark.recommendationScore % 1) > 0.5) ? (course.coursemark.recommendationScore + 1 - (course.coursemark.recommendationScore % 1)) : (course.coursemark.recommendationScore - (course.coursemark.recommendationScore % 1)) }" data-max-rating="5"></div>
 											</span>
 										</div>
 									</div>
