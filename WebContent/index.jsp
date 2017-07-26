@@ -7,6 +7,9 @@
 <html>
 <title>课程列表-我的课</title>
 <head>
+<c:if test="${empty requestScope.searchtype }">
+	<meta http-equiv="refresh" content="0;url=404.jsp"> 
+</c:if>
 <!-- Standard Meta -->
 <meta charset="utf-8" />
 <link rel="Shortcut Icon"
