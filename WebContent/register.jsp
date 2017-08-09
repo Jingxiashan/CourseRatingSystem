@@ -13,6 +13,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.js"></script>
+<script
+	src="js/sha1.js"></script>
 <title>注册-我的课</title>
 <style type="text/css">
 .hidden.menu {
@@ -310,7 +312,7 @@ function register(){
 		;
 		return;
 	}
-	var password = password1;
+	var password = hex_sha1(password1);
 	$.ajax({
 		type:'post',
 	 	url:"${pageContext.request.contextPath}/register_register.action",
