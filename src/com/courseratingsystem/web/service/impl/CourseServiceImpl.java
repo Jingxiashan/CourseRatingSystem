@@ -76,6 +76,12 @@ public class CourseServiceImpl implements CourseService {
 		return toPage(list, currentPage, pageSize);
 	}
 	@Override
+	public CoursePage findHotTwentyCourses() {
+		List<CourseOverview> list = courseDao.findAll();
+		Sort(list, "peopleCount");
+		return toPage(list, 1, 20);
+	}
+	@Override
 	public List<CourseOverview> Sort(List<CourseOverview> list, String sortby) {
 		switch(sortby){
 		case "averageRatingsUsefulness":
@@ -137,6 +143,17 @@ public class CourseServiceImpl implements CourseService {
 	                return i > 0 ? 1 : (i < 0 ? -1 : 0);  
 	            }  
 	        });
+			break;
+		case "peopleCount":
+			Collections.sort(list, new Comparator<CourseOverview>() {  
+				  
+	            @Override  
+	            public int compare(CourseOverview o1, CourseOverview o2) {  
+	                float i = o2.getPeopleCount() - o1.getPeopleCount();      
+	                return i > 0 ? 1 : (i < 0 ? -1 : 0);  
+	            }  
+	        });
+			
 			break;
 		}
 		return list;

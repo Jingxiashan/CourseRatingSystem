@@ -97,6 +97,12 @@ public class CommentServiceImpl implements CommentService{
 		commentDao.update(comment);
 		return likeCountNow + 1;		
 	}
+	
+	@Override
+	public CommentPage findTopTwentyComments() {
+		List<Comment> commentList = commentDao.findTopComments();
+		return new CommentPage(20, 1, 20, 1, commentList);
+	}
 
 	@Override
 	public void Sort(List<Comment> commentList,final String sortmethod) {

@@ -10,13 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
 import com.alibaba.fastjson.JSON;
+import com.courseratingsystem.web.domain.Comment;
 import com.courseratingsystem.web.domain.Teacher;
+import com.courseratingsystem.web.object.CourseOverview;
 import com.courseratingsystem.web.object.CourseOverviewPlusTeacher;
+import com.courseratingsystem.web.service.CommentService;
 import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.service.LogininfoService;
 import com.courseratingsystem.web.service.TeacherService;
 import com.courseratingsystem.web.service.UserService;
 import com.courseratingsystem.web.service.impl.CourseServiceImpl;
+import com.courseratingsystem.web.vo.CommentPage;
 import com.courseratingsystem.web.vo.CoursePage;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -38,6 +42,13 @@ public class CourseApi extends ActionSupport{
 	private Object returnJson;
 	private CourseService courseService;
 	private TeacherService teacherService;
+	private CommentService commentService;
+	public CommentService getCommentService() {
+		return commentService;
+	}
+	public void setCommentService(CommentService commentService) {
+		this.commentService = commentService;
+	}
 	public Object getReturnJson() {
 		return returnJson;
 	}
@@ -103,32 +114,7 @@ public class CourseApi extends ActionSupport{
 		for(CourseOverviewPlusTeacher tmpCourse : coursepage.getList()) {
 			tmpCourse.setTeacherList(teacherService.findTeachersByCourseID(tmpCourse.getCourseid()));
 		}
-		//构建Json
-		List<Map<String,Object>>  courseList = new ArrayList<>();
-		Map<String,Object> courseAttr;
-		List<Map<String,Object>> teacherList;
-		Map<String,Object> teacherAttr;
-		for(CourseOverviewPlusTeacher tmpCourse : coursepage.getList()) {
-			courseAttr = new HashMap<>();
-			courseAttr.put("courseId", tmpCourse.getCourseid());
-			courseAttr.put("courseName", tmpCourse.getCoursename());
-			courseAttr.put("peopleCount", tmpCourse.getPeopleCount());
-			courseAttr.put("recScore", tmpCourse.getRecommendationScore());
-			courseAttr.put("useScore", tmpCourse.getAverageRatingsUsefulness());
-			courseAttr.put("vivScore", tmpCourse.getAverageRatingsVividness());
-			courseAttr.put("ocuScore", tmpCourse.getAverageRatingsSpareTimeOccupation());
-			courseAttr.put("scoScore", tmpCourse.getAverageRatingsScoring());
-			courseAttr.put("rolScore", tmpCourse.getAverageRatingsRollCall());
-			teacherList = new ArrayList<>();
-			for(Teacher tmpTeacher : tmpCourse.getTeacherList()) {
-				teacherAttr = new HashMap<>();
-				teacherAttr.put("teacherId", tmpTeacher.getTeacherid());
-				teacherAttr.put("teacherName", tmpTeacher.getTeachername());
-				teacherList.add(teacherAttr);
-			}
-			courseAttr.put("teacherList", teacherList);
-			courseList.add(courseAttr);
-		}
+		List<Map<String,Object>>  courseList = toCourseList(coursepage);
 		resultMap.put("searchtType", searchType);
 		resultMap.put("searchText", searchText);
 		resultMap.put("sortBy", sortBy);
@@ -141,5 +127,58 @@ public class CourseApi extends ActionSupport{
 		returnMap.put(STR_RESULT, resultMap);
 		returnJson = JSON.toJSON(returnMap);
 		return SUCCESS;
+	}
+	
+	public String getHotCourseAndComment() {
+		returnMap = new HashMap<String,Object>();
+		resultMap = new HashMap<>();
+		
+		CoursePage hotCoursePage = courseService.findHotTwentyCourses();
+		CommentPage hotCommentPage = commentService.findTopTwentyComments();
+		//设置老师
+		for(CourseOverviewPlusTeacher tmpCourse : hotCoursePage.getList()) {
+			tmpCourse.setTeacherList(teacherService.findTeachersByCourseID(tmpCourse.getCourseid()));
+		}
+		List<Map<String,Object>> courseList = toCourseList(hotCoursePage);
+		List<Map<String,Object>> commentList = CommentApi.getCommentList(hotCommentPage);
+		
+		resultMap.put("courseList", courseList);
+		resultMap.put("commentList", commentList);
+		
+		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
+		returnMap.put(STR_REASON, SUCCESS);
+		returnMap.put(STR_RESULT, resultMap);
+		returnJson = JSON.toJSON(returnMap);
+		return SUCCESS;
+	}
+	
+	private static List<Map<String,Object>> toCourseList(CoursePage coursepage){
+		//构建Json
+				List<Map<String,Object>>  courseList = new ArrayList<>();
+				Map<String,Object> courseAttr;
+				List<Map<String,Object>> teacherList;
+				Map<String,Object> teacherAttr;
+				for(CourseOverviewPlusTeacher tmpCourse : coursepage.getList()) {
+					courseAttr = new HashMap<>();
+					courseAttr.put("courseId", tmpCourse.getCourseid());
+					courseAttr.put("courseName", tmpCourse.getCoursename());
+					courseAttr.put("peopleCount", tmpCourse.getPeopleCount());
+					courseAttr.put("recScore", tmpCourse.getRecommendationScore());
+					courseAttr.put("useScore", tmpCourse.getAverageRatingsUsefulness());
+					courseAttr.put("vivScore", tmpCourse.getAverageRatingsVividness());
+					courseAttr.put("ocuScore", tmpCourse.getAverageRatingsSpareTimeOccupation());
+					courseAttr.put("scoScore", tmpCourse.getAverageRatingsScoring());
+					courseAttr.put("rolScore", tmpCourse.getAverageRatingsRollCall());
+					teacherList = new ArrayList<>();
+					for(Teacher tmpTeacher : tmpCourse.getTeacherList()) {
+						teacherAttr = new HashMap<>();
+						teacherAttr.put("teacherId", tmpTeacher.getTeacherid());
+						teacherAttr.put("teacherName", tmpTeacher.getTeachername());
+						teacherList.add(teacherAttr);
+					}
+					courseAttr.put("teacherList", teacherList);
+					courseList.add(courseAttr);
+				}
+				return courseList;
 	}
 }

@@ -16,4 +16,5 @@ public interface CommentService {
 	public int getTotalCount();
 	public int addLikeCount(int commentid);
 	public void Sort(List<Comment> commentList,String sortmethod);
+	public CommentPage findTopTwentyComments();
 }

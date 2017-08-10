@@ -68,5 +68,21 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 		return count.intValue();
 	}
 
+	@Override
+	public List<Comment> findTopComments() {
+		List<Comment> commentList = getHibernateTemplate().executeFind(new HibernateCallback() {
+
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+			    String hql = "FROM Comment order by likeCount desc";  
+			    Query query = session.createQuery(hql);     
+			    query.setMaxResults(20);  
+			    List<Comment> list = query.list();  
+			    session.close();  
+			    return list;  
+			}
+		});
+		return commentList;
+	}
 
 }
