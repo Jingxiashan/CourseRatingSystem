@@ -83,7 +83,19 @@ public class CommentApi extends ActionSupport{
 		CommentPage commentPage = null;
 		commentPage = commentservice.findCommentByCourseID(courseId, currentPage, pageSize, sortBy);
 		
-		returnJson=getCommentList(commentPage);
+		List<Map<String, Object>> commentList = getCommentList(commentPage);
+		
+		resultMap.put("sortBy", sortBy);
+		resultMap.put("currentPage", commentPage.getCurrentPage());
+		resultMap.put("pageSize", commentPage.getPageSize());
+		resultMap.put("totalPage", commentPage.getTotalPage());
+		resultMap.put("commentList", commentList);
+		
+		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
+		returnMap.put(STR_REASON, SUCCESS);
+		returnMap.put(STR_RESULT, resultMap);
+		
+		returnJson = JSON.toJSON(returnMap);
 		
 		return SUCCESS;
 	}
@@ -108,12 +120,13 @@ public class CommentApi extends ActionSupport{
 		CommentPage commentPage = null;
 		commentPage = commentservice.findCommentByTeacherID(teacherId, currentPage, pageSize, sortBy);
 		
-		List<Comment> commentList = getCommentList(commentPage);
+		List<Map<String, Object>> commentList = getCommentList(commentPage);
+		
 		resultMap.put("sortBy", sortBy);
 		resultMap.put("currentPage", commentPage.getCurrentPage());
 		resultMap.put("pageSize", commentPage.getPageSize());
 		resultMap.put("totalPage", commentPage.getTotalPage());
-		resultMap.put("courseList", commentList);
+		resultMap.put("commmetList", commentList);
 		
 		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
 		returnMap.put(STR_REASON, SUCCESS);
@@ -129,12 +142,12 @@ public class CommentApi extends ActionSupport{
 		returnMap = new HashMap<String,Object>();
 		resultMap = new HashMap<>();
 		HttpServletRequest request = ServletActionContext.getRequest();
-		int currentPage,teacherId;
+		int currentPage,userId;
 		
 		if(request.getParameter("teacherId")!=null){
-			teacherId = Integer.parseInt(request.getParameter("courseId"));
+			userId = Integer.parseInt(request.getParameter("courseId"));
 		}else {
-			teacherId = 0;
+			userId = 0;
 		}
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));	
@@ -142,14 +155,14 @@ public class CommentApi extends ActionSupport{
 			currentPage = 1;
 		}
 		CommentPage commentPage = null;
-		commentPage = commentservice.findCommentByTeacherID(teacherId, currentPage, pageSize, sortBy);
+		commentPage = commentservice.findCommentByUserID(userId, currentPage, pageSize, sortBy);
 		
-		List<Comment> commentList = getCommentList(commentPage);
+		List<Map<String, Object>> commentList = getCommentList(commentPage);
 		resultMap.put("sortBy", sortBy);
 		resultMap.put("currentPage", commentPage.getCurrentPage());
 		resultMap.put("pageSize", commentPage.getPageSize());
 		resultMap.put("totalPage", commentPage.getTotalPage());
-		resultMap.put("courseList", commentList);
+		resultMap.put("commentList", commentList);
 		
 		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
 		returnMap.put(STR_REASON, SUCCESS);
@@ -160,8 +173,8 @@ public class CommentApi extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	public static List<Comment> getCommentList(CommentPage commentPage) {
-		//构建Json
+	public static List<Map<String, Object>> getCommentList(CommentPage commentPage) {
+		//构建JSon
 		List<Map<String, Object>> commentList = new ArrayList<>();
 		Map<String, Object> commentAttr;
 		for(Comment tmpComment : commentPage.getCommentList()){
