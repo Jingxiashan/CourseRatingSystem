@@ -63,6 +63,7 @@
 	<bean id="courseApi" class="com.courseratingsystem.web.api.CourseApi" scope="prototype">
 		<property name="courseService" ref="courseService" />
 		<property name="teacherService" ref="teacherService" />
+		<property name="commentService" ref="commentService"/>
 	</bean>
 	<!-- 配置Action -->
 	<bean id="uploadAction" class="com.courseratingsystem.web.action.UploadAction"

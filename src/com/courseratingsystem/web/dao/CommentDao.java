@@ -12,10 +12,12 @@ public interface CommentDao {
 	public List<Comment> findCommentByUserID(int userid);
 	public List<Comment> findCommentByCourseID(int courseid);
 	public List<Comment> findCommentByTeacherID(int teacherid);
+	public List<Comment> findTopComments();
 	
 	public int findCommentTotalCountByUserID(int userid);
 	public int findCommentTotalCountByCourseID(int courseid);
 	public int findCommentTotalCountByTeacherID(int teacherid);
+
 	
 	public int getTotalCount();
 }

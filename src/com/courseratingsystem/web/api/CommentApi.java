@@ -108,7 +108,6 @@ public class CommentApi extends ActionSupport{
 		commentPage = commentService.findCommentByTeacherID(teacherId, currentPage, pageSize, sortBy);
 		
 		List<Map<String, Object>> commentList = getCommentList(commentPage);
-		
 		resultMap.put("sortBy", sortBy);
 		resultMap.put("currentPage", commentPage.getCurrentPage());
 		resultMap.put("pageSize", commentPage.getPageSize());

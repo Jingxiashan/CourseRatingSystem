@@ -31,7 +31,6 @@
 				<param name="root">returnJson</param>
 			</result>
 		</action>
-		
 		<!-- 下面是和Comment有关的Api -->
 		<action name="getCommentListByCourseId" class="com.courseratingsystem.web.api.CommentApi" method="getCommentListByCourseId">
 			<result type="json" name="success">
@@ -63,7 +62,11 @@
 				<param name="root">returnJson</param>
 			</result>
 		</action>
-		
+		<action name="getHotCourseAndComment" class="com.courseratingsystem.web.api.CourseApi" method="getHotCourseAndComment">
+			<result type="json" name="success">
+				<param name="root">returnJson</param>
+			</result>
+		</action>
 	</package>
 	
 	
