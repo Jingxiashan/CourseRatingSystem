@@ -83,6 +83,19 @@ public class CommentApi extends ActionSupport{
 		CommentPage commentPage = null;
 		commentPage = commentservice.findCommentByCourseID(courseId, currentPage, pageSize, sortBy);
 		
+		returnJson=getCommentList(commentPage);
+		
+		return SUCCESS;
+	}
+	
+	//public CommentPage findCommentByTeacherID(int teacherid,int currentPage,int pageSize,String sortmethod);
+	public String getCommentListByTeacherId() {
+		
+		
+		return SUCCESS;
+	}
+	
+	public Object getCommentList(CommentPage commentPage) {
 		//¹¹½¨Json
 		List<Map<String, Object>> commentList = new ArrayList<>();
 		Map<String, Object> commentAttr;
@@ -109,7 +122,7 @@ public class CommentApi extends ActionSupport{
 		};
 		
 		resultMap.put("sortBy", sortBy);
-		resultMap.put("currentPage", currentPage);
+		resultMap.put("currentPage", commentPage.getCurrentPage());
 		resultMap.put("pageSize", commentPage.getPageSize());
 		resultMap.put("totalPage", commentPage.getTotalPage());
 		resultMap.put("courseList", commentList);
@@ -117,15 +130,8 @@ public class CommentApi extends ActionSupport{
 		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
 		returnMap.put(STR_REASON, SUCCESS);
 		returnMap.put(STR_RESULT, resultMap);
-		returnJson = JSON.toJSON(returnMap);
 		
-		return SUCCESS;
+		return returnJson = JSON.toJSON(returnMap);
 	}
-	
-	//public CommentPage findCommentByTeacherID(int teacherid,int currentPage,int pageSize,String sortmethod);
-	public String getCommentListByTeacherId() {
-		
-		
-		return SUCCESS;
-	}
+
 }
