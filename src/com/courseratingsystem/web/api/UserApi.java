@@ -1,6 +1,8 @@
 package com.courseratingsystem.web.api;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,11 +12,14 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
 import com.alibaba.fastjson.JSON;
+import com.courseratingsystem.web.domain.Course;
 import com.courseratingsystem.web.domain.Logininfo;
 import com.courseratingsystem.web.domain.User;
+import com.courseratingsystem.web.service.CourseService;
 import com.courseratingsystem.web.service.LogininfoService;
 import com.courseratingsystem.web.service.UserService;
 import com.courseratingsystem.web.service.impl.LogininfoServiceImpl;
+import com.courseratingsystem.web.vo.CoursePage;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -30,40 +35,39 @@ public class UserApi extends ActionSupport{
 	private static final String MSG_REGISTER_FAILED_DUPLICATE = "用户名已存在，换一个试试吧";
 	private static final String MSG_GETUSER_FAILED_NOT_EXISTS = "不存在当前用户";
 	private static final String FAIL = "fail";
+	
 	Map<String,Object> resultMap;
 	Map<String,Object> returnMap;
 	private Object returnJson;
+	
 	private LogininfoService logininfoService;
 	private UserService userService;
-	
-
-
+	private CourseService courseService;
 
 	public Object getReturnJson() {
 		return returnJson;
 	}
-
 	public void setReturnJson(Object returnJson) {
 		this.returnJson = returnJson;
 	}
-
 	public UserService getUserService() {
 		return userService;
 	}
-
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-	
 	public LogininfoService getLogininfoService() {
 		return logininfoService;
 	}
-
 	public void setLogininfoService(LogininfoService logininfoService) {
 		this.logininfoService = logininfoService;
 	}
-
-
+	public CourseService getCourseService() {
+		return courseService;
+	}
+	public void setCourseService(CourseService courseService) {
+		this.courseService = courseService;
+	}
 	
 	public String login() {
 		returnMap = new HashMap<String,Object>();
@@ -145,6 +149,109 @@ public class UserApi extends ActionSupport{
 				returnJson = JSON.toJSON(returnMap);
 			}
 		}
+		return SUCCESS;
+	}
+	
+	//public void deleteFavourateCourse(int userid, Course course);
+	public String deleteFavorateCourse(){
+		returnMap = new HashMap<String,Object>();
+		resultMap = new HashMap<>();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		int userId,courseId;
+		
+		if(request.getParameter("userId")!=null){
+			userId = Integer.parseInt(request.getParameter("userId"));
+		}else {
+			return FAIL;
+		}
+		if(request.getParameter("courseId")!=null){
+			courseId = Integer.parseInt(request.getParameter("courseId"));
+		}else {
+			return FAIL;
+		}
+		
+		Course course = courseService.findCourseById(courseId);
+		userService.deleteFavourateCourse(userId, course);
+		
+		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
+		returnMap.put(STR_REASON, SUCCESS);
+		
+		returnJson = JSON.toJSON(returnMap);
+		
+		return SUCCESS;
+	}
+	
+	//public List<Course> findFavouratesById(int userid);
+	public String getFavoriteCourseList(){
+		returnMap = new HashMap<String,Object>();
+		resultMap = new HashMap<>();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		int userId;
+		
+		if(request.getParameter("userId")!=null){
+			userId = Integer.parseInt(request.getParameter("userId"));
+		}else {
+			return FAIL;
+		}
+		
+		List<Course> courseList = userService.findFavouratesById(userId);
+		
+		//构建JSon
+		List<Map<String, Object>> favoriteCourseList = new ArrayList<>();
+		Map<String, Object> favoriteCourseAttr;
+		for(Course tmpCourse : courseList){
+			favoriteCourseAttr = new HashMap<>();
+			favoriteCourseAttr.put("courseId", tmpCourse.getCourseid());
+			favoriteCourseAttr.put("courseName", tmpCourse.getCoursename());
+			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getAverageRatingsRollCall());
+			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getAverageRatingsScoring());
+			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getAverageRatingsSpareTimeOccupation());
+			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getAverageRatingsUsefulness());
+			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getAverageRatingsVividness());
+			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getRecommendationScore());
+			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getFinalType());
+			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getPeopleCount());
+			
+			favoriteCourseList.add(favoriteCourseAttr);
+		}
+		
+		resultMap.put("favoriteCourseList", favoriteCourseList);
+		
+		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
+		returnMap.put(STR_REASON, SUCCESS);
+		returnMap.put(STR_RESULT, resultMap);
+		
+		returnJson = JSON.toJSON(returnMap);
+		
+		return SUCCESS;
+	}
+	
+	//public void addFavourateCourse(int userid, Course course);
+	public String addFavourateCourse(){
+		returnMap = new HashMap<String,Object>();
+		resultMap = new HashMap<>();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		int userId,courseId;
+		
+		if(request.getParameter("userId")!=null){
+			userId = Integer.parseInt(request.getParameter("userId"));
+		}else {
+			return FAIL;
+		}
+		if(request.getParameter("courseId")!=null){
+			courseId = Integer.parseInt(request.getParameter("courseId"));
+		}else {
+			return FAIL;
+		}
+		
+		Course course = courseService.findCourseById(courseId);
+		userService.addFavourateCourse(userId, course);
+		
+		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
+		returnMap.put(STR_REASON, SUCCESS);
+		
+		returnJson = JSON.toJSON(returnMap);
+		
 		return SUCCESS;
 	}
 	
