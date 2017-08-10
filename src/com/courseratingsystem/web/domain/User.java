@@ -1,8 +1,11 @@
 package com.courseratingsystem.web.domain;
 
+import java.util.HashMap;
+
 // Generated 2017-7-18 14:18:31 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -25,6 +28,13 @@ public class User implements java.io.Serializable {
 	private Set logininfos = new HashSet(0);
 	private Set comments = new HashSet(0);
 	private String picpath;
+
+	
+	public User(String nickname, String grade) {
+		super();
+		this.nickname = nickname;
+		this.grade = grade;
+	}
 
 	public String getPicpath() {
 		return picpath;

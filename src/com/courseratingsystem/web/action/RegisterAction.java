@@ -96,7 +96,7 @@ public class RegisterAction extends ActionSupport implements ModelDriven<Registe
 		}else {
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("result", SUCCESS);
-			map.put("message", MSG_REGISTER_USERNAME_AVAILABLE);
+			map.put("message", SUCCESS);
 			result = JSON.toJSONString(map);
 			return SUCCESS;
 		}
@@ -108,8 +108,22 @@ public class RegisterAction extends ActionSupport implements ModelDriven<Registe
 			//然后在LoginService里面注册
 			logininfoService.register(tmpUser, registerInfo.getUsername(), registerInfo.getPassword());
 			ServletActionContext.getRequest().getSession().setAttribute("user", tmpUser);
-			result = SUCCESS; 
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("result", SUCCESS);
+			map.put("message", SUCCESS);
+			result = JSON.toJSONString(map);
 			return SUCCESS;
+	}
+	
+	//for mobile devices
+	public String checkAndRegister() {
+		String checkResult = checkUsername();
+		if(FAIL.equals(checkResult)) {
+			return FAIL;
+		}else {
+			register();
+			return SUCCESS;
+		}
 	}
 	
 	@Override

@@ -321,7 +321,8 @@ function register(){
 	 		"grade":grade
 	 		},
 		success:function(data){
-			if(data == "success"){
+			var resultData =  JSON.parse(data);
+			if(resultData.result == "success"){
 				modalTitle.innerHTML = "<i class='checkmark icon' id='modalIcon'></i> 注册成功"
 				modalMessage.innerHTML = "恭喜上车！请站稳扶好哦";
 				modalButton.setAttribute("onclick","window.location.href='course_findAll.action'");

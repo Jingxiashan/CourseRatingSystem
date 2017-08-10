@@ -217,14 +217,14 @@ function login(){
 	 		"password":sha1_password
 	 		},
 		success:function(data){
-			var result = data;			console.log(result);
-			if(result == "success"){
+			var resultData =  JSON.parse(data);
+			if(resultData.result == "success"){
 				//console.log(document.referrer);
 				window.location.href=((document.referrer.length == 0 || document.referrer.indexOf("log") != -1) 
 						? "course_findAll.action" : 
 							document.referrer);
 			}else{
-				document.getElementById("modalMessage").innerHTML = result;
+				document.getElementById("modalMessage").innerHTML = resultData.message;
 				$('.ui.basic.modal')
 				  .modal('show')
 				;	
