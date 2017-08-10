@@ -90,12 +90,77 @@ public class CommentApi extends ActionSupport{
 	
 	//public CommentPage findCommentByTeacherID(int teacherid,int currentPage,int pageSize,String sortmethod);
 	public String getCommentListByTeacherId() {
+		returnMap = new HashMap<String,Object>();
+		resultMap = new HashMap<>();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		int currentPage,teacherId;
 		
+		if(request.getParameter("teacherId")!=null){
+			teacherId = Integer.parseInt(request.getParameter("courseId"));
+		}else {
+			teacherId = 0;
+		}
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));	
+		}else {
+			currentPage = 1;
+		}
+		CommentPage commentPage = null;
+		commentPage = commentservice.findCommentByTeacherID(teacherId, currentPage, pageSize, sortBy);
+		
+		List<Comment> commentList = getCommentList(commentPage);
+		resultMap.put("sortBy", sortBy);
+		resultMap.put("currentPage", commentPage.getCurrentPage());
+		resultMap.put("pageSize", commentPage.getPageSize());
+		resultMap.put("totalPage", commentPage.getTotalPage());
+		resultMap.put("courseList", commentList);
+		
+		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
+		returnMap.put(STR_REASON, SUCCESS);
+		returnMap.put(STR_RESULT, resultMap);
+		
+		returnJson = JSON.toJSON(returnMap);
+		
+		return SUCCESS;
+	}
+
+	//public CommentPage findCommentByUserID(int userid,int currentPage,int pageSize,String sortmethod);
+	public String getCommentListByUserId() {
+		returnMap = new HashMap<String,Object>();
+		resultMap = new HashMap<>();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		int currentPage,teacherId;
+		
+		if(request.getParameter("teacherId")!=null){
+			teacherId = Integer.parseInt(request.getParameter("courseId"));
+		}else {
+			teacherId = 0;
+		}
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));	
+		}else {
+			currentPage = 1;
+		}
+		CommentPage commentPage = null;
+		commentPage = commentservice.findCommentByTeacherID(teacherId, currentPage, pageSize, sortBy);
+		
+		List<Comment> commentList = getCommentList(commentPage);
+		resultMap.put("sortBy", sortBy);
+		resultMap.put("currentPage", commentPage.getCurrentPage());
+		resultMap.put("pageSize", commentPage.getPageSize());
+		resultMap.put("totalPage", commentPage.getTotalPage());
+		resultMap.put("courseList", commentList);
+		
+		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
+		returnMap.put(STR_REASON, SUCCESS);
+		returnMap.put(STR_RESULT, resultMap);
+		
+		returnJson = JSON.toJSON(returnMap);
 		
 		return SUCCESS;
 	}
 	
-	public Object getCommentList(CommentPage commentPage) {
+	public static List<Comment> getCommentList(CommentPage commentPage) {
 		//¹¹½¨Json
 		List<Map<String, Object>> commentList = new ArrayList<>();
 		Map<String, Object> commentAttr;
@@ -120,18 +185,7 @@ public class CommentApi extends ActionSupport{
 			
 			commentList.add(commentAttr);
 		};
-		
-		resultMap.put("sortBy", sortBy);
-		resultMap.put("currentPage", commentPage.getCurrentPage());
-		resultMap.put("pageSize", commentPage.getPageSize());
-		resultMap.put("totalPage", commentPage.getTotalPage());
-		resultMap.put("courseList", commentList);
-		
-		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
-		returnMap.put(STR_REASON, SUCCESS);
-		returnMap.put(STR_RESULT, resultMap);
-		
-		return returnJson = JSON.toJSON(returnMap);
+		return commentList;
 	}
 
 }
