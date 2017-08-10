@@ -95,7 +95,7 @@ public class CommentServiceImpl implements CommentService{
 		int likeCountNow = comment.getLikeCount();
 		comment.setLikeCount(likeCountNow+1);
 		commentDao.update(comment);
-		return likeCountNow + 1;		
+		return likeCountNow + 1;
 	}
 
 	@Override

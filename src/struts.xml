@@ -7,6 +7,10 @@
 <struts>
 
 	<package name="api" namespace="/api" extends="json-default" >
+		<global-results>  
+        	<result name="fail">returnJson</result>  
+  		</global-results> 
+	
 		<action name="login" class="com.courseratingsystem.web.api.UserApi" method="login">
 			<result type="json" name="success">
 				<param name="root">returnJson</param>
@@ -27,6 +31,39 @@
 				<param name="root">returnJson</param>
 			</result>
 		</action>
+		
+		<!-- 下面是和Comment有关的Api -->
+		<action name="getCommentListByCourseId" class="com.courseratingsystem.web.api.CommentApi" method="getCommentListByCourseId">
+			<result type="json" name="success">
+				<param name="root">returnJson</param>
+			</result>
+		</action>
+		<action name="getCommentListByTeacherId" class="com.courseratingsystem.web.api.CommentApi" method="getCommentListByTeacherId">
+			<result type="json" name="success">
+				<param name="root">returnJson</param>
+			</result>
+		</action>
+		<action name="getCommentListByUserId" class="com.courseratingsystem.web.api.CommentApi" method="getCommentListByUserId">
+			<result type="json" name="success">
+				<param name="root">returnJson</param>
+			</result>
+		</action>
+		<action name="addLikeCount" class="com.courseratingsystem.web.api.CommentApi" method="addLikeCount">
+			<result type="json" name="success">
+				<param name="root">returnJson</param>
+			</result>
+		</action>
+		<action name="deleteComment" class="com.courseratingsystem.web.api.CommentApi" method="deleteComment">
+			<result type="json" name="success">
+				<param name="root">returnJson</param>
+			</result>
+		</action>
+		<action name="adComment" class="com.courseratingsystem.web.api.CommentApi" method="adComment">
+			<result type="json" name="success">
+				<param name="root">returnJson</param>
+			</result>
+		</action>
+		
 	</package>
 	
 	

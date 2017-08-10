@@ -53,6 +53,26 @@ public class Comment implements java.io.Serializable{
 		this.critics = critics;
 		this.likeCount = likeCount;
 	}
+	public Comment(int teacherId, int courseId, int userId,
+			Float ratingUsefulness, Float ratingVividness,
+			Float ratingSpareTimeOccupation, Float ratingScoring,
+			Float ratingRollCall, Float recommandScore, String critics,
+			Integer likeCount) {
+		this.teacher = new Teacher();
+		teacher.setTeacherid(teacherId);
+		this.course = new Course();
+		course.setCourseid(courseId);
+		this.user = new User();
+		user.setUserid(userId);
+		this.ratingUsefulness = ratingUsefulness;
+		this.ratingVividness = ratingVividness;
+		this.ratingSpareTimeOccupation = ratingSpareTimeOccupation;
+		this.ratingScoring = ratingScoring;
+		this.ratingRollCall = ratingRollCall;
+		this.recommandScore = recommandScore;
+		this.critics = critics;
+		this.likeCount = likeCount;
+	}
 
 	public Integer getCommentid() {
 		return this.commentid;
