@@ -82,7 +82,7 @@ public class TeacherAction extends ActionSupport implements ModelDriven<Teacher>
 			Teacher teacher = teacherService.findTeacherByTeacherId(teacherid);
 			if(teacher!=null){
 				HttpServletRequest request = ServletActionContext.getRequest();
-				//GET TEACHER NAME
+	 			//GET TEACHER NAME
 				request.setAttribute("teacher", teacher);
 				//GET COMMENTS
 				CommentPage commentPage = commentService.findCommentByTeacherID(teacherid, currentPage, pageSize, sortmethod);

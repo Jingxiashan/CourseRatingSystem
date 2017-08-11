@@ -1,5 +1,6 @@
 package com.courseratingsystem.web.api;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -172,6 +173,71 @@ public class UserApi extends ActionSupport{
 		
 		Course course = courseService.findCourseById(courseId);
 		userService.deleteFavourateCourse(userId, course);
+		
+		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
+		returnMap.put(STR_REASON, SUCCESS);
+		
+		returnJson = JSON.toJSON(returnMap);
+		
+		return SUCCESS;
+	}
+	
+	public String modifyProfile(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+//		String username = request.getParameter("username");
+//		String password = request.getParameter("password");
+//		String nickname = request.getParameter("nickname");
+//		String grade = request.getParameter("grade");
+//		Object tmp = userInfo.getAvatar();
+//		if(userInfo.getAvatar() != null) {
+//			File avatarFile = userInfo.getAvatar().get(0);
+//			String avatarFileName = userInfo.getAvatarFileName();
+//			String fileFinalName =  "/" + currentUser.getUserid() +avatarFileName.substring(avatarFileName.lastIndexOf("."));
+//			String uploadRuselt = uploadFile(avatarFile,fileFinalName);
+//			if(FAIL.equals(uploadRuselt)) {
+//				result = "文件上传失败，请重试";
+//				return FAIL;
+//			}else {
+//				currentUser.setPicpath(PREFIXDIR + UPLOADDIR + fileFinalName);
+//			}
+//		}
+//		//setInfo
+//		currentUser.setGrade(userInfo.getGrade());
+//		currentUser.setNickname(userInfo.getNickname());
+//		currentUser.setWechatAccount(userInfo.getWechatAccount());
+//		currentUser.setIntroduction(userInfo.getIntroduction());
+//		userService.update(currentUser);
+//		//最后 更新session里面的user
+//		ServletActionContext.getRequest().getSession().setAttribute("user", currentUser);
+//		result = SUCCESS;
+		return SUCCESS;
+	}
+	
+	//public boolean changepassword(int userid,String oldpassword,String newpassword);
+	public String changepassword(){
+		returnMap = new HashMap<String,Object>();
+		resultMap = new HashMap<>();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		int userId;
+		String oldPassword,newPassword;
+		
+		if(request.getParameter("userId")!=null){
+			userId = Integer.parseInt(request.getParameter("userId"));
+		}else {
+			return FAIL;
+		}
+		if(request.getParameter("oldPassword")!=null){
+			oldPassword = request.getParameter("oldPassword");
+		}else {
+			return FAIL;
+		}
+		if(request.getParameter("newPassword")!=null){
+			newPassword = request.getParameter("newPassword");
+		}else {
+			return FAIL;
+		}
+		
+		logininfoService.changepassword(userId, oldPassword, newPassword);
 		
 		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
 		returnMap.put(STR_REASON, SUCCESS);
