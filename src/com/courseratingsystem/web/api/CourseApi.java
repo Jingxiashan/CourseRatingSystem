@@ -45,6 +45,7 @@ public class CourseApi extends ActionSupport{
 	private CourseService courseService;
 	private TeacherService teacherService;
 	private CommentService commentService;
+	private UserService userService;
 	public CommentService getCommentService() {
 		return commentService;
 	}
@@ -69,6 +70,12 @@ public class CourseApi extends ActionSupport{
 	}
 	public void setTeacherService(TeacherService teacherService) {
 		this.teacherService = teacherService;
+	}
+	public UserService getUserService() {
+		return userService;
+	}
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 	
 	public String getCourseList() {
@@ -204,6 +211,31 @@ public class CourseApi extends ActionSupport{
 		returnMap.put(STR_RESULT, resultMap);
 		
 		returnJson = JSON.toJSON(returnMap);
+		
+		return SUCCESS;
+	}
+	
+	//public boolean ifFavourate(int userid, Course course);
+	public String ifFavorate(){
+		returnMap = new HashMap<String,Object>();
+		resultMap = new HashMap<>();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		int userId,courseId;
+		
+		if(request.getParameter("userId")!=null){
+			userId = Integer.parseInt(request.getParameter("userId"));
+		}else {
+			return FAIL;
+		}
+		if(request.getParameter("courseId")!=null){
+			courseId = Integer.parseInt(request.getParameter("courseId"));
+		}else {
+			return FAIL;
+		}
+		
+		Course course = courseService.findCourseById(courseId);
+		Boolean iffavorite = userService.ifFavourate(userId, course);
+		
 		
 		return SUCCESS;
 	}

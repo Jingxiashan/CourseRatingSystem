@@ -181,6 +181,7 @@ public class CommentApi extends ActionSupport{
 			commentAttr.put("recommandScore", tmpComment.getRecommandScore());
 			commentAttr.put("critics", tmpComment.getCritics());
 			commentAttr.put("likeCount", tmpComment.getLikeCount());
+			commentAttr.put("picPath", tmpComment.getUser().getPicpath());
 			
 			commentList.add(commentAttr);
 		};
