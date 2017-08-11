@@ -8,7 +8,9 @@
 
 	<package name="api" namespace="/api" extends="json-default" >
 		<global-results>  
-        	<result name="fail">returnJson</result>  
+        	<result type="json" name="fail">
+        		<param name="root">returnJson</param>
+        	</result>  
   		</global-results> 
 	
 		<action name="login" class="com.courseratingsystem.web.api.UserApi" method="login">
@@ -26,7 +28,33 @@
 				<param name="root">returnJson</param>
 			</result>
 		</action>
+		<action name="addFavorateCourse" class="com.courseratingsystem.web.api.UserApi" method="addFavourateCourse">
+			<result type="json" name="success">
+				<param name="root">returnJson</param>
+			</result>
+		</action>
+		<action name="deleteFavorateCourse" class="com.courseratingsystem.web.api.UserApi" method="deleteFavorateCourse">
+			<result type="json" name="success">
+				<param name="root">returnJson</param>
+			</result>
+		</action>
+		<action name="getFavoriteCourseList" class="com.courseratingsystem.web.api.UserApi" method="getFavoriteCourseList">
+			<result type="json" name="success">
+				<param name="root">returnJson</param>
+			</result>
+		</action>
+		<!-- 下面是和Course有关的Api -->
 		<action name="getCourseList" class="com.courseratingsystem.web.api.CourseApi" method="getCourseList">
+			<result type="json" name="success">
+				<param name="root">returnJson</param>
+			</result>
+		</action>
+		<action name="getHotCourseAndComment" class="com.courseratingsystem.web.api.CourseApi" method="getHotCourseAndComment">
+			<result type="json" name="success">
+				<param name="root">returnJson</param>
+			</result>
+		</action>
+		<action name="getCourseWithTenComments" class="com.courseratingsystem.web.api.CourseApi" method="getCourseWithTenComments">
 			<result type="json" name="success">
 				<param name="root">returnJson</param>
 			</result>
@@ -57,12 +85,13 @@
 				<param name="root">returnJson</param>
 			</result>
 		</action>
-		<action name="adComment" class="com.courseratingsystem.web.api.CommentApi" method="adComment">
+		<action name="addComment" class="com.courseratingsystem.web.api.CommentApi" method="adComment">
 			<result type="json" name="success">
 				<param name="root">returnJson</param>
 			</result>
 		</action>
-		<action name="getHotCourseAndComment" class="com.courseratingsystem.web.api.CourseApi" method="getHotCourseAndComment">
+		<!-- 下面是和Teacher有关的Api -->
+		<action name="getCommentListAndCourseListByTeacherId" class="com.courseratingsystem.web.api.TeacherApi" method="getCommentListAndCourseListByTeacherId">
 			<result type="json" name="success">
 				<param name="root">returnJson</param>
 			</result>

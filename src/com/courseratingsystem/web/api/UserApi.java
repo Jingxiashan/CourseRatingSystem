@@ -203,14 +203,14 @@ public class UserApi extends ActionSupport{
 			favoriteCourseAttr = new HashMap<>();
 			favoriteCourseAttr.put("courseId", tmpCourse.getCourseid());
 			favoriteCourseAttr.put("courseName", tmpCourse.getCoursename());
-			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getAverageRatingsRollCall());
-			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getAverageRatingsScoring());
-			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getAverageRatingsSpareTimeOccupation());
-			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getAverageRatingsUsefulness());
-			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getAverageRatingsVividness());
-			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getRecommendationScore());
-			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getFinalType());
-			favoriteCourseAttr.put("courseId", tmpCourse.getCoursemark().getPeopleCount());
+			favoriteCourseAttr.put("averageRatingUsefulness", tmpCourse.getCoursemark().getAverageRatingsUsefulness());
+			favoriteCourseAttr.put("averageRatingsRollCall", tmpCourse.getCoursemark().getAverageRatingsRollCall());
+			favoriteCourseAttr.put("averageRatingsScoring", tmpCourse.getCoursemark().getAverageRatingsScoring());
+			favoriteCourseAttr.put("averageRatingsSpareTimeOccupation", tmpCourse.getCoursemark().getAverageRatingsSpareTimeOccupation());
+			favoriteCourseAttr.put("averageRatingsVividness", tmpCourse.getCoursemark().getAverageRatingsVividness());
+			favoriteCourseAttr.put("recommendationScore", tmpCourse.getCoursemark().getRecommendationScore());
+			favoriteCourseAttr.put("finalType", tmpCourse.getCoursemark().getFinalType());
+			favoriteCourseAttr.put("peopleCount", tmpCourse.getCoursemark().getPeopleCount());
 			
 			favoriteCourseList.add(favoriteCourseAttr);
 		}

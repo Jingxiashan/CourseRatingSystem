@@ -176,7 +176,7 @@ public class CourseApi extends ActionSupport{
 		
 		CommentPage commentPage = null;
 		commentPage = commentService.findCommentByCourseID(courseId, 1, pageSize, CommentServiceImpl.COMMENT_SORT_METHOD_BYLIKECOUNT);
-		Course course = courseService.findCourseById(courseId);
+		Course tmpCourse = courseService.findCourseById(courseId);
 		
 		List<Map<String, Object>> commentList = CommentApi.getCommentList(commentPage);
 		
@@ -196,15 +196,15 @@ public class CourseApi extends ActionSupport{
 		resultMap.put("commentList", commentList);
 		resultMap.put("teacherList", teacherList);
 		resultMap.put("courseId", courseId);
-		resultMap.put("courseName",course.getCoursename());
-		resultMap.put("averageRatingUsefulness", course.getCoursemark().getAverageRatingsUsefulness());
-		resultMap.put("averageRatingsRollCall", course.getCoursemark().getAverageRatingsRollCall());
-		resultMap.put("averageRatingsScoring", course.getCoursemark().getAverageRatingsScoring());
-		resultMap.put("averageRatingsSpareTimeOccupation", course.getCoursemark().getAverageRatingsSpareTimeOccupation());
-		resultMap.put("averageRatingsVividness", course.getCoursemark().getAverageRatingsVividness());
-		resultMap.put("recommendationScore", course.getCoursemark().getRecommendationScore());
-		resultMap.put("finalType", course.getCoursemark().getFinalType());
-		resultMap.put("peopleCount", course.getCoursemark().getPeopleCount());
+		resultMap.put("courseName",tmpCourse.getCoursename());
+		resultMap.put("averageRatingUsefulness", tmpCourse.getCoursemark().getAverageRatingsUsefulness());
+		resultMap.put("averageRatingsRollCall", tmpCourse.getCoursemark().getAverageRatingsRollCall());
+		resultMap.put("averageRatingsScoring", tmpCourse.getCoursemark().getAverageRatingsScoring());
+		resultMap.put("averageRatingsSpareTimeOccupation", tmpCourse.getCoursemark().getAverageRatingsSpareTimeOccupation());
+		resultMap.put("averageRatingsVividness", tmpCourse.getCoursemark().getAverageRatingsVividness());
+		resultMap.put("recommendationScore", tmpCourse.getCoursemark().getRecommendationScore());
+		resultMap.put("finalType", tmpCourse.getCoursemark().getFinalType());
+		resultMap.put("peopleCount", tmpCourse.getCoursemark().getPeopleCount());
 				
 		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
 		returnMap.put(STR_REASON, SUCCESS);
@@ -258,12 +258,12 @@ public class CourseApi extends ActionSupport{
 			courseAttr.put("courseId", tmpCourse.getCourseid());
 			courseAttr.put("courseName", tmpCourse.getCoursename());
 			courseAttr.put("peopleCount", tmpCourse.getPeopleCount());
-			courseAttr.put("recScore", tmpCourse.getRecommendationScore());
-			courseAttr.put("useScore", tmpCourse.getAverageRatingsUsefulness());
-			courseAttr.put("vivScore", tmpCourse.getAverageRatingsVividness());
-			courseAttr.put("ocuScore", tmpCourse.getAverageRatingsSpareTimeOccupation());
-			courseAttr.put("scoScore", tmpCourse.getAverageRatingsScoring());
-			courseAttr.put("rolScore", tmpCourse.getAverageRatingsRollCall());
+			courseAttr.put("recommendationScore", tmpCourse.getRecommendationScore());
+			courseAttr.put("averageRatingUsefulness", tmpCourse.getAverageRatingsUsefulness());
+			courseAttr.put("averageRatingsVividness", tmpCourse.getAverageRatingsVividness());
+			courseAttr.put("averageRatingsSpareTimeOccupation", tmpCourse.getAverageRatingsSpareTimeOccupation());
+			courseAttr.put("averageRatingsScoring", tmpCourse.getAverageRatingsScoring());
+			courseAttr.put("averageRatingsRollCall", tmpCourse.getAverageRatingsRollCall());
 			teacherList = new ArrayList<>();
 			for(Teacher tmpTeacher : tmpCourse.getTeacherList()) {
 				teacherAttr = new HashMap<>();
