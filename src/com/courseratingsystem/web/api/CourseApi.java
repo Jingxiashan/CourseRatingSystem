@@ -236,6 +236,13 @@ public class CourseApi extends ActionSupport{
 		Course course = courseService.findCourseById(courseId);
 		Boolean iffavorite = userService.ifFavourate(userId, course);
 		
+		resultMap.put("ifFavorite", iffavorite);
+		
+		returnMap.put(STR_RESULT_CODE, RESULT_CODE_OK);
+		returnMap.put(STR_REASON, SUCCESS);
+		returnMap.put(STR_RESULT, resultMap);
+		
+		returnJson = JSON.toJSON(returnMap);
 		
 		return SUCCESS;
 	}
